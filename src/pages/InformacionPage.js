@@ -294,7 +294,7 @@ Como sabéis, este pan 100% ecológico e integral está libre de conservantes y 
 
 
 <p>
-Si prefieres, también puedes cortarlo en rodajas o en porciones que vayas a consumir y congelarlo directamente el día de la entrega, siempre en una bolsa o un túpper bien cerrado para que no genere escarcha.</p>
+Si prefieres, también puedes cortarlo en rodajas o en porciones que vayas a consumir y congelarlo directamente el día de la entrega, siempre en una bolsa o un táper bien cerrado para que no genere escarcha.</p>
 
 
 <p>

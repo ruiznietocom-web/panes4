@@ -111,7 +111,7 @@ const HarinaSelector = ({ onAddPan }) => {
             onClick={handleAddPan} // Llama a la función para añadir pan
             className="bg-amber-500 text-white px-6 py-2 rounded-xl font-bold shadow-md hover:bg-amber-600 transition"
           >
-            Añadir Pan Personalizado
+            Añade tu Pan Personalizado
           </button>
         </div>
       )}

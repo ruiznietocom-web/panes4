@@ -40,7 +40,7 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
             
             {/* Título con número de pan y harinas seleccionadas */}
             <h3 className="font-bold mb-3 text-lg">
-              Extras Pan {index + 1} ({pan.harinas.map(h => h.name).join(', ')})
+              ELIGE LOS EXTRAS DE TU PAN {index + 1} ({pan.harinas.map(h => h.name).join(', ')})
               {/* Muestra el número de pan y lista los nombres de las harinas separadas por comas */}
             </h3>
 

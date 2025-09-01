@@ -21,8 +21,7 @@
   "main": "index.js",
   "devDependencies": {},
   "engines": {
-    "node": "20.5.1
-"
+    "node": "20.5.1"
   },
   "browserslist": {
     "production": [

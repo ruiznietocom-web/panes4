@@ -246,4 +246,20 @@ export const pulguitas = [
     image: "🍅",
     price: 0.80
   }
+export const otrosPanes = [
+  {
+    id: 1,
+    name: "Pan Rústico",
+    description: "Pan casero tradicional",
+    image: "🥖",
+    price: 2.50
+  },
+  {
+    id: 2,
+    name: "Pan de Avena",
+    description: "Ligero y nutritivo",
+    image: "🌾",
+    price: 3.00
+  }
 ];
+

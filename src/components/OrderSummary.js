@@ -71,7 +71,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
   const handleSendWhatsApp = () => {
     const message = generateWhatsAppMessage();
-    const phoneNumber = "1234567890"; // Cambia por tu número de WhatsApp
+    const phoneNumber = "627526380"; // Cambia por tu número de WhatsApp
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
     onSendWhatsApp();

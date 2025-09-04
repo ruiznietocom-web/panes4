@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Wheat, Cookie, Sandwich } from 'lucide-react';
+import { Wheat, Cookie, Croissant } from 'lucide-react';
 
 const Navigation = () => {
   const navItems = [
     { name: 'Pan Personalizado', path: '/', icon: Wheat },
     { name: 'Bollitos', path: '/bollitos', icon: Cookie },
-    { name: 'Pulguitas', path: '/pulguitas', icon: Sandwich },
+    { name: 'Pulguitas', path: '/pulguitas', icon: Croissant },
   ];
 
   return (

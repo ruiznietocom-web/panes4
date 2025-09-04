@@ -140,4 +140,52 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
                     <span>{bollito.image}</span>
                     {bollito.name} x{bollitoItem.quantity}
                   </span>
-                  <span class
+                  <span className="font-semibold text-blue-600">${(bollito.price * bollitoItem.quantity).toFixed(2)}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Pulguitas */}
+        {cartItems.filter(item => item.type === 'pulguita').length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Pulguitas:</h3>
+            {cartItems.filter(item => item.type === 'pulguita').map(pulguitaItem => {
+              const pulguita = pulguitas.find(p => p.id === pulguitaItem.id);
+              return pulguita && (
+                <div key={pulguita.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg">
+                  <span className="text-gray-800 flex items-center gap-2">
+                    <span>{pulguita.image}</span>
+                    {pulguita.name} x{pulguitaItem.quantity}
+                  </span>
+                  <span className="font-semibold text-purple-600">${(pulguita.price * pulguitaItem.quantity).toFixed(2)}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        <div className="border-t pt-3">
+          <div className="flex justify-between items-center text-xl font-bold">
+            <span className="text-gray-800">Total:</span>
+            <span className="text-amber-600">${calculateTotal()}</span>
+          </div>
+        </div>
+      </div>
+      
+      <motion.button
+        onClick={handleSendWhatsApp}
+        disabled={isOrderEmpty}
+        className={`w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${isOrderEmpty ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl hover:scale-[1.01]'}`}
+        whileHover={isOrderEmpty ? {} : { scale: 1.02 }}
+        whileTap={isOrderEmpty ? {} : { scale: 0.98 }}
+      >
+        <MessageCircle className="w-6 h-6" />
+        Enviar Pedido por WhatsApp
+      </motion.button>
+    </motion.div>
+  );
+};
+
+export default OrderSummary;

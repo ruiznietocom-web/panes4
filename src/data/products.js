@@ -47,51 +47,88 @@ export const harinas = [
 export const extras = [
   {
     id: 1,
-    name: "Semillas de Girasol",
-    price: 0.50,
+    name: "Mix Semillas Eco",
+    price: 0.70,
     icon: "🌻"
   },
   {
     id: 2,
     name: "Nueces",
-    price: 0.75,
+    price: 0.70,
     icon: "🥜"
   },
   {
     id: 3,
-    name: "Pasas",
-    price: 0.60,
+    name: "Ciruelas Pasas",
+    price: 0.70,
     icon: "🍇"
   },
   {
     id: 4,
-    name: "Semillas de Sésamo",
-    price: 0.45,
+    name: "Dátiles",
+    price: 0.50,
     icon: "🌰"
   },
   {
     id: 5,
-    name: "Aceitunas",
-    price: 0.80,
+    name: "Aceitunas Negras",
+    price: 2,
     icon: "🫒"
   },
   {
     id: 6,
-    name: "Hierbas Aromáticas",
-    price: 0.55,
-    icon: "🌿"
+    name: "Tomate y orégano",
+    price: 1.50,
+    icon: "🍅"
   },
   {
     id: 7,
-    name: "Queso Rallado",
-    price: 0.90,
+    name: "Queso Roquefort",
+    price: 3,
     icon: "🧀"
   },
-  {
+ {
     id: 8,
-    name: "Tomates Secos",
-    price: 0.70,
-    icon: "🍅"
+    name: "Cúrcuma",
+    price: 0.50,
+    icon: "🧡"
+  },
+ {
+    id: 9,
+    name: "Pimienta",
+    price: 0.50,
+    icon: "🌶️"
+  },
+ {
+    id: 10,
+    name: "Curry",
+    price: 0.50,
+    icon: "🍛"
+  },
+ {
+    id: 11,
+    name: "Jengibre",
+    price: 0.50,
+    icon: "🫚"
+  },
+ {
+    id: 12,
+    name: "Cacao Puro en Polvo",
+    price: 0.50,
+    icon: "🍫"
+  },
+ {
+    id: 13,
+    name: "Miel Pura",
+    price: 0.50,
+    icon: "🍯"
+  },
+  {
+    id: 14,
+    name: "Ajo",
+    price: 1,
+    icon: "🧄"
+
   }
 ];
 

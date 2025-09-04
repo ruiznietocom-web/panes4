@@ -4,8 +4,18 @@ import { ShoppingCart, MessageCircle } from 'lucide-react';
 import { harinas, bollitos, pulguitas } from '../data/products';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
+      const fixedHarinaPrice = 5.50; // Precio fijo para la sección de harinas
+
+
+
   const calculateTotal = () => {
     let total = 0;
+
+ const selectedHarinasCount = cartItems.filter(item => item.type === 'harina').length;
+    if (selectedHarinasCount > 0) {
+      total += fixedHarinaPrice; // Sumar el precio fijo si hay al menos una harina seleccionada
+    }
+
     cartItems.forEach(item => {
       if (item.type === 'harina') {
         const harina = harinas.find(h => h.id === item.id);

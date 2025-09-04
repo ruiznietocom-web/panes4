@@ -194,48 +194,60 @@ export const bollitos = [
 
 export const pulguitas = [
   {
-    id: 1,
-    name: "Pulguita Clásica",
+   id: 1,
+    name: "Pulguita Integral",
     description: "Pequeña y crujiente, ideal para bocadillos",
-    image: "🥖",
+    image: "🥯",
     price: 0.60
   },
   {
     id: 2,
-    name: "Pulguita de Cereales",
-    description: "Con semillas y cereales, más nutritiva",
-    image: "🌰",
+    name: "Pulguita de Cacao",
+    description: "Mini formato dulce, perfecta para niños",
+    image: "🍫",
+    price: 0.90
+  },
+  {
+    id: 3,
+    name: "Pulguita de Nueces",
+    description: "Con nueces, nutritiva y energética",
+    image: "🥜",
+    price: 0.70
+  },
+  {
+    id: 4,
+    name: "Pulguita de Ciruelas Pasas",
+    description: "Pequeña, dulce y saludable",
+    image: "🍇",
+    price: 0.70
+  },
+  {
+    id: 5,
+    name: "Pulguita de Cúrcuma",
+    description: "Dorada y aromática, exótica y ligera",
+    image: "🧡",
+    price: 0.70
+  },
+  {
+    id: 6,
+    name: "Pulguita de Semillas",
+    description: "Crujiente con mezcla de semillas nutritivas",
+    image: "🌻",
     price: 0.75
   },
   {
-    id: 3,
-    name: "Pulguita de Aceitunas",
-    description: "Con trozos de aceitunas, sabor mediterráneo",
-    image: "🫒",
-    price: 0.85
-  }
-];
-
-export const otrosPanes = [
-  {
-    id: 1,
-    name: "Pan de Masa Madre",
-    description: "Fermentación lenta, corteza crujiente",
-    image: "🍞",
-    price: 5.50
-  },
-  {
-    id: 2,
-    name: "Pan de Maíz",
-    description: "Dulce y esponjoso, ideal para acompañar",
-    image: "🌽",
-    price: 4.00
-  },
-  {
-    id: 3,
-    name: "Pan de Ajo y Perejil",
-    description: "Sabor intenso, perfecto para comidas",
+    id: 7,
+    name: "Pulguita de Ajo",
+    description: "Intensa y sabrosa en versión mini",
     image: "🧄",
-    price: 4.75
+    price: 0.70
+  },
+  {
+    id: 8,
+    name: "Pulguita de Tomate y Orégano",
+    description: "Mediterránea y deliciosa en pequeño tamaño",
+    image: "🍅",
+    price: 0.80
+
   }
 ];

@@ -245,7 +245,7 @@ export const pulguitas = [
     description: "Mediterránea y deliciosa en pequeño tamaño",
     image: "🍅",
     price: 0.80
-  }
+  },
 export const otrosPanes = [
   {
     id: 1,

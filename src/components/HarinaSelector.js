@@ -19,7 +19,7 @@ const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
         Elige tus Harinas Base
       </h2>
       <p className="text-gray-500 text-center mb-4">
-        Puedes seleccionar hasta {maxHarinas} harinas.El precio de esta sección es fijo: ${fixedHarinaPrice.toFixed(2)}.
+        Puedes seleccionar hasta {maxHarinas} harinas. El precio total de esta sección es fijo: ${fixedHarinaPrice.toFixed(2)}.
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
@@ -17,6 +17,7 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
+  // Helper to find product details
   const getProductDetails = (id, type) => {
     switch (type) {
       case 'harina': return harinas.find(p => p.id === id);
@@ -49,6 +50,11 @@ const App = () => {
     });
   };
 
+  const handleRemoveCartItem = (id, type) => {
+    setCartItems(prevItems => prevItems.filter(item => !(item.id === id && item.type === type)));
+  };
+
+  // Specific handlers for each product type to update cart
   const handleToggleHarina = (harina) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === harina.id && item.type === 'harina');
@@ -58,6 +64,10 @@ const App = () => {
         return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image }];
       }
     });
+  };
+
+  const handleUpdateOtroPanQuantity = (id, quantity) => {
+    handleUpdateCartItem(id, quantity, 'otroPan');
   };
 
   const handleToggleExtra = (extra) => {
@@ -81,11 +91,12 @@ const App = () => {
 
   const handleSendWhatsApp = () => {
     setShowSuccessModal(true);
-    setShowCart(false);
+    setShowCart(false); // Close cart after sending order
   };
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
+    // Reset cart after successful order
     setCartItems([]);
   };
 
@@ -111,6 +122,8 @@ const App = () => {
                       <HarinaSelector 
                         selectedHarinas={cartItems.filter(item => item.type === 'harina')}
                         onToggleHarina={handleToggleHarina}
+                        selectedOtrosPanes={cartItems.filter(item => item.type === 'otroPan').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
+                        onUpdateOtroPanQuantity={handleUpdateOtroPanQuantity}
                       />
                       <ExtrasSelector 
                         selectedExtras={cartItems.filter(item => item.type === 'extra')}

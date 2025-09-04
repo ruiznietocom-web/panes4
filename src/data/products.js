@@ -194,7 +194,7 @@ export const bollitos = [
 
 export const pulguitas = [
   {
-   id: 1,
+    id: 1,
     name: "Pulguita Integral",
     description: "Pequeña y crujiente, ideal para bocadillos",
     image: "🥯",
@@ -249,5 +249,29 @@ export const pulguitas = [
     image: "🍅",
     price: 0.80
 
+  }
+];
+
+export const otrosPanes = [
+  {
+    id: 1,
+    name: "Pan de Masa Madre",
+    description: "Fermentación lenta, corteza crujiente",
+    image: "🍞",
+    price: 5.50
+  },
+  {
+    id: 2,
+    name: "Pan de Maíz",
+    description: "Dulce y esponjoso, ideal para acompañar",
+    image: "🌽",
+    price: 4.00
+  },
+  {
+    id: 3,
+    name: "Pan de Ajo y Perejil",
+    description: "Sabor intenso, perfecto para comidas",
+    image: "🧄",
+    price: 4.75
   }
 ];

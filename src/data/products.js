@@ -1,38 +1,46 @@
 export const harinas = [
   {
     id: 1,
-    name: "Harina de Trigo Integral",
-    description: "Pan nutritivo y rico en fibra",
+    name: "Trigo Integral Ecológico",
+    description: "Clásica, versátil, base tradicional del pan diario.",
     image: "🌾",
-    price: 3.50
+    price: 5.50
   },
   {
     id: 2,
-    name: "Harina de Centeno",
-    description: "Sabor intenso y textura densa",
+    name: "Centeno Integral Ecológico",
+    description: "Oscura, aromática, bajo en gluten, rústica y llena de minerales",
     image: "🍞",
-    price: 4.00
+    price: 5.50
   },
   {
     id: 3,
-    name: "Harina de Avena",
-    description: "Suave y ligeramente dulce",
+    name: "Espelta Integral Ecológico",
+    description: "Harina ancestral, suave, digestiva y rica en fibra.",
     image: "🥖",
-    price: 3.75
+    price: 5.50
   },
   {
     id: 4,
-    name: "Harina de Espelta",
-    description: "Antigua variedad con sabor a nuez",
-    image: "🥨",
-    price: 4.25
+    name: "Khorasan Integral Ecológico",
+    description: "Antiguo cereal, sabor intenso y alto en proteínas.",
+    image: "🌱",
+    price: 5.50
   },
   {
     id: 5,
-    name: "Harina Blanca Tradicional",
-    description: "Clásica y versátil para todo uso",
-    image: "🍰",
-    price: 3.00
+    name: "Tritordeum Integral Ecológico",
+    description: "Innovadora, híbrido del trigo y la cebada y de fácil digestión",
+    image: "🌿",
+    price: 5.50
+  },
+  {
+    id: 6,
+    name: "PAN CORTADO (gratuito)",
+    description: "¿quieres tu pan cortado?",
+    image: "🔪",
+    price: 0
+
   }
 ];
 

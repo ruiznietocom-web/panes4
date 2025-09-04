@@ -137,7 +137,7 @@ export const bollitos = [
    id: 1,
     name: "Bollito Integral",
     description: "Suave y esponjoso, ideal para el desayuno",
-    image: "🥯",
+    image: "🍞",
     price: 0.80
   },
   {
@@ -197,7 +197,7 @@ export const pulguitas = [
     id: 1,
     name: "Pulguita Integral",
     description: "Pequeña y crujiente, ideal para bocadillos",
-    image: "🥯",
+    image: "🍞",
     price: 0.60
   },
   {

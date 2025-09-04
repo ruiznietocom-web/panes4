@@ -6,6 +6,7 @@ import { harinas } from '../data/products';
 const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
   const isSelected = (harinaId) => selectedHarinas.some(harina => harina.id === harinaId);
   const maxHarinas = 6;
+  const fixedHarinaPrice = 5.50; // Precio fijo para la sección de harinas
 
   return (
     <motion.div 

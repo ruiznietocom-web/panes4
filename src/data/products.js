@@ -134,32 +134,61 @@ export const extras = [
 
 export const bollitos = [
   {
-    id: 1,
-    name: "Bollito de Leche",
+   id: 1,
+    name: "Bollito Integral",
     description: "Suave y esponjoso, ideal para el desayuno",
-    image: "🥛",
+    image: "🥯",
     price: 0.80
   },
   {
     id: 2,
-    name: "Bollito de Chocolate",
+    name: "Bollito de Cacao",
     description: "Con trozos de chocolate, un dulce capricho",
     image: "🍫",
     price: 1.20
   },
   {
     id: 3,
-    name: "Bollito Integral",
-    description: "Opción saludable con cereales",
-    image: "🌾",
+    name: "Bollito de Nueces",
+    description: "Crujiente con nueces, nutritivo y delicioso",
+    image: "🥜",
     price: 0.90
   },
   {
     id: 4,
-    name: "Bollito de Mantequilla",
-    description: "Rico sabor a mantequilla, perfecto para acompañar",
-    image: "🧈",
+    name: "Bollito de Ciruelas Pasas",
+    description: "Dulce y energético, con frutas deshidratadas",
+    image: "🍇",
+    price: 0.90
+  },
+  {
+    id: 5,
+    name: "Bollito de Cúrcuma",
+    description: "Aromático y exótico, con un toque dorado",
+    image: "🧡",
+    price: 0.90
+  },
+  {
+    id: 6,
+    name: "Bollito de Semillas",
+    description: "Crujiente, lleno de fibra y minerales",
+    image: "🌻",
+    price: 0.90
+  },
+  {
+    id: 7,
+    name: "Bollito de Ajo",
+    description: "Sabor intenso, perfecto para acompañar comidas",
+    image: "🧄",
+    price: 0.90
+  },
+  {
+    id: 8,
+    name: "Bollito de Tomate y Orégano",
+    description: "Mediterráneo, sabroso y con aroma casero",
+    image: "🍅",
     price: 1.00
+
   }
 ];
 

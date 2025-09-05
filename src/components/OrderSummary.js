@@ -17,37 +17,34 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
 
   const toggleOptionalExtra = (extra) => {
-    setSelectedOptionalExtras(prev => {
-      if (prev.includes(extra.id)) {
-        return prev.filter(id => id !== extra.id);
-      } else {
-        return [...prev, extra.id];
-      }
-    });
+    setSelectedOptionalExtras(prev => 
+      prev.includes(extra.id) ? prev.filter(id => id !== extra.id) : [...prev, extra.id]
+    );
   };
+
+  // Filtrados para renderizado
+  const harinasInCart = cartItems.filter(item => item.type === 'harina');
+  const extrasInCart = cartItems.filter(item => item.type === 'extra');
+  const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
+  const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
 
   const calculateTotal = () => {
     let total = 0;
 
-    if (cartItems.filter(item => item.type === 'harina').length > 0) {
-      total += fixedHarinaPrice;
-    }
+    if (harinasInCart.length > 0) total += fixedHarinaPrice;
 
-    cartItems.forEach(item => {
-      if (item.type === 'extra') total += item.price;
-      else if (item.type === 'bollito') {
-        const b = bollitos.find(b => b.id === item.id);
-        if (b) total += b.price * item.quantity;
-      }
-      else if (item.type === 'pulguita') {
-        const p = pulguitas.find(p => p.id === item.id);
-        if (p) total += p.price * item.quantity;
-      }
+    extrasInCart.forEach(e => total += e.price);
+    bollitosInCart.forEach(item => {
+      const b = bollitos.find(b => b.id === item.id);
+      if (b) total += b.price * item.quantity;
     });
-
+    pulguitasInCart.forEach(item => {
+      const p = pulguitas.find(p => p.id === item.id);
+      if (p) total += p.price * item.quantity;
+    });
     selectedOptionalExtras.forEach(id => {
-      const extra = optionalExtras.find(e => e.id === id);
-      if (extra) total += extra.price;
+      const e = optionalExtras.find(opt => opt.id === id);
+      if (e) total += e.price;
     });
 
     return total.toFixed(2);
@@ -56,7 +53,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const generateWhatsAppMessage = () => {
     let message = `🍞 *NUEVO PEDIDO - PanApp* 🍞\n\n📋 *Resumen del Pedido:*\n`;
 
-    const harinasInCart = cartItems.filter(item => item.type === 'harina');
     if (harinasInCart.length > 0) {
       const harinaNames = harinasInCart.map(item => {
         const h = harinas.find(h => h.id === item.id);
@@ -65,7 +61,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       message += `\n🥖 *Pan Personalizado:*\n• Harinas seleccionadas: ${harinaNames} - ${formatPrice(fixedHarinaPrice)}\n`;
     }
 
-    const extrasInCart = cartItems.filter(item => item.type === 'extra');
     if (extrasInCart.length > 0) {
       message += `\n🟢 *Extras añadidos:*\n`;
       extrasInCart.forEach(extra => {
@@ -73,7 +68,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       });
     }
 
-    const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
     if (bollitosInCart.length > 0) {
       message += `\n🟦 *Bollitos:*\n`;
       bollitosInCart.forEach(item => {
@@ -82,7 +76,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       });
     }
 
-    const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
     if (pulguitasInCart.length > 0) {
       message += `\n🟪 *Pulguitas:*\n`;
       pulguitasInCart.forEach(item => {
@@ -135,7 +128,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* Pan personalizado */}
+        {/* Pan Personalizado */}
         {harinasInCart.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Pan Personalizado:</h3>
@@ -149,7 +142,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* Extras del carrito */}
+        {/* Extras */}
         {extrasInCart.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Extras:</h3>

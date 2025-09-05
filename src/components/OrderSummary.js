@@ -50,25 +50,22 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     let message = `🍞 *NUEVO PEDIDO - PanApp* 🍞\n\n`;
     message += `📋 *Resumen del Pedido:*\n`;
 
-    // Pan personalizado
+    // Harinas (pan personalizado)
     const harinasInCart = cartItems.filter(item => item.type === 'harina');
     if (harinasInCart.length > 0) {
-      message += `\n🥖 *Pan Personalizado (precio fijo ${formatPrice(fixedHarinaPrice)}):*\n`;
-      harinasInCart.forEach(item => {
-        const harina = harinas.find(h => h.id === item.id);
-        if (harina) message += `• ${harina.name} x${item.quantity}\n`;
-      });
-
-      const cortado = harinasInCart.find(h => h.price === 0);
-      if (cortado) message += `• ${cortado.name}\n`;
+      const harinaNames = harinasInCart.map(item => {
+        const h = harinas.find(h => h.id === item.id);
+        return h ? h.name : '';
+      }).join(', ');
+      message += `\n🥖 *Pan Personalizado:*\n* Harinas seleccionadas: ${harinaNames} - ${formatPrice(fixedHarinaPrice)}\n`;
     }
 
-    // Extras del carrito
+    // Extras
     const extrasInCart = cartItems.filter(item => item.type === 'extra');
     if (extrasInCart.length > 0) {
       message += `\n🌟 *Extras añadidos:*\n`;
       extrasInCart.forEach(extra => {
-        message += `• ${extra.name} - ${formatPrice(extra.price)}\n`;
+        message += `* ${extra.name} - ${formatPrice(extra.price)}\n`;
       });
     }
 
@@ -78,7 +75,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       message += `\n🥐 *Bollitos:*\n`;
       bollitosInCart.forEach(item => {
         const bollito = bollitos.find(b => b.id === item.id);
-        if (bollito) message += `• ${bollito.name} x${item.quantity} - ${formatPrice(bollito.price * item.quantity)}\n`;
+        if (bollito) message += `* ${bollito.name} x${item.quantity} - ${formatPrice(bollito.price * item.quantity)}\n`;
       });
     }
 
@@ -88,7 +85,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       message += `\n🥪 *Pulguitas:*\n`;
       pulguitasInCart.forEach(item => {
         const pulguita = pulguitas.find(p => p.id === item.id);
-        if (pulguita) message += `• ${pulguita.name} x${item.quantity} - ${formatPrice(pulguita.price * item.quantity)}\n`;
+        if (pulguita) message += `* ${pulguita.name} x${item.quantity} - ${formatPrice(pulguita.price * item.quantity)}\n`;
       });
     }
 
@@ -97,7 +94,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       message += `\n✨ *Extras opcionales:*\n`;
       selectedOptionalExtras.forEach(id => {
         const extra = optionalExtras.find(e => e.id === id);
-        if (extra) message += `• ${extra.name} - ${formatPrice(extra.price)}\n`;
+        if (extra) message += `* ${extra.name} - ${formatPrice(extra.price)}\n`;
       });
     }
 
@@ -138,10 +135,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* Aquí podrías renderizar el resumen visual como en tu versión anterior */}
-        {/* Pan, extras, bollitos, pulguitas */}
-        
-        {/* Extras opcionales */}
+        {/* Opcionales */}
         {optionalExtras.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Extras Opcionales:</h3>

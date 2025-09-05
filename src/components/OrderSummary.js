@@ -1,30 +1,55 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, MessageCircle } from 'lucide-react';
-import { bollitos, pulguitas } from '../data/products';
+import { harinas, bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const fixedHarinaPrice = 5.50;
 
+  // Extras opcionales
+  const optionalExtras = [
+    { id: 'propina', name: 'Propina', price: 0.50, icon: '💰' },
+    { id: 'cafe', name: 'Café', price: 1.00, icon: '☕' },
+    { id: 'cerveza', name: 'Cerveza', price: 1.50, icon: '🍺' },
+  ];
+
+  const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
+
+  const toggleOptionalExtra = (extra) => {
+    setSelectedOptionalExtras(prev => {
+      if (prev.includes(extra.id)) {
+        return prev.filter(id => id !== extra.id);
+      } else {
+        return [...prev, extra.id];
+      }
+    });
+  };
+
   const calculateTotal = () => {
     let total = 0;
-
     const selectedHarinasCount = cartItems.filter(item => item.type === 'harina').length;
+
     if (selectedHarinasCount > 0) {
-      total += fixedHarinaPrice; // Precio fijo si hay harinas
+      total += fixedHarinaPrice; // precio fijo si hay harinas
     }
 
     cartItems.forEach(item => {
-      if (item.type === 'extra') {
-        total += item.price;
-      } else if (item.type === 'bollito') {
+      if (item.type === 'extra') total += item.price;
+      else if (item.type === 'bollito') {
         const bollito = bollitos.find(b => b.id === item.id);
         if (bollito) total += bollito.price * item.quantity;
-      } else if (item.type === 'pulguita') {
+      }
+      else if (item.type === 'pulguita') {
         const pulguita = pulguitas.find(p => p.id === item.id);
         if (pulguita) total += pulguita.price * item.quantity;
       }
+    });
+
+    // Sumar extras opcionales
+    selectedOptionalExtras.forEach(id => {
+      const extra = optionalExtras.find(e => e.id === id);
+      if (extra) total += extra.price;
     });
 
     return total.toFixed(2);
@@ -34,43 +59,38 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     let message = `🍞 *NUEVO PEDIDO - PanApp* 🍞\n\n`;
     message += `📋 *Resumen del Pedido:*\n`;
 
-    // Harinas
-    const harinasSeleccionadas = cartItems.filter(item => item.type === 'harina');
-    if (harinasSeleccionadas.length > 0) {
-      message += `\n🥖 *Harinas (precio fijo ${formatPrice(fixedHarinaPrice)})*\n`;
-      harinasSeleccionadas.forEach(harina => {
-        message += `• ${harina.name}\n`;
+    const harinasInCart = cartItems.filter(item => item.type === 'harina');
+    if (harinasInCart.length > 0) {
+      message += `\n🥖 *Pan Personalizado (precio fijo ${formatPrice(fixedHarinaPrice)}):*\n`;
+      harinasInCart.forEach(item => {
+        const harina = harinas.find(h => h.id === item.id);
+        if (harina) message += `• ${harina.name} x${item.quantity}\n`;
       });
+
+      // Mostrar si se ha seleccionado el cortado
+      const cortado = harinasInCart.find(h => h.price === 0);
+      if (cortado) message += `• ${cortado.name}\n`;
     }
 
-    // Extras
-    const extrasSeleccionados = cartItems.filter(item => item.type === 'extra');
-    if (extrasSeleccionados.length > 0) {
-      message += `\n🌟 *Extras:*\n`;
-      extrasSeleccionados.forEach(extra => {
-        message += `• ${extra.name} - ${formatPrice(extra.price)}\n`;
-      });
-    }
+    cartItems.filter(item => item.type === 'extra').forEach(extra => {
+      message += `• ${extra.name} - ${formatPrice(extra.price)}\n`;
+    });
 
-    // Bollitos
-    const bollitosSeleccionados = cartItems.filter(item => item.type === 'bollito');
-    if (bollitosSeleccionados.length > 0) {
-      message += `\n🥐 *Bollitos:*\n`;
-      bollitosSeleccionados.forEach(item => {
-        const bollito = bollitos.find(b => b.id === item.id);
-        if (bollito) message += `• ${bollito.name} x${item.quantity} - ${formatPrice(bollito.price * item.quantity)}\n`;
-      });
-    }
+    cartItems.filter(item => item.type === 'bollito').forEach(item => {
+      const bollito = bollitos.find(b => b.id === item.id);
+      if (bollito) message += `• ${bollito.name} x${item.quantity} - ${formatPrice(bollito.price * item.quantity)}\n`;
+    });
 
-    // Pulguitas
-    const pulguitasSeleccionadas = cartItems.filter(item => item.type === 'pulguita');
-    if (pulguitasSeleccionadas.length > 0) {
-      message += `\n🥪 *Pulguitas:*\n`;
-      pulguitasSeleccionadas.forEach(item => {
-        const pulguita = pulguitas.find(p => p.id === item.id);
-        if (pulguita) message += `• ${pulguita.name} x${item.quantity} - ${formatPrice(pulguita.price * item.quantity)}\n`;
-      });
-    }
+    cartItems.filter(item => item.type === 'pulguita').forEach(item => {
+      const pulguita = pulguitas.find(p => p.id === item.id);
+      if (pulguita) message += `• ${pulguita.name} x${item.quantity} - ${formatPrice(pulguita.price * item.quantity)}\n`;
+    });
+
+    // Extras opcionales
+    selectedOptionalExtras.forEach(id => {
+      const extra = optionalExtras.find(e => e.id === id);
+      if (extra) message += `• ${extra.name} - ${formatPrice(extra.price)}\n`;
+    });
 
     message += `\n💰 *Total: ${formatPrice(calculateTotal())}*\n\n`;
     message += `📞 Por favor confirma la disponibilidad y tiempo de preparación.\n`;
@@ -81,7 +101,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
   const handleSendWhatsApp = () => {
     const message = generateWhatsAppMessage();
-    const phoneNumber = "627526380";
+    const phoneNumber = "627526380"; 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
     onSendWhatsApp();
@@ -90,16 +110,17 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const isOrderEmpty = cartItems.length === 0;
 
   return (
-    <motion.div
+    <motion.div 
       className="bg-white rounded-2xl p-6 shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
     >
-      <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center gap-2">
-        <ShoppingCart className="w-6 h-6" />
-        Resumen del Pedido
-      </h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+          <ShoppingCart className="w-6 h-6" /> Resumen del Pedido
+        </h2>
+      </div>
 
       <div className="space-y-3 mb-6">
         {isOrderEmpty && (
@@ -108,37 +129,30 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* Harinas */}
+        {/* Pan personalizado */}
         {cartItems.filter(item => item.type === 'harina').length > 0 && (
           <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">Harinas:</h3>
-            {cartItems.filter(item => item.type === 'harina').map(harina => (
-              <div key={harina.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
-                <span className="text-gray-800 flex items-center gap-2">
-                  <span>{harina.image}</span>
-                  {harina.name}
-                </span>
-                <span className="font-semibold text-amber-600">{harina.price === 0 ? "Gratis" : ""}</span>
-              </div>
-            ))}
-            <div className="flex justify-between font-semibold text-gray-700">
-              <span>Precio fijo</span>
-              <span>{formatPrice(fixedHarinaPrice)}</span>
-            </div>
+            <h3 className="font-semibold text-gray-700">Pan Personalizado:</h3>
+            {cartItems.filter(item => item.type === 'harina').map(item => {
+              const harina = harinas.find(h => h.id === item.id);
+              return harina && (
+                <div key={harina.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
+                  <span>{harina.name} x{item.quantity}</span>
+                  <span>{harina.price === 0 ? 'Gratis' : formatPrice(0)}</span>
+                </div>
+              );
+            })}
           </div>
         )}
 
-        {/* Extras */}
+        {/* Extras del carrito */}
         {cartItems.filter(item => item.type === 'extra').length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Extras:</h3>
             {cartItems.filter(item => item.type === 'extra').map(extra => (
               <div key={extra.id} className="flex justify-between items-center p-2 bg-green-50 rounded-lg">
-                <span className="text-gray-800 flex items-center gap-2">
-                  <span>{extra.icon}</span>
-                  {extra.name}
-                </span>
-                <span className="font-semibold text-green-600">+{formatPrice(extra.price)}</span>
+                <span className="flex items-center gap-2">{extra.icon} {extra.name}</span>
+                <span>{formatPrice(extra.price)}</span>
               </div>
             ))}
           </div>
@@ -152,11 +166,8 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const bollito = bollitos.find(b => b.id === item.id);
               return bollito && (
                 <div key={bollito.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
-                  <span className="text-gray-800 flex items-center gap-2">
-                    <span>{bollito.image}</span>
-                    {bollito.name} x{item.quantity}
-                  </span>
-                  <span className="font-semibold text-blue-600">{formatPrice(bollito.price * item.quantity)}</span>
+                  <span className="flex items-center gap-2">{bollito.image} {bollito.name} x{item.quantity}</span>
+                  <span>{formatPrice(bollito.price * item.quantity)}</span>
                 </div>
               );
             })}
@@ -171,26 +182,47 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const pulguita = pulguitas.find(p => p.id === item.id);
               return pulguita && (
                 <div key={pulguita.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg">
-                  <span className="text-gray-800 flex items-center gap-2">
-                    <span>{pulguita.image}</span>
-                    {pulguita.name} x{item.quantity}
-                  </span>
-                  <span className="font-semibold text-purple-600">{formatPrice(pulguita.price * item.quantity)}</span>
+                  <span className="flex items-center gap-2">{pulguita.image} {pulguita.name} x{item.quantity}</span>
+                  <span>{formatPrice(pulguita.price * item.quantity)}</span>
                 </div>
               );
             })}
           </div>
         )}
 
+        {/* Extras opcionales */}
+        {optionalExtras.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Extras Opcionales:</h3>
+            <div className="flex gap-3 flex-wrap">
+              {optionalExtras.map(extra => (
+                <button
+                  key={extra.id}
+                  onClick={() => toggleOptionalExtra(extra)}
+                  className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${
+                    selectedOptionalExtras.includes(extra.id)
+                      ? 'bg-yellow-100 border-yellow-400'
+                      : 'bg-gray-50 border-gray-300 hover:bg-gray-100'
+                  }`}
+                >
+                  <span>{extra.icon}</span>
+                  <span>{extra.name} ({formatPrice(extra.price)})</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Total */}
-        <div className="border-t pt-3">
+        <div className="border-t pt-3 mt-3">
           <div className="flex justify-between items-center text-xl font-bold">
-            <span className="text-gray-800">Total:</span>
-            <span className="text-amber-600">{formatPrice(calculateTotal())}</span>
+            <span>Total:</span>
+            <span>{formatPrice(calculateTotal())}</span>
           </div>
         </div>
       </div>
 
+      {/* Botón WhatsApp */}
       <motion.button
         onClick={handleSendWhatsApp}
         disabled={isOrderEmpty}

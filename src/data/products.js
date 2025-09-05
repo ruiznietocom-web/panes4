@@ -135,22 +135,35 @@ export const extras = [
 export const bollitos = [
   {
    id: 1,
-    name: "Bollito Integral",
+    name: "Bollito Integral Clásico",
     description: "Suave y esponjoso, ideal para el desayuno",
     image: "🍞",
     price: 0.80
   },
+
+
+ {
+   id: 1.1,
+    name: "Pack Surtido 7 Bollitos Integrales (uno de cada)",
+    description: "Suave y esponjoso, ideal para el desayuno",
+    image: "🍞",
+    price: 8.50
+  },
+
+
+
+
   {
     id: 2,
     name: "Bollito de Cacao",
-    description: "Con trozos de chocolate, un dulce capricho",
+    description: "Con cacao puro",
     image: "🍫",
     price: 1.20
   },
   {
     id: 3,
     name: "Bollito de Nueces",
-    description: "Crujiente con nueces, nutritivo y delicioso",
+    description: "Con nueces, nutritivo y delicioso",
     image: "🥜",
     price: 0.90
   },

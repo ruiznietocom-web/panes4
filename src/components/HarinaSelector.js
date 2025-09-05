@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { harinas } from '../data/products';
+import { formatPrice } from '../utils/formatPrice';
 
 const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
   const isSelected = (harinaId) => selectedHarinas.some(harina => harina.id === harinaId);
@@ -19,7 +20,8 @@ const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
         Elige tus Harinas Base
       </h2>
       <p className="text-gray-500 text-center mb-4">
-        Puedes seleccionar hasta {maxHarinas} harinas. El precio total de esta sección es fijo: ${fixedHarinaPrice.toFixed(2)}.
+        Puedes seleccionar hasta {maxHarinas} harinas.  
+        El precio de esta sección es fijo: {formatPrice(fixedHarinaPrice)}.
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -57,7 +59,7 @@ const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
               <div className="text-4xl mb-2">{harina.image}</div>
               <h3 className="font-bold text-gray-800 mb-1">{harina.name}</h3>
               <p className="text-sm text-gray-600 mb-2">{harina.description}</p>
-              <span className="text-lg font-bold text-amber-600">${harina.price}</span>
+              <span className="text-lg font-bold text-amber-600">{formatPrice(harina.price)}</span>
             </div>
           </motion.div>
         ))}

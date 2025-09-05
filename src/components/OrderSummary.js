@@ -4,6 +4,7 @@ import { ShoppingCart, MessageCircle } from 'lucide-react';
 import { harinas, bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
+// Extras especiales con icono y precio
 const extraOpciones = [
   { id: 'propina', name: 'Propina', price: 0.50, icon: '💰' },
   { id: 'cafe', name: 'Café', price: 1.00, icon: '☕' },
@@ -13,24 +14,24 @@ const extraOpciones = [
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const fixedHarinaPrice = 5.50;
 
+  // Calcular total
   const calculateTotal = () => {
     let total = 0;
 
-    // Harinas
     const harinasInCart = cartItems.filter(item => item.type === 'harina');
     if (harinasInCart.length > 0) total += fixedHarinaPrice;
 
-    // Extras y extras especiales
     cartItems.forEach(item => {
       if (item.type === 'extra') total += item.price;
       if (item.type === 'extraEspecial') {
         const extra = extraOpciones.find(e => e.id === item.id);
         if (extra) total += extra.price;
       }
-      else if (item.type === 'bollito') {
+      if (item.type === 'bollito') {
         const b = bollitos.find(b => b.id === item.id);
         if (b) total += b.price * item.quantity;
-      } else if (item.type === 'pulguita') {
+      }
+      if (item.type === 'pulguita') {
         const p = pulguitas.find(p => p.id === item.id);
         if (p) total += p.price * item.quantity;
       }
@@ -39,10 +40,11 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     return total.toFixed(2);
   };
 
+  // Generar mensaje WhatsApp
   const generateWhatsAppMessage = () => {
     let message = `🍞 *NUEVO PEDIDO - PanApp* 🍞\n\n📋 *Resumen del Pedido:*\n`;
 
-    // HARINAS
+    // Harinas
     const harinasInCart = cartItems.filter(item => item.type === 'harina');
     if (harinasInCart.length > 0) {
       message += `\n🥖 *Pan Personalizado (precio fijo ${formatPrice(fixedHarinaPrice)}):*\n`;
@@ -55,7 +57,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       });
     }
 
-    // EXTRAS NORMALES
+    // Extras normales
     const extrasInCart = cartItems.filter(item => item.type === 'extra');
     if (extrasInCart.length > 0) {
       message += `\n🌟 *Extras añadidos:*\n`;
@@ -64,7 +66,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       });
     }
 
-    // EXTRAS ESPECIALES: propina, café, cerveza
+    // Extras especiales (propina, café, cerveza)
     const especialesInCart = cartItems.filter(item => item.type === 'extraEspecial');
     if (especialesInCart.length > 0) {
       message += `\n🌟 *Extras especiales:*\n`;
@@ -74,7 +76,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       });
     }
 
-    // BOLLITOS
+    // Bollitos
     const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
     if (bollitosInCart.length > 0) {
       message += `\n🥐 *Bollitos:*\n`;
@@ -84,7 +86,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       });
     }
 
-    // PULGUITAS
+    // Pulguitas
     const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
     if (pulguitasInCart.length > 0) {
       message += `\n🥪 *Pulguitas:*\n`;
@@ -128,7 +130,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* HARINAS DESGLOSADAS */}
+        {/* Aquí se muestran harinas, bollitos, pulguitas, extras normales y especiales tal como en WhatsApp */}
+        {/* Código similar al que genera el mensaje, pero en divs visuales */}
+        {/* HARINAS */}
         {cartItems.filter(item => item.type === 'harina').length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Pan Personalizado (precio fijo {formatPrice(fixedHarinaPrice)}):</h3>

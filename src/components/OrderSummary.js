@@ -9,10 +9,10 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
   const calculateTotal = () => {
     let total = 0;
-    const selectedHarinasCount = cartItems.filter(item => item.type === 'harina').length;
 
+    const selectedHarinasCount = cartItems.filter(item => item.type === 'harina').length;
     if (selectedHarinasCount > 0) {
-      total += fixedHarinaPrice; // precio fijo si hay harinas
+      total += fixedHarinaPrice; // Precio fijo si hay harinas
     }
 
     cartItems.forEach(item => {
@@ -44,36 +44,44 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     }
 
     // Extras
-    cartItems.filter(item => item.type === 'extra').forEach(extra => {
-      message += `• ${extra.name} - ${formatPrice(extra.price)}\n`;
-    });
+    const extrasSeleccionados = cartItems.filter(item => item.type === 'extra');
+    if (extrasSeleccionados.length > 0) {
+      message += `\n🌟 *Extras:*\n`;
+      extrasSeleccionados.forEach(extra => {
+        message += `• ${extra.name} - ${formatPrice(extra.price)}\n`;
+      });
+    }
 
     // Bollitos
-    cartItems.filter(item => item.type === 'bollito').forEach(bollitoItem => {
-      const bollito = bollitos.find(b => b.id === bollitoItem.id);
-      if (bollito) {
-        message += `• ${bollito.name} x${bollitoItem.quantity} - ${formatPrice(bollito.price * bollitoItem.quantity)}\n`;
-      }
-    });
+    const bollitosSeleccionados = cartItems.filter(item => item.type === 'bollito');
+    if (bollitosSeleccionados.length > 0) {
+      message += `\n🥐 *Bollitos:*\n`;
+      bollitosSeleccionados.forEach(item => {
+        const bollito = bollitos.find(b => b.id === item.id);
+        if (bollito) message += `• ${bollito.name} x${item.quantity} - ${formatPrice(bollito.price * item.quantity)}\n`;
+      });
+    }
 
     // Pulguitas
-    cartItems.filter(item => item.type === 'pulguita').forEach(pulguitaItem => {
-      const pulguita = pulguitas.find(p => p.id === pulguitaItem.id);
-      if (pulguita) {
-        message += `• ${pulguita.name} x${pulguitaItem.quantity} - ${formatPrice(pulguita.price * pulguitaItem.quantity)}\n`;
-      }
-    });
+    const pulguitasSeleccionadas = cartItems.filter(item => item.type === 'pulguita');
+    if (pulguitasSeleccionadas.length > 0) {
+      message += `\n🥪 *Pulguitas:*\n`;
+      pulguitasSeleccionadas.forEach(item => {
+        const pulguita = pulguitas.find(p => p.id === item.id);
+        if (pulguita) message += `• ${pulguita.name} x${item.quantity} - ${formatPrice(pulguita.price * item.quantity)}\n`;
+      });
+    }
 
     message += `\n💰 *Total: ${formatPrice(calculateTotal())}*\n\n`;
     message += `📞 Por favor confirma la disponibilidad y tiempo de preparación.\n`;
     message += `¡Gracias por elegir PanApp! 🙏`;
-    
+
     return encodeURIComponent(message);
   };
 
   const handleSendWhatsApp = () => {
     const message = generateWhatsAppMessage();
-    const phoneNumber = "627526380"; 
+    const phoneNumber = "627526380";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
     onSendWhatsApp();
@@ -82,7 +90,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const isOrderEmpty = cartItems.length === 0;
 
   return (
-    <motion.div 
+    <motion.div
       className="bg-white rounded-2xl p-6 shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -92,7 +100,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         <ShoppingCart className="w-6 h-6" />
         Resumen del Pedido
       </h2>
-      
+
       <div className="space-y-3 mb-6">
         {isOrderEmpty && (
           <div className="text-center py-4 text-gray-500">
@@ -110,9 +118,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
                   <span>{harina.image}</span>
                   {harina.name}
                 </span>
-                <span className="font-semibold text-amber-600">
-                  {harina.price === 0 ? "Gratis" : ""}
-                </span>
+                <span className="font-semibold text-amber-600">{harina.price === 0 ? "Gratis" : ""}</span>
               </div>
             ))}
             <div className="flex justify-between font-semibold text-gray-700">
@@ -138,6 +144,44 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
+        {/* Bollitos */}
+        {cartItems.filter(item => item.type === 'bollito').length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Bollitos:</h3>
+            {cartItems.filter(item => item.type === 'bollito').map(item => {
+              const bollito = bollitos.find(b => b.id === item.id);
+              return bollito && (
+                <div key={bollito.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
+                  <span className="text-gray-800 flex items-center gap-2">
+                    <span>{bollito.image}</span>
+                    {bollito.name} x{item.quantity}
+                  </span>
+                  <span className="font-semibold text-blue-600">{formatPrice(bollito.price * item.quantity)}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Pulguitas */}
+        {cartItems.filter(item => item.type === 'pulguita').length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Pulguitas:</h3>
+            {cartItems.filter(item => item.type === 'pulguita').map(item => {
+              const pulguita = pulguitas.find(p => p.id === item.id);
+              return pulguita && (
+                <div key={pulguita.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg">
+                  <span className="text-gray-800 flex items-center gap-2">
+                    <span>{pulguita.image}</span>
+                    {pulguita.name} x{item.quantity}
+                  </span>
+                  <span className="font-semibold text-purple-600">{formatPrice(pulguita.price * item.quantity)}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
         {/* Total */}
         <div className="border-t pt-3">
           <div className="flex justify-between items-center text-xl font-bold">
@@ -146,7 +190,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         </div>
       </div>
-      
+
       <motion.button
         onClick={handleSendWhatsApp}
         disabled={isOrderEmpty}

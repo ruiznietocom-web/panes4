@@ -4,6 +4,12 @@ import { ShoppingCart, MessageCircle } from 'lucide-react';
 import { harinas, bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
+const extraOpciones = [
+  { id: 'propina', name: 'Propina', price: 0.50, icon: '💰' },
+  { id: 'cafe', name: 'Café', price: 1.00, icon: '☕' },
+  { id: 'cerveza', name: 'Cerveza', price: 1.50, icon: '🍺' }
+];
+
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const fixedHarinaPrice = 5.50;
 
@@ -24,48 +30,67 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       }
     });
 
+    // Sumar extras opcionales (propina, café, cerveza) si están marcados
+    extraOpciones.forEach(extra => {
+      const found = cartItems.find(item => item.id === extra.id && item.type === 'extraOpcional');
+      if (found) total += extra.price;
+    });
+
     return total.toFixed(2);
   };
 
   const generateWhatsAppMessage = () => {
     let message = `🍞 *NUEVO PEDIDO - PanApp* 🍞\n\n📋 *Resumen del Pedido:*\n`;
 
+    // HARINAS
     const harinasInCart = cartItems.filter(item => item.type === 'harina');
     if (harinasInCart.length > 0) {
       message += `\n🥖 *Pan Personalizado (precio fijo ${formatPrice(fixedHarinaPrice)}):*\n`;
       harinasInCart.forEach(item => {
         const h = harinas.find(h => h.id === item.id);
         if (h) {
-          const qty = item.quantity || 1;
           const priceText = h.price === 0 ? 'gratis' : formatPrice(0);
-          message += `* ${h.name} x${qty} - ${priceText}\n`;
+          message += `* ${h.name} x${item.quantity || 1} - ${priceText}\n`;
         }
       });
     }
 
+    // EXTRAS NORMALES
     const extrasInCart = cartItems.filter(item => item.type === 'extra');
     if (extrasInCart.length > 0) {
       message += `\n🌟 *Extras añadidos:*\n`;
       extrasInCart.forEach(extra => {
-        message += `* ${extra.name} - ${formatPrice(extra.price)}\n`;
+        message += `* ${extra.icon} ${extra.name} - ${formatPrice(extra.price)}\n`;
       });
     }
 
+    // EXTRAS OPCIONALES
+    const extraOpcionalesInCart = cartItems.filter(item => item.type === 'extraOpcional');
+    if (extraOpcionalesInCart.length > 0) {
+      message += `\n🌟 *Extras opcionales:*\n`;
+      extraOpcionalesInCart.forEach(item => {
+        const extra = extraOpciones.find(e => e.id === item.id);
+        if (extra) message += `* ${extra.icon} ${extra.name} - ${formatPrice(extra.price)}\n`;
+      });
+    }
+
+    // BOLLITOS
     const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
     if (bollitosInCart.length > 0) {
       message += `\n🥐 *Bollitos:*\n`;
       bollitosInCart.forEach(item => {
         const b = bollitos.find(b => b.id === item.id);
-        if (b) message += `* ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
+        if (b) message += `* ${b.image} ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
       });
     }
 
+    // PULGUITAS
     const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
     if (pulguitasInCart.length > 0) {
       message += `\n🥪 *Pulguitas:*\n`;
       pulguitasInCart.forEach(item => {
         const p = pulguitas.find(p => p.id === item.id);
-        if (p) message += `* ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
+        if (p) message += `* ${p.image} ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
       });
     }
 
@@ -120,7 +145,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* EXTRAS */}
+        {/* EXTRAS NORMALES */}
         {cartItems.filter(item => item.type === 'extra').length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Extras añadidos:</h3>
@@ -130,6 +155,22 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
                 <span>{formatPrice(extra.price)}</span>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* EXTRAS OPCIONALES */}
+        {cartItems.filter(item => item.type === 'extraOpcional').length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Extras opcionales:</h3>
+            {cartItems.filter(item => item.type === 'extraOpcional').map(item => {
+              const extra = extraOpciones.find(e => e.id === item.id);
+              return (
+                <div key={extra.id} className="flex justify-between items-center p-2 bg-yellow-50 rounded-lg">
+                  <span className="flex items-center gap-2">{extra.icon} {extra.name}</span>
+                  <span>{formatPrice(extra.price)}</span>
+                </div>
+              )
+            })}
           </div>
         )}
 

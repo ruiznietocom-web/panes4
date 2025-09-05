@@ -16,11 +16,17 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const calculateTotal = () => {
     let total = 0;
 
+    // Harinas
     const harinasInCart = cartItems.filter(item => item.type === 'harina');
     if (harinasInCart.length > 0) total += fixedHarinaPrice;
 
+    // Extras y extras especiales
     cartItems.forEach(item => {
       if (item.type === 'extra') total += item.price;
+      if (item.type === 'extraEspecial') {
+        const extra = extraOpciones.find(e => e.id === item.id);
+        if (extra) total += extra.price;
+      }
       else if (item.type === 'bollito') {
         const b = bollitos.find(b => b.id === item.id);
         if (b) total += b.price * item.quantity;
@@ -28,12 +34,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         const p = pulguitas.find(p => p.id === item.id);
         if (p) total += p.price * item.quantity;
       }
-    });
-
-    // Sumar extras opcionales (propina, café, cerveza) si están marcados
-    extraOpciones.forEach(extra => {
-      const found = cartItems.find(item => item.id === extra.id && item.type === 'extraOpcional');
-      if (found) total += extra.price;
     });
 
     return total.toFixed(2);
@@ -64,11 +64,11 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       });
     }
 
-    // EXTRAS OPCIONALES
-    const extraOpcionalesInCart = cartItems.filter(item => item.type === 'extraOpcional');
-    if (extraOpcionalesInCart.length > 0) {
-      message += `\n🌟 *Extras opcionales:*\n`;
-      extraOpcionalesInCart.forEach(item => {
+    // EXTRAS ESPECIALES: propina, café, cerveza
+    const especialesInCart = cartItems.filter(item => item.type === 'extraEspecial');
+    if (especialesInCart.length > 0) {
+      message += `\n🌟 *Extras especiales:*\n`;
+      especialesInCart.forEach(item => {
         const extra = extraOpciones.find(e => e.id === item.id);
         if (extra) message += `* ${extra.icon} ${extra.name} - ${formatPrice(extra.price)}\n`;
       });
@@ -158,11 +158,11 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* EXTRAS OPCIONALES */}
-        {cartItems.filter(item => item.type === 'extraOpcional').length > 0 && (
+        {/* EXTRAS ESPECIALES */}
+        {cartItems.filter(item => item.type === 'extraEspecial').length > 0 && (
           <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">Extras opcionales:</h3>
-            {cartItems.filter(item => item.type === 'extraOpcional').map(item => {
+            <h3 className="font-semibold text-gray-700">Extras especiales:</h3>
+            {cartItems.filter(item => item.type === 'extraEspecial').map(item => {
               const extra = extraOpciones.find(e => e.id === item.id);
               return (
                 <div key={extra.id} className="flex justify-between items-center p-2 bg-yellow-50 rounded-lg">

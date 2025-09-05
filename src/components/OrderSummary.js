@@ -9,9 +9,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
   // Extras opcionales
   const optionalExtras = [
-    { id: 'propina', name: 'Propina', price: 0.50, icon: '💰' },
-    { id: 'cafe', name: 'Café', price: 1.00, icon: '☕' },
-    { id: 'cerveza', name: 'Cerveza', price: 1.50, icon: '🍺' },
+    { id: 'propina', name: 'Toma Propina!!', price: 0.50, icon: '💰' },
+    { id: 'cafe', name: 'Te invito a un Café!!', price: 1.00, icon: '☕' },
+    { id: 'cerveza', name: 'Tómate una Cerveza a mi Salud!!', price: 1.50, icon: '🍺' },
   ];
 
   const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);

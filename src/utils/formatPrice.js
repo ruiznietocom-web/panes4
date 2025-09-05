@@ -1,1 +1,5 @@
-formatPrice.js
+export const formatPrice = (value) =>
+  new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "EUR",
+  }).format(value);

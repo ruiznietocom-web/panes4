@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, MessageCircle } from 'lucide-react';
-import { harinas, bollitos, pulguitas } from '../data/products';
+import { bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
@@ -34,14 +34,21 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     let message = `🍞 *NUEVO PEDIDO - PanApp* 🍞\n\n`;
     message += `📋 *Resumen del Pedido:*\n`;
 
-    if (cartItems.filter(item => item.type === 'harina').length > 0) {
-      message += `\n🥖 *Pan Personalizado: (precio fijo ${formatPrice(fixedHarinaPrice)})*\n`;
+    // Harinas
+    const harinasSeleccionadas = cartItems.filter(item => item.type === 'harina');
+    if (harinasSeleccionadas.length > 0) {
+      message += `\n🥖 *Harinas (precio fijo ${formatPrice(fixedHarinaPrice)})*\n`;
+      harinasSeleccionadas.forEach(harina => {
+        message += `• ${harina.name}\n`;
+      });
     }
 
+    // Extras
     cartItems.filter(item => item.type === 'extra').forEach(extra => {
       message += `• ${extra.name} - ${formatPrice(extra.price)}\n`;
     });
 
+    // Bollitos
     cartItems.filter(item => item.type === 'bollito').forEach(bollitoItem => {
       const bollito = bollitos.find(b => b.id === bollitoItem.id);
       if (bollito) {
@@ -49,6 +56,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       }
     });
 
+    // Pulguitas
     cartItems.filter(item => item.type === 'pulguita').forEach(pulguitaItem => {
       const pulguita = pulguitas.find(p => p.id === pulguitaItem.id);
       if (pulguita) {
@@ -92,6 +100,29 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
+        {/* Harinas */}
+        {cartItems.filter(item => item.type === 'harina').length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Harinas:</h3>
+            {cartItems.filter(item => item.type === 'harina').map(harina => (
+              <div key={harina.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
+                <span className="text-gray-800 flex items-center gap-2">
+                  <span>{harina.image}</span>
+                  {harina.name}
+                </span>
+                <span className="font-semibold text-amber-600">
+                  {harina.price === 0 ? "Gratis" : ""}
+                </span>
+              </div>
+            ))}
+            <div className="flex justify-between font-semibold text-gray-700">
+              <span>Precio fijo</span>
+              <span>{formatPrice(fixedHarinaPrice)}</span>
+            </div>
+          </div>
+        )}
+
+        {/* Extras */}
         {cartItems.filter(item => item.type === 'extra').length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Extras:</h3>
@@ -107,6 +138,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
+        {/* Total */}
         <div className="border-t pt-3">
           <div className="flex justify-between items-center text-xl font-bold">
             <span className="text-gray-800">Total:</span>
@@ -130,4 +162,3 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 };
 
 export default OrderSummary;
-``

@@ -34,7 +34,7 @@ const InformacionPage = () => {
       </p>
 
       <p>
-        Conoce las harinas:
+        <strong>100% Conoce las harinas</strong>:
       </p>
 
       <p>

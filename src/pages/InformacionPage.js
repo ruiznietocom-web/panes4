@@ -1,5 +1,8 @@
 import React from 'react';
 import PantoMateImg from '../assets/images/pantomate.jpg'; // Ajusta la ruta según tu estructura
+import BarrasPan from '../assets/images/barras.jpg'; // Ajusta la ruta según tu estructura
+
+
 
 const InformacionPage = () => {
   return (
@@ -32,6 +35,16 @@ const InformacionPage = () => {
         de los cereales integrales. Dedicado a quienes son conscientes de lo valioso que es disfrutar de una 
         alimentación saludable, y del pan natural de verdad.
       </p>
+
+      {/* Imagen dentro del contenido */}
+      <div className="my-6 flex justify-center">
+        <img 
+          src={BarrasPan} 
+          alt="Barras" 
+          className="w-full max-w-md rounded-lg shadow-md"
+        />
+      </div>
+
 
       <p>
         <strong>CONOCE LAS HARINAS</strong>:

@@ -51,7 +51,7 @@ const InformacionPage = () => {
       </p>
 
       <p>
-        La <strong>Espelta</strong> es un trigo primitivo, cuyas propiedades son bien conocidas y apreciadas desde antiguo en Europa. 
+        1.- La <strong>Espelta</strong> es un trigo primitivo, cuyas propiedades son bien conocidas y apreciadas desde antiguo en Europa. 
         Su valor nutritivo es comparable al de la avena. Es rica en proteínas, carbohidratos, sales minerales y 
         vitaminas A, B y E, así como magnesio, fósforo, hierro y potasio. Su consumo diario reduce los niveles de 
         colesterol y regula el metabolismo. Ofrece mayor cantidad de aminoácidos esenciales que el trigo común y 
@@ -59,26 +59,26 @@ const InformacionPage = () => {
       </p>
 
       <p>
-        El <strong>Khorasan</strong> es un trigo ancestral de Egipto, rico en sales minerales y vitaminas del grupo B. Muy apreciado porque es bajo en gluten 
+        2.- El <strong>Khorasan</strong> es un trigo ancestral de Egipto, rico en sales minerales y vitaminas del grupo B. Muy apreciado porque es bajo en gluten 
         y produce menos alergias o intolerancias que los trigos modernos, ya que el organismo humano está más adaptado al tipo de proteína de los trigos antiguos.
       </p>
 
       <p>
-        El trigo procesado (refinado) no contiene las mejores partes del grano. Durante el procesamiento del grano se elimina el 40% de su contenido original (germen y salvado), 
+        3.- El trigo procesado (refinado) no contiene las mejores partes del grano. Durante el procesamiento del grano se elimina el 40% de su contenido original (germen y salvado), 
         quedando principalmente los hidratos de carbono (azúcares) del endospermo, lo que lo hace ser menos nutritivo. Al conservar el salvado y el germen de trigo, 
         la harina de <strong>trigo</strong> integral se destaca por una cantidad de fibra 3 veces superior a la harina blanca refinada, además tiene un alto contenido de vitaminas y minerales, 
         como vitaminas del complejo B, vitamina E, hierro, potasio, magnesio, zinc, entre otros.
       </p>
 
       <p>
-        El <strong>centeno</strong>, además de los minerales, vitaminas, magnesio, fósforo y fibra que aporta, es un cereal muy apreciado por sus propiedades depurativas de la sangre y 
+        4.- El <strong>centeno</strong>, además de los minerales, vitaminas, magnesio, fósforo y fibra que aporta, es un cereal muy apreciado por sus propiedades depurativas de la sangre y 
         por ayudar a mantener la elasticidad de los vasos sanguíneos.
       </p>
 <p>
 
 </p>
       <p>
-        El <strong>tritordeum</strong> es un cereal híbrido nacido de la combinación natural del trigo duro y una cebada silvestre. Fue descubierto por investigadores españoles a finales de los años 70. 
+        5.- El <strong>tritordeum</strong> es un cereal híbrido nacido de la combinación natural del trigo duro y una cebada silvestre. Fue descubierto por investigadores españoles a finales de los años 70. 
         NO es un organismo modificado genéticamente (OGM). Es el resultado de un cruce natural. Y está registrado como nueva especie en la Unión Europea. 
         Tiene un sabor ligeramente dulce, con un contenido alto en ácido oleico y luteína, además tiene un 30% más de fibra que el trigo común.
       </p>

@@ -150,7 +150,9 @@ Disponibles en diversos formatos como <strong>barra, pulguitas y bollitos</stron
 <p>
 Cada tipo de harina aporta sus propios beneficios nutricionales y sabores únicos, haciendo de estos panes una opción versátil y deliciosa para cualquier ocasión. Disfrutar de estos panes poco fermentados es una manera perfecta de combinar salud y sabor en cada rebanada.
 </p>
-
+<p>
+.
+</p>
 <p>
 <strong>Cuidar de tu salud y la de los tuyos</strong> con estos panes 100% integrales y ecológicos es posible gracias a su proceso de elaboración artesanal y el uso de ingredientes naturales y sostenibles. Estos panes no solo son una fuente nutritiva de fibra y minerales, sino que también ofrecen un sabor auténtico y una textura excepcional. Elaborados con granos enteros molturados en molinos de piedra, estos panes garantizan que cada bocado esté lleno de beneficios para tu bienestar. Además, al ser producidos de manera ecológica, contribuyen a la conservación del medio ambiente, promoviendo prácticas agrícolas responsables y sostenibles.
 </p>
@@ -170,10 +172,92 @@ Cada tipo de harina aporta sus propios beneficios nutricionales y sabores único
 <p>
 <strong>La fermentación natural</strong> utilizada en su preparación mejora la digestibilidad del pan y potencia la absorción de nutrientes esenciales. Este proceso, además, otorga al pan un aroma y sabor únicos que lo distinguen de los productos comerciales convencionales. Cada barra de pan es el resultado de horas de dedicación y pasión por la panadería artesanal, asegurando que recibas un producto de la más alta calidad.
 </p>
-
+<p>
+.
+</p>
 <p>
 Incorporar estos panes a tu dieta diaria no solo enriquecerá tu alimentación con nutrientes vitales, sino que también apoyará un <strong>estilo de vida más saludable y consciente</strong>. Son ideales para cualquier momento del día, su versatilidad y delicioso sabor harán que sean un elemento indispensable en tu mesa.
 </p>
+
+<p>
+.
+</p>
+
+
+<p>
+El compromiso con la ecología y la salud se refleja en cada detalle, desde la elección de los ingredientes hasta el empaque reciclable. Al optar por estos panes integrales y ecológicos, no solo estás haciendo una elección positiva para tu salud, sino también para el planeta. Disfruta de la tranquilidad de saber que cada rebanada está hecha con amor y respeto por la naturaleza y las futuras generaciones.
+</p>
+<p>
+.
+</p>
+<p>
+Descubre el placer de comer bien sin renunciar al sabor ni a la calidad. Estos panes son una invitación a redescubrir el auténtico sabor del pan de antaño. Atrévete a probarlos y siente la diferencia en cada mordisco.
+</p>
+
+<p>
+.
+</p>
+<p>
+Muchísimas gracias y espero que disfrutes de este pan con salud, al igual que yo disfruto horneándolo para ti! 🍞☀️🙏
+
+</p>
+<p>
+.
+</p>
+
+<p>
+<strong>Si necesitas más información no dudes en contactar conmigo en mi wasap 627-52-63-80</strong>.
+</p>
+
+<p>
+.
+</p>
+
+
+<p>
+-----------------------------------------------
+</p>
+
+<p>
+.
+</p>
+
+<p>
+🍞 <strong>Consejos para una óptima conservación del pan integral ecológico</strong> 🍞
+</p>
+
+
+<p>
+.
+</p>
+
+
+<p>
+Como sabéis, este pan 100% ecológico e integral está libre de conservantes y añadidos artificiales. La mejor forma para conservar el pan es en el frigorífico. Consérvalo dentro en la misma bolsa de papel y ésta a su vez en una bolsa de plástico bien cerrada. Colócalo, preferentemente, en la bandeja más alta de tu frigorífico, allí puede aguantar hasta 3 ó 4 días perfectamente. Luego es preferible que congeles el resto que no hayas consumido.</p>
+
+
+<p>
+.
+</p>
+
+
+<p>
+Si prefieres, también puedes cortarlo en rodajas o en porciones que vayas a consumir y congelarlo directamente el día de la entrega, siempre en una bolsa o un túpper bien cerrado para que no genere escarcha.</p>
+
+
+<p>
+.
+</p>
+
+
+<p>
+
+El pan, los bollitos o pulguitas se entregan siempre hechos del día, y algunas veces aún calentitos, si es así, deposítalo en la rejilla del horno y espera siempre una hora desde la entrega para consumirlo. No lo guardes o congeles en el frigorífico hasta que notes que está completamente frío. <strong>Gracias!!</strong>🙏
+</p>
+
+
+
+
 
 
 

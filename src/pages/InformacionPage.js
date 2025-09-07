@@ -47,11 +47,15 @@ const InformacionPage = () => {
         />
       </div>
 
-
+<p>
+.
+</p>
       <p>
         <strong>CONOCE LAS HARINAS</strong>:
       </p>
-
+<p>
+.
+</p>
       <p>
         1.- La <strong>Espelta</strong> es un trigo primitivo, cuyas propiedades son bien conocidas y apreciadas desde antiguo en Europa. 
         Su valor nutritivo es comparable al de la avena. Es rica en proteínas, carbohidratos, sales minerales y 
@@ -59,19 +63,25 @@ const InformacionPage = () => {
         colesterol y regula el metabolismo. Ofrece mayor cantidad de aminoácidos esenciales que el trigo común y 
         también lo supera en riqueza vitamínica y minerales. Algunas personas alérgicas al trigo digieren bien la espelta.
       </p>
-
+<p>
+.
+</p>
       <p>
         2.- El <strong>Khorasan</strong> es un trigo ancestral de Egipto, rico en sales minerales y vitaminas del grupo B. Muy apreciado porque es bajo en gluten 
         y produce menos alergias o intolerancias que los trigos modernos, ya que el organismo humano está más adaptado al tipo de proteína de los trigos antiguos.
       </p>
-
+<p>
+.
+</p>
       <p>
         3.- El trigo procesado (refinado) no contiene las mejores partes del grano. Durante el procesamiento del grano se elimina el 40% de su contenido original (germen y salvado), 
         quedando principalmente los hidratos de carbono (azúcares) del endospermo, lo que lo hace ser menos nutritivo. Al conservar el salvado y el germen de trigo, 
         la harina de <strong>trigo</strong> integral se destaca por una cantidad de fibra 3 veces superior a la harina blanca refinada, además tiene un alto contenido de vitaminas y minerales, 
         como vitaminas del complejo B, vitamina E, hierro, potasio, magnesio, zinc, entre otros.
       </p>
-
+<p>
+.
+</p>
       <p>
         4.- El <strong>centeno</strong>, además de los minerales, vitaminas, magnesio, fósforo y fibra que aporta, es un cereal muy apreciado por sus propiedades depurativas de la sangre y 
         por ayudar a mantener la elasticidad de los vasos sanguíneos.
@@ -84,7 +94,9 @@ const InformacionPage = () => {
         NO es un organismo modificado genéticamente (OGM). Es el resultado de un cruce natural. Y está registrado como nueva especie en la Unión Europea. 
         Tiene un sabor ligeramente dulce, con un contenido alto en ácido oleico y luteína, además tiene un 30% más de fibra que el trigo común.
       </p>
-
+<p>
+.
+</p>
   {/* Imagen dentro del contenido */}
       <div className="my-6 flex justify-center">
         <img 
@@ -93,12 +105,16 @@ const InformacionPage = () => {
           className="w-full max-w-md rounded-lg shadow-md"
         />
       </div>
-
+<p>
+.
+</p>
       <p>
         <strong>Levadura natural o fresca</strong>, a diferencia de la levadura química en polvo, es de origen biológico, un hongo microscópico vivo y activo. 
         Se vende en supermercados como levadura fresca, natural o de panadería.
       </p>
-
+<p>
+.
+</p>
       <p>
         La <strong>sal marina natural</strong> no ha sido tratada químicamente: es la consecuencia de la simple evaporación del agua de mar. 
         Por supuesto que un 90% de su composición es cloro y sodio de forma natural, pero contiene un mayor número de oligoelementos, minerales y yodo que son de gran relevancia nutricional para el cuerpo. 
@@ -106,17 +122,23 @@ const InformacionPage = () => {
         además, mejora la digestión favoreciendo la generación de jugos gástricos.
       </p>
 
-
+<p>
+.
+</p>
 <p>
 <strong>Los panes ecológicos e integrales poco fermentados</strong> destacan por su baja acidez, lo que mejora notablemente la asimilación de los almidones y respeta la acción enzimática de las amilasas de la saliva y del tracto digestivo, haciéndolos mucho más digestivos. Gracias a su proceso de fermentación controlada, estos panes son ideales para quienes buscan una opción saludable y fácil de digerir.
 </p>
-
+<p>
+.
+</p>
 
 <p>
 Disponibles en diversos formatos como <strong>barra, pulguitas y bollitos</strong>, estos panes se adaptan a todas las necesidades y preferencias, desde el desayuno hasta la cena. Además, ofrecen una gran variedad de harinas para mezclar al gusto, como centeno, khorasan, tritordeum, trigo y espelta, permitiendo personalizar cada producto.
 </p>
 
-
+<p>
+.
+</p>
 <p>
 Cada tipo de harina aporta sus propios beneficios nutricionales y sabores únicos, haciendo de estos panes una opción versátil y deliciosa para cualquier ocasión. Disfrutar de estos panes poco fermentados es una manera perfecta de combinar salud y sabor en cada rebanada.
 </p>

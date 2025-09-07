@@ -61,7 +61,9 @@ const InformacionPage = () => {
         El <strong>centeno</strong>, además de los minerales, vitaminas, magnesio, fósforo y fibra que aporta, es un cereal muy apreciado por sus propiedades depurativas de la sangre y 
         por ayudar a mantener la elasticidad de los vasos sanguíneos.
       </p>
+<p>
 
+</p>
       <p>
         El <strong>tritordeum</strong> es un cereal híbrido nacido de la combinación natural del trigo duro y una cebada silvestre. Fue descubierto por investigadores españoles a finales de los años 70. 
         NO es un organismo modificado genéticamente (OGM). Es el resultado de un cruce natural. Y está registrado como nueva especie en la Unión Europea. 

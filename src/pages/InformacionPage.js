@@ -124,9 +124,7 @@ const InformacionPage = () => {
 <p>
 <strong>Los panes ecológicos e integrales poco fermentados</strong> destacan por su baja acidez, lo que mejora notablemente la asimilación de los almidones y respeta la acción enzimática de las amilasas de la saliva y del tracto digestivo, haciéndolos mucho más digestivos. Gracias a su proceso de fermentación controlada, estos panes son ideales para quienes buscan una opción saludable y fácil de digerir.
 </p>
-<p>
-.
-</p>
+
 
 
 {/* Imagen dentro del contenido */}

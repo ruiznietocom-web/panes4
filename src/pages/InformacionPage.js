@@ -1,6 +1,8 @@
 import React from 'react';
 import PantoMateImg from '../assets/images/pantomate.jpg'; // Ajusta la ruta según tu estructura
 import BarrasPan from '../assets/images/barras.jpg'; // Ajusta la ruta según tu estructura
+import PantoMate from '../assets/images/pantomateb.jpg'; // Ajusta la ruta según tu estructura
+
 
 
 
@@ -75,13 +77,22 @@ const InformacionPage = () => {
         por ayudar a mantener la elasticidad de los vasos sanguíneos.
       </p>
 <p>
-
+.
 </p>
       <p>
         5.- El <strong>tritordeum</strong> es un cereal híbrido nacido de la combinación natural del trigo duro y una cebada silvestre. Fue descubierto por investigadores españoles a finales de los años 70. 
         NO es un organismo modificado genéticamente (OGM). Es el resultado de un cruce natural. Y está registrado como nueva especie en la Unión Europea. 
         Tiene un sabor ligeramente dulce, con un contenido alto en ácido oleico y luteína, además tiene un 30% más de fibra que el trigo común.
       </p>
+
+  {/* Imagen dentro del contenido */}
+      <div className="my-6 flex justify-center">
+        <img 
+          src={PantoMate} 
+          alt="Pan tomate" 
+          className="w-full max-w-md rounded-lg shadow-md"
+        />
+      </div>
 
       <p>
         <strong>Levadura natural o fresca</strong>, a diferencia de la levadura química en polvo, es de origen biológico, un hongo microscópico vivo y activo. 

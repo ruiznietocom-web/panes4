@@ -206,7 +206,7 @@ Muchísimas gracias y espero que disfrutes de este pan con salud, al igual que y
 </p>
 
 <p>
-<strong>Si necesitas más información no dudes en contactar conmigo en mi wasap 627-52-63-80</strong>.
+<strong>Si necesitas más información en contacta conmigo en mi wasap 627-52-63-80</strong>.
 </p>
 
 <p>

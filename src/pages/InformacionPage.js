@@ -105,6 +105,22 @@ const InformacionPage = () => {
         Tomar sal marina no refinada en cantidades moderadas contribuye a un buen drenaje de toxinas, eleva la vitalidad, favorece el funcionamiento de los riñones, mejora la sexualidad y reconstituye huesos y pelo, 
         además, mejora la digestión favoreciendo la generación de jugos gástricos.
       </p>
+
+
+<p>
+<strong>Los panes ecológicos e integrales poco fermentados</strong> destacan por su baja acidez, lo que mejora notablemente la asimilación de los almidones y respeta la acción enzimática de las amilasas de la saliva y del tracto digestivo, haciéndolos mucho más digestivos. Gracias a su proceso de fermentación controlada, estos panes son ideales para quienes buscan una opción saludable y fácil de digerir.
+</p>
+
+
+<p>
+Disponibles en diversos formatos como <strong>barra, pulguitas y bollitos</strong>, estos panes se adaptan a todas las necesidades y preferencias, desde el desayuno hasta la cena. Además, ofrecen una gran variedad de harinas para mezclar al gusto, como centeno, khorasan, tritordeum, trigo y espelta, permitiendo personalizar cada producto.
+</p>
+
+
+<p>
+Cada tipo de harina aporta sus propios beneficios nutricionales y sabores únicos, haciendo de estos panes una opción versátil y deliciosa para cualquier ocasión. Disfrutar de estos panes poco fermentados es una manera perfecta de combinar salud y sabor en cada rebanada.
+</p>
+
     </div>
   );
 };

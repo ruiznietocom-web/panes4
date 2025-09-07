@@ -2,6 +2,9 @@ import React from 'react';
 import PantoMateImg from '../assets/images/pantomate.jpg'; // Ajusta la ruta según tu estructura
 import BarrasPan from '../assets/images/barras.jpg'; // Ajusta la ruta según tu estructura
 import PantoMate from '../assets/images/pantomateb.jpg'; // Ajusta la ruta según tu estructura
+import BollosPulguitas from '../assets/images/bollopulga.jpg'; // Ajusta la ruta según tu estructura
+
+
 
 
 
@@ -91,9 +94,7 @@ const InformacionPage = () => {
         NO es un organismo modificado genéticamente (OGM). Es el resultado de un cruce natural. Y está registrado como nueva especie en la Unión Europea. 
         Tiene un sabor ligeramente dulce, con un contenido alto en ácido oleico y luteína, además tiene un 30% más de fibra que el trigo común.
       </p>
-<p>
-.
-</p>
+ 
   {/* Imagen dentro del contenido */}
       <div className="my-6 flex justify-center">
         <img 
@@ -102,9 +103,7 @@ const InformacionPage = () => {
           className="w-full max-w-md rounded-lg shadow-md"
         />
       </div>
-<p>
-.
-</p>
+ 
       <p>
         <strong>Levadura natural o fresca</strong>, a diferencia de la levadura química en polvo, es de origen biológico, un hongo microscópico vivo y activo. 
         Se vende en supermercados como levadura fresca, natural o de panadería.
@@ -128,6 +127,17 @@ const InformacionPage = () => {
 <p>
 .
 </p>
+
+
+{/* Imagen dentro del contenido */}
+      <div className="my-6 flex justify-center">
+        <img 
+          src={BollosPulguitas} 
+          alt="Bollo Pulguita" 
+          className="w-full max-w-md rounded-lg shadow-md"
+        />
+      </div>
+
 
 <p>
 Disponibles en diversos formatos como <strong>barra, pulguitas y bollitos</strong>, estos panes se adaptan a todas las necesidades y preferencias, desde el desayuno hasta la cena. Además, ofrecen una gran variedad de harinas para mezclar al gusto, como centeno, khorasan, tritordeum, trigo y espelta, permitiendo personalizar cada producto.

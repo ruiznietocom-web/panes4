@@ -47,9 +47,6 @@ const InformacionPage = () => {
         />
       </div>
 
-<p>
-.
-</p>
       <p>
         <strong>CONOCE LAS HARINAS</strong>:
       </p>

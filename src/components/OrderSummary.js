@@ -7,11 +7,11 @@ import { formatPrice } from '../utils/formatPrice';
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const fixedHarinaPrice = 5.50;
 
-  // Extras opcionales
+  // Manuel, qué rico el pan!!
   const optionalExtras = [
-    { id: 'propina', name: 'Propina', price: 0.50, icon: '💰' },
-    { id: 'cafe', name: 'Café', price: 1.00, icon: '☕' },
-    { id: 'cerveza', name: 'Cerveza', price: 1.50, icon: '🍺' },
+    { id: 'propina', name: 'Toma una propina!', price: 0.50, icon: '💰' },
+    { id: 'cafe', name: 'Toma para un café!', price: 1.00, icon: '☕' },
+    { id: 'cerveza', name: 'Tómate una cerveza a mi salud!', price: 1.50, icon: '🍺' },
   ];
 
   const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);

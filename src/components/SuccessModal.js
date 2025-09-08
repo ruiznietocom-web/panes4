@@ -41,7 +41,7 @@ const SuccessModal = ({ isOpen, onClose }) => {
             </h3>
             
             <p className="text-gray-600 mb-6">
-              Tu pedido ha sido enviado por WhatsApp. Te contactaremos pronto para confirmar los detalles.
+              Tu pedido ha sido enviado por WhatsApp. Te contactaré pronto para confirmar los detalles.🙏Muchas gracias🙏!!
             </p>
             
             <motion.button

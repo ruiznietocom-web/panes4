@@ -135,12 +135,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               if (!h) return null;
               return (
                 <div key={h.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
-                  <div className="flex flex-col">
-                    <span>{h.name}</span>
-                    {item.opcion && (
-                      <span className="text-xs text-gray-600 mt-1">Corte: {item.opcion}</span>
-                    )}
-                  </div>
+                  <span>
+                    {h.name} {item.opcion ? `(Corte: ${item.opcion})` : ''}
+                  </span>
                   <span>{formatPrice(fixedHarinaPrice)}</span>
                 </div>
               );

@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { extras } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
-const ExtrasSelector = ({ selectedExtras, onToggleExtra, onToggleHarina }) => {
+const ExtrasSelector = ({ selectedExtras, onToggleExtra }) => {
   const isSelected = (extraId) => selectedExtras.some(extra => extra.id === extraId);
-
-  // Opciones para Pan Cortado
-  const panOpciones = ['Normal', 'Fino', 'Grueso'];
-  const [panSeleccionado, setPanSeleccionado] = useState('Normal');
-
-  const handlePanClick = (opcion) => {
-    setPanSeleccionado(opcion);
-    if (onToggleHarina) {
-      const panCortado = { id: 'panCortado', name: 'Pan Cortado', price: 0, image: '', type: 'harina' };
-      onToggleHarina(panCortado, opcion);
-    }
-  };
 
   return (
     <motion.div 
@@ -31,28 +19,7 @@ const ExtrasSelector = ({ selectedExtras, onToggleExtra, onToggleHarina }) => {
       <p className="text-gray-500 text-center mb-4">
         Añade un toque especial a tu pan.
       </p>
-
-      {/* Cuadro de Pan Cortado */}
-      <div className="border border-gray-300 rounded-xl p-4 mb-6 max-w-xs mx-auto bg-gray-50">
-        <h3 className="text-sm font-medium mb-2 text-center">Pan Cortado (gratuito)</h3>
-        <div className="flex justify-center gap-2">
-          {panOpciones.map((opcion) => (
-            <button
-              key={opcion}
-              onClick={() => handlePanClick(opcion)}
-              className={`text-xs px-3 py-1 rounded-full border ${
-                panSeleccionado === opcion
-                  ? 'bg-orange-500 text-white border-orange-500'
-                  : 'bg-white text-gray-700 border-gray-300'
-              } transition-colors`}
-            >
-              {opcion}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Grid de Extras */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {extras.map((extra, index) => (
           <motion.div

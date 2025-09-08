@@ -187,7 +187,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* Extras opcionales */}
+        {/* Manuel, qué rico el pan!! */}
         <div className="space-y-2">
           <h3 className="font-semibold text-gray-700">Extras Opcionales:</h3>
           <div className="flex gap-3 flex-wrap">

@@ -59,7 +59,7 @@ export const harinas = [
     image: "🔪🔪🔪",
     price: 0
 
-  }
+  },
 
 
 

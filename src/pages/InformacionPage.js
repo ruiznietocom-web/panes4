@@ -312,18 +312,18 @@ El pan, los bollitos o pulguitas se entregan siempre hechos del día, y algunas 
 
  {/* Botón para descargar el PDF */}
       <div className="my-12 flex justify-center">
-        <a
-          href="/docs/PRECIOSPANES31052025.pdf"
-          download
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 
-                     text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:from-green-600 hover:to-green-700
-                     transition-all duration-300 transform hover:scale-105"
-        >
-          <Download className="w-6 h-6" />
-          Descargar PDF de Precios
-        </a>
+       <a
+  href="/docs/PRECIOSPANES31052025.pdf"
+  download
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 
+             text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:from-green-600 hover:to-green-700
+             transition-all duration-300 transform hover:scale-105"
+>
+  <Download className="w-6 h-6" />
+  Descargar PDF de Precios
+</a>
       </div>
 
 

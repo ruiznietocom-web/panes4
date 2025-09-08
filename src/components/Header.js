@@ -21,7 +21,7 @@ const Header = ({ cartItemCount, onOpenCart }) => {
             <Wheat className="w-8 h-8" />
           </div>
           <div className="text-center">
-            <h1 className="text-3xl font-bold">PanApp</h1>
+            <h1 className="text-3xl font-bold">PanZen</h1>
             <p className="text-amber-100 font-medium">Tu panadería personalizada</p>
           </div>
         </motion.div>

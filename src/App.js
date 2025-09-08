@@ -94,6 +94,7 @@ const App = () => {
                       <ExtrasSelector 
                         selectedExtras={cartItems.filter(item => item.type === 'extra')}
                         onToggleExtra={handleToggleExtra}
+                        onToggleHarina={handleToggleHarina} // Pasamos para Pan Cortado
                       />
                     </>
                   } />

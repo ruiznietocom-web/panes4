@@ -9,9 +9,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
   // Extras opcionales
   const optionalExtras = [
-    { id: 'propina', name: 'Propina', price: 0.50, icon: '💰' },
-    { id: 'cafe', name: 'Café', price: 1.00, icon: '☕' },
-    { id: 'cerveza', name: 'Cerveza', price: 1.50, icon: '🍺' },
+    { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
+    { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
+    { id: 'cerveza', name: 'Tómate una Cerveza a mi Salud!', price: 1.50, icon: '🍺' },
   ];
 
   const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
@@ -189,7 +189,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
         {/* Extras opcionales */}
         <div className="space-y-2">
-          <h3 className="font-semibold text-gray-700">Extras Opcionales:</h3>
+          <h3 className="font-semibold text-gray-700">Manuel, qué rico tu pan!...:</h3>
           <div className="flex gap-3 flex-wrap">
             {optionalExtras.map(extra => (
               <button

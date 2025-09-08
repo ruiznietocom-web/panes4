@@ -7,7 +7,6 @@ import { formatPrice } from '../utils/formatPrice';
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const fixedHarinaPrice = 5.50;
 
-  // Manuel, qué rico el pan!!
   const optionalExtras = [
     { id: 'propina', name: 'Toma una propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un café!', price: 1.00, icon: '☕' },
@@ -22,7 +21,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     );
   };
 
-  // Filtrados para renderizado
+  // Filtrados
   const harinasInCart = cartItems.filter(item => item.type === 'harina');
   const extrasInCart = cartItems.filter(item => item.type === 'extra');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
@@ -30,9 +29,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
   const calculateTotal = () => {
     let total = 0;
-
     if (harinasInCart.length > 0) total += fixedHarinaPrice;
-
     extrasInCart.forEach(e => total += e.price);
     bollitosInCart.forEach(item => {
       const b = bollitos.find(b => b.id === item.id);
@@ -46,7 +43,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       const e = optionalExtras.find(opt => opt.id === id);
       if (e) total += e.price;
     });
-
     return total.toFixed(2);
   };
 
@@ -58,7 +54,8 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         const h = harinas.find(h => h.id === item.id);
         return h ? h.name : '';
       }).join(', ');
-      message += `\n🥖 *Pan Personalizado:*\n• Harinas seleccionadas: ${harinaNames} - ${formatPrice(fixedHarinaPrice)}\n`;
+      const opciones = harinasInCart.map(item => item.opcion).filter(Boolean).join(', ');
+      message += `\n🥖 *Pan Personalizado:*\n• Harinas: ${harinaNames}${opciones ? ` (${opciones})` : ''} - ${formatPrice(fixedHarinaPrice)}\n`;
     }
 
     if (extrasInCart.length > 0) {
@@ -132,13 +129,20 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         {harinasInCart.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Pan Personalizado:</h3>
-            <div className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
-              <span>Harinas seleccionadas: {harinasInCart.map(item => {
-                const h = harinas.find(h => h.id === item.id);
-                return h ? h.name : '';
-              }).join(', ')}</span>
-              <span>{formatPrice(fixedHarinaPrice)}</span>
-            </div>
+            {harinasInCart.map(item => {
+              const h = harinas.find(h => h.id === item.id);
+              return (
+                <div key={item.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
+                  <div>
+                    <span>{h ? h.name : ''}</span>
+                    {item.opcion && (
+                      <span className="ml-2 text-sm text-amber-600 italic">({item.opcion})</span>
+                    )}
+                  </div>
+                  <span>{formatPrice(fixedHarinaPrice)}</span>
+                </div>
+              );
+            })}
           </div>
         )}
 

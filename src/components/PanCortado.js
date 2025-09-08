@@ -1,31 +1,18 @@
-import React, { useState } from 'react';
-
-const PanCortado = () => {
-  const [corte, setCorte] = useState("Normal"); // por defecto "Normal"
-
-  const opciones = ["Normal", "Fino", "Grueso"];
-
-  return (
-    <div className="p-4 border rounded-lg shadow-sm">
-      <h3 className="text-lg font-semibold mb-3">Pan Cortado</h3>
-      <div className="flex gap-2">
-        {opciones.map((op) => (
-          <button
-            key={op}
-            onClick={() => setCorte(op)}
-            className={`px-3 py-1 text-xs rounded-lg border transition-all 
-              ${corte === op ? "bg-amber-500 text-white" : "hover:bg-amber-100"}`}
-          >
-            {op}
-          </button>
-        ))}
-      </div>
-
-      <p className="mt-3 text-sm text-gray-600">
-        Opción seleccionada: <span className="font-semibold">{corte}</span>
-      </p>
-    </div>
-  );
-};
-
-export default PanCortado;
+<div className="flex space-x-2 mt-2">
+  {opciones.map((opcion) => {
+    const isSelected = selectedOpciones === opcion;
+    return (
+      <button
+        key={opcion}
+        onClick={() => onSelectOpcion(opcion)}
+        className={`px-4 py-2 rounded-full border transition-all duration-200 font-medium ${
+          isSelected
+            ? 'bg-amber-500 text-white border-amber-500 shadow-lg'
+            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
+        }`}
+      >
+        {opcion}
+      </button>
+    );
+  })}
+</div>

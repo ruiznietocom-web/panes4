@@ -9,9 +9,8 @@ import OrderSummary from './components/OrderSummary';
 import SuccessModal from './components/SuccessModal';
 import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
-import InformacionPage from './pages/InformacionPage';
+import InformacionPage from './pages/InformacionPage'; // <--- Nueva página
 import ShoppingCart from './components/ShoppingCart';
-import PanCortado from './components/PanCortado'; // 👈 Nuevo import
 import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
 const App = () => {
@@ -93,10 +92,6 @@ const App = () => {
                         selectedOtrosPanes={cartItems.filter(item => item.type === 'otroPan').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
                         onUpdateOtroPanQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'otroPan')}
                       />
-
-                      {/* 👇 Nuevo bloque de Pan Cortado */}
-                      <PanCortado />
-
                       <ExtrasSelector 
                         selectedExtras={cartItems.filter(item => item.type === 'extra')}
                         onToggleExtra={handleToggleExtra}
@@ -105,7 +100,7 @@ const App = () => {
                   } />
                   <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
                   <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
-                  <Route path="/informacion" element={<InformacionPage />} />
+                  <Route path="/informacion" element={<InformacionPage />} /> {/* Nueva página */}
                 </Routes>
               </div>
 

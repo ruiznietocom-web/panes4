@@ -9,7 +9,7 @@ import OrderSummary from './components/OrderSummary';
 import SuccessModal from './components/SuccessModal';
 import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
-import InformacionPage from './pages/InformacionPage'; // <--- Nueva página
+import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
 import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
@@ -52,11 +52,18 @@ const App = () => {
     setCartItems(prevItems => prevItems.filter(item => !(item.id === id && item.type === type)));
   };
 
-  const handleToggleHarina = (harina) => {
+  // ✅ Modificado: ahora acepta opción de corte
+  const handleToggleHarina = (harina, opcion = 'Normal') => {
     setCartItems(prevItems => {
       const existing = prevItems.find(item => item.id === harina.id && item.type === 'harina');
-      if (existing) return prevItems.filter(item => !(item.id === harina.id && item.type === 'harina'));
-      return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image }];
+      if (existing) {
+        // Actualiza la opción si ya está en el carrito
+        return prevItems.map(item => 
+          item.id === harina.id ? { ...item, opcion } : item
+        );
+      }
+      // Si no existía, lo agrega con la opción seleccionada
+      return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image, opcion }];
     });
   };
 
@@ -100,7 +107,7 @@ const App = () => {
                   } />
                   <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
                   <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
-                  <Route path="/informacion" element={<InformacionPage />} /> {/* Nueva página */}
+                  <Route path="/informacion" element={<InformacionPage />} />
                 </Routes>
               </div>
 

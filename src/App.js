@@ -9,7 +9,7 @@ import OrderSummary from './components/OrderSummary';
 import SuccessModal from './components/SuccessModal';
 import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
-import InformacionPage from './pages/InformacionPage';
+import InformacionPage from './pages/InformacionPage'; // <--- Nueva página
 import ShoppingCart from './components/ShoppingCart';
 import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
@@ -18,6 +18,7 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
+  // Helper
   const getProductDetails = (id, type) => {
     switch (type) {
       case 'harina': return harinas.find(p => p.id === id);
@@ -41,11 +42,7 @@ const App = () => {
 
       const product = getProductDetails(id, type);
       if (product) {
-        return [...prevItems, { 
-          id, quantity: newQuantity, type, 
-          name: product.name, price: product.price, 
-          image: product.image, icon: product.icon 
-        }];
+        return [...prevItems, { id, quantity: newQuantity, type, name: product.name, price: product.price, image: product.image, icon: product.icon }];
       }
       return prevItems;
     });
@@ -55,20 +52,11 @@ const App = () => {
     setCartItems(prevItems => prevItems.filter(item => !(item.id === id && item.type === type)));
   };
 
-  // ✨ Modificación: ahora handleToggleHarina recibe la opción de corte
-  const handleToggleHarina = (harina, opcion = 'Normal') => {
+  const handleToggleHarina = (harina) => {
     setCartItems(prevItems => {
       const existing = prevItems.find(item => item.id === harina.id && item.type === 'harina');
       if (existing) return prevItems.filter(item => !(item.id === harina.id && item.type === 'harina'));
-      return [...prevItems, { 
-        id: harina.id, 
-        quantity: 1, 
-        type: 'harina', 
-        name: harina.name, 
-        price: harina.price, 
-        image: harina.image,
-        opcion // Guardamos la opción seleccionada
-      }];
+      return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image }];
     });
   };
 
@@ -100,7 +88,7 @@ const App = () => {
                     <>
                       <HarinaSelector 
                         selectedHarinas={cartItems.filter(item => item.type === 'harina')}
-                        onToggleHarina={handleToggleHarina} // <-- Ahora recibe opción de corte
+                        onToggleHarina={handleToggleHarina}
                         selectedOtrosPanes={cartItems.filter(item => item.type === 'otroPan').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
                         onUpdateOtroPanQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'otroPan')}
                       />
@@ -110,19 +98,9 @@ const App = () => {
                       />
                     </>
                   } />
-                  <Route path="/bollitos" element={
-                    <BollitosPage 
-                      selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} 
-                      onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} 
-                    />
-                  } />
-                  <Route path="/pulguitas" element={
-                    <PulguitasPage 
-                      selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} 
-                      onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} 
-                    />
-                  } />
-                  <Route path="/informacion" element={<InformacionPage />} />
+                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
+                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
+                  <Route path="/informacion" element={<InformacionPage />} /> {/* Nueva página */}
                 </Routes>
               </div>
 
@@ -136,13 +114,7 @@ const App = () => {
         </div>
 
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
-        <ShoppingCart 
-          isOpen={showCart} 
-          onClose={() => setShowCart(false)} 
-          cartItems={cartItems} 
-          onUpdateQuantity={handleUpdateCartItem} 
-          onRemoveItem={handleRemoveCartItem} 
-        />
+        <ShoppingCart isOpen={showCart} onClose={() => setShowCart(false)} cartItems={cartItems} onUpdateQuantity={handleUpdateCartItem} onRemoveItem={handleRemoveCartItem} />
       </div>
     </Router>
   );

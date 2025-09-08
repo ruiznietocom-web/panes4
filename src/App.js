@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
@@ -9,9 +9,18 @@ import OrderSummary from './components/OrderSummary';
 import SuccessModal from './components/SuccessModal';
 import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
-import InformacionPage from './pages/InformacionPage'; // <--- Nueva página
+import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
 import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
+
+// Componente ScrollToTop
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [pathname]);
+  return null;
+};
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -75,6 +84,7 @@ const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
         <Header cartItemCount={cartItemCount} onOpenCart={() => setShowCart(true)} />
         <Navigation />
@@ -100,7 +110,7 @@ const App = () => {
                   } />
                   <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
                   <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
-                  <Route path="/informacion" element={<InformacionPage />} /> {/* Nueva página */}
+                  <Route path="/informacion" element={<InformacionPage />} />
                 </Routes>
               </div>
 

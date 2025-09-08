@@ -26,7 +26,19 @@ const Navigation = () => {
               }`
             }
           >
-            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              animate={{
+                scale: [1, 1.2, 1],
+                rotate: [0, 10, -10, 0],
+              }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                repeatDelay: 5, // espera 5s entre animaciones
+              }}
+            >
               <item.icon className="w-6 h-6 mb-1" />
             </motion.div>
             <span className="text-xs font-medium">{item.name}</span>

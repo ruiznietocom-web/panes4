@@ -1,4 +1,6 @@
 import React from 'react';
+import { Download } from 'lucide-react';
+
 import PantoMateImg from '../assets/images/pantomate.jpg'; // Ajusta la ruta según tu estructura
 import BarrasPan from '../assets/images/barras.jpg'; // Ajusta la ruta según tu estructura
 import PantoMate from '../assets/images/pantomateb.jpg'; // Ajusta la ruta según tu estructura

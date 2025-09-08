@@ -63,7 +63,7 @@ export const extras = [
   { id: 3, name: "Ciruelas Pasas", price: 0.70, icon: "🍇" },
   { id: 4, name: "Dátiles", price: 0.50, icon: "🌴" },
   { id: 5, name: "Aceitunas Negras", price: 2, icon: "🫒" },
-  { id: 6, name: "Tomate y orégano", price: 1.50, icon: "🍅" },
+  { id: 6, name: "Tomate y orégano", price: 2, icon: "🍅" },
   { id: 7, name: "Queso Roquefort", price: 3, icon: "🧀" },
   { id: 8, name: "Cúrcuma", price: 0.50, icon: "🧡" },
   { id: 9, name: "Pimienta", price: 0.50, icon: "🧂" },

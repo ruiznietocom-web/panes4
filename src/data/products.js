@@ -78,7 +78,7 @@ export const bollitos = [
   { id: 1, name: "Bollito Integral Clásico", description: "Suave y esponjoso, ideal para el desayuno", image: "🍞", price: 1 },
 
   { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "Pruébalos todos!", image: "🍞", price: 8.50 },
-  { id: 1.2, name: "PACK Surtido 6 Bollitos Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7 },
+  { id: 1.2, name: "PACK Surtido 6 Bollitos Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7.50 },
   { id: 1.3, name: "PACK Surtido 6 Bollitos Integrales de Nueces", description: "Nutritivo y delicioso", image: "🥜", price: 7.50 },
   { id: 1.4, name: "PACK Surtido 6 Bollitos Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  
   { id: 1.5, name: "PACK Surtido 6 Bollitos Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 7 },
@@ -104,7 +104,7 @@ export const pulguitas = [
   { id: 1, name: "Pulguita Integral", description: "Pequeña y crujiente, ideal para bocadillos", image: "🍞", price: 0.50 },
 
  { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (uno de cada)", description: "Pruébalos todos!", image: "🍞", price: 8.50 },
-  { id: 1.2, name: "PACK Surtido 12 Pulguitas Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7 },
+  { id: 1.2, name: "PACK Surtido 12 Pulguitas Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7.50 },
   { id: 1.3, name: "PACK Surtido 12 Pulguitas Integrales de Nueces", description: "Nutritivo y delicioso", image: "🥜", price: 7.50 },
   { id: 1.4, name: "PACK Surtido 12 Pulguitas Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  
   { id: 1.5, name: "PACK Surtido 12 Pulguitas Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 7 },

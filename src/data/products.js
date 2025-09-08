@@ -75,20 +75,34 @@ export const extras = [
 ];
 
 export const bollitos = [
-  { id: 1, name: "Bollito Integral Clásico", description: "Suave y esponjoso, ideal para el desayuno", image: "🍞", price: 0.80 },
-  { id: 1.1, name: "Pack Surtido 7 Bollitos Integrales (uno de cada)", description: "Suave y esponjoso, ideal para el desayuno", image: "🍞", price: 8.50 },
-  { id: 2, name: "Bollito de Cacao", description: "Con cacao puro", image: "🍫", price: 1.20 },
-  { id: 3, name: "Bollito de Nueces", description: "Con nueces, nutritivo y delicioso", image: "🥜", price: 0.90 },
-  { id: 4, name: "Bollito de Ciruelas Pasas", description: "Dulce y energético, con frutas deshidratadas", image: "🍇", price: 0.90 },
-  { id: 5, name: "Bollito de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 0.90 },
-  { id: 6, name: "Bollito de Semillas", description: "Crujiente, lleno de fibra y minerales", image: "🌻", price: 0.90 },
-  { id: 7, name: "Bollito de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 0.90 },
-  { id: 8, name: "Bollito de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 1.00 }
+  { id: 1, name: "Bollito Integral Clásico", description: "Suave y esponjoso, ideal para el desayuno", image: "🍞", price: 1 },
+
+  { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "Pruébalos todos!", image: "🍞", price: 8.50 },
+  { id: 1.2, name: "PACK Surtido 6 Bollitos Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7 },
+  { id: 1.3, name: "PACK Surtido 6 Bollitos Integrales de Nueces", description: "Nutritivo y delicioso", image: "🥜", price: 7.50 },
+  { id: 1.4, name: "PACK Surtido 6 Bollitos Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  
+  { id: 1.5, name: "PACK Surtido 6 Bollitos Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 7 },
+  { id: 1.6, name: "PACK Surtido 6 Bollitos Integrales de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 7 },
+  { id: 1.7, name: "PACK Surtido 6 Bollitos Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 7.50 },
+  { id: 1.8, name: "PACK Surtido 6 Bollitos Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 7.50 },
+
+
+
+
+
+
+  { id: 2, name: "Bollito de Cacao", description: "Con cacao puro en polvo", image: "🍫", price: 1.20 },
+  { id: 3, name: "Bollito de Nueces", description: "Con nueces, nutritivo y delicioso", image: "🥜", price: 1.30 },
+  { id: 4, name: "Bollito de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 1.20 },
+  { id: 5, name: "Bollito de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 1.20 },
+  { id: 6, name: "Bollito de Semillas", description: "Crujiente, lleno de fibra y minerales", image: "🌻", price: 1.20 },
+  { id: 7, name: "Bollito de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 1.30 },
+  { id: 8, name: "Bollito de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 1.30 }
 ];
 
 export const pulguitas = [
   { id: 1, name: "Pulguita Integral", description: "Pequeña y crujiente, ideal para bocadillos", image: "🍞", price: 0.60 },
-  { id: 2, name: "Pulguita de Cacao", description: "Mini formato dulce, perfecta para niños", image: "🍫", price: 0.90 },
+  { id: 2, name: "Pulguita de Cacao", description: "Con cacao puro en polvo", image: "🍫", price: 0.90 },
   { id: 3, name: "Pulguita de Nueces", description: "Con nueces, nutritiva y energética", image: "🥜", price: 0.70 },
   { id: 4, name: "Pulguita de Ciruelas Pasas", description: "Pequeña, dulce y saludable", image: "🍇", price: 0.70 },
   { id: 5, name: "Pulguita de Cúrcuma", description: "Dorada y aromática, exótica y ligera", image: "🧡", price: 0.70 },

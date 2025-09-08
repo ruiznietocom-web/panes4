@@ -51,7 +51,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   };
 
   const generateWhatsAppMessage = () => {
-    let message = ` *NUEVO PEDIDO - PanApp* \n\n *RESUMEN DE TU PEDIDO:*\n`;
+    let message = ` *NUEVO PEDIDO - PanZen* \n\n *RESUMEN DE TU PEDIDO:*\n`;
 
     if (harinasInCart.length > 0) {
       const harinaNames = harinasInCart.map(item => {

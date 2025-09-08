@@ -12,7 +12,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-md p-4 sticky top-0 z-10">
+    <nav className="bg-gradient-to-r from-orange-100 to-orange-200 shadow-md p-4 sticky top-0 z-10">
       <div className="max-w-4xl mx-auto flex justify-around">
         {navItems.map((item) => (
           <NavLink
@@ -21,22 +21,22 @@ const Navigation = () => {
             className={({ isActive }) =>
               `flex flex-col items-center p-2 rounded-lg transition-all duration-300 ${
                 isActive
-                  ? 'text-amber-600 bg-amber-50 shadow-sm'
-                  : 'text-gray-600 hover:text-amber-500 hover:bg-gray-100'
+                  ? 'text-white bg-gradient-to-r from-orange-400 to-orange-500 shadow-lg'
+                  : 'text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-orange-200 hover:to-orange-300'
               }`
             }
           >
             <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
               animate={{
-                scale: [1, 1.2, 1],
-                rotate: [0, 10, -10, 0],
+                scale: [1, 1.05, 1],
+                rotate: [0, 5, -5, 0],
               }}
               transition={{
-                duration: 1,
+                duration: 1.2,
                 repeat: Infinity,
-                repeatDelay: 5, // espera 5s entre animaciones
+                repeatDelay: 4,
               }}
             >
               <item.icon className="w-6 h-6 mb-1" />
@@ -50,3 +50,4 @@ const Navigation = () => {
 };
 
 export default Navigation;
+

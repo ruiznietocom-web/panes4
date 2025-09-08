@@ -103,7 +103,7 @@ export const bollitos = [
 export const pulguitas = [
   { id: 1, name: "Pulguita Integral", description: "Pequeña y crujiente, ideal para bocadillos", image: "🍞", price: 0.50 },
 
- { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (uno de cada)", description: "Pruébalos todos!", image: "🍞", price: 8.50 },
+ { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (una de cada)", description: "Pruébalos todos!", image: "🍞", price: 8.50 },
   { id: 1.2, name: "PACK Surtido 12 Pulguitas Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7.50 },
   { id: 1.3, name: "PACK Surtido 12 Pulguitas Integrales de Nueces", description: "Nutritivo y delicioso", image: "🥜", price: 7.50 },
   { id: 1.4, name: "PACK Surtido 12 Pulguitas Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  

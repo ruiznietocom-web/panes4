@@ -18,7 +18,6 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  // Helper
   const getProductDetails = (id, type) => {
     switch (type) {
       case 'harina': return harinas.find(p => p.id === id);
@@ -30,48 +29,43 @@ const App = () => {
     }
   };
 
-  const handleUpdateCartItem = (id, quantity, type) => {
+  const handleUpdateCartItem = (id, quantity, type, opcion) => {
     setCartItems(prevItems => {
-      const existingItemIndex = prevItems.findIndex(item => item.id === id && item.type === type);
+      const existingIndex = prevItems.findIndex(item => item.id === id && item.type === type);
       const newQuantity = Math.max(0, quantity);
 
       if (newQuantity === 0) return prevItems.filter(item => !(item.id === id && item.type === type));
-      if (existingItemIndex > -1) return prevItems.map((item, index) =>
-        index === existingItemIndex ? { ...item, quantity: newQuantity } : item
+      if (existingIndex > -1) return prevItems.map((item, index) =>
+        index === existingIndex ? { ...item, quantity: newQuantity, opcion: opcion ?? item.opcion } : item
       );
 
       const product = getProductDetails(id, type);
       if (product) {
-        return [...prevItems, { id, quantity: newQuantity, type, name: product.name, price: product.price, image: product.image, icon: product.icon }];
+        return [...prevItems, { id, quantity: newQuantity, type, name: product.name, price: product.price, image: product.image, icon: product.icon, opcion }];
       }
       return prevItems;
     });
   };
 
   const handleRemoveCartItem = (id, type) => {
-    setCartItems(prevItems => prevItems.filter(item => !(item.id === id && item.type === type)));
+    setCartItems(prev => prev.filter(item => !(item.id === id && item.type === type)));
   };
 
-  // ✅ Modificado: ahora acepta opción de corte
   const handleToggleHarina = (harina, opcion = 'Normal') => {
-    setCartItems(prevItems => {
-      const existing = prevItems.find(item => item.id === harina.id && item.type === 'harina');
+    setCartItems(prev => {
+      const existing = prev.find(item => item.id === harina.id && item.type === 'harina');
       if (existing) {
-        // Actualiza la opción si ya está en el carrito
-        return prevItems.map(item => 
-          item.id === harina.id ? { ...item, opcion } : item
-        );
+        return prev.map(item => item.id === harina.id ? { ...item, opcion } : item);
       }
-      // Si no existía, lo agrega con la opción seleccionada
-      return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image, opcion }];
+      return [...prev, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image, opcion }];
     });
   };
 
   const handleToggleExtra = (extra) => {
-    setCartItems(prevItems => {
-      const existing = prevItems.find(item => item.id === extra.id && item.type === 'extra');
-      if (existing) return prevItems.filter(item => !(item.id === extra.id && item.type === 'extra'));
-      return [...prevItems, { id: extra.id, quantity: 1, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon }];
+    setCartItems(prev => {
+      const existing = prev.find(item => item.id === extra.id && item.type === 'extra');
+      if (existing) return prev.filter(item => !(item.id === extra.id && item.type === 'extra'));
+      return [...prev, { id: extra.id, quantity: 1, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon }];
     });
   };
 
@@ -96,8 +90,6 @@ const App = () => {
                       <HarinaSelector 
                         selectedHarinas={cartItems.filter(item => item.type === 'harina')}
                         onToggleHarina={handleToggleHarina}
-                        selectedOtrosPanes={cartItems.filter(item => item.type === 'otroPan').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
-                        onUpdateOtroPanQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'otroPan')}
                       />
                       <ExtrasSelector 
                         selectedExtras={cartItems.filter(item => item.type === 'extra')}

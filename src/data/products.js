@@ -77,7 +77,7 @@ export const extras = [
 export const bollitos = [
   { id: 1, name: "Bollito Integral Clásico", description: "Suave y esponjoso, ideal para el desayuno", image: "🍞", price: 1 },
 
-  { id: 1.0.1, name: "PACK Surtido 6 Bollitos Integrales Clásico", description: "Tu pack clásico", image: "🍞", price: 6 },
+  { id: 1.0.1, name: "PACK Surtido 6 Bollitos Integrales Clásicos", description: "Tu pack clásico", image: "🍞", price: 6 },
 
 
   { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "Pruébalos todos!", image: "🍞", price: 8.50 },
@@ -105,6 +105,9 @@ export const bollitos = [
 
 export const pulguitas = [
   { id: 1, name: "Pulguita Integral", description: "Pequeña y crujiente, ideal para bocadillos", image: "🍞", price: 0.50 },
+
+  { id: 1.0.1, name: "PACK Surtido 12 Pulguitas Integrales Clásicas", description: "Tu pack de pulguitas clásicas", image: "🍞", price: 6 },
+
 
  { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (una de cada)", description: "Pruébalos todos!", image: "🍞", price: 8.50 },
   { id: 1.2, name: "PACK Surtido 12 Pulguitas Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7.50 },

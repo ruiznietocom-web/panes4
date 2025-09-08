@@ -51,25 +51,25 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   };
 
   const generateWhatsAppMessage = () => {
-    let message = `🍞 *NUEVO PEDIDO - PanApp* 🍞\n\n📋 *Resumen del Pedido:*\n`;
+    let message = ` *NUEVO PEDIDO - PanApp* \n\n *RESUMEN DE TU PEDIDO:*\n`;
 
     if (harinasInCart.length > 0) {
       const harinaNames = harinasInCart.map(item => {
         const h = harinas.find(h => h.id === item.id);
         return h ? h.name : '';
       }).join(', ');
-      message += `\n🥖 *PAN PERSONALIZADO:*\n• Harinas seleccionadas: ${harinaNames} - ${formatPrice(fixedHarinaPrice)}\n`;
+      message += `\n *PAN PERSONALIZADO:*\n• Harinas seleccionadas: ${harinaNames} - ${formatPrice(fixedHarinaPrice)}\n`;
     }
 
     if (extrasInCart.length > 0) {
-      message += `\n🟢 *EXTRAS AÑADIDOS:*\n`;
+      message += `\n *EXTRAS AÑADIDOS:*\n`;
       extrasInCart.forEach(extra => {
         message += `• ${extra.name} - ${formatPrice(extra.price)}\n`;
       });
     }
 
     if (bollitosInCart.length > 0) {
-      message += `\n🟦 *BOLLITOS:*\n`;
+      message += `\n *BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
         const b = bollitos.find(b => b.id === item.id);
         if (b) message += `• ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
@@ -77,7 +77,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     }
 
     if (pulguitasInCart.length > 0) {
-      message += `\n🟪 *PULGUITAS:*\n`;
+      message += `\n *PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
         const p = pulguitas.find(p => p.id === item.id);
         if (p) message += `• ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
@@ -85,15 +85,15 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     }
 
     if (selectedOptionalExtras.length > 0) {
-      message += `\n⭐ *MANUEL, QUÉ RICO TU PAN!...:*\n`;
+      message += `\n *MANUEL, QUÉ RICO TU PAN!...:*\n`;
       selectedOptionalExtras.forEach(id => {
         const e = optionalExtras.find(opt => opt.id === id);
         if (e) message += `• ${e.name} - ${formatPrice(e.price)}\n`;
       });
     }
 
-    message += `\n💰 *TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
-    message += `📞 MUCHAS GRACIAS!!.\n 🙏`;
+    message += `\n *TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
+    message += ` MUCHAS GRACIAS!!.\n `;
 
     return encodeURIComponent(message);
   };

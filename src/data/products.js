@@ -36,12 +36,36 @@ export const harinas = [
   },
   {
     id: 6,
-    name: "PAN CORTADO (gratuito)",
+    name: "PAN CORTADO FINO (gratuito)",
     description: "¿quieres tu pan cortado?",
     image: "🔪",
     price: 0
 
   }
+ },
+  {
+    id: 6.1,
+    name: "PAN CORTADO NORMAL (gratuito)",
+    description: "¿quieres tu pan cortado?",
+    image: "🔪🔪",
+    price: 0
+
+  }
+ },
+  {
+    id: 6.2,
+    name: "PAN CORTADO GRUESO (gratuito)",
+    description: "¿quieres tu pan cortado?",
+    image: "🔪🔪🔪",
+    price: 0
+
+  }
+
+
+
+
+
+
 ];
 
 export const extras = [

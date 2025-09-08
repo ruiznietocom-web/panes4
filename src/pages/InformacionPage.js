@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download } from 'lucide-react';
+import { Download } from 'lucide-react';// Icono para el botón de PDF
 
 import PantoMateImg from '../assets/images/pantomate.jpg'; // Ajusta la ruta según tu estructura
 import BarrasPan from '../assets/images/barras.jpg'; // Ajusta la ruta según tu estructura
@@ -24,6 +24,29 @@ const InformacionPage = () => {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">+ INFORMACIÓN</h1>
+
+
+
+
+ {/* BOTÓN PARA DESCARGAR PDF AL PRINCIPIO */}
+      <div className="my-6 flex justify-center">
+        <a
+          href="/docs/PRECIOSPANES31052025.pdf"
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 
+                     text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:from-green-600 hover:to-green-700
+                     transition-all duration-300 transform hover:scale-105"
+        >
+          <Download className="w-6 h-6" />
+          Descargar PDF de Precios
+        </a>
+      </div>
+
+
+
+
 
       <p>
         Todos los panes, bollitos y pulguitas son 100% integrales de harinas de cultivo ecológico, 
@@ -313,24 +336,7 @@ El pan, los bollitos o pulguitas se entregan siempre hechos del día, y algunas 
 
 
 
-      {/* BOTÓN PARA DESCARGAR PDF */}
-      <div className="my-8 flex justify-center">
-        <a
-          href="/docs/PRECIOSPANES31052025.pdf"
-          download
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 
-                     text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:from-green-600 hover:to-green-700
-                     transition-all duration-300 transform hover:scale-105"
-        >
-          <Download className="w-6 h-6" />
-          Descargar PDF de Precios
-        </a>
-      </div>
-
-
-
+    
     </div>
   );
 };

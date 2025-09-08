@@ -4,6 +4,12 @@ import BarrasPan from '../assets/images/barras.jpg'; // Ajusta la ruta según tu
 import PantoMate from '../assets/images/pantomateb.jpg'; // Ajusta la ruta según tu estructura
 import BollosPulguitas from '../assets/images/bollopulga.jpg'; // Ajusta la ruta según tu estructura
 import CorazonHarina from '../assets/images/corazon.jpg'; // Ajusta la ruta según tu estructura
+import PandeAjo from '../assets/images/panajo.jpg'; // Ajusta la ruta según tu estructura
+import PandeCacao from '../assets/images/pancacao.jpg'; // Ajusta la ruta según tu estructura
+import PandeOliva from '../assets/images/panoliva.jpg'; // Ajusta la ruta según tu estructura
+import Pulguitascenteno from '../assets/images/pulguitas.jpg'; // Ajusta la ruta según tu estructura
+import Bolloswenos from '../assets/images/bollos.jpg'; // Ajusta la ruta según tu estructura
+
 
 
 
@@ -257,6 +263,51 @@ El pan, los bollitos o pulguitas se entregan siempre hechos del día, y algunas 
 
 
 
+{/* Imagen dentro del contenido */}
+      <div className="my-6 flex justify-center">
+        <img 
+          src={Bolloswenos} 
+          alt="Bollitos" 
+          className="w-full max-w-md rounded-lg shadow-md"
+        />
+      </div>
+
+{/* Imagen dentro del contenido */}
+      <div className="my-6 flex justify-center">
+        <img 
+          src={PandeAjo} 
+          alt="Pan Ajo" 
+          className="w-full max-w-md rounded-lg shadow-md"
+        />
+      </div>
+
+{/* Imagen dentro del contenido */}
+      <div className="my-6 flex justify-center">
+        <img 
+          src={PandeCacao} 
+          alt="Pan Cacao" 
+          className="w-full max-w-md rounded-lg shadow-md"
+        />
+      </div>
+
+{/* Imagen dentro del contenido */}
+      <div className="my-6 flex justify-center">
+        <img 
+          src={PandeOliva} 
+          alt="Pan Oliva" 
+          className="w-full max-w-md rounded-lg shadow-md"
+        />
+      </div>
+
+
+{/* Imagen dentro del contenido */}
+      <div className="my-6 flex justify-center">
+        <img 
+          src={Pulguitascenteno} 
+          alt="Pulguitas" 
+          className="w-full max-w-md rounded-lg shadow-md"
+        />
+      </div>
 
 
 

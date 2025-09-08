@@ -44,7 +44,7 @@ export const harinas = [
   }
  },
   {
-    id: 6.1,
+    id: 7,
     name: "PAN CORTADO NORMAL (gratuito)",
     description: "¿quieres tu pan cortado normal?",
     image: "🔪🔪",
@@ -53,7 +53,7 @@ export const harinas = [
   }
  },
   {
-    id: 6.2,
+    id: 8,
     name: "PAN CORTADO GRUESO (gratuito)",
     description: "¿quieres tu pan cortado grueso?",
     image: "🔪🔪🔪",

@@ -22,7 +22,7 @@ const Header = ({ cartItemCount, onOpenCart }) => {
           </div>
           <div className="text-center">
             <h1 className="text-3xl font-bold">PanZen</h1>
-            <p className="text-amber-100 font-medium">Tu panadería personalizada</p>
+            <p className="text-amber-100 font-medium">Tu pan consciente personalizado</p>
           </div>
         </motion.div>
 

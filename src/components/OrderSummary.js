@@ -48,9 +48,14 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const generateWhatsAppMessage = () => {
     let message = ` *NUEVO PEDIDO - PanZen* \n\n *RESUMEN DE TU PEDIDO:*\n`;
 
+    // Harinas desglosadas
     if (harinasInCart.length > 0) {
-      const harinaNames = harinasInCart.map(item => harinas.find(h => h.id === item.id)?.name || '').join(', ');
-      message += `\n *PAN PERSONALIZADO:*\n• Harinas seleccionadas: ${harinaNames} - ${formatPrice(fixedHarinaPrice)}\n`;
+      message += `\n *PAN PERSONALIZADO:*\n`;
+      harinasInCart.forEach(item => {
+        const h = harinas.find(h => h.id === item.id);
+        if (h) message += `• ${h.name}\n`;
+      });
+      message += `Precio total de harinas: ${formatPrice(fixedHarinaPrice)}\n`;
     }
 
     if (extrasInCart.length > 0) {
@@ -117,13 +122,16 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* Pan Personalizado */}
+        {/* Pan Personalizado con harinas desglosadas */}
         {harinasInCart.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Pan Personalizado:</h3>
-            <div className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
-              <span>Harinas seleccionadas: {harinasInCart.map(item => harinas.find(h => h.id === item.id)?.name).join(', ')}</span>
-              <span>{formatPrice(fixedHarinaPrice)}</span>
+            <div className="flex flex-col p-2 bg-amber-50 rounded-lg">
+              {harinasInCart.map(item => {
+                const h = harinas.find(h => h.id === item.id);
+                return h && <span key={h.id}>• {h.name}</span>;
+              })}
+              <span className="mt-1 font-bold">Precio total de harinas: {formatPrice(fixedHarinaPrice)}</span>
             </div>
           </div>
         )}

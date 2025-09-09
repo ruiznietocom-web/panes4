@@ -25,7 +25,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const extrasInCart = cartItems.filter(item => item.type === 'extra');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
-  const corteInCart = cartItems.find(item => item.type === 'corte'); // corte único
 
   const calculateTotal = () => {
     let total = 0;
@@ -47,55 +46,50 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   };
 
   const generateWhatsAppMessage = () => {
-    let message = ` *NUEVO PEDIDO - PanZen* \n\n *RESUMEN DE TU PEDIDO:*\n`;
+    let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n`;
 
-    // Pan personalizado desglosado con emojis
     if (harinasInCart.length > 0) {
-      message += `\n *PAN PERSONALIZADO:*\n`;
+      message += `\n*PAN PERSONALIZADO:*\n`;
       harinasInCart.forEach(item => {
         const h = harinas.find(h => h.id === item.id);
-        if (h) message += `• ${h.icon || '🌾'} ${h.name}\n`;
+        if (h) message += `• ${h.name}\n`; // sin emoji
       });
       message += `Precio fijo: ${formatPrice(fixedHarinaPrice)}\n`;
     }
 
-    // Corte con emoji
-    if (corteInCart) {
-      message += `\n *TIPO DE CORTE:*\n• ${corteInCart.icon || '🔪'} ${corteInCart.name} (gratuito)\n`;
-    }
-
     if (extrasInCart.length > 0) {
-      message += `\n *EXTRAS AÑADIDOS:*\n`;
-      extrasInCart.forEach(extra => message += `• ${extra.icon} ${extra.name} - ${formatPrice(extra.price)}\n`);
+      message += `\n*EXTRAS AÑADIDOS:*\n`;
+      extrasInCart.forEach(extra => message += `• ${extra.name} - ${formatPrice(extra.price)}\n`);
     }
 
     if (bollitosInCart.length > 0) {
-      message += `\n *BOLLITOS:*\n`;
+      message += `\n*BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
         const b = bollitos.find(b => b.id === item.id);
-        if (b) message += `• ${b.icon || '🥐'} ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
+        if (b) message += `• ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
       });
     }
 
     if (pulguitasInCart.length > 0) {
-      message += `\n *PULGUITAS:*\n`;
+      message += `\n*PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
         const p = pulguitas.find(p => p.id === item.id);
-        if (p) message += `• ${p.icon || '🥖'} ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
+        if (p) message += `• ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
       });
     }
 
     if (selectedOptionalExtras.length > 0) {
-      message += `\n *MANUEL, QUÉ RICO TU PAN!...:*\n`;
+      message += `\n*EXTRAS OPCIONALES:*\n`;
       selectedOptionalExtras.forEach(id => {
         const e = optionalExtras.find(opt => opt.id === id);
-        if (e) message += `• ${e.icon} ${e.name} - ${formatPrice(e.price)}\n`;
+        if (e) message += `• ${e.name} - ${formatPrice(e.price)}\n`;
       });
     }
 
-    message += `\n *TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
+    message += `\n*TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
     message += `🚚 Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
-    message += `🙏 MUCHAS GRACIAS!!.\n `;
+    message += `🙏 MUCHAS GRACIAS!!\n`;
+
     return encodeURIComponent(message);
   };
 
@@ -136,7 +130,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const h = harinas.find(h => h.id === item.id);
               return h && (
                 <div key={h.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
-                  <span>{h.icon || '🌾'} {h.name}</span>
+                  <span>{h.icon} {h.name}</span> {/* con emoji */}
                 </div>
               );
             })}
@@ -147,24 +141,13 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* Tipo de corte */}
-        {corteInCart && (
-          <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">Tipo de Corte:</h3>
-            <div className="flex justify-between items-center p-2 bg-orange-50 rounded-lg">
-              <span>{corteInCart.icon || '🔪'} {corteInCart.name}</span>
-              <span className="text-green-600 font-semibold">Gratuito</span>
-            </div>
-          </div>
-        )}
-
         {/* Extras */}
         {extrasInCart.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Extras:</h3>
             {extrasInCart.map(extra => (
               <div key={extra.id} className="flex justify-between items-center p-2 bg-green-50 rounded-lg">
-                <span>{extra.icon} {extra.name}</span>
+                <span className="flex items-center gap-2">{extra.icon} {extra.name}</span>
                 <span>{formatPrice(extra.price)}</span>
               </div>
             ))}
@@ -179,7 +162,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const b = bollitos.find(b => b.id === item.id);
               return b && (
                 <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
-                  <span>{b.icon || '🥐'} {b.name} x{item.quantity}</span>
+                  <span className="flex items-center gap-2">{b.icon} {b.name} x{item.quantity}</span>
                   <span>{formatPrice(b.price * item.quantity)}</span>
                 </div>
               );
@@ -195,7 +178,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const p = pulguitas.find(p => p.id === item.id);
               return p && (
                 <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg">
-                  <span>{p.icon || '🥖'} {p.name} x{item.quantity}</span>
+                  <span className="flex items-center gap-2">{p.icon} {p.name} x{item.quantity}</span>
                   <span>{formatPrice(p.price * item.quantity)}</span>
                 </div>
               );
@@ -224,12 +207,13 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         </div>
 
-        {/* Total */}
+        {/* Total + info de entrega */}
         <div className="border-t pt-3 mt-3">
           <div className="flex justify-between items-center text-xl font-bold">
             <span>Total:</span>
             <span>{formatPrice(calculateTotal())}</span>
           </div>
+
           <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
             🚚 <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
           </div>

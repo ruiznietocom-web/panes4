@@ -63,3 +63,5 @@ const generateWhatsAppMessage = () => {
     🚚 <span><strong>Entrega a domicilio en Chiclana</strong> es <span className="text-green-600 font-semibold">GRATUITA</span> 🎉</span>
   </div>
 </div>
+export default OrderSummary;
+

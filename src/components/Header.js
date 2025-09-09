@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Wheat, ShoppingBag } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Header = ({ cartItemCount, onOpenCart }) => {
   return (
@@ -11,21 +12,26 @@ const Header = ({ cartItemCount, onOpenCart }) => {
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-4xl mx-auto flex items-center justify-between">
+        {/* Logo + título */}
         <motion.div 
           className="flex items-center gap-4"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <div className="p-3 bg-white/20 rounded-full">
-            <Wheat className="w-8 h-8" />
+          {/* Logo */}
+          <div className="p-1 bg-white/20 rounded-full">
+            <img src={logo} alt="Logo PanZen" className="w-10 h-10 object-contain" />
           </div>
+
+          {/* Título y subtítulo */}
           <div className="text-center">
             <h1 className="text-3xl font-bold">PanZen</h1>
             <p className="text-amber-100 font-medium">Tu pan consciente personalizado</p>
           </div>
         </motion.div>
 
+        {/* Carrito */}
         <motion.button
           onClick={onOpenCart}
           className="relative p-3 bg-white/20 rounded-full hover:bg-white/30 transition-colors"

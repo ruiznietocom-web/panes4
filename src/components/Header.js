@@ -20,7 +20,7 @@ const Header = ({ cartItemCount, onOpenCart }) => {
         >
           {/* Logo redondo aumentado 50% */}
           <div className="p-1 bg-white/20 rounded-full overflow-hidden">
-            <img src={logo} alt="Logo PanZen" className="w-[60px] h-[60px] object-cover rounded-full" />
+            <img src={logo} alt="Logo PanZen" className="w-[80px] h-[80px] object-cover rounded-full" />
           </div>
           <div className="text-center">
             <h1 className="text-3xl font-bold">PanZen</h1>

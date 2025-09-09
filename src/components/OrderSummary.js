@@ -25,6 +25,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const extrasInCart = cartItems.filter(item => item.type === 'extra');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
+  const corteInCart = cartItems.find(item => item.type === 'corte'); // corte único
 
   const calculateTotal = () => {
     let total = 0;
@@ -48,9 +49,19 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const generateWhatsAppMessage = () => {
     let message = ` *NUEVO PEDIDO - PanZen* \n\n *RESUMEN DE TU PEDIDO:*\n`;
 
+    // Pan personalizado desglosado
     if (harinasInCart.length > 0) {
-      const harinaNames = harinasInCart.map(item => harinas.find(h => h.id === item.id)?.name || '').join(', ');
-      message += `\n *PAN PERSONALIZADO:*\n• Harinas seleccionadas: ${harinaNames} - ${formatPrice(fixedHarinaPrice)}\n`;
+      message += `\n *PAN PERSONALIZADO:*\n`;
+      harinasInCart.forEach(item => {
+        const h = harinas.find(h => h.id === item.id);
+        if (h) message += `• ${h.name}\n`;
+      });
+      message += `Precio fijo: ${formatPrice(fixedHarinaPrice)}\n`;
+    }
+
+    // Corte separado
+    if (corteInCart) {
+      message += `\n *TIPO DE CORTE:*\n• ${corteInCart.name} (gratuito)\n`;
     }
 
     if (extrasInCart.length > 0) {
@@ -121,9 +132,28 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         {harinasInCart.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Pan Personalizado:</h3>
-            <div className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
-              <span>Harinas seleccionadas: {harinasInCart.map(item => harinas.find(h => h.id === item.id)?.name).join(', ')}</span>
+            {harinasInCart.map(item => {
+              const h = harinas.find(h => h.id === item.id);
+              return h && (
+                <div key={h.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
+                  <span>{h.name}</span>
+                </div>
+              );
+            })}
+            <div className="flex justify-between items-center p-2 bg-amber-100 rounded-lg font-medium">
+              <span>Precio fijo</span>
               <span>{formatPrice(fixedHarinaPrice)}</span>
+            </div>
+          </div>
+        )}
+
+        {/* Tipo de corte */}
+        {corteInCart && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Tipo de Corte:</h3>
+            <div className="flex justify-between items-center p-2 bg-orange-50 rounded-lg">
+              <span>{corteInCart.name}</span>
+              <span className="text-green-600 font-semibold">Gratuito</span>
             </div>
           </div>
         )}
@@ -134,7 +164,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
             <h3 className="font-semibold text-gray-700">Extras:</h3>
             {extrasInCart.map(extra => (
               <div key={extra.id} className="flex justify-between items-center p-2 bg-green-50 rounded-lg">
-                <span className="flex items-center gap-2">{extra.icon} {extra.name}</span>
+                <span>{extra.name}</span>
                 <span>{formatPrice(extra.price)}</span>
               </div>
             ))}
@@ -149,7 +179,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const b = bollitos.find(b => b.id === item.id);
               return b && (
                 <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
-                  <span className="flex items-center gap-2">{b.image} {b.name} x{item.quantity}</span>
+                  <span>{b.name} x{item.quantity}</span>
                   <span>{formatPrice(b.price * item.quantity)}</span>
                 </div>
               );
@@ -165,7 +195,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const p = pulguitas.find(p => p.id === item.id);
               return p && (
                 <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg">
-                  <span className="flex items-center gap-2">{p.image} {p.name} x{item.quantity}</span>
+                  <span>{p.name} x{item.quantity}</span>
                   <span>{formatPrice(p.price * item.quantity)}</span>
                 </div>
               );
@@ -194,13 +224,12 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         </div>
 
-        {/* Total + info de entrega */}
+        {/* Total */}
         <div className="border-t pt-3 mt-3">
           <div className="flex justify-between items-center text-xl font-bold">
             <span>Total:</span>
             <span>{formatPrice(calculateTotal())}</span>
           </div>
-
           <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
             🚚 <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
           </div>

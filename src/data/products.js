@@ -86,7 +86,7 @@ export const bollitos = [
   { id: 1.4, name: "PACK Surtido 6 Bollitos Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  
   { id: 1.5, name: "PACK Surtido 6 Bollitos Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 7 },
   { id: 1.6, name: "PACK Surtido 6 Bollitos Integrales de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 7 },
-  { id: 1.7, name: "PACK Surtido 6 Bollitos Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 7.50 },
+  { id: 1.7, name: "PACK Surtido 6 Bollitos Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 8 },
   { id: 1.8, name: "PACK Surtido 6 Bollitos Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 7.50 },
 
 
@@ -115,7 +115,7 @@ export const pulguitas = [
   { id: 1.4, name: "PACK Surtido 12 Pulguitas Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  
   { id: 1.5, name: "PACK Surtido 12 Pulguitas Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 7 },
   { id: 1.6, name: "PACK Surtido 12 Pulguitas Integrales de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 7 },
-  { id: 1.7, name: "PACK Surtido 12 Pulguitas Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 7.50 },
+  { id: 1.7, name: "PACK Surtido 12 Pulguitas Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 8 },
   { id: 1.8, name: "PACK Surtido 12 Pulguitas Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 7.50 },
 
 

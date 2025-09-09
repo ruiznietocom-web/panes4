@@ -21,7 +21,7 @@ const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
       </h2>
       <p className="text-gray-500 text-center mb-4">
         Puedes seleccionar hasta 5 harinas.  
-        El precio de esta sección es fijo: {formatPrice(fixedHarinaPrice)}.
+        El precio final de tu pan (sin extras) es fijo: {formatPrice(fixedHarinaPrice)}.
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

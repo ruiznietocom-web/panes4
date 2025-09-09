@@ -49,31 +49,31 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const generateWhatsAppMessage = () => {
     let message = ` *NUEVO PEDIDO - PanZen* \n\n *RESUMEN DE TU PEDIDO:*\n`;
 
-    // Pan personalizado desglosado
+    // Pan personalizado desglosado con emojis
     if (harinasInCart.length > 0) {
       message += `\n *PAN PERSONALIZADO:*\n`;
       harinasInCart.forEach(item => {
         const h = harinas.find(h => h.id === item.id);
-        if (h) message += `• ${h.name}\n`;
+        if (h) message += `• ${h.icon || '🌾'} ${h.name}\n`;
       });
       message += `Precio fijo: ${formatPrice(fixedHarinaPrice)}\n`;
     }
 
-    // Corte separado
+    // Corte con emoji
     if (corteInCart) {
-      message += `\n *TIPO DE CORTE:*\n• ${corteInCart.name} (gratuito)\n`;
+      message += `\n *TIPO DE CORTE:*\n• ${corteInCart.icon || '🔪'} ${corteInCart.name} (gratuito)\n`;
     }
 
     if (extrasInCart.length > 0) {
       message += `\n *EXTRAS AÑADIDOS:*\n`;
-      extrasInCart.forEach(extra => message += `• ${extra.name} - ${formatPrice(extra.price)}\n`);
+      extrasInCart.forEach(extra => message += `• ${extra.icon} ${extra.name} - ${formatPrice(extra.price)}\n`);
     }
 
     if (bollitosInCart.length > 0) {
       message += `\n *BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
         const b = bollitos.find(b => b.id === item.id);
-        if (b) message += `• ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
+        if (b) message += `• ${b.icon || '🥐'} ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
       });
     }
 
@@ -81,7 +81,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       message += `\n *PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
         const p = pulguitas.find(p => p.id === item.id);
-        if (p) message += `• ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
+        if (p) message += `• ${p.icon || '🥖'} ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
       });
     }
 
@@ -89,7 +89,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       message += `\n *MANUEL, QUÉ RICO TU PAN!...:*\n`;
       selectedOptionalExtras.forEach(id => {
         const e = optionalExtras.find(opt => opt.id === id);
-        if (e) message += `• ${e.name} - ${formatPrice(e.price)}\n`;
+        if (e) message += `• ${e.icon} ${e.name} - ${formatPrice(e.price)}\n`;
       });
     }
 
@@ -136,7 +136,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const h = harinas.find(h => h.id === item.id);
               return h && (
                 <div key={h.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
-                  <span>{h.name}</span>
+                  <span>{h.icon || '🌾'} {h.name}</span>
                 </div>
               );
             })}
@@ -152,7 +152,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Tipo de Corte:</h3>
             <div className="flex justify-between items-center p-2 bg-orange-50 rounded-lg">
-              <span>{corteInCart.name}</span>
+              <span>{corteInCart.icon || '🔪'} {corteInCart.name}</span>
               <span className="text-green-600 font-semibold">Gratuito</span>
             </div>
           </div>
@@ -164,7 +164,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
             <h3 className="font-semibold text-gray-700">Extras:</h3>
             {extrasInCart.map(extra => (
               <div key={extra.id} className="flex justify-between items-center p-2 bg-green-50 rounded-lg">
-                <span>{extra.name}</span>
+                <span>{extra.icon} {extra.name}</span>
                 <span>{formatPrice(extra.price)}</span>
               </div>
             ))}
@@ -179,7 +179,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const b = bollitos.find(b => b.id === item.id);
               return b && (
                 <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
-                  <span>{b.name} x{item.quantity}</span>
+                  <span>{b.icon || '🥐'} {b.name} x{item.quantity}</span>
                   <span>{formatPrice(b.price * item.quantity)}</span>
                 </div>
               );
@@ -195,7 +195,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const p = pulguitas.find(p => p.id === item.id);
               return p && (
                 <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg">
-                  <span>{p.name} x{item.quantity}</span>
+                  <span>{p.icon || '🥖'} {p.name} x{item.quantity}</span>
                   <span>{formatPrice(p.price * item.quantity)}</span>
                 </div>
               );

@@ -23,7 +23,7 @@ const Header = ({ cartItemCount, onOpenCart }) => {
             <img src={logo} alt="Logo PanZen" className="w-[80px] h-[80px] object-cover rounded-full" />
           </div>
           <div className="text-center">
-            <h1 className="text-3xl font-bold">PanZen &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+            <h1 className="text-3xl font-bold">PanZen &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
             <p className="text-amber-100 font-medium">Tu pan consciente personalizado</p>
           </div>
         </motion.div>

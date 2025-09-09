@@ -89,7 +89,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
     message += `\n *TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
     message += `🚚 Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
-    message += `🙏 MUCHAS GRACIAS!!.\n `;
+    message += `🙏 EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA.MUCHAS GRACIAS!!.\n `;
     return encodeURIComponent(message);
   };
 

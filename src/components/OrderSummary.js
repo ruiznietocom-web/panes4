@@ -202,7 +202,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
 
           <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
-             <span><strong>Entrega a domicilio en Chiclana</strong> es <span className="text-green-600 font-semibold">GRATUITA</span> </span>
+            🚚 <span><strong>Entrega a domicilio en Chiclana</strong> es <span className="text-green-600 font-semibold">GRATUITA</span> 🎉</span>
           </div>
         </div>
       </div>

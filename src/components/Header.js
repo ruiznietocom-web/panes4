@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingBag } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const Header = ({ cartItemCount, onOpenCart }) => {
@@ -19,10 +20,12 @@ const Header = ({ cartItemCount, onOpenCart }) => {
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          {/* Logo */}
-          <div className="p-1 bg-white/20 rounded-full">
-            <img src={logo} alt="Logo PanZen" className="w-10 h-10 object-contain" />
-          </div>
+          {/* Logo clicable */}
+          <Link to="/">
+            <div className="p-1 bg-white/20 rounded-full hover:bg-white/30 transition-colors">
+              <img src={logo} alt="Logo PanZen" className="w-10 h-10 object-contain" />
+            </div>
+          </Link>
 
           {/* Título y subtítulo */}
           <div className="text-center">

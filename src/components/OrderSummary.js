@@ -7,6 +7,7 @@ import { formatPrice } from '../utils/formatPrice';
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const fixedHarinaPrice = 5.50;
 
+  // Extras opcionales con emoji
   const optionalExtras = [
     { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
@@ -46,24 +47,20 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   };
 
   const generateWhatsAppMessage = () => {
-    let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n`;
+    let message = ` *NUEVO PEDIDO - PanZen* \n\n *RESUMEN DE TU PEDIDO:*\n`;
 
     if (harinasInCart.length > 0) {
-      message += `\n*PAN PERSONALIZADO:*\n`;
-      harinasInCart.forEach(item => {
-        const h = harinas.find(h => h.id === item.id);
-        if (h) message += `• ${h.name}\n`; // Sin emoji en WhatsApp
-      });
-      message += `Precio fijo: ${formatPrice(fixedHarinaPrice)}\n`;
+      const harinaNames = harinasInCart.map(item => harinas.find(h => h.id === item.id)?.name || '').join(', ');
+      message += `\n *PAN PERSONALIZADO:*\n• Harinas seleccionadas: ${harinaNames} - ${formatPrice(fixedHarinaPrice)}\n`;
     }
 
     if (extrasInCart.length > 0) {
-      message += `\n*EXTRAS AÑADIDOS:*\n`;
+      message += `\n *EXTRAS AÑADIDOS:*\n`;
       extrasInCart.forEach(extra => message += `• ${extra.name} - ${formatPrice(extra.price)}\n`);
     }
 
     if (bollitosInCart.length > 0) {
-      message += `\n*BOLLITOS:*\n`;
+      message += `\n *BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
         const b = bollitos.find(b => b.id === item.id);
         if (b) message += `• ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
@@ -71,7 +68,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     }
 
     if (pulguitasInCart.length > 0) {
-      message += `\n*PULGUITAS:*\n`;
+      message += `\n *PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
         const p = pulguitas.find(p => p.id === item.id);
         if (p) message += `• ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
@@ -79,17 +76,16 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     }
 
     if (selectedOptionalExtras.length > 0) {
-      message += `\n*EXTRAS OPCIONALES:*\n`;
+      message += `\n *MANUEL, QUÉ RICO TU PAN!...:*\n`;
       selectedOptionalExtras.forEach(id => {
         const e = optionalExtras.find(opt => opt.id === id);
         if (e) message += `• ${e.name} - ${formatPrice(e.price)}\n`;
       });
     }
 
-    message += `\n*TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
+    message += `\n *TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
     message += `🚚 Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
-    message += `🙏 MUCHAS GRACIAS!!\n`;
-
+    message += `🙏 MUCHAS GRACIAS!!.\n `;
     return encodeURIComponent(message);
   };
 

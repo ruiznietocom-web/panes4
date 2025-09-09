@@ -71,7 +71,7 @@ export const extras = [
   { id: 11, name: "Jengibre", price: 0.50, icon: "🫚" },
   { id: 12, name: "Cacao Puro en Polvo", price: 0.50, icon: "🍫" },
   { id: 13, name: "Miel Pura", price: 0.50, icon: "🍯" },
-  { id: 14, name: "Ajo", price: 1, icon: "🧄" }
+  { id: 14, name: "Ajo", price: 1.50, icon: "🧄" }
 ];
 
 export const bollitos = [
@@ -94,11 +94,11 @@ export const bollitos = [
 
 
 
-  { id: 2, name: "Bollito de Cacao", description: "Con cacao puro en polvo", image: "🍫", price: 1.20 },
+  { id: 2, name: "Bollito de Cacao", description: "Con cacao puro en polvo", image: "🍫", price: 1.30 },
   { id: 3, name: "Bollito de Nueces", description: "Con nueces, nutritivo y delicioso", image: "🥜", price: 1.30 },
-  { id: 4, name: "Bollito de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 1.20 },
-  { id: 5, name: "Bollito de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 1.20 },
-  { id: 6, name: "Bollito de Semillas", description: "Crujiente, lleno de fibra y minerales", image: "🌻", price: 1.20 },
+  { id: 4, name: "Bollito de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 1.30 },
+  { id: 5, name: "Bollito de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 1.30 },
+  { id: 6, name: "Bollito de Semillas", description: "Crujiente, lleno de fibra y minerales", image: "🌻", price: 1.30 },
   { id: 7, name: "Bollito de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 1.30 },
   { id: 8, name: "Bollito de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 1.30 }
 ];
@@ -109,7 +109,7 @@ export const pulguitas = [
   { id: 1.05, name: "PACK Surtido 12 Pulguitas Integrales Clásicas", description: "Tu pack de pulguitas clásicas", image: "🍞", price: 6 },
 
 
- { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (una de cada)", description: "Pruébalos todos!", image: "🍞", price: 8.50 },
+  { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (una de cada)", description: "Pruébalos todos!", image: "🍞", price: 8.50 },
   { id: 1.2, name: "PACK Surtido 12 Pulguitas Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7.50 },
   { id: 1.3, name: "PACK Surtido 12 Pulguitas Integrales de Nueces", description: "Nutritivo y delicioso", image: "🥜", price: 7.50 },
   { id: 1.4, name: "PACK Surtido 12 Pulguitas Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  

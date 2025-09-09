@@ -94,7 +94,8 @@ Los panes, bollitos y pulguitas no son solo productos, son el resultado del estu
 
 
 <p>
-        .
+                &nbsp;
+
       </p>
 
 
@@ -103,14 +104,15 @@ Los panes, bollitos y pulguitas no son solo productos, son el resultado del estu
 
       </p>
 <p>
-        .
+        &nbsp;
       </p>
 <p>
 Este es el verdadero corazón del proceso de elaboración y la clave de un pan que te sienta bien de verdad. Más allá de usar ingredientes de alta calidad, el secreto está en la fermentación corta y controlada. Este proceso, sacrificado en la producción industrial, es fundamental para tu digestión.
 
       </p>
 <p>
-        .
+                &nbsp;
+
       </p>
 <p>
         Nuestro cuerpo tienen su propio sistema de procesamiento: las amilasas, unas enzimas presentes en la saliva y el tracto digestivo, son las encargadas de descomponer los almidones. Cuando un pan tiene una fermentación muy larga, se vuelve excesivamente ácido, lo que puede inhibir la acción de estas enzimas naturales.
@@ -118,7 +120,7 @@ Este es el verdadero corazón del proceso de elaboración y la clave de un pan q
 
       </p>
 <p>
-        .
+        &nbsp;
       </p>
 
 
@@ -145,7 +147,7 @@ Este es el verdadero corazón del proceso de elaboración y la clave de un pan q
         <strong>CONOCE LAS HARINAS</strong>:
       </p>
 <p>
-.
+        &nbsp;
 </p>
       <p>
         1.- La <strong>Espelta</strong> es un trigo primitivo, cuyas propiedades son bien conocidas y apreciadas desde antiguo en Europa. 
@@ -155,14 +157,14 @@ Este es el verdadero corazón del proceso de elaboración y la clave de un pan q
         también lo supera en riqueza vitamínica y minerales. Algunas personas alérgicas al trigo digieren bien la espelta.
       </p>
 <p>
-.
+        &nbsp;
 </p>
       <p>
         2.- El <strong>Khorasan</strong> es un trigo ancestral de Egipto, rico en sales minerales y vitaminas del grupo B. Muy apreciado porque es bajo en gluten 
         y produce menos alergias o intolerancias que los trigos modernos, ya que el organismo humano está más adaptado al tipo de proteína de los trigos antiguos.
       </p>
 <p>
-.
+        &nbsp;
 </p>
       <p>
         3.- El trigo procesado (refinado) no contiene las mejores partes del grano. Durante el procesamiento del grano se elimina el 40% de su contenido original (germen y salvado), 
@@ -171,14 +173,14 @@ Este es el verdadero corazón del proceso de elaboración y la clave de un pan q
         como vitaminas del complejo B, vitamina E, hierro, potasio, magnesio, zinc, entre otros.
       </p>
 <p>
-.
+        &nbsp;
 </p>
       <p>
         4.- El <strong>centeno</strong>, además de los minerales, vitaminas, magnesio, fósforo y fibra que aporta, es un cereal muy apreciado por sus propiedades depurativas de la sangre y 
         por ayudar a mantener la elasticidad de los vasos sanguíneos.
       </p>
 <p>
-.
+        &nbsp;
 </p>
       <p>
         5.- El <strong>tritordeum</strong> es un cereal híbrido nacido de la combinación natural del trigo duro y una cebada silvestre. Fue descubierto por investigadores españoles a finales de los años 70. 
@@ -200,7 +202,7 @@ Este es el verdadero corazón del proceso de elaboración y la clave de un pan q
         Se vende en supermercados como levadura fresca, natural o de panadería.
       </p>
 <p>
-.
+        &nbsp;
 </p>
       <p>
         La <strong>sal marina natural</strong> no ha sido tratada químicamente: es la consecuencia de la simple evaporación del agua de mar. 
@@ -210,14 +212,14 @@ Este es el verdadero corazón del proceso de elaboración y la clave de un pan q
       </p>
 
 <p>
-.
+        &nbsp;
 </p>
 <p>
 <strong>El compromiso del panadero artesanal</strong> 
 </p>
 
 <p>
-.
+        &nbsp;
 </p>
 
 <p>
@@ -226,7 +228,7 @@ Detrás de cada pieza, hay horas de dedicación y la pasión por un oficio ances
 </p>
 
 <p>
-.
+        &nbsp;
 </p>
 
 <p>
@@ -236,7 +238,7 @@ Este pan es para ti si buscas una opción consciente y nutritiva que apoye un es
 
 
 <p>
-.
+        &nbsp;
 </p>
 
 
@@ -245,7 +247,7 @@ Muchísimas gracias por confiar en este proyecto. Disfruto horneando para ti y e
 </p>
 
 <p>
-.
+        &nbsp;
 </p>
 
 <p>
@@ -269,7 +271,7 @@ Muchísimas gracias por confiar en este proyecto. Disfruto horneando para ti y e
 </p>
 
 <p>
-.
+        &nbsp;
 </p>
 
 <p>
@@ -278,7 +280,7 @@ Muchísimas gracias por confiar en este proyecto. Disfruto horneando para ti y e
 
 
 <p>
-.
+        &nbsp;
 </p>
 
 
@@ -287,7 +289,7 @@ Como sabéis, este pan 100% ecológico e integral está libre de conservantes y 
 
 
 <p>
-.
+        &nbsp;
 </p>
 
 
@@ -296,7 +298,7 @@ Si prefieres, también puedes cortarlo en rodajas o en porciones que vayas a con
 
 
 <p>
-.
+        &nbsp;
 </p>
 
 

@@ -49,11 +49,35 @@ const InformacionPage = () => {
 
 
       <p>
-        Todos los panes, bollitos y pulguitas son 100% integrales de harinas de cultivo ecológico, 
-        sin más harina de fuerza ni refinada añadidas y sin conservantes, ni grasas animales ni vegetales, 
-        ni mejorantes panarios. Los únicos ingredientes son: sal marina natural (no refinada), agua mineral, 
-        levadura fresca y harina 100% integral de cultivo ecológico + añadidos (dátiles, pasas, ciruelas pasas, 
-        nueces, miel natural pura de abejas...).
+       <strong>Redescubriendo el pan, un alimento con alma.</strong>
+
+      </p>
+
+
+       <p>
+        .
+      </p>
+
+ <p>
+¿Y si te dijéramos que el pan puede ser mucho más que un simple acompañamiento? En un mundo lleno de prisa, hemos olvidado la conexión profunda que existe entre el alimento más básico y nuestra salud. Te invito a redescubrir el pan de verdad, ese que honra la tradición, respeta la tierra y nutre tu cuerpo de una forma consciente.
+
+      </p>
+
+   <p>
+        .
+      </p>
+
+   <p>
+Los panes, bollitos y pulguitas no son solo productos, son el resultado del estudio sobre la forma más equilibrada que tiene nuestro organismo de absorver los alimentos. Cada pieza es 100% integral y está elaborada con harinas de cultivo ecológico, libres de cualquier tipo de aditivos. Aquí no hay espacio para harinas de fuerza o refinadas, ni para conservantes, grasas industriales o mejorantes panarios. Simplemente de trata de regresar a los orígenes.      </p>
+   <p>
+        .
+      </p>
+   <p>
+        .
+      </p>
+
+  <p>
+        .
       </p>
 
       {/* Imagen dentro del contenido */}
@@ -65,15 +89,54 @@ const InformacionPage = () => {
         />
       </div>
 
+
+
+
       <p>
-        El pan forma parte imprescindible de una dieta equilibrada, pero debido al ritmo de vida actual 
-        y a la introducción en el mercado de panes más comerciales e industriales, hemos ido olvidando la importancia 
-        de cuidar un alimento tan importante para nuestra salud. El pan integral de harinas de cultivo ecológico 
-        y poco fermentado que se ofrece es todo 100% natural, ninguno de sus ingredientes es de origen industrial, 
-        obteniendo así un alimento sano y completo que aporta en su totalidad todo el sabor y los nutrientes originales 
-        de los cereales integrales. Dedicado a quienes son conscientes de lo valioso que es disfrutar de una 
-        alimentación saludable, y del pan natural de verdad.
+        La receta de este pan es un pacto de pureza: solo utilizo sal marina natural de nuestras salinas de Chiclana, agua mineral, levadura fresca y harina 100% integral de cultivo ecológico. A esto, le sumamos, a elección, otros ingredientes como pasas, nueces o miel pura de abejas, que aportan sabor y bienestar tambien de forma natural.
+
+
       </p>
+
+
+<p>
+        .
+      </p>
+
+
+<p>
+<strong>El poder de la fermentación corta</strong>
+
+      </p>
+<p>
+        .
+      </p>
+<p>
+Este es el verdadero corazón del proceso de elaboración y la clave de un pan que te sienta bien de verdad. Más allá de usar ingredientes de alta calidad, el secreto está en la fermentación corta y controlada. Este proceso, sacrificado en la producción industrial, es fundamental para tu digestión.
+
+      </p>
+<p>
+        .
+      </p>
+<p>
+        Nuestro cuerpo tienen su propio sistema de procesamiento: las amilasas, unas enzimas presentes en la saliva y el tracto digestivo, son las encargadas de descomponer los almidones. Cuando un pan tiene una fermentación muy larga, se vuelve excesivamente ácido, lo que puede inhibir la acción de estas enzimas naturales.
+
+
+      </p>
+<p>
+        .
+      </p>
+
+
+
+
+
+<p>
+        Al optar por una fermentación más corta, obtenemos un pan con una acidez baja que respeta el funcionamiento digestivo y equilibrado de tu organismo. Es como darle a tu sistema digestivo una mano, no un obstáculo. Esto se traduce en una mejor asimilación de los almidones y en una sensación de ligereza y bienestar después de comer. No es solo un pan más digestivo, es un pan que trabaja en armonía con tu cuerpo.
+
+
+      </p>
+
 
       {/* Imagen dentro del contenido */}
       <div className="my-6 flex justify-center">
@@ -156,8 +219,45 @@ const InformacionPage = () => {
 .
 </p>
 <p>
-<strong>Los panes ecológicos e integrales poco fermentados</strong> destacan por su baja acidez, lo que mejora notablemente la asimilación de los almidones y respeta la acción enzimática de las amilasas de la saliva y del tracto digestivo, haciéndolos mucho más digestivos. Gracias a su proceso de fermentación controlada, estos panes son ideales para quienes buscan una opción saludable y fácil de digerir.
+<strong>El compromiso del panadero artesanal</strong> 
 </p>
+
+<p>
+.
+</p>
+
+<p>
+Detrás de cada pieza, hay horas de dedicación y la pasión por un oficio ancestral. No se trata solo de mezclar ingredientes, sino de un proceso de paciencia, de sentir la masa y de entender sus tiempos. La elaboración artesanal garantiza que cada pan que llega a tu mesa es único, con un sabor auténtico y una textura inigualable.
+
+</p>
+
+<p>
+.
+</p>
+
+<p>
+Este pan es para ti si buscas una opción consciente y nutritiva que apoye un estilo de vida más saludable y sostenible, alejado de esas digestiones pesadas y fermentativas. Descubre el placer de comer bien sin renunciar al sabor ni a la calidad, y siente la diferencia en un alimento tan nutritivo.
+
+</p>
+
+
+<p>
+.
+</p>
+
+
+<p>
+Muchísimas gracias por confiar en este proyecto. Disfruto horneando para ti y espero que tambien disfrutes de cada rebanada con salud y alegría. 🍞 🙏☀️
+</p>
+
+<p>
+.
+</p>
+
+<p>
+<strong>Si necesitas más información en contacta conmigo en mi wasap 627-52-63-80</strong>.
+</p>
+
 
 
 
@@ -169,81 +269,6 @@ const InformacionPage = () => {
           className="w-full max-w-md rounded-lg shadow-md"
         />
       </div>
-
-
-<p>
-Disponibles en diversos formatos como <strong>barra, pulguitas y bollitos</strong>, estos panes se adaptan a todas las necesidades y preferencias, desde el desayuno hasta la cena. Además, ofrecen una gran variedad de harinas para mezclar al gusto, como centeno, khorasan, tritordeum, trigo y espelta, permitiendo personalizar cada producto.
-</p>
-
-<p>
-.
-</p>
-<p>
-Cada tipo de harina aporta sus propios beneficios nutricionales y sabores únicos, haciendo de estos panes una opción versátil y deliciosa para cualquier ocasión. Disfrutar de estos panes poco fermentados es una manera perfecta de combinar salud y sabor en cada rebanada.
-</p>
-<p>
-.
-</p>
-<p>
-<strong>Cuidar de tu salud y la de los tuyos</strong> con estos panes 100% integrales y ecológicos es posible gracias a su proceso de elaboración artesanal y el uso de ingredientes naturales y sostenibles. Estos panes no solo son una fuente nutritiva de fibra y minerales, sino que también ofrecen un sabor auténtico y una textura excepcional. Elaborados con granos enteros molturados en molinos de piedra, estos panes garantizan que cada bocado esté lleno de beneficios para tu bienestar. Además, al ser producidos de manera ecológica, contribuyen a la conservación del medio ambiente, promoviendo prácticas agrícolas responsables y sostenibles.
-</p>
-
-
-
-{/* Imagen dentro del contenido */}
-      <div className="my-6 flex justify-center">
-        <img 
-          src={CorazonHarina} 
-          alt="Corazon de Harina" 
-          className="w-full max-w-md rounded-lg shadow-md"
-        />
-      </div>
-
-
-<p>
-<strong>La fermentación natural</strong> utilizada en su preparación mejora la digestibilidad del pan y potencia la absorción de nutrientes esenciales. Este proceso, además, otorga al pan un aroma y sabor únicos que lo distinguen de los productos comerciales convencionales. Cada barra de pan es el resultado de horas de dedicación y pasión por la panadería artesanal, asegurando que recibas un producto de la más alta calidad.
-</p>
-<p>
-.
-</p>
-<p>
-Incorporar estos panes a tu dieta diaria no solo enriquecerá tu alimentación con nutrientes vitales, sino que también apoyará un <strong>estilo de vida más saludable y consciente</strong>. Son ideales para cualquier momento del día, su versatilidad y delicioso sabor harán que sean un elemento indispensable en tu mesa.
-</p>
-
-<p>
-.
-</p>
-
-
-<p>
-El compromiso con la ecología y la salud se refleja en cada detalle, desde la elección de los ingredientes hasta el empaque reciclable. Al optar por estos panes integrales y ecológicos, no solo estás haciendo una elección positiva para tu salud, sino también para el planeta. Disfruta de la tranquilidad de saber que cada rebanada está hecha con amor y respeto por la naturaleza y las futuras generaciones.
-</p>
-<p>
-.
-</p>
-<p>
-Descubre el placer de comer bien sin renunciar al sabor ni a la calidad. Estos panes son una invitación a redescubrir el auténtico sabor del pan de antaño. Atrévete a probarlos y siente la diferencia en cada mordisco.
-</p>
-
-<p>
-.
-</p>
-<p>
-Muchísimas gracias y espero que disfrutes de este pan con salud, al igual que yo disfruto horneándolo para ti! 🍞☀️🙏
-
-</p>
-<p>
-.
-</p>
-
-<p>
-<strong>Si necesitas más información en contacta conmigo en mi wasap 627-52-63-80</strong>.
-</p>
-
-<p>
-.
-</p>
-
 
 <p>
 -----------------------------------------------
@@ -285,6 +310,22 @@ Si prefieres, también puedes cortarlo en rodajas o en porciones que vayas a con
 
 El pan, los bollitos o pulguitas se entregan siempre hechos del día, y algunas veces aún calentitos, si es así, deposítalo en la rejilla del horno y espera siempre una hora desde la entrega para consumirlo. No lo guardes o congeles en el frigorífico hasta que notes que está completamente frío. <strong>Gracias!!</strong>🙏
 </p>
+
+
+
+
+
+{/* Imagen dentro del contenido */}
+      <div className="my-6 flex justify-center">
+        <img 
+          src={CorazonHarina} 
+          alt="Corazon de Harina" 
+          className="w-full max-w-md rounded-lg shadow-md"
+        />
+      </div>
+
+
+
 
 
 

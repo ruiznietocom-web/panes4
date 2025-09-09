@@ -52,7 +52,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       message += `\n*PAN PERSONALIZADO:*\n`;
       harinasInCart.forEach(item => {
         const h = harinas.find(h => h.id === item.id);
-        if (h) message += `• ${h.name}\n`; // sin emoji
+        if (h) message += `• ${h.name}\n`; // Sin emoji en WhatsApp
       });
       message += `Precio fijo: ${formatPrice(fixedHarinaPrice)}\n`;
     }
@@ -130,7 +130,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const h = harinas.find(h => h.id === item.id);
               return h && (
                 <div key={h.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
-                  <span>{h.icon} {h.name}</span> {/* con emoji */}
+                  <span>{h.icon} {h.name}</span>
                 </div>
               );
             })}

@@ -85,7 +85,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     message += `\n *TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
     message += `🚚 Entrega a domicilio en *Chiclana* es *GRATUITA* 🎉\n\n`;
     message += `🙏 MUCHAS GRACIAS!!.\n `;
-
     return encodeURIComponent(message);
   };
 
@@ -118,7 +117,82 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           </div>
         )}
 
-        {/* Aquí va todo tu render de harinas, extras, bollitos, pulguitas y extras opcionales */}
+        {/* Pan Personalizado */}
+        {harinasInCart.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Pan Personalizado:</h3>
+            <div className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
+              <span>Harinas seleccionadas: {harinasInCart.map(item => harinas.find(h => h.id === item.id)?.name).join(', ')}</span>
+              <span>{formatPrice(fixedHarinaPrice)}</span>
+            </div>
+          </div>
+        )}
+
+        {/* Extras */}
+        {extrasInCart.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Extras:</h3>
+            {extrasInCart.map(extra => (
+              <div key={extra.id} className="flex justify-between items-center p-2 bg-green-50 rounded-lg">
+                <span className="flex items-center gap-2">{extra.icon} {extra.name}</span>
+                <span>{formatPrice(extra.price)}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Bollitos */}
+        {bollitosInCart.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Bollitos:</h3>
+            {bollitosInCart.map(item => {
+              const b = bollitos.find(b => b.id === item.id);
+              return b && (
+                <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
+                  <span className="flex items-center gap-2">{b.image} {b.name} x{item.quantity}</span>
+                  <span>{formatPrice(b.price * item.quantity)}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Pulguitas */}
+        {pulguitasInCart.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Pulguitas:</h3>
+            {pulguitasInCart.map(item => {
+              const p = pulguitas.find(p => p.id === item.id);
+              return p && (
+                <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg">
+                  <span className="flex items-center gap-2">{p.image} {p.name} x{item.quantity}</span>
+                  <span>{formatPrice(p.price * item.quantity)}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Extras opcionales */}
+        <div className="space-y-2">
+          <h3 className="font-semibold text-gray-700">Manuel, qué rico tu pan!...:</h3>
+          <div className="flex gap-3 flex-wrap">
+            {optionalExtras.map(extra => (
+              <button
+                key={extra.id}
+                onClick={() => toggleOptionalExtra(extra)}
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${
+                  selectedOptionalExtras.includes(extra.id)
+                    ? 'bg-yellow-100 border-yellow-400'
+                    : 'bg-gray-50 border-gray-300 hover:bg-gray-100'
+                }`}
+              >
+                <span>{extra.icon}</span>
+                <span>{extra.name} ({formatPrice(extra.price)})</span>
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Total + info de entrega */}
         <div className="border-t pt-3 mt-3">
@@ -131,9 +205,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
             🚚 <span><strong>Entrega a domicilio en Chiclana</strong> es <span className="text-green-600 font-semibold">GRATUITA</span> 🎉</span>
           </div>
         </div>
-
       </div>
 
+      {/* Botón WhatsApp */}
       <motion.button
         onClick={handleSendWhatsApp}
         disabled={isOrderEmpty}

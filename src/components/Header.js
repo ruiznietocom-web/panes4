@@ -18,9 +18,9 @@ const Header = ({ cartItemCount, onOpenCart }) => {
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          {/* Logo aumentado 50% */}
-          <div className="p-1 bg-white/20 rounded-full">
-            <img src={logo} alt="Logo PanZen" className="w-[60px] h-[60px] object-contain" />
+          {/* Logo redondo aumentado 50% */}
+          <div className="p-1 bg-white/20 rounded-full overflow-hidden">
+            <img src={logo} alt="Logo PanZen" className="w-[60px] h-[60px] object-cover rounded-full" />
           </div>
           <div className="text-center">
             <h1 className="text-3xl font-bold">PanZen</h1>

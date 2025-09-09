@@ -7,7 +7,6 @@ import { formatPrice } from '../utils/formatPrice';
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const fixedHarinaPrice = 5.50;
 
-  // Extras opcionales con emoji
   const optionalExtras = [
     { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
@@ -122,16 +121,8 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         {harinasInCart.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Pan Personalizado:</h3>
-            {harinasInCart.map(item => {
-              const h = harinas.find(h => h.id === item.id);
-              return h && (
-                <div key={h.id} className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
-                  <span>{h.icon} {h.name}</span>
-                </div>
-              );
-            })}
-            <div className="flex justify-between items-center p-2 bg-amber-100 rounded-lg font-medium">
-              <span>Precio fijo</span>
+            <div className="flex justify-between items-center p-2 bg-amber-50 rounded-lg">
+              <span>Harinas seleccionadas: {harinasInCart.map(item => harinas.find(h => h.id === item.id)?.name).join(', ')}</span>
               <span>{formatPrice(fixedHarinaPrice)}</span>
             </div>
           </div>
@@ -158,7 +149,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const b = bollitos.find(b => b.id === item.id);
               return b && (
                 <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
-                  <span className="flex items-center gap-2">{b.icon} {b.name} x{item.quantity}</span>
+                  <span className="flex items-center gap-2">{b.image} {b.name} x{item.quantity}</span>
                   <span>{formatPrice(b.price * item.quantity)}</span>
                 </div>
               );
@@ -174,7 +165,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               const p = pulguitas.find(p => p.id === item.id);
               return p && (
                 <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg">
-                  <span className="flex items-center gap-2">{p.icon} {p.name} x{item.quantity}</span>
+                  <span className="flex items-center gap-2">{p.image} {p.name} x{item.quantity}</span>
                   <span>{formatPrice(p.price * item.quantity)}</span>
                 </div>
               );

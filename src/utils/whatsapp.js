@@ -34,6 +34,8 @@ export const generateWhatsAppMessage = (cartItems, selectedOptionalExtras = []) 
     return total.toFixed(2);
   };
 
+  const defaultIcon = "🌾"; // icono por defecto
+
   let message = `*NUEVO PEDIDO - PanZen* \n\n*RESUMEN DE TU PEDIDO:*\n`;
 
   // Harinas
@@ -41,7 +43,9 @@ export const generateWhatsAppMessage = (cartItems, selectedOptionalExtras = []) 
     message += `\n*PAN PERSONALIZADO:*\n`;
     harinasInCart.forEach(item => {
       const h = harinas.find(h => h.id === item.id);
-      if (h) message += `• ${h.icon} ${h.name}\n`;
+      const icon = h?.icon || defaultIcon;
+      const name = h?.name || "Harina";
+      message += `• ${icon} ${name}\n`;
     });
     message += `Precio total de harinas: ${formatPrice(fixedHarinaPrice)}\n`;
   }
@@ -49,7 +53,12 @@ export const generateWhatsAppMessage = (cartItems, selectedOptionalExtras = []) 
   // Extras
   if (extrasInCart.length > 0) {
     message += `\n*EXTRAS AÑADIDOS:*\n`;
-    extrasInCart.forEach(extra => message += `• ${extra.icon} ${extra.name} - ${formatPrice(extra.price)}\n`);
+    extrasInCart.forEach(extra => {
+      const icon = extra?.icon || "✨";
+      const name = extra?.name || "Extra";
+      const price = extra?.price || 0;
+      message += `• ${icon} ${name} - ${formatPrice(price)}\n`;
+    });
   }
 
   // Bollitos
@@ -57,7 +66,10 @@ export const generateWhatsAppMessage = (cartItems, selectedOptionalExtras = []) 
     message += `\n*BOLLITOS:*\n`;
     bollitosInCart.forEach(item => {
       const b = bollitos.find(b => b.id === item.id);
-      if (b) message += `• ${b.image || ""} ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
+      const icon = b?.image || defaultIcon;
+      const name = b?.name || "Bollito";
+      const price = b?.price || 0;
+      message += `• ${icon} ${name} x${item.quantity} - ${formatPrice(price * item.quantity)}\n`;
     });
   }
 
@@ -66,16 +78,22 @@ export const generateWhatsAppMessage = (cartItems, selectedOptionalExtras = []) 
     message += `\n*PULGUITAS:*\n`;
     pulguitasInCart.forEach(item => {
       const p = pulguitas.find(p => p.id === item.id);
-      if (p) message += `• ${p.image || ""} ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
+      const icon = p?.image || defaultIcon;
+      const name = p?.name || "Pulguita";
+      const price = p?.price || 0;
+      message += `• ${icon} ${name} x${item.quantity} - ${formatPrice(price * item.quantity)}\n`;
     });
   }
 
   // Extras opcionales
   if (selectedOptionalExtras.length > 0) {
-    message += `\n*MANUEL, QUÉ RICO TU PAN!...:*\n`;
+    message += `\n*EXTRAS OPCIONALES:*\n`;
     selectedOptionalExtras.forEach(id => {
       const e = optionalExtras.find(opt => opt.id === id);
-      if (e) message += `• ${e.icon} ${e.name} - ${formatPrice(e.price)}\n`;
+      const icon = e?.icon || "✨";
+      const name = e?.name || "Extra";
+      const price = e?.price || 0;
+      message += `• ${icon} ${name} - ${formatPrice(price)}\n`;
     });
   }
 

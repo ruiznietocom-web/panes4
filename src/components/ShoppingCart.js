@@ -2,11 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import { formatPrice } from "../utils/formatPrice";
+import { generateWhatsAppMessage } from "../utils/whatsapp"; // <-- importamos la función
 
 const ShoppingCart = ({
   isOpen,
   onClose,
   cartItems,
+  selectedOptionalExtras = [], // <-- añadimos extras opcionales
   onUpdateQuantity,
   onRemoveItem,
 }) => {
@@ -78,6 +80,21 @@ const ShoppingCart = ({
               </div>
             ))}
           </div>
+        )}
+
+        {/* Botón para enviar por WhatsApp */}
+        {cartItems.length > 0 && (
+          <a
+            href={`https://wa.me/?text=${generateWhatsAppMessage(
+              cartItems,
+              selectedOptionalExtras
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 px-4 py-2 bg-green-500 text-white font-semibold text-center rounded hover:bg-green-600 transition"
+          >
+            Enviar Pedido por WhatsApp
+          </a>
         )}
       </motion.div>
     </motion.div>

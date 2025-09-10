@@ -65,10 +65,10 @@ const InformacionPage = () => {
 
    <p>
         &nbsp;
-      </p>
+      </p> 
 
    <p>
-Los panes, bollitos y pulguitas no son solo productos, son el resultado del estudio sobre la forma más equilibrada que tiene nuestro organismo de absorver los alimentos. Cada pieza es 100% integral y está elaborada con harinas de cultivo ecológico, libres de cualquier tipo de aditivos. Aquí no hay espacio para harinas de fuerza o refinadas, ni para conservantes, grasas industriales o mejorantes panarios. Simplemente de trata de regresar a los orígenes.      </p>
+Los panes, bollitos y pulguitas no son solo productos, son el fruto de un trabajo pensado para que tu organismo absorba los nutrientes de la forma más equilibrada posible. Cada pieza es 100% integral y está elaborada con harinas de cultivo ecológico, libres de cualquier tipo de aditivos. Aquí no hay espacio para harinas de fuerza o refinadas, ni para conservantes, grasas industriales o mejorantes panarios. Simplemente de trata de regresar a los orígenes.      </p>
    <p>
         &nbsp;
       </p>

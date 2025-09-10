@@ -85,7 +85,7 @@ const ShoppingCart = ({
         {/* Botón para enviar por WhatsApp */}
         {cartItems.length > 0 && (
           <a
-            href={`https://wa.me/?text=${generateWhatsAppMessage(
+            href={`https://wa.me/34627526380?text=${generateWhatsAppMessage(
               cartItems,
               selectedOptionalExtras
             )}`}

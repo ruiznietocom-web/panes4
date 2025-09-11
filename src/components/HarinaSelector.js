@@ -25,10 +25,7 @@ const HarinaSelector = ({ onAddPan }) => {
       alert('Selecciona al menos una harina y un tipo de corte');
       return;
     }
-
     onAddPan(selectedHarinas, corte);
-
-    // Limpiar selección para permitir añadir otro pan
     setSelectedHarinas([]);
     setCorte('');
   };
@@ -44,8 +41,7 @@ const HarinaSelector = ({ onAddPan }) => {
         Elige tus Harinas Base
       </h2>
       <p className="text-gray-500 text-center mb-4">
-        Puedes seleccionar hasta {maxHarinas} harinas.  
-        Precio por pan: {formatPrice(fixedHarinaPrice)}.
+        Puedes seleccionar hasta {maxHarinas} harinas. Precio por pan: {formatPrice(fixedHarinaPrice)}.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
@@ -84,7 +80,6 @@ const HarinaSelector = ({ onAddPan }) => {
         ))}
       </div>
 
-      {/* Selección del tipo de corte */}
       <div className="mb-4">
         <label className="block mb-1 font-semibold text-gray-700">Tipo de corte:</label>
         <select

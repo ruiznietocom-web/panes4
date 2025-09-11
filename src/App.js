@@ -11,14 +11,12 @@ import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
 import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
-import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
+import { harinas, extras, bollitos, pulguitas } from './data/products';
 
-// Componente ScrollToTop
+// ScrollToTop
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, [pathname]);
+  useEffect(() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }), [pathname]);
   return null;
 };
 
@@ -27,60 +25,36 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  // Helper
-  const getProductDetails = (id, type) => {
-    switch (type) {
-      case 'harina': return harinas.find(p => p.id === id);
-      case 'extra': return extras.find(p => p.id === id);
-      case 'bollito': return bollitos.find(p => p.id === id);
-      case 'pulguita': return pulguitas.find(p => p.id === id);
-      case 'otroPan': return otrosPanes.find(p => p.id === id);
-      default: return null;
-    }
+  // Añadir pan personalizado
+  const handleAddCustomPan = (harinasSeleccionadas, corte) => {
+    if (!harinasSeleccionadas.length || !corte) return;
+    const newPan = {
+      cartId: Date.now(),
+      type: 'panPersonalizado',
+      harinas: harinasSeleccionadas,
+      corte,
+      price: 5.50,
+      quantity: 1,
+    };
+    setCartItems(prev => [...prev, newPan]);
   };
 
-  const handleUpdateCartItem = (id, quantity, type) => {
-    setCartItems(prevItems => {
-      const existingItemIndex = prevItems.findIndex(item => item.id === id && item.type === type);
-      const newQuantity = Math.max(0, quantity);
-
-      if (newQuantity === 0) return prevItems.filter(item => !(item.id === id && item.type === type));
-      if (existingItemIndex > -1) return prevItems.map((item, index) =>
-        index === existingItemIndex ? { ...item, quantity: newQuantity } : item
-      );
-
-      const product = getProductDetails(id, type);
-      if (product) {
-        return [...prevItems, { id, quantity: newQuantity, type, name: product.name, price: product.price, image: product.image, icon: product.icon }];
-      }
-      return prevItems;
-    });
+  const handleUpdateCartItem = (cartId, quantity) => {
+    setCartItems(prev =>
+      prev.map(item =>
+        item.cartId === cartId ? { ...item, quantity: Math.max(0, quantity) } : item
+      ).filter(item => item.quantity > 0)
+    );
   };
 
-  const handleRemoveCartItem = (id, type) => {
-    setCartItems(prevItems => prevItems.filter(item => !(item.id === id && item.type === type)));
+  const handleRemoveCartItem = (cartId) => {
+    setCartItems(prev => prev.filter(item => item.cartId !== cartId));
   };
 
-  const handleToggleHarina = (harina) => {
-    setCartItems(prevItems => {
-      const existing = prevItems.find(item => item.id === harina.id && item.type === 'harina');
-      if (existing) return prevItems.filter(item => !(item.id === harina.id && item.type === 'harina'));
-      return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image }];
-    });
-  };
-
-  const handleToggleExtra = (extra) => {
-    setCartItems(prevItems => {
-      const existing = prevItems.find(item => item.id === extra.id && item.type === 'extra');
-      if (existing) return prevItems.filter(item => !(item.id === extra.id && item.type === 'extra'));
-      return [...prevItems, { id: extra.id, quantity: 1, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon }];
-    });
-  };
-
-  const handleSendWhatsApp = () => { setShowSuccessModal(true); setShowCart(false); };
+  const handleSendWhatsApp = () => setShowSuccessModal(true);
   const handleCloseModal = () => { setShowSuccessModal(false); setCartItems([]); };
 
-  const cartItemCount = cartItems.reduce((count, item) => count + item.quantity, 0);
+  const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <Router>
@@ -88,7 +62,6 @@ const App = () => {
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
         <Header cartItemCount={cartItemCount} onOpenCart={() => setShowCart(true)} />
         <Navigation />
-
         <div className="max-w-6xl mx-auto p-4 py-8">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -96,24 +69,22 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={
                     <>
-                      <HarinaSelector 
-                        selectedHarinas={cartItems.filter(item => item.type === 'harina')}
-                        onToggleHarina={handleToggleHarina}
-                        selectedOtrosPanes={cartItems.filter(item => item.type === 'otroPan').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
-                        onUpdateOtroPanQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'otroPan')}
-                      />
-                      <ExtrasSelector 
-                        selectedExtras={cartItems.filter(item => item.type === 'extra')}
-                        onToggleExtra={handleToggleExtra}
+                      <HarinaSelector onAddPan={handleAddCustomPan} />
+                      <ExtrasSelector
+                        selectedExtras={cartItems.filter(i => i.type === 'extra')}
+                        onToggleExtra={(extra) => {
+                          const exists = cartItems.find(i => i.type === 'extra' && i.id === extra.id);
+                          if (exists) setCartItems(prev => prev.filter(i => i.cartId !== exists.cartId));
+                          else setCartItems(prev => [...prev, { ...extra, type: 'extra', cartId: Date.now(), quantity: 1 }]);
+                        }}
                       />
                     </>
-                  } />
-                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
-                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
+                  }/>
+                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito')} onUpdateBollitoQuantity={(cartId, qty) => handleUpdateCartItem(cartId, qty)} />} />
+                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')} onUpdatePulguitaQuantity={(cartId, qty) => handleUpdateCartItem(cartId, qty)} />} />
                   <Route path="/informacion" element={<InformacionPage />} />
                 </Routes>
               </div>
-
               <div className="lg:col-span-1">
                 <div className="sticky top-4">
                   <OrderSummary cartItems={cartItems} onSendWhatsApp={handleSendWhatsApp} />
@@ -122,9 +93,14 @@ const App = () => {
             </div>
           </motion.div>
         </div>
-
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
-        <ShoppingCart isOpen={showCart} onClose={() => setShowCart(false)} cartItems={cartItems} onUpdateQuantity={handleUpdateCartItem} onRemoveItem={handleRemoveCartItem} />
+        <ShoppingCart
+          isOpen={showCart}
+          onClose={() => setShowCart(false)}
+          cartItems={cartItems}
+          onUpdateQuantity={handleUpdateCartItem}
+          onRemoveItem={handleRemoveCartItem}
+        />
       </div>
     </Router>
   );

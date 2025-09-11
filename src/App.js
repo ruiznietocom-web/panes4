@@ -11,9 +11,9 @@ import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
 import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
-import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
+import { harinas, extras, bollitos, pulguitas } from './data/products';
 
-// Componente ScrollToTop
+// ScrollToTop
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -27,53 +27,62 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  // Helper
+  // Obtener producto por id y tipo
   const getProductDetails = (id, type) => {
     switch (type) {
       case 'harina': return harinas.find(p => p.id === id);
       case 'extra': return extras.find(p => p.id === id);
       case 'bollito': return bollitos.find(p => p.id === id);
       case 'pulguita': return pulguitas.find(p => p.id === id);
-      case 'otroPan': return otrosPanes.find(p => p.id === id);
       default: return null;
     }
   };
 
+  // Actualizar cantidad
   const handleUpdateCartItem = (id, quantity, type) => {
     setCartItems(prevItems => {
-      const existingItemIndex = prevItems.findIndex(item => item.id === id && item.type === type);
+      const existingIndex = prevItems.findIndex(item => item.cartId === id && item.type === type);
       const newQuantity = Math.max(0, quantity);
 
-      if (newQuantity === 0) return prevItems.filter(item => !(item.id === id && item.type === type));
-      if (existingItemIndex > -1) return prevItems.map((item, index) =>
-        index === existingItemIndex ? { ...item, quantity: newQuantity } : item
+      if (newQuantity === 0) return prevItems.filter(item => !(item.cartId === id && item.type === type));
+
+      if (existingIndex > -1) return prevItems.map((item, index) =>
+        index === existingIndex ? { ...item, quantity: newQuantity } : item
       );
 
-      const product = getProductDetails(id, type);
-      if (product) {
-        return [...prevItems, { id, quantity: newQuantity, type, name: product.name, price: product.price, image: product.image, icon: product.icon }];
-      }
       return prevItems;
     });
   };
 
+  // Eliminar item
   const handleRemoveCartItem = (id, type) => {
-    setCartItems(prevItems => prevItems.filter(item => !(item.id === id && item.type === type)));
+    setCartItems(prevItems => prevItems.filter(item => !(item.cartId === id && item.type === type)));
   };
 
-  const handleToggleHarina = (harina) => {
-    setCartItems(prevItems => {
-      const existing = prevItems.find(item => item.id === harina.id && item.type === 'harina');
-      if (existing) return prevItems.filter(item => !(item.id === harina.id && item.type === 'harina'));
-      return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image }];
-    });
+  // Añadir harina / otro pan
+  const handleAddHarina = (harina, corte) => {
+    const cartId = Date.now() + Math.random(); // ID único por pan
+    setCartItems(prevItems => [
+      ...prevItems,
+      {
+        cartId,
+        id: harina.id,
+        type: 'harina',
+        name: harina.name,
+        corte,
+        price: 5.50,
+        icon: harina.icon || '🌾',
+        quantity: 1
+      }
+    ]);
   };
 
+  // Añadir extra
   const handleToggleExtra = (extra) => {
     setCartItems(prevItems => {
       const existing = prevItems.find(item => item.id === extra.id && item.type === 'extra');
       if (existing) return prevItems.filter(item => !(item.id === extra.id && item.type === 'extra'));
-      return [...prevItems, { id: extra.id, quantity: 1, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon }];
+      return [...prevItems, { id: extra.id, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon, quantity: 1 }];
     });
   };
 
@@ -98,9 +107,7 @@ const App = () => {
                     <>
                       <HarinaSelector 
                         selectedHarinas={cartItems.filter(item => item.type === 'harina')}
-                        onToggleHarina={handleToggleHarina}
-                        selectedOtrosPanes={cartItems.filter(item => item.type === 'otroPan').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
-                        onUpdateOtroPanQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'otroPan')}
+                        onAddHarina={handleAddHarina}
                       />
                       <ExtrasSelector 
                         selectedExtras={cartItems.filter(item => item.type === 'extra')}
@@ -108,8 +115,8 @@ const App = () => {
                       />
                     </>
                   } />
-                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
-                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
+                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito')} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
+                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
                   <Route path="/informacion" element={<InformacionPage />} />
                 </Routes>
               </div>

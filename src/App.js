@@ -27,7 +27,7 @@ const App = () => {
 
   // Añadir pan personalizado
   const handleAddCustomPan = (harinasSeleccionadas, corte) => {
-    if (!harinasSeleccionadas.length || !corte) return;
+    if (harinasSeleccionadas.length === 0 || !corte) return;
     const newPan = {
       cartId: Date.now(),
       type: 'panPersonalizado',
@@ -39,16 +39,17 @@ const App = () => {
     setCartItems(prev => [...prev, newPan]);
   };
 
-  const handleUpdateCartItem = (cartId, quantity) => {
+  // Extras, bollitos y pulguitas
+  const handleUpdateCartItem = (id, quantity, type) => {
     setCartItems(prev =>
       prev.map(item =>
-        item.cartId === cartId ? { ...item, quantity: Math.max(0, quantity) } : item
+        item.cartId === id && item.type === type ? { ...item, quantity: Math.max(0, quantity) } : item
       ).filter(item => item.quantity > 0)
     );
   };
 
-  const handleRemoveCartItem = (cartId) => {
-    setCartItems(prev => prev.filter(item => item.cartId !== cartId));
+  const handleRemoveCartItem = (id, type) => {
+    setCartItems(prev => prev.filter(item => !(item.cartId === id && item.type === type)));
   };
 
   const handleSendWhatsApp = () => setShowSuccessModal(true);
@@ -62,6 +63,7 @@ const App = () => {
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
         <Header cartItemCount={cartItemCount} onOpenCart={() => setShowCart(true)} />
         <Navigation />
+
         <div className="max-w-6xl mx-auto p-4 py-8">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -73,18 +75,25 @@ const App = () => {
                       <ExtrasSelector
                         selectedExtras={cartItems.filter(i => i.type === 'extra')}
                         onToggleExtra={(extra) => {
-                          const exists = cartItems.find(i => i.type === 'extra' && i.id === extra.id);
+                          const exists = cartItems.find(i => i.type === 'extra' && i.cartId === extra.cartId);
                           if (exists) setCartItems(prev => prev.filter(i => i.cartId !== exists.cartId));
                           else setCartItems(prev => [...prev, { ...extra, type: 'extra', cartId: Date.now(), quantity: 1 }]);
                         }}
                       />
                     </>
                   }/>
-                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito')} onUpdateBollitoQuantity={(cartId, qty) => handleUpdateCartItem(cartId, qty)} />} />
-                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')} onUpdatePulguitaQuantity={(cartId, qty) => handleUpdateCartItem(cartId, qty)} />} />
+                  <Route path="/bollitos" element={<BollitosPage
+                    selectedBollitos={cartItems.filter(i => i.type === 'bollito')}
+                    onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')}
+                  />} />
+                  <Route path="/pulguitas" element={<PulguitasPage
+                    selectedPulguitas={cartItems.filter(i => i.type === 'pulguita')}
+                    onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')}
+                  />} />
                   <Route path="/informacion" element={<InformacionPage />} />
                 </Routes>
               </div>
+
               <div className="lg:col-span-1">
                 <div className="sticky top-4">
                   <OrderSummary cartItems={cartItems} onSendWhatsApp={handleSendWhatsApp} />
@@ -93,6 +102,7 @@ const App = () => {
             </div>
           </motion.div>
         </div>
+
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
         <ShoppingCart
           isOpen={showCart}

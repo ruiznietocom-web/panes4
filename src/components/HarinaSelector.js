@@ -7,7 +7,7 @@ import { formatPrice } from '../utils/formatPrice';
 const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
   const isSelected = (harinaId) => selectedHarinas.some(harina => harina.id === harinaId);
   const maxHarinas = 6;
-  const fixedHarinaPrice = 5.50; // Precio fijo para la sección de harinas
+  const fixedHarinaPrice = 5.50; // Precio fijo de base
 
   return (
     <motion.div 
@@ -20,7 +20,7 @@ const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
         Elige tus Harinas Base
       </h2>
       <p className="text-gray-500 text-center mb-4">
-        Puedes seleccionar hasta 5 harinas.  
+        Puedes seleccionar hasta {maxHarinas} harinas.  
         El precio final de tu pan (sin extras) es fijo: {formatPrice(fixedHarinaPrice)}.
       </p>
       

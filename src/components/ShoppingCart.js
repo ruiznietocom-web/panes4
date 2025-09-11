@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Plus, Minus } from "lucide-react";
 import { formatPrice } from "../utils/formatPrice";
 
 const ShoppingCart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveItem }) => {
@@ -31,20 +31,53 @@ const ShoppingCart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveIt
         ) : (
           <div className="flex-1 overflow-y-auto space-y-4">
             {cartItems.map(item => (
-              <div key={item.cartId} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                <div>
-                  <p className="font-semibold">{item.icon} {item.name} {item.corte ? `(${item.corte})` : ''}</p>
-                  <p className="text-sm text-gray-600">{formatPrice(item.price)} x {item.quantity}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button className="px-2 py-1 bg-gray-200 rounded" onClick={() => onUpdateQuantity(item.cartId, item.quantity - 1, item.type)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button className="px-2 py-1 bg-gray-200 rounded" onClick={() => onUpdateQuantity(item.cartId, item.quantity + 1, item.type)}>+</button>
-                  <span className="font-bold">{formatPrice(item.price * item.quantity)}</span>
-                  <button className="ml-2 text-red-500" onClick={() => onRemoveItem(item.cartId, item.type)}>
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
+              <div key={item.cartId} className="p-3 bg-gray-50 rounded-lg shadow-sm">
+                {item.type === 'panPersonalizado' ? (
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="font-semibold">Pan Personalizado</span>
+                      <span className="text-gray-700">{formatPrice(item.price)}</span>
+                    </div>
+                    <ul className="ml-4 mb-1">
+                      {item.harinas.map(h => (
+                        <li key={h.id}>🌾 {h.name}</li>
+                      ))}
+                    </ul>
+                    <p className="mb-2">Corte: {item.corte}</p>
+                    <div className="flex items-center gap-2">
+                      <button
+                        className="px-2 py-1 bg-gray-200 rounded"
+                        onClick={() => onUpdateQuantity(item.cartId, item.quantity - 1)}
+                      >
+                        <Minus className="w-4 h-4" />
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button
+                        className="px-2 py-1 bg-gray-200 rounded"
+                        onClick={() => onUpdateQuantity(item.cartId, item.quantity + 1)}
+                      >
+                        <Plus className="w-4 h-4" />
+                      </button>
+                      <button
+                        className="ml-auto text-red-500"
+                        onClick={() => onRemoveItem(item.cartId)}
+                      >
+                        <X className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex justify-between items-center">
+                    <span>{item.name}</span>
+                    <span>{formatPrice(item.price)}</span>
+                    <button
+                      className="ml-2 text-red-500"
+                      onClick={() => onRemoveItem(item.cartId)}
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                )}
               </div>
             ))}
           </div>

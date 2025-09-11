@@ -16,9 +16,7 @@ import { harinas, extras, bollitos, pulguitas } from './data/products';
 // ScrollToTop
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, [pathname]);
+  useEffect(() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }), [pathname]);
   return null;
 };
 
@@ -27,69 +25,39 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  // Obtener producto por id y tipo
-  const getProductDetails = (id, type) => {
-    switch (type) {
-      case 'harina': return harinas.find(p => p.id === id);
-      case 'extra': return extras.find(p => p.id === id);
-      case 'bollito': return bollitos.find(p => p.id === id);
-      case 'pulguita': return pulguitas.find(p => p.id === id);
-      default: return null;
-    }
+  // Actualizar cantidad de un item
+  const handleUpdateCartItem = (id, quantity) => {
+    setCartItems(prev =>
+      prev.map(item =>
+        item.cartId === id ? { ...item, quantity: Math.max(0, quantity) } : item
+      ).filter(item => item.quantity > 0)
+    );
   };
 
-  // Actualizar cantidad
-  const handleUpdateCartItem = (id, quantity, type) => {
-    setCartItems(prevItems => {
-      const existingIndex = prevItems.findIndex(item => item.cartId === id && item.type === type);
-      const newQuantity = Math.max(0, quantity);
-
-      if (newQuantity === 0) return prevItems.filter(item => !(item.cartId === id && item.type === type));
-
-      if (existingIndex > -1) return prevItems.map((item, index) =>
-        index === existingIndex ? { ...item, quantity: newQuantity } : item
-      );
-
-      return prevItems;
-    });
+  const handleRemoveCartItem = (id) => {
+    setCartItems(prev => prev.filter(item => item.cartId !== id));
   };
 
-  // Eliminar item
-  const handleRemoveCartItem = (id, type) => {
-    setCartItems(prevItems => prevItems.filter(item => !(item.cartId === id && item.type === type)));
+  // Añadir pan personalizado
+  const handleAddCustomPan = (harinasSeleccionadas, corte) => {
+    if (harinasSeleccionadas.length === 0 || !corte) return;
+
+    const newPan = {
+      cartId: Date.now(), // ID único
+      type: 'panPersonalizado',
+      harinas: harinasSeleccionadas,
+      corte,
+      price: 5.50,
+      quantity: 1,
+    };
+
+    setCartItems(prev => [...prev, newPan]);
   };
 
-  // Añadir harina / otro pan
-  const handleAddHarina = (harina, corte) => {
-    const cartId = Date.now() + Math.random(); // ID único por pan
-    setCartItems(prevItems => [
-      ...prevItems,
-      {
-        cartId,
-        id: harina.id,
-        type: 'harina',
-        name: harina.name,
-        corte,
-        price: 5.50,
-        icon: harina.icon || '🌾',
-        quantity: 1
-      }
-    ]);
-  };
-
-  // Añadir extra
-  const handleToggleExtra = (extra) => {
-    setCartItems(prevItems => {
-      const existing = prevItems.find(item => item.id === extra.id && item.type === 'extra');
-      if (existing) return prevItems.filter(item => !(item.id === extra.id && item.type === 'extra'));
-      return [...prevItems, { id: extra.id, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon, quantity: 1 }];
-    });
-  };
-
-  const handleSendWhatsApp = () => { setShowSuccessModal(true); setShowCart(false); };
+  const handleSendWhatsApp = () => setShowSuccessModal(true);
   const handleCloseModal = () => { setShowSuccessModal(false); setCartItems([]); };
 
-  const cartItemCount = cartItems.reduce((count, item) => count + item.quantity, 0);
+  const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <Router>
@@ -105,18 +73,19 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={
                     <>
-                      <HarinaSelector 
-                        selectedHarinas={cartItems.filter(item => item.type === 'harina')}
-                        onAddHarina={handleAddHarina}
-                      />
-                      <ExtrasSelector 
-                        selectedExtras={cartItems.filter(item => item.type === 'extra')}
-                        onToggleExtra={handleToggleExtra}
+                      <HarinaSelector onAddPan={handleAddCustomPan} />
+                      <ExtrasSelector
+                        selectedExtras={cartItems.filter(i => i.type === 'extra')}
+                        onToggleExtra={(extra) => {
+                          const exists = cartItems.find(i => i.type === 'extra' && i.id === extra.id);
+                          if (exists) setCartItems(prev => prev.filter(i => i.cartId !== exists.cartId));
+                          else setCartItems(prev => [...prev, { ...extra, type: 'extra', cartId: Date.now(), quantity: 1 }]);
+                        }}
                       />
                     </>
-                  } />
-                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito')} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
-                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
+                  }/>
+                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty)} />} />
+                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty)} />} />
                   <Route path="/informacion" element={<InformacionPage />} />
                 </Routes>
               </div>

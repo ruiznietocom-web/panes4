@@ -31,12 +31,14 @@ const ShoppingCart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveIt
         ) : (
           <div className="flex-1 overflow-y-auto space-y-4">
             {cartItems.map(item => (
-              <div key={item.cartId} className="p-3 bg-gray-50 rounded-lg shadow-sm">
-                {item.type === 'panPersonalizado' ? (
+              <div key={item.cartId || `${item.type}-${item.id}`} className="p-3 bg-gray-50 rounded-lg shadow-sm">
+                
+                {/* PAN PERSONALIZADO */}
+                {item.type === 'panPersonalizado' && (
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-semibold">Pan Personalizado</span>
-                      <span className="text-gray-700">{formatPrice(item.price)}</span>
+                      <span className="text-gray-700">{formatPrice(item.price * item.quantity)}</span>
                     </div>
                     <ul className="ml-4 mb-1">
                       {item.harinas.map(h => (
@@ -44,40 +46,43 @@ const ShoppingCart = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRemoveIt
                       ))}
                     </ul>
                     <p className="mb-2">Corte: {item.corte}</p>
-                    <div className="flex items-center gap-2">
+                  </div>
+                )}
+
+                {/* BOLLITOS / PULGUITAS / EXTRAS */}
+                {item.type !== 'panPersonalizado' && (
+                  <div className="flex justify-between items-center mb-2">
+                    <span>{item.name}</span>
+                    <span>{formatPrice(item.price * item.quantity)}</span>
+                  </div>
+                )}
+
+                {/* CONTROLES DE CANTIDAD */}
+                <div className="flex items-center gap-2">
+                  {(item.type === 'panPersonalizado' || item.type === 'bollito' || item.type === 'pulguita') && (
+                    <>
                       <button
                         className="px-2 py-1 bg-gray-200 rounded"
-                        onClick={() => onUpdateQuantity(item.cartId, item.quantity - 1)}
+                        onClick={() => onUpdateQuantity(item.cartId || item.id, item.quantity - 1, item.type)}
                       >
                         <Minus className="w-4 h-4" />
                       </button>
                       <span>{item.quantity}</span>
                       <button
                         className="px-2 py-1 bg-gray-200 rounded"
-                        onClick={() => onUpdateQuantity(item.cartId, item.quantity + 1)}
+                        onClick={() => onUpdateQuantity(item.cartId || item.id, item.quantity + 1, item.type)}
                       >
                         <Plus className="w-4 h-4" />
                       </button>
-                      <button
-                        className="ml-auto text-red-500"
-                        onClick={() => onRemoveItem(item.cartId)}
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex justify-between items-center">
-                    <span>{item.name}</span>
-                    <span>{formatPrice(item.price)}</span>
-                    <button
-                      className="ml-2 text-red-500"
-                      onClick={() => onRemoveItem(item.cartId)}
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
-                )}
+                    </>
+                  )}
+                  <button
+                    className="ml-auto text-red-500"
+                    onClick={() => onRemoveItem(item.cartId || item.id, item.type)}
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
             ))}
           </div>

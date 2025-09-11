@@ -4,15 +4,6 @@ import { MessageCircle } from 'lucide-react';
 import { formatPrice } from '../utils/formatPrice';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
-  const fixedHarinaPrice = 5.50;
-
-  const optionalExtras = [
-    { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
-    { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
-    { id: 'cerveza', name: 'Tómate una Cerveza a mi Salud!', price: 1.50, icon: '🍺' },
-  ];
-
-  const selectedOptionalExtras = cartItems.filter(i => i.type === 'extra');
 
   const calculateTotal = () => {
     let total = 0;
@@ -23,19 +14,20 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const generateWhatsAppMessage = () => {
     let message = '*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n';
 
-    // Panes personalizados
-    cartItems.filter(i => i.type === 'panPersonalizado').forEach(pan => {
-      message += '\n*PAN PERSONALIZADO:*\n';
-      pan.harinas.forEach(h => message += `• 🌾 ${h.name}\n`);
-      message += `Corte: ${pan.corte}\n`;
-      message += `Precio: ${formatPrice(pan.price)}\n`;
+    cartItems.forEach(item => {
+      if (item.type === 'panPersonalizado') {
+        message += '\n*PAN PERSONALIZADO:*\n';
+        item.harinas.forEach(h => message += `• 🌾 ${h.name}\n`);
+        message += `Corte: ${item.corte}\n`;
+        message += `Precio: ${formatPrice(item.price * item.quantity)}\n`;
+      }
+      if (item.type === 'extra') {
+        message += `• ${item.icon} ${item.name} - ${formatPrice(item.price)}\n`;
+      }
+      if (item.type === 'bollito' || item.type === 'pulguita') {
+        message += `• ${item.name} x${item.quantity} - ${formatPrice(item.price * item.quantity)}\n`;
+      }
     });
-
-    // Extras opcionales
-    if (selectedOptionalExtras.length > 0) {
-      message += '\n*EXTRAS:*\n';
-      selectedOptionalExtras.forEach(e => message += `• ${e.icon} ${e.name} - ${formatPrice(e.price)}\n`);
-    }
 
     message += `\n*TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
     message += '🚚 Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n';
@@ -57,27 +49,29 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         <MessageCircle className="w-6 h-6" /> Resumen del Pedido
       </h2>
 
-      {cartItems.length === 0 ? <p className="text-gray-500 text-center">Tu carrito está vacío.</p> :
-        cartItems.map(item => item.type === 'panPersonalizado' ? (
-          <div key={item.cartId} className="mb-4 p-2 bg-amber-50 rounded-lg">
-            <strong>PAN PERSONALIZADO:</strong>
-            <ul className="ml-4">
-              {item.harinas.map(h => <li key={h.id}>🌾 {h.name}</li>)}
-            </ul>
-            <p>Corte: {item.corte}</p>
-            <p>Precio: {formatPrice(item.price)}</p>
-          </div>
-        ) : null)
-      }
+      {cartItems.length === 0 && <p className="text-gray-500 text-center">Tu carrito está vacío.</p>}
 
-      {selectedOptionalExtras.length > 0 && (
-        <div className="mb-4">
-          <strong>Extras:</strong>
-          <ul className="ml-4">
-            {selectedOptionalExtras.map(e => <li key={e.cartId}>{e.icon} {e.name} - {formatPrice(e.price)}</li>)}
-          </ul>
+      {cartItems.map(item => (
+        <div key={item.cartId} className="mb-4 p-2 rounded-lg bg-amber-50">
+          {item.type === 'panPersonalizado' && (
+            <>
+              <strong>PAN PERSONALIZADO:</strong>
+              <ul className="ml-4">
+                {item.harinas.map(h => <li key={h.id}>🌾 {h.name}</li>)}
+              </ul>
+              <p>Corte: {item.corte}</p>
+              <p>Precio: {formatPrice(item.price * item.quantity)}</p>
+            </>
+          )}
+          {item.type === 'bollito' || item.type === 'pulguita' ? (
+            <div className="flex justify-between">
+              <span>{item.name} x{item.quantity}</span>
+              <span>{formatPrice(item.price * item.quantity)}</span>
+            </div>
+          ) : null}
+          {item.type === 'extra' && <p>{item.icon} {item.name} - {formatPrice(item.price)}</p>}
         </div>
-      )}
+      ))}
 
       <div className="border-t pt-3 mt-3 flex justify-between items-center text-xl font-bold">
         <span>Total:</span>

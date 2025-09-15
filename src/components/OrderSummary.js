@@ -5,8 +5,6 @@ import { harinas, bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
-  const fixedHarinaPrice = 5.50;
-
   const optionalExtras = [
     { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
@@ -21,14 +19,15 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     );
   };
 
-  const harinasInCart = cartItems.filter(item => item.type === 'harina');
+  // Filtramos por tipo
+  const panesPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
   const extrasInCart = cartItems.filter(item => item.type === 'extra');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
 
   const calculateTotal = () => {
     let total = 0;
-    if (harinasInCart.length > 0) total += fixedHarinaPrice;
+    panesPersonalizados.forEach(p => total += p.price * p.quantity);
     extrasInCart.forEach(e => total += e.price);
     bollitosInCart.forEach(item => {
       const b = bollitos.find(b => b.id === item.id);
@@ -48,14 +47,11 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const generateWhatsAppMessage = () => {
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n`;
 
-    // Harinas desglosadas con iconos
-    if (harinasInCart.length > 0) {
+    if (panesPersonalizados.length > 0) {
       message += `\n*PAN PERSONALIZADO:*\n`;
-      harinasInCart.forEach(item => {
-        const h = harinas.find(h => h.id === item.id);
-        if (h) message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}\n`;
+      panesPersonalizados.forEach(p => {
+        message += `• ${p.harinas.map(h => h.name).join(', ')} - ${formatPrice(p.price)}\n`;
       });
-      message += `Precio total de harinas: ${formatPrice(fixedHarinaPrice)}\n`;
     }
 
     if (extrasInCart.length > 0) {
@@ -82,7 +78,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
     }
 
     if (selectedOptionalExtras.length > 0) {
-      message += `\n*MANUEL, QUÉ RICO TU PAN!...:*\n`;
+      message += `\n*EXTRAS OPCIONALES:*\n`;
       selectedOptionalExtras.forEach(id => {
         const e = optionalExtras.find(opt => opt.id === id);
         if (e) message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} - ${formatPrice(e.price)}\n`;
@@ -105,8 +101,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
   const isOrderEmpty = cartItems.length === 0;
 
   return (
-    <motion.div 
-      className="bg-white rounded-2xl p-6 shadow-lg"
+    <motion.div className="bg-white rounded-2xl p-6 shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
@@ -125,15 +120,13 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         )}
 
         {/* Pan Personalizado */}
-        {harinasInCart.length > 0 && (
+        {panesPersonalizados.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Pan Personalizado:</h3>
             <div className="flex flex-col p-2 bg-amber-50 rounded-lg">
-              {harinasInCart.map(item => {
-                const h = harinas.find(h => h.id === item.id);
-                return h && <span key={h.id}>• {h.icon ? h.icon + ' ' : ''}{h.name}</span>;
-              })}
-              <span className="mt-1 font-bold">Precio total de harinas: {formatPrice(fixedHarinaPrice)}</span>
+              {panesPersonalizados.map(p => (
+                <span key={p.id}>• {p.harinas.map(h => h.name).join(', ')} - {formatPrice(p.price)}</span>
+              ))}
             </div>
           </div>
         )}

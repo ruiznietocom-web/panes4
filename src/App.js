@@ -11,9 +11,9 @@ import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
 import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
-import { harinas, extras, bollitos, pulguitas } from './data/products';
+import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
-// Scroll automático al cambiar de ruta
+// Componente ScrollToTop
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -27,20 +27,16 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  const handleAddPan = (pan) => {
-    setCartItems(prev => [...prev, pan]);
-  };
-
-  const handleToggleExtra = (extra) => {
-    setCartItems(prevItems => {
-      const existing = prevItems.find(item => item.id === extra.id && item.type === 'extra');
-      if (existing) return prevItems.filter(item => !(item.id === extra.id && item.type === 'extra'));
-      return [...prevItems, { id: extra.id, quantity: 1, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon }];
-    });
-  };
-
-  const handleAddItem = (item) => {
-    setCartItems(prev => [...prev, item]);
+  // Helper
+  const getProductDetails = (id, type) => {
+    switch (type) {
+      case 'harina': return harinas.find(p => p.id === id);
+      case 'extra': return extras.find(p => p.id === id);
+      case 'bollito': return bollitos.find(p => p.id === id);
+      case 'pulguita': return pulguitas.find(p => p.id === id);
+      case 'otroPan': return otrosPanes.find(p => p.id === id);
+      default: return null;
+    }
   };
 
   const handleUpdateCartItem = (id, quantity, type) => {
@@ -53,6 +49,10 @@ const App = () => {
         index === existingItemIndex ? { ...item, quantity: newQuantity } : item
       );
 
+      const product = getProductDetails(id, type);
+      if (product) {
+        return [...prevItems, { id, quantity: newQuantity, type, name: product.name, price: product.price, image: product.image, icon: product.icon }];
+      }
       return prevItems;
     });
   };
@@ -61,15 +61,24 @@ const App = () => {
     setCartItems(prevItems => prevItems.filter(item => !(item.id === id && item.type === type)));
   };
 
-  const handleSendWhatsApp = () => {
-    setShowSuccessModal(true);
-    setShowCart(false);
+  const handleToggleHarina = (harina) => {
+    setCartItems(prevItems => {
+      const existing = prevItems.find(item => item.id === harina.id && item.type === 'harina');
+      if (existing) return prevItems.filter(item => !(item.id === harina.id && item.type === 'harina'));
+      return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image }];
+    });
   };
 
-  const handleCloseModal = () => {
-    setShowSuccessModal(false);
-    setCartItems([]);
+  const handleToggleExtra = (extra) => {
+    setCartItems(prevItems => {
+      const existing = prevItems.find(item => item.id === extra.id && item.type === 'extra');
+      if (existing) return prevItems.filter(item => !(item.id === extra.id && item.type === 'extra'));
+      return [...prevItems, { id: extra.id, quantity: 1, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon }];
+    });
   };
+
+  const handleSendWhatsApp = () => { setShowSuccessModal(true); setShowCart(false); };
+  const handleCloseModal = () => { setShowSuccessModal(false); setCartItems([]); };
 
   const cartItemCount = cartItems.reduce((count, item) => count + item.quantity, 0);
 
@@ -87,19 +96,20 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={
                     <>
-                      <HarinaSelector onAddPan={handleAddPan} />
-                      <ExtrasSelector
+                      <HarinaSelector 
+                        selectedHarinas={cartItems.filter(item => item.type === 'harina')}
+                        onToggleHarina={handleToggleHarina}
+                        selectedOtrosPanes={cartItems.filter(item => item.type === 'otroPan').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
+                        onUpdateOtroPanQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'otroPan')}
+                      />
+                      <ExtrasSelector 
                         selectedExtras={cartItems.filter(item => item.type === 'extra')}
                         onToggleExtra={handleToggleExtra}
                       />
                     </>
                   } />
-                  <Route path="/bollitos" element={
-                    <BollitosPage onAddItem={handleAddItem} />
-                  } />
-                  <Route path="/pulguitas" element={
-                    <PulguitasPage onAddItem={handleAddItem} />
-                  } />
+                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
+                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
                   <Route path="/informacion" element={<InformacionPage />} />
                 </Routes>
               </div>
@@ -114,13 +124,7 @@ const App = () => {
         </div>
 
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
-        <ShoppingCart
-          isOpen={showCart}
-          onClose={() => setShowCart(false)}
-          cartItems={cartItems}
-          onUpdateQuantity={handleUpdateCartItem}
-          onRemoveItem={handleRemoveCartItem}
-        />
+        <ShoppingCart isOpen={showCart} onClose={() => setShowCart(false)} cartItems={cartItems} onUpdateQuantity={handleUpdateCartItem} onRemoveItem={handleRemoveCartItem} />
       </div>
     </Router>
   );

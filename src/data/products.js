@@ -80,7 +80,7 @@ export const bollitos = [
   { id: 1.05, name: "PACK Surtido 6 Bollitos Integrales Clásicos", description: "Tu pack clásico", image: "🍞", price: 6 },
 
 
-  { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "1x Semillas, 1x Ajo, 1x Cacao, 1x Cúrcuma, 1x nueces, 1x Ciruelas Pasas, 1x Tomate y Orégano.Pruébalos todos!", image: "🍞", price: 8.50 },
+  { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "1x Semillas, 1x Ajo, 1x Cacao, 1x Cúrcuma, 1x Nueces, 1x Ciruelas Pasas, 1x Tomate y Orégano.Pruébalos todos!", image: "🍞", price: 8.50 },
   { id: 1.2, name: "PACK Surtido 6 Bollitos Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7.50 },
   { id: 1.3, name: "PACK Surtido 6 Bollitos Integrales de Nueces", description: "Nutritivo y delicioso", image: "🥜", price: 7.50 },
   { id: 1.4, name: "PACK Surtido 6 Bollitos Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  
@@ -109,7 +109,7 @@ export const pulguitas = [
   { id: 1.05, name: "PACK Surtido 12 Pulguitas Integrales Clásicas", description: "Tu pack de pulguitas clásicas", image: "🍞", price: 6 },
 
 
-  { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (dos de cada)", description: "2x Semillas, 2x Ajo, 2x Cacao, 2x Cúrcuma, 2x nueces, 2x Ciruelas Pasas, 2x Tomate y Orégano. Pruébalos todos!", image: "🍞", price: 8.50 },
+  { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (dos de cada)", description: "2x Semillas, 2x Ajo, 2x Cacao, 2x Cúrcuma, 2x Nueces, 2x Ciruelas Pasas, 2x Tomate y Orégano. Pruébalos todos!", image: "🍞", price: 8.50 },
   { id: 1.2, name: "PACK Surtido 12 Pulguitas Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7.50 },
   { id: 1.3, name: "PACK Surtido 12 Pulguitas Integrales de Nueces", description: "Nutritivo y delicioso", image: "🥜", price: 7.50 },
   { id: 1.4, name: "PACK Surtido 12 Pulguitas Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  

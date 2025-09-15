@@ -6,7 +6,6 @@ import Navigation from './components/Navigation.js';
 import HarinaSelector from './components/HarinaSelector.js';
 import ExtrasSelector from './components/ExtrasSelector.js';
 import OrderSummary from './components/OrderSummary.js';
-import Success from './components/Success.js';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);

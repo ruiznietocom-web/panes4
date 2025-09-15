@@ -7,7 +7,7 @@ import { formatPrice } from '../utils/formatPrice';
 const HarinaSelector = ({ onAddPan }) => {
   const [selectedHarinas, setSelectedHarinas] = useState([]);
   const maxHarinas = 5;
-  const fixedHarinaPrice = 5.50;
+  const fixedHarinaPrice = 5.50; // Precio fijo para la sección de harinas
 
   const isSelected = (id) => selectedHarinas.some(h => h.id === id);
 

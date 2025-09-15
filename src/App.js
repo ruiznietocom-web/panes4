@@ -11,7 +11,7 @@ import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
 import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
-import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
+import { harinas, extras, bollitos, pulguitas } from './data/products';
 
 // Scroll automático al cambiar de ruta
 const ScrollToTop = () => {
@@ -37,6 +37,10 @@ const App = () => {
       if (existing) return prevItems.filter(item => !(item.id === extra.id && item.type === 'extra'));
       return [...prevItems, { id: extra.id, quantity: 1, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon }];
     });
+  };
+
+  const handleAddItem = (item) => {
+    setCartItems(prev => [...prev, item]);
   };
 
   const handleUpdateCartItem = (id, quantity, type) => {
@@ -83,17 +87,19 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={
                     <>
-                      <HarinaSelector
-                        onAddPan={handleAddPan}
-                      />
+                      <HarinaSelector onAddPan={handleAddPan} />
                       <ExtrasSelector
                         selectedExtras={cartItems.filter(item => item.type === 'extra')}
                         onToggleExtra={handleToggleExtra}
                       />
                     </>
                   } />
-                  <Route path="/bollitos" element={<BollitosPage selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')} />} />
-                  <Route path="/pulguitas" element={<PulguitasPage selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})} onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')} />} />
+                  <Route path="/bollitos" element={
+                    <BollitosPage onAddItem={handleAddItem} />
+                  } />
+                  <Route path="/pulguitas" element={
+                    <PulguitasPage onAddItem={handleAddItem} />
+                  } />
                   <Route path="/informacion" element={<InformacionPage />} />
                 </Routes>
               </div>
@@ -108,7 +114,13 @@ const App = () => {
         </div>
 
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
-        <ShoppingCart isOpen={showCart} onClose={() => setShowCart(false)} cartItems={cartItems} onUpdateQuantity={handleUpdateCartItem} onRemoveItem={handleRemoveCartItem} />
+        <ShoppingCart
+          isOpen={showCart}
+          onClose={() => setShowCart(false)}
+          cartItems={cartItems}
+          onUpdateQuantity={handleUpdateCartItem}
+          onRemoveItem={handleRemoveCartItem}
+        />
       </div>
     </Router>
   );

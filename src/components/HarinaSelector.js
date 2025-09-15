@@ -4,10 +4,10 @@ import { Check } from 'lucide-react';
 import { harinas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
-const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
+const HarinaSelector = ({ selectedHarinas, onToggleHarina, onAddPan }) => {
   const isSelected = (harinaId) => selectedHarinas.some(harina => harina.id === harinaId);
   const maxHarinas = 6;
-  const fixedHarinaPrice = 5.50; // Precio fijo para la sección de harinas
+  const fixedHarinaPrice = 5.50; // Precio fijo por pan personalizado
 
   return (
     <motion.div 
@@ -64,6 +64,26 @@ const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
           </motion.div>
         ))}
       </div>
+
+      {/* Botón para añadir el pan al resumen */}
+      {selectedHarinas.length > 0 && (
+        <div className="text-center mt-6">
+          <button
+            onClick={() =>
+              onAddPan({
+                id: Date.now(),
+                type: "panPersonalizado",
+                harinas: selectedHarinas,
+                price: fixedHarinaPrice,
+                quantity: 1,
+              })
+            }
+            className="bg-amber-500 text-white px-6 py-2 rounded-xl font-bold shadow-md hover:bg-amber-600 transition"
+          >
+            Añadir Pan Personalizado
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 };

@@ -5,12 +5,15 @@ import { formatPrice } from "../utils/formatPrice";
 
 const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
   return (
-    <motion.div className="bg-white rounded-2xl p-6 shadow-lg"
+    <motion.div
+      className="bg-white rounded-2xl p-6 shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Elige tus Pulguitas</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+        Elige tus Pulguitas
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {pulguitas.map((pulguita, index) => (
@@ -26,18 +29,34 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
             <div className="text-4xl mb-2">{pulguita.image}</div>
             <h3 className="font-bold text-gray-800 mb-1">{pulguita.name}</h3>
             <p className="text-sm text-gray-600 mb-2">{pulguita.description}</p>
-            <p className="text-lg font-semibold text-purple-600">{formatPrice(pulguita.price)}</p>
+            <p className="text-lg font-semibold text-purple-600">
+              {formatPrice(pulguita.price)}
+            </p>
 
             <div className="flex items-center justify-center gap-2 mt-3">
               <button
                 className="px-3 py-1 bg-gray-200 rounded"
-                onClick={() => onUpdatePulguitaQuantity(pulguita.id, (selectedPulguitas[pulguita.id] || 0) - 1)}
-              >-</button>
+                onClick={() =>
+                  onUpdatePulguitaQuantity(
+                    pulguita.id,
+                    (selectedPulguitas[pulguita.id] || 0) - 1
+                  )
+                }
+              >
+                -
+              </button>
               <span>{selectedPulguitas[pulguita.id] || 0}</span>
               <button
                 className="px-3 py-1 bg-gray-200 rounded"
-                onClick={() => onUpdatePulguitaQuantity(pulguita.id, (selectedPulguitas[pulguita.id] || 0) + 1)}
-              >+</button>
+                onClick={() =>
+                  onUpdatePulguitaQuantity(
+                    pulguita.id,
+                    (selectedPulguitas[pulguita.id] || 0) + 1
+                  )
+                }
+              >
+                +
+              </button>
             </div>
           </motion.div>
         ))}

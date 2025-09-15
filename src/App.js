@@ -13,7 +13,7 @@ import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
 import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
-// Scroll automático al cambiar de ruta
+// Componente ScrollToTop
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -27,6 +27,7 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
+  // Helper
   const getProductDetails = (id, type) => {
     switch (type) {
       case 'harina': return harinas.find(p => p.id === id);
@@ -64,13 +65,8 @@ const App = () => {
     setCartItems(prevItems => {
       const existing = prevItems.find(item => item.id === harina.id && item.type === 'harina');
       if (existing) return prevItems.filter(item => !(item.id === harina.id && item.type === 'harina'));
-      return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image, icon: harina.icon }];
+      return [...prevItems, { id: harina.id, quantity: 1, type: 'harina', name: harina.name, price: harina.price, image: harina.image }];
     });
-  };
-
-  const handleAddPan = (pan) => {
-    // Cada pan añadido con todas sus harinas seleccionadas
-    setCartItems(prev => [...prev, { ...pan }]);
   };
 
   const handleToggleExtra = (extra) => {
@@ -100,12 +96,13 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={
                     <>
-                      <HarinaSelector
+                      <HarinaSelector 
                         selectedHarinas={cartItems.filter(item => item.type === 'harina')}
                         onToggleHarina={handleToggleHarina}
-                        onAddPan={handleAddPan}
+                        selectedOtrosPanes={cartItems.filter(item => item.type === 'otroPan').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
+                        onUpdateOtroPanQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'otroPan')}
                       />
-                      <ExtrasSelector
+                      <ExtrasSelector 
                         selectedExtras={cartItems.filter(item => item.type === 'extra')}
                         onToggleExtra={handleToggleExtra}
                       />

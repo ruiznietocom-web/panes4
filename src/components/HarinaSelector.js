@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { harinas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
-const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
-  const isSelected = (harinaId) => selectedHarinas.some(harina => harina.id === harinaId);
+const HarinaSelector = ({ onAddPan }) => {
+  const [selectedHarinas, setSelectedHarinas] = useState([]);
   const maxHarinas = 6;
-  const fixedHarinaPrice = 5.50; // Precio fijo para la sección de harinas
+  const fixedHarinaPrice = 5.50;
+
+  const toggleHarina = (harina) => {
+    setSelectedHarinas(prev => {
+      if (prev.find(h => h.id === harina.id)) {
+        return prev.filter(h => h.id !== harina.id);
+      } else if (prev.length < maxHarinas) {
+        return [...prev, harina];
+      }
+      return prev;
+    });
+  };
+
+  const handleAddPan = () => {
+    if (selectedHarinas.length === 0) return;
+    onAddPan({
+      id: Date.now(),
+      type: 'panPersonalizado',
+      harinas: selectedHarinas,
+      price: fixedHarinaPrice,
+      quantity: 1,
+    });
+    setSelectedHarinas([]);
+  };
 
   return (
     <motion.div 
@@ -29,22 +52,18 @@ const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
           <motion.div
             key={harina.id}
             className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
-              isSelected(harina.id)
+              selectedHarinas.find(h => h.id === harina.id)
                 ? 'border-amber-500 bg-amber-50 shadow-md'
                 : 'border-gray-200 hover:border-amber-300 hover:bg-amber-25'
-            } ${selectedHarinas.length >= maxHarinas && !isSelected(harina.id) ? 'opacity-50 cursor-not-allowed' : ''}`}
-            onClick={() => {
-              if (selectedHarinas.length < maxHarinas || isSelected(harina.id)) {
-                onToggleHarina(harina);
-              }
-            }}
+            }`}
+            onClick={() => toggleHarina(harina)}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
+            transition={{ delay: index * 0.05 }}
           >
-            {isSelected(harina.id) && (
+            {selectedHarinas.find(h => h.id === harina.id) && (
               <motion.div 
                 className="absolute top-2 right-2 bg-amber-500 text-white rounded-full p-1"
                 initial={{ scale: 0 }}
@@ -64,6 +83,17 @@ const HarinaSelector = ({ selectedHarinas, onToggleHarina }) => {
           </motion.div>
         ))}
       </div>
+
+      {selectedHarinas.length > 0 && (
+        <div className="text-center mt-4">
+          <button
+            onClick={handleAddPan}
+            className="bg-amber-500 text-white px-6 py-2 rounded-xl font-bold shadow-md hover:bg-amber-600 transition"
+          >
+            Añadir Pan Personalizado
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 };

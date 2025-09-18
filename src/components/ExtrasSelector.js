@@ -49,7 +49,7 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
                     <motion.span
                       animate={{ rotate: [0, 10, -10, 0] }} // Animación de rotación
                       transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 0.5 }}
-                      className="text-6XL mb-2" // <-- TAMAÑO DEL ICONO AUMENTADO
+                      className="text-8XL mb-2" // <-- TAMAÑO DEL ICONO AUMENTADO
                     >
                       {extra.icon} 
                     </motion.span>

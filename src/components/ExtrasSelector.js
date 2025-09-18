@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { extras as allExtras } from '../data/products';
 
 const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
-  // Función para seleccionar o deseleccionar un extra para un pan específico
+  // Función para añadir o quitar extras de un pan
   const toggleExtra = (panId, extra) => {
     const newCartItems = cartItems.map(pan => {
       if (pan.id === panId) {
@@ -15,13 +15,13 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
       }
       return pan;
     });
-    onUpdatePanExtras(newCartItems); // Actualiza el carrito con extras modificados
+    onUpdatePanExtras(newCartItems);
   };
 
   return (
     <div className="space-y-4">
       {cartItems
-        .filter(item => item.type === 'panPersonalizado') // Solo panes personalizados
+        .filter(item => item.type === 'panPersonalizado')
         .map((pan, index) => (
           <div key={pan.id} className="bg-green-50 p-4 rounded-xl">
             <h3 className="font-bold mb-2">
@@ -31,27 +31,25 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
               {allExtras.map(extra => {
                 const selected = pan.extras?.some(e => e.id === extra.id);
                 return (
-                  // Usamos motion.button para animar el botón y el icono
                   <motion.button
                     key={extra.id}
                     onClick={() => toggleExtra(pan.id, extra)}
-                    className={`px-4 py-2 rounded-xl border flex items-center gap-2 transition-all ${
+                    className={`px-3 py-2 rounded-lg border flex items-center gap-2 transition-all ${
                       selected
                         ? 'bg-green-200 border-green-400'
                         : 'bg-white border-gray-300 hover:bg-gray-100'
                     }`}
-                    whileHover={{ scale: 1.05 }} // Pequeño efecto al pasar el ratón
-                    whileTap={{ scale: 0.95 }}   // Efecto al presionar
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    {/* Icono con rotación ligera animada */}
+                    {/* Icono con rotación ligera, tamaño original */}
                     <motion.span
-                      className="text-2xl" // Tamaño del icono
-                      animate={{ rotate: [0, 10, -10, 0] }} // Giro suave
+                      animate={{ rotate: [0, 10, -10, 0] }}
                       transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 0.5 }}
                     >
                       {extra.icon}
                     </motion.span>
-                    <span className="font-medium">{extra.name} ({extra.price.toFixed(2)}€)</span>
+                    <span>{extra.name} ({extra.price.toFixed(2)}€)</span>
                   </motion.button>
                 );
               })}

@@ -1,10 +1,10 @@
 import React from 'react'; 
 import { motion } from 'framer-motion';
-import { ShoppingCart, MessageCircle } from 'lucide-react';
+import { ShoppingCart, MessageCircle, Trash2 } from 'lucide-react';
 import { bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
-const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
+const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const optionalExtras = [
     { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
@@ -134,7 +134,13 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Panes Personalizados:</h3>
             {pansPersonalizados.map((pan, index) => (
-              <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg">
+              <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg relative">
+                <button
+                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                  onClick={() => onRemoveItem(pan.id, 'panPersonalizado')}
+                >
+                  <Trash2 className="w-5 h-5" />
+                </button>
                 <span className="font-bold">Pan {index + 1}:</span>
                 {pan.harinas.map(h => <span key={h.id}>• {h.icon ? h.icon + ' ' : ''}{h.name}</span>)}
                 {pan.extras?.length > 0 && (
@@ -160,9 +166,15 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
             {bollitosInCart.map(item => {
               const b = bollitos.find(b => b.id === item.id);
               return b && (
-                <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg">
+                <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg relative">
                   <span className="flex items-center gap-2">{b.image ? b.image + ' ' : ''}{b.name} x{item.quantity}</span>
                   <span>{formatPrice(b.price * item.quantity)}</span>
+                  <button
+                    className="ml-2 text-red-500 hover:text-red-700"
+                    onClick={() => onRemoveItem(item.id, 'bollito')}
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
                 </div>
               );
             })}
@@ -176,9 +188,15 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
             {pulguitasInCart.map(item => {
               const p = pulguitas.find(p => p.id === item.id);
               return p && (
-                <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg">
+                <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg relative">
                   <span className="flex items-center gap-2">{p.image ? p.image + ' ' : ''}{p.name} x{item.quantity}</span>
                   <span>{formatPrice(p.price * item.quantity)}</span>
+                  <button
+                    className="ml-2 text-red-500 hover:text-red-700"
+                    onClick={() => onRemoveItem(item.id, 'pulguita')}
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
                 </div>
               );
             })}

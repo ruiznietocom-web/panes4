@@ -79,10 +79,16 @@ const App = () => {
     });
   };
 
+  // 👉 Eliminar cualquier artículo del carrito
   const handleRemoveCartItem = (id, type) => {
     setCartItems(prevItems =>
       prevItems.filter(item => !(item.id === id && item.type === type))
     );
+  };
+
+  // 👉 Extras por pan (para manejar en ExtrasSelector)
+  const handleUpdatePanExtras = (updatedCart) => {
+    setCartItems(updatedCart);
   };
 
   const handleSendWhatsApp = () => { 
@@ -114,7 +120,7 @@ const App = () => {
                       <HarinaSelector onAddPan={handleAddPanPersonalizado} />
                       <ExtrasSelector 
                         cartItems={cartItems}
-                        onUpdatePanExtras={(updatedCart) => setCartItems(updatedCart)}
+                        onUpdatePanExtras={handleUpdatePanExtras}
                       />
                     </>
                   } />
@@ -136,7 +142,11 @@ const App = () => {
 
               <div className="lg:col-span-1">
                 <div className="sticky top-4">
-                  <OrderSummary cartItems={cartItems} onSendWhatsApp={handleSendWhatsApp} />
+                  <OrderSummary 
+                    cartItems={cartItems} 
+                    onSendWhatsApp={handleSendWhatsApp} 
+                    onRemoveItem={handleRemoveCartItem} 
+                  />
                 </div>
               </div>
             </div>

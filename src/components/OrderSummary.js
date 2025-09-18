@@ -1,12 +1,10 @@
 import React from 'react'; 
 import { motion } from 'framer-motion';
 import { ShoppingCart, MessageCircle } from 'lucide-react';
-import { harinas, bollitos, pulguitas } from '../data/products';
+import { bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
-  const fixedHarinaPrice = 5.50;
-
   const optionalExtras = [
     { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
@@ -23,14 +21,15 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
   // Filtrados por tipo
   const pansPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
-  const extrasInCart = cartItems.filter(item => item.type === 'extra');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
 
   const calculateTotal = () => {
     let total = 0;
-    pansPersonalizados.forEach(p => total += p.price);
-    extrasInCart.forEach(e => total += e.price);
+    pansPersonalizados.forEach(p => {
+      const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
+      total += p.price + extrasTotal;
+    });
     bollitosInCart.forEach(item => {
       const b = bollitos.find(b => b.id === item.id);
       if (b) total += b.price * item.quantity;
@@ -57,15 +56,14 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         pan.harinas.forEach(h => {
           message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}\n`;
         });
-        message += `Precio: ${formatPrice(pan.price)}\n`;
-      });
-    }
-
-    // Extras
-    if (extrasInCart.length > 0) {
-      message += `\n*EXTRAS AÑADIDOS:*\n`;
-      extrasInCart.forEach(extra => {
-        message += `• ${extra.icon ? extra.icon + ' ' : ''}${extra.name} - ${formatPrice(extra.price)}\n`;
+        if (pan.extras?.length > 0) {
+          message += `Extras:\n`;
+          pan.extras.forEach(e => {
+            message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
+          });
+        }
+        const panTotal = pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0);
+        message += `Precio: ${formatPrice(panTotal)}\n`;
       });
     }
 
@@ -87,7 +85,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
       });
     }
 
-    // Extras opcionales "Manuel..."
+    // Extras opcionales
     if (selectedOptionalExtras.length > 0) {
       message += `\n*MANUEL, QUÉ RICO TU PAN!...:*\n`;
       selectedOptionalExtras.forEach(id => {
@@ -139,20 +137,17 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
               <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg">
                 <span className="font-bold">Pan {index + 1}:</span>
                 {pan.harinas.map(h => <span key={h.id}>• {h.icon ? h.icon + ' ' : ''}{h.name}</span>)}
-                <span className="mt-1 font-bold">Precio: {formatPrice(pan.price)}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Extras */}
-        {extrasInCart.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">Extras:</h3>
-            {extrasInCart.map(extra => (
-              <div key={extra.id} className="flex justify-between items-center p-2 bg-green-50 rounded-lg">
-                <span className="flex items-center gap-2">{extra.icon ? extra.icon + ' ' : ''}{extra.name}</span>
-                <span>{formatPrice(extra.price)}</span>
+                {pan.extras?.length > 0 && (
+                  <div className="mt-1 ml-2">
+                    <span className="font-semibold">Extras:</span>
+                    {pan.extras.map(extra => (
+                      <div key={extra.id}>• {extra.icon ? extra.icon + ' ' : ''}{extra.name} ({formatPrice(extra.price)})</div>
+                    ))}
+                  </div>
+                )}
+                <span className="mt-1 font-bold">
+                  Precio: {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
+                </span>
               </div>
             ))}
           </div>

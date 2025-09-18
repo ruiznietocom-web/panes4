@@ -22,12 +22,15 @@ const HarinaSelector = ({ onAddPan }) => {
 
   const handleAddPan = () => {
     if (selectedHarinas.length === 0) return;
+
+    // Cada pan inicia con un array vacío de extras
     onAddPan({
       id: Date.now(),
       type: 'panPersonalizado',
       harinas: selectedHarinas,
       price: fixedHarinaPrice,
       quantity: 1,
+      extras: []
     });
     setSelectedHarinas([]);
   };
@@ -43,7 +46,7 @@ const HarinaSelector = ({ onAddPan }) => {
         Elige tus Harinas Base
       </h2>
       <p className="text-gray-500 text-center mb-4">
-        Puedes seleccionar hasta 5 harinas.  
+        Puedes seleccionar hasta {maxHarinas} harinas.  
         El precio final de tu pan (sin extras) es fijo: {formatPrice(fixedHarinaPrice)}.
       </p>
       

@@ -40,10 +40,10 @@ const App = () => {
 
   // 👉 Añadir Pan Personalizado completo
   const handleAddPanPersonalizado = (pan) => {
-    setCartItems(prev => [...prev, pan]);
+    setCartItems(prev => [...prev, { ...pan, extras: [] }]);
   };
 
-  // 👉 Actualizar cantidades de bollitos, pulguitas, otrosPanes, extras
+  // 👉 Actualizar cantidades de bollitos, pulguitas, otrosPanes
   const handleUpdateCartItem = (id, quantity, type) => {
     setCartItems(prevItems => {
       const existingIndex = prevItems.findIndex(item => item.id === id && item.type === type);
@@ -85,20 +85,6 @@ const App = () => {
     );
   };
 
-  // Extras ON/OFF
-  const handleToggleExtra = (extra) => {
-    setCartItems(prevItems => {
-      const existing = prevItems.find(item => item.id === extra.id && item.type === 'extra');
-      if (existing) {
-        return prevItems.filter(item => !(item.id === extra.id && item.type === 'extra'));
-      }
-      return [
-        ...prevItems,
-        { id: extra.id, quantity: 1, type: 'extra', name: extra.name, price: extra.price, icon: extra.icon }
-      ];
-    });
-  };
-
   const handleSendWhatsApp = () => { 
     setShowSuccessModal(true); 
     setShowCart(false); 
@@ -109,7 +95,7 @@ const App = () => {
     setCartItems([]); 
   };
 
-  const cartItemCount = cartItems.reduce((count, item) => count + item.quantity, 0);
+  const cartItemCount = cartItems.reduce((count, item) => count + (item.quantity || 1), 0);
 
   return (
     <Router>
@@ -127,8 +113,8 @@ const App = () => {
                     <>
                       <HarinaSelector onAddPan={handleAddPanPersonalizado} />
                       <ExtrasSelector 
-                        selectedExtras={cartItems.filter(item => item.type === 'extra')}
-                        onToggleExtra={handleToggleExtra}
+                        cartItems={cartItems}
+                        onUpdatePanExtras={(updatedCart) => setCartItems(updatedCart)}
                       />
                     </>
                   } />

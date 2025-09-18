@@ -1,25 +1,11 @@
-import React from 'react'; 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart } from 'lucide-react';
 import { harinas, bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
-  const optionalExtras = [
-    { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
-    { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
-    { id: 'cerveza', name: 'Tómate una Cerveza a mi Salud!', price: 1.50, icon: '🍺' },
-  ];
-
-  const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
-
-  const toggleOptionalExtra = (extra) => {
-    setSelectedOptionalExtras(prev => 
-      prev.includes(extra.id) ? prev.filter(id => id !== extra.id) : [...prev, extra.id]
-    );
-  };
-
-  // Filtrado por tipo
+  // Filtrados por tipo
   const pansPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
   const extrasInCart = cartItems.filter(item => item.type === 'extra');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
@@ -27,95 +13,35 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
 
   const calculateTotal = () => {
     let total = 0;
+
+    // Panes personalizados
     pansPersonalizados.forEach(p => {
-      const extrasSum = (p.extras || []).reduce((s, e) => s + (e.price || 0), 0);
+      const extrasSum = (p.extras || []).reduce((sum, e) => sum + (e.price || 0), 0);
       total += (p.basePrice || p.price || 0) + extrasSum;
     });
+
+    // Extras globales
     extrasInCart.forEach(e => total += e.price);
+
+    // Bollitos
     bollitosInCart.forEach(item => {
       const b = bollitos.find(b => b.id === item.id);
       if (b) total += b.price * item.quantity;
     });
+
+    // Pulguitas
     pulguitasInCart.forEach(item => {
       const p = pulguitas.find(p => p.id === item.id);
       if (p) total += p.price * item.quantity;
     });
-    selectedOptionalExtras.forEach(id => {
-      const e = optionalExtras.find(opt => opt.id === id);
-      if (e) total += e.price;
-    });
+
     return total.toFixed(2);
-  };
-
-  const generateWhatsAppMessage = () => {
-    let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n`;
-
-    if (pansPersonalizados.length > 0) {
-      message += `\n*PANES PERSONALIZADOS:*\n`;
-      pansPersonalizados.forEach((pan, index) => {
-        message += `Pan ${index + 1}:\n`;
-        pan.harinas.forEach(h => {
-          message += `• ${h.icon ? h.icon + ' ' : '🌾 '}${h.name}\n`;
-        });
-        if (pan.extras && pan.extras.length > 0) {
-          message += `Extras:\n`;
-          pan.extras.forEach(ex => {
-            message += `• ${ex.icon ? ex.icon + ' ' : ''}${ex.name} - ${formatPrice(ex.price)}\n`;
-          });
-        }
-        const panTotal = (pan.basePrice || pan.price || 0) + (pan.extras || []).reduce((s, e) => s + (e.price || 0), 0);
-        message += `Precio Pan ${index + 1}: ${formatPrice(panTotal)}\n`;
-      });
-    }
-
-    if (extrasInCart.length > 0) {
-      message += `\n*EXTRAS AÑADIDOS:*\n`;
-      extrasInCart.forEach(extra => {
-        message += `• ${extra.icon ? extra.icon + ' ' : ''}${extra.name} - ${formatPrice(extra.price)}\n`;
-      });
-    }
-
-    if (bollitosInCart.length > 0) {
-      message += `\n*BOLLITOS:*\n`;
-      bollitosInCart.forEach(item => {
-        const b = bollitos.find(b => b.id === item.id);
-        if (b) message += `• ${b.image ? b.image + ' ' : ''}${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
-      });
-    }
-
-    if (pulguitasInCart.length > 0) {
-      message += `\n*PULGUITAS:*\n`;
-      pulguitasInCart.forEach(item => {
-        const p = pulguitas.find(p => p.id === item.id);
-        if (p) message += `• ${p.image ? p.image + ' ' : ''}${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
-      });
-    }
-
-    if (selectedOptionalExtras.length > 0) {
-      message += `\n*EXTRAS OPCIONALES:*\n`;
-      selectedOptionalExtras.forEach(id => {
-        const e = optionalExtras.find(opt => opt.id === id);
-        if (e) message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} - ${formatPrice(e.price)}\n`;
-      });
-    }
-
-    message += `\n*TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
-    message += `🚚 Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
-    message += `🙏 EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.\n`;
-    return encodeURIComponent(message);
-  };
-
-  const handleSendWhatsApp = () => {
-    const message = generateWhatsAppMessage();
-    const phoneNumber = "627526380"; 
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-    onSendWhatsApp();
   };
 
   const isOrderEmpty = cartItems.length === 0;
 
   return (
-    <motion.div 
+    <motion.div
       className="bg-white rounded-2xl p-6 shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -206,15 +132,18 @@ const OrderSummary = ({ cartItems, onSendWhatsApp }) => {
         )}
       </div>
 
-      <div className="text-center mt-4">
-        <button
-          onClick={handleSendWhatsApp}
-          className="bg-amber-500 text-white px-6 py-2 rounded-xl font-bold shadow-md hover:bg-amber-600 transition"
-          disabled={isOrderEmpty}
-        >
-          Enviar Pedido por WhatsApp
-        </button>
-      </div>
+      {/* Total y botón */}
+      {!isOrderEmpty && (
+        <div className="text-center mt-4">
+          <span className="font-bold text-lg block mb-2">Total: {formatPrice(calculateTotal())}</span>
+          <button
+            onClick={onSendWhatsApp}
+            className="bg-amber-500 text-white px-6 py-2 rounded-xl font-bold shadow-md hover:bg-amber-600 transition"
+          >
+            Enviar Pedido por WhatsApp
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 };

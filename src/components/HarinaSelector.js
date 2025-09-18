@@ -46,8 +46,9 @@ const HarinaSelector = ({ onAddPan }) => {
         Elige tus Harinas Base
       </h2>
       <p className="text-gray-500 text-center mb-4">
-        Puedes seleccionar hasta 5 harinas.  
-        El precio final de tu pan (sin extras) es fijo: {formatPrice(fixedHarinaPrice)}.
+        Puedes escoger hasta 5 tipos de harina y, si te apetece, también el tipo de corte.
+         Añade todos los panes que quieras y, más abajo, elige los extras que prefiera para cada pan.
+        El precio del pan, sin contar los extras, es fijo: {formatPrice(fixedHarinaPrice)}.
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -58,7 +58,7 @@ export const harinas = [
 ];
 
 export const extras = [
-  { id: 1, name: "Mix Semillas Eco", price: 0.70, icon: "🌻" },
+  { id: 1, name: "Mix Semillas Eco 100g", price: 1, icon: "🌻" },
   { id: 2, name: "Nueces", price: 0.70, icon: "🥜" },
   { id: 3, name: "Ciruelas Pasas", price: 0.70, icon: "🍇" },
   { id: 4, name: "Dátiles", price: 0.50, icon: "🌴" },

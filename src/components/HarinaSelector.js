@@ -46,7 +46,7 @@ const HarinaSelector = ({ onAddPan }) => {
         Elige tus Harinas Base
       </h2>
       <p className="text-gray-500 text-center mb-4">
-        Puedes seleccionar hasta {maxHarinas} harinas.  
+        Puedes seleccionar hasta 5 harinas.  
         El precio final de tu pan (sin extras) es fijo: {formatPrice(fixedHarinaPrice)}.
       </p>
       

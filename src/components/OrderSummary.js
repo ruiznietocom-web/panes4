@@ -96,7 +96,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
     message += `\n*TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
     message += `🚚 Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
-    message += `🙏 EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.\n`;
+    message += `🙏 EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.🙏\n`;
+    message += `🙏 *PARA MÁS PEDIDOS ---> https://panespersonalizados.netlify.app/.* 🙏\n`;
+
     return encodeURIComponent(message);
   };
 

@@ -77,17 +77,17 @@ export const extras = [
 export const bollitos = [
   { id: 1, name: "Bollito Integral Clásico", description: "Suave y esponjoso, ideal para el desayuno", image: "🍞", price: 1 },
 
-  { id: 1.05, name: "PACK Surtido 6 Bollitos Integrales Clásicos", description: "Tu pack clásico", image: "🍞", price: 6 },
+  { id: 1.05, name: "PACK Surtido 6 Bollitos Integrales Clásicos", description: "Tu pack clásico", image: "🧺", price: 6 },
 
 
-  { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "1x Semillas, 1x Ajo, 1x Cacao, 1x Cúrcuma, 1x Nueces, 1x Ciruelas Pasas, 1x Tomate y Orégano.Pruébalos todos!", image: "🍞", price: 8.50 },
-  { id: 1.2, name: "PACK Surtido 6 Bollitos Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🌻", price: 7.50 },
-  { id: 1.3, name: "PACK Surtido 6 Bollitos Integrales de Nueces", description: "Nutritivo y delicioso", image: "🥜", price: 7.50 },
-  { id: 1.4, name: "PACK Surtido 6 Bollitos Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🍫", price: 7 },  
-  { id: 1.5, name: "PACK Surtido 6 Bollitos Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 7.50 },
-  { id: 1.6, name: "PACK Surtido 6 Bollitos Integrales de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 7 },
-  { id: 1.7, name: "PACK Surtido 6 Bollitos Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 8 },
-  { id: 1.8, name: "PACK Surtido 6 Bollitos Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 7.50 },
+  { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "1x Semillas, 1x Ajo, 1x Cacao, 1x Cúrcuma, 1x Nueces, 1x Ciruelas Pasas, 1x Tomate y Orégano.Pruébalos todos!", image: "🧺", price: 8.50 },
+  { id: 1.2, name: "PACK Surtido 6 Bollitos Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🧺🌻", price: 7.50 },
+  { id: 1.3, name: "PACK Surtido 6 Bollitos Integrales de Nueces", description: "Nutritivo y delicioso", image: "🧺🥜", price: 7.50 },
+  { id: 1.4, name: "PACK Surtido 6 Bollitos Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🧺🍫", price: 7 },  
+  { id: 1.5, name: "PACK Surtido 6 Bollitos Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🧺🍇", price: 7.50 },
+  { id: 1.6, name: "PACK Surtido 6 Bollitos Integrales de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧺🧡", price: 7 },
+  { id: 1.7, name: "PACK Surtido 6 Bollitos Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🧺🍅", price: 8 },
+  { id: 1.8, name: "PACK Surtido 6 Bollitos Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧺🧄", price: 7.50 },
 
 
 

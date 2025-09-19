@@ -18,17 +18,17 @@ const Header = ({ cartItemCount, onOpenCart }) => {
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          {/* Logo redondo con latido, mismo tamaño */}
+          {/* Logo redondo con latido doble cada 2 segundos */}
           <motion.div
             className="p-1 bg-white/20 rounded-full overflow-hidden"
-            animate={{ scale: [1, 1.05, 1] }} // latido suave
-            transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
+            animate={{ scale: [1, 1.05, 1, 1.05, 1] }} // dos latidos consecutivos
+            transition={{ duration: 0.6, repeat: Infinity, repeatDelay: 1.4, ease: "easeInOut" }}
           >
             <img src={logo} alt="Logo PanZen" className="w-[80px] h-[80px] object-cover rounded-full" />
           </motion.div>
 
           <div className="text-center">
-            <h1 className="text-3xl font-bold">PanZen </h1>
+            <h1 className="text-3xl font-bold">PanZen</h1>
             <p className="text-amber-100 font-medium">Tu pan consciente personalizado</p>
           </div>
         </motion.div>

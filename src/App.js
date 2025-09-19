@@ -13,7 +13,7 @@ import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
 import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
-// Componente ScrollToTop
+// 👉 Componente ScrollToTop (sube la página al cambiar de ruta)
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -27,7 +27,7 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  // Helper para productos sueltos
+  // 👉 Helper para buscar detalles de productos
   const getProductDetails = (id, type) => {
     switch (type) {
       case 'extra': return extras.find(p => p.id === id);
@@ -38,12 +38,12 @@ const App = () => {
     }
   };
 
-  // 👉 Añadir Pan Personalizado completo
+  // 👉 Añadir Pan Personalizado
   const handleAddPanPersonalizado = (pan) => {
     setCartItems(prev => [...prev, { ...pan, extras: [] }]);
   };
 
-  // 👉 Actualizar cantidades de bollitos, pulguitas, otrosPanes
+  // 👉 Actualizar cantidades (bollitos, pulguitas, otros panes)
   const handleUpdateCartItem = (id, quantity, type) => {
     setCartItems(prevItems => {
       const existingIndex = prevItems.findIndex(item => item.id === id && item.type === type);
@@ -79,28 +79,31 @@ const App = () => {
     });
   };
 
-  // 👉 Eliminar cualquier artículo del carrito
+  // 👉 Eliminar item del carrito
   const handleRemoveCartItem = (id, type) => {
     setCartItems(prevItems =>
       prevItems.filter(item => !(item.id === id && item.type === type))
     );
   };
 
-  // 👉 Extras por pan (para manejar en ExtrasSelector)
+  // 👉 Actualizar extras de un pan
   const handleUpdatePanExtras = (updatedCart) => {
     setCartItems(updatedCart);
   };
 
+  // 👉 Enviar pedido por WhatsApp
   const handleSendWhatsApp = () => { 
     setShowSuccessModal(true); 
     setShowCart(false); 
   };
 
+  // 👉 Cerrar modal de éxito
   const handleCloseModal = () => { 
     setShowSuccessModal(false); 
     setCartItems([]); 
   };
 
+  // 👉 Contador total de items
   const cartItemCount = cartItems.reduce((count, item) => count + (item.quantity || 1), 0);
 
   return (
@@ -113,6 +116,7 @@ const App = () => {
         <div className="max-w-6xl mx-auto p-4 py-8">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Columna izquierda */}
               <div className="lg:col-span-2 space-y-6">
                 <Routes>
                   <Route path="/" element={
@@ -126,13 +130,15 @@ const App = () => {
                   } />
                   <Route path="/bollitos" element={
                     <BollitosPage 
-                      selectedBollitos={cartItems.filter(item => item.type === 'bollito').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
+                      selectedBollitos={cartItems.filter(item => item.type === 'bollito')
+                        .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
                       onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')}
                     />
                   } />
                   <Route path="/pulguitas" element={
                     <PulguitasPage 
-                      selectedPulguitas={cartItems.filter(item => item.type === 'pulguita').reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
+                      selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')
+                        .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
                       onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')}
                     />
                   } />
@@ -140,6 +146,7 @@ const App = () => {
                 </Routes>
               </div>
 
+              {/* Columna derecha */}
               <div className="lg:col-span-1">
                 <div className="sticky top-4">
                   <OrderSummary 
@@ -153,6 +160,7 @@ const App = () => {
           </motion.div>
         </div>
 
+        {/* Modales y carrito lateral */}
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
         <ShoppingCart 
           isOpen={showCart} 

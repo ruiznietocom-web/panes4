@@ -52,21 +52,17 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     if (pansPersonalizados.length > 0) {
       message += `\n*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
-        const tieneCortado = pan.harinas.some(h => h.name.toLowerCase().includes("cortado"));
-        // 🌾 siempre, 🔪 solo si es cortado
-        message += `🌾 Pan ${index + 1}${tieneCortado ? " 🔪" : ""}:\n`;
-
+        message += `Pan ${index + 1}:\n`;
         pan.harinas.forEach(h => {
-          message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}\n`;
+          const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
+          message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n`;
         });
-
         if (pan.extras?.length > 0) {
           message += `Extras:\n`;
           pan.extras.forEach(e => {
             message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
           });
         }
-
         const panTotal = pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0);
         message += `Precio: ${formatPrice(panTotal)}\n`;
       });
@@ -140,41 +136,115 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         {pansPersonalizados.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700">Panes Personalizados:</h3>
-            {pansPersonalizados.map((pan, index) => {
-              const tieneCortado = pan.harinas.some(h => h.name.toLowerCase().includes("cortado"));
-              return (
-                <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg relative">
+            {pansPersonalizados.map((pan, index) => (
+              <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg relative">
+                <button
+                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                  onClick={() => onRemoveItem(pan.id, 'panPersonalizado')}
+                >
+                  <Trash2 className="w-5 h-5" />
+                </button>
+                <span className="font-bold">Pan {index + 1}:</span>
+                {pan.harinas.map(h => {
+                  const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
+                  return (
+                    <span key={h.id}>
+                      • {h.icon ? h.icon + ' ' : ''}{h.name}{hasCortado ? ' 🔪' : ''}
+                    </span>
+                  );
+                })}
+                {pan.extras?.length > 0 && (
+                  <div className="mt-1 ml-2">
+                    <span className="font-semibold">Extras:</span>
+                    {pan.extras.map(extra => (
+                      <div key={extra.id}>• {extra.icon ? extra.icon + ' ' : ''}{extra.name} ({formatPrice(extra.price)})</div>
+                    ))}
+                  </div>
+                )}
+                <span className="mt-1 font-bold">
+                  Precio: {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Bollitos */}
+        {bollitosInCart.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Bollitos:</h3>
+            {bollitosInCart.map(item => {
+              const b = bollitos.find(b => b.id === item.id);
+              return b && (
+                <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg relative">
+                  <span className="flex items-center gap-2">{b.image ? b.image + ' ' : ''}{b.name} x{item.quantity}</span>
+                  <span>{formatPrice(b.price * item.quantity)}</span>
                   <button
-                    className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-                    onClick={() => onRemoveItem(pan.id, 'panPersonalizado')}
+                    className="ml-2 text-red-500 hover:text-red-700"
+                    onClick={() => onRemoveItem(item.id, 'bollito')}
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>
-                  {/* 🌾 siempre, 🔪 si contiene "cortado" */}
-                  <span className="font-bold flex items-center gap-2">
-                    🌾 Pan {index + 1} {tieneCortado && "🔪"}
-                  </span>
-                  {pan.harinas.map(h => (
-                    <span key={h.id}>• {h.icon ? h.icon + ' ' : ''}{h.name}</span>
-                  ))}
-                  {pan.extras?.length > 0 && (
-                    <div className="mt-1 ml-2">
-                      <span className="font-semibold">Extras:</span>
-                      {pan.extras.map(extra => (
-                        <div key={extra.id}>• {extra.icon ? extra.icon + ' ' : ''}{extra.name} ({formatPrice(extra.price)})</div>
-                      ))}
-                    </div>
-                  )}
-                  <span className="mt-1 font-bold">
-                    Precio: {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
-                  </span>
                 </div>
               );
             })}
           </div>
         )}
 
-        {/* ... resto igual (bollitos, pulguitas, extras opcionales, total, etc.) ... */}
+        {/* Pulguitas */}
+        {pulguitasInCart.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Pulguitas:</h3>
+            {pulguitasInCart.map(item => {
+              const p = pulguitas.find(p => p.id === item.id);
+              return p && (
+                <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg relative">
+                  <span className="flex items-center gap-2">{p.image ? p.image + ' ' : ''}{p.name} x{item.quantity}</span>
+                  <span>{formatPrice(p.price * item.quantity)}</span>
+                  <button
+                    className="ml-2 text-red-500 hover:text-red-700"
+                    onClick={() => onRemoveItem(item.id, 'pulguita')}
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Extras opcionales */}
+        <div className="space-y-2">
+          <h3 className="font-semibold text-gray-700">MANUEL, QUÉ RICO TU PAN!...:</h3>
+          <div className="flex gap-3 flex-wrap">
+            {optionalExtras.map(extra => (
+              <button
+                key={extra.id}
+                onClick={() => toggleOptionalExtra(extra)}
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${
+                  selectedOptionalExtras.includes(extra.id)
+                    ? 'bg-yellow-100 border-yellow-400'
+                    : 'bg-gray-50 border-gray-300 hover:bg-gray-100'
+                }`}
+              >
+                <span>{extra.icon}</span>
+                <span>{extra.name} ({formatPrice(extra.price)})</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Total + info entrega */}
+        <div className="border-t pt-3 mt-3">
+          <div className="flex justify-between items-center text-xl font-bold">
+            <span>Total:</span>
+            <span>{formatPrice(calculateTotal())}</span>
+          </div>
+
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
+            🚴‍♂️ <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
+          </div>
+        </div>
       </div>
 
       {/* Botón WhatsApp */}

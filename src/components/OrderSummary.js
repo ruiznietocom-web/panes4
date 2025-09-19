@@ -52,7 +52,8 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     if (pansPersonalizados.length > 0) {
       message += `\n*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
-        message += `Pan ${index + 1}:\n`;
+        // 🌾 Icono de trigo delante del pan
+        message += `🌾 Pan ${index + 1}:\n`;
         pan.harinas.forEach(h => {
           const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
           message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n`;
@@ -135,7 +136,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         {/* Panes Personalizados */}
         {pansPersonalizados.length > 0 && (
           <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">Panes Personalizados:</h3>
+            <h3 className="font-semibold text-gray-700">🌾 Panes Personalizados:</h3>
             {pansPersonalizados.map((pan, index) => (
               <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg relative">
                 <button
@@ -144,7 +145,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
                 >
                   <Trash2 className="w-5 h-5" />
                 </button>
-                <span className="font-bold">Pan {index + 1}:</span>
+                <span className="font-bold">🌾 Pan {index + 1}:</span>
                 {pan.harinas.map(h => {
                   const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
                   return (

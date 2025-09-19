@@ -116,7 +116,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-  <span className="text-xl">🧺</span> Resumen del Pedido
+  <span className="text-2xl">🧺</span> Resumen del Pedido
         </h2>
       </div>
 

@@ -18,10 +18,15 @@ const Header = ({ cartItemCount, onOpenCart }) => {
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          {/* Logo redondo aumentado 50% */}
-          <div className="p-1 bg-white/20 rounded-full overflow-hidden">
+          {/* Logo redondo con latido, mismo tamaño */}
+          <motion.div
+            className="p-1 bg-white/20 rounded-full overflow-hidden"
+            animate={{ scale: [1, 1.05, 1] }} // latido suave
+            transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
+          >
             <img src={logo} alt="Logo PanZen" className="w-[80px] h-[80px] object-cover rounded-full" />
-          </div>
+          </motion.div>
+
           <div className="text-center">
             <h1 className="text-3xl font-bold">PanZen </h1>
             <p className="text-amber-100 font-medium">Tu pan consciente personalizado</p>

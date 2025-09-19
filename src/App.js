@@ -13,7 +13,7 @@ import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
 import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
-// 👉 Componente ScrollToTop (sube la página al cambiar de ruta)
+// Componente para scroll al cambiar de ruta
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -27,7 +27,6 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  // 👉 Helper para buscar detalles de productos
   const getProductDetails = (id, type) => {
     switch (type) {
       case 'extra': return extras.find(p => p.id === id);
@@ -38,72 +37,55 @@ const App = () => {
     }
   };
 
-  // 👉 Añadir Pan Personalizado
   const handleAddPanPersonalizado = (pan) => {
     setCartItems(prev => [...prev, { ...pan, extras: [] }]);
   };
 
-  // 👉 Actualizar cantidades (bollitos, pulguitas, otros panes)
   const handleUpdateCartItem = (id, quantity, type) => {
     setCartItems(prevItems => {
       const existingIndex = prevItems.findIndex(item => item.id === id && item.type === type);
       const newQuantity = Math.max(0, quantity);
 
-      if (newQuantity === 0) {
-        return prevItems.filter(item => !(item.id === id && item.type === type));
-      }
+      if (newQuantity === 0) return prevItems.filter(item => !(item.id === id && item.type === type));
 
-      if (existingIndex > -1) {
-        return prevItems.map((item, idx) =>
-          idx === existingIndex ? { ...item, quantity: newQuantity } : item
-        );
-      }
+      if (existingIndex > -1) return prevItems.map((item, idx) =>
+        idx === existingIndex ? { ...item, quantity: newQuantity } : item
+      );
 
       const product = getProductDetails(id, type);
-      if (product) {
-        return [
-          ...prevItems,
-          {
-            id,
-            quantity: newQuantity,
-            type,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            icon: product.icon
-          }
-        ];
-      }
+      if (product) return [
+        ...prevItems,
+        {
+          id,
+          quantity: newQuantity,
+          type,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          icon: product.icon
+        }
+      ];
 
       return prevItems;
     });
   };
 
-  // 👉 Eliminar item del carrito
   const handleRemoveCartItem = (id, type) => {
-    setCartItems(prevItems =>
-      prevItems.filter(item => !(item.id === id && item.type === type))
-    );
+    setCartItems(prevItems => prevItems.filter(item => !(item.id === id && item.type === type)));
   };
 
-  // 👉 Actualizar extras de un pan
-  const handleUpdatePanExtras = (updatedCart) => {
-    setCartItems(updatedCart);
-  };
+  const handleUpdatePanExtras = (updatedCart) => setCartItems(updatedCart);
 
-  // 👉 Enviar pedido por WhatsApp
   const handleSendWhatsApp = () => { 
     setShowSuccessModal(true); 
     setShowCart(false); 
   };
 
-  // 👉 Cerrar modal de éxito
   const handleCloseModal = () => { 
     setShowSuccessModal(false); 
     setCartItems([]); 
   };
 
-  // 👉 Contador total de items
   const cartItemCount = cartItems.reduce((count, item) => count + (item.quantity || 1), 0);
 
   return (
@@ -121,7 +103,10 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={
                     <>
-                      <HarinaSelector onAddPan={handleAddPanPersonalizado} />
+                      <HarinaSelector 
+                        onAddPan={handleAddPanPersonalizado} 
+                        cartCount={cartItems.filter(item => item.type === 'panPersonalizado').length}
+                      />
                       <ExtrasSelector 
                         cartItems={cartItems}
                         onUpdatePanExtras={handleUpdatePanExtras}

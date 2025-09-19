@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { useState } from 'react'; 
 import { motion } from 'framer-motion';
 import { ShoppingBag, MessageCircle, Trash2 } from 'lucide-react';
 import { bollitos, pulguitas } from '../data/products';
@@ -11,7 +11,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     { id: 'cerveza', name: 'Tómate una Cerveza a mi Salud!', price: 1.50, icon: '🍺' },
   ];
 
-  const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
+  const [selectedOptionalExtras, setSelectedOptionalExtras] = useState([]);
 
   const toggleOptionalExtra = (extra) => {
     setSelectedOptionalExtras(prev => 
@@ -116,7 +116,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-  <span className="text-2xl">🧺</span> Resumen del Pedido
+          <span className="text-2xl">🧺</span> Resumen del Pedido
         </h2>
       </div>
 

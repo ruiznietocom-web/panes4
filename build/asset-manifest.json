@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.13f83d87.css",
-    "main.js": "/static/js/main.7b1ec2df.js",
+    "main.css": "/static/css/main.6d58eadf.css",
+    "main.js": "/static/js/main.dfaa86dd.js",
     "static/media/corazon.jpg": "/static/media/corazon.c12469a87a0698c2bd0f.jpg",
     "static/media/barras.jpg": "/static/media/barras.123faecddc12a5408546.jpg",
     "static/media/panoliva.jpg": "/static/media/panoliva.d762a917ee90e46cfff6.jpg",
@@ -12,12 +12,13 @@
     "static/media/panajo.jpg": "/static/media/panajo.069ba661aa4d2efc22c6.jpg",
     "static/media/bollopulga.jpg": "/static/media/bollopulga.7c13e9ffcb5c3b450f2f.jpg",
     "static/media/pulguitas.jpg": "/static/media/pulguitas.abaa2b24e630637e04f6.jpg",
+    "static/media/logo.jpg": "/static/media/logo.fc2347e3893c0c13a391.jpg",
     "index.html": "/index.html",
-    "main.13f83d87.css.map": "/static/css/main.13f83d87.css.map",
-    "main.7b1ec2df.js.map": "/static/js/main.7b1ec2df.js.map"
+    "main.6d58eadf.css.map": "/static/css/main.6d58eadf.css.map",
+    "main.dfaa86dd.js.map": "/static/js/main.dfaa86dd.js.map"
   },
   "entrypoints": [
-    "static/css/main.13f83d87.css",
-    "static/js/main.7b1ec2df.js"
+    "static/css/main.6d58eadf.css",
+    "static/js/main.dfaa86dd.js"
   ]
 }

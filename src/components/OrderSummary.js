@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { motion } from 'framer-motion';
-import { Basket, MessageCircle, Trash2 } from 'lucide-react';
+import { ShoppingBag, MessageCircle, Trash2 } from 'lucide-react';
 import { bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
@@ -116,7 +116,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-          <Basket className="w-6 h-6" /> Resumen del Pedido
+          <ShoppingBag className="w-6 h-6" /> Resumen del Pedido
         </h2>
       </div>
 

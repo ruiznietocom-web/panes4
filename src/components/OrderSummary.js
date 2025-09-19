@@ -207,7 +207,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
         {/* Extras opcionales */}
         <div className="space-y-2">
-          <h3 className="font-semibold text-gray-700">Manuel, qué rico tu pan!...:</h3>
+          <h3 className="font-semibold text-gray-700">MANUEL, QUÉ RICO TU PAN!...:</h3>
           <div className="flex gap-3 flex-wrap">
             {optionalExtras.map(extra => (
               <button
@@ -234,7 +234,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
           </div>
 
           <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
-            🚚 <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
+            🚴‍♂️ <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
           </div>
         </div>
       </div>

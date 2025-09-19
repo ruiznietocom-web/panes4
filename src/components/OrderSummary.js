@@ -5,6 +5,7 @@ import { bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
+  // Extras opcionales (propina, café, cerveza)
   const optionalExtras = [
     { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
@@ -13,17 +14,19 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
   const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
 
+  // Alternar extras opcionales
   const toggleOptionalExtra = (extra) => {
     setSelectedOptionalExtras(prev => 
       prev.includes(extra.id) ? prev.filter(id => id !== extra.id) : [...prev, extra.id]
     );
   };
 
-  // Filtrados por tipo
+  // Filtrados por tipo de producto
   const pansPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
 
+  // Cálculo total del pedido
   const calculateTotal = () => {
     let total = 0;
     pansPersonalizados.forEach(p => {
@@ -45,6 +48,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     return total.toFixed(2);
   };
 
+  // Generar mensaje de WhatsApp
   const generateWhatsAppMessage = () => {
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n`;
 
@@ -56,6 +60,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         pan.harinas.forEach(h => {
           message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}\n`;
         });
+        if (pan.cortado) {
+          message += `• 🔪 Cortado\n`;
+        }
         if (pan.extras?.length > 0) {
           message += `Extras:\n`;
           pan.extras.forEach(e => {
@@ -102,6 +109,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     return encodeURIComponent(message);
   };
 
+  // Acción enviar WhatsApp
   const handleSendWhatsApp = () => {
     const message = generateWhatsAppMessage();
     const phoneNumber = "627526380"; 
@@ -118,6 +126,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
     >
+      {/* Cabecera */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
           <ShoppingCart className="w-6 h-6" /> Resumen del Pedido
@@ -125,6 +134,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       </div>
 
       <div className="space-y-3 mb-6">
+        {/* Carrito vacío */}
         {isOrderEmpty && (
           <div className="text-center py-4 text-gray-500">
             Tu carrito está vacío. ¡Añade algo delicioso!
@@ -137,22 +147,38 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
             <h3 className="font-semibold text-gray-700">Panes Personalizados:</h3>
             {pansPersonalizados.map((pan, index) => (
               <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg relative">
+                {/* Botón eliminar */}
                 <button
                   className="absolute top-2 right-2 text-red-500 hover:text-red-700"
                   onClick={() => onRemoveItem(pan.id, 'panPersonalizado')}
                 >
                   <Trash2 className="w-5 h-5" />
                 </button>
-                <span className="font-bold">Pan {index + 1}:</span>
-                {pan.harinas.map(h => <span key={h.id}>• {h.icon ? h.icon + ' ' : ''}{h.name}</span>)}
+
+                {/* Icono trigo 🌾 siempre + Pan # + icono cuchillo si cortado */}
+                <span className="font-bold flex items-center gap-2">
+                  🌾 Pan {index + 1}
+                  {pan.cortado && <span>🔪</span>}
+                </span>
+
+                {/* Harinas */}
+                {pan.harinas.map(h => (
+                  <span key={h.id}>• {h.icon ? h.icon + ' ' : ''}{h.name}</span>
+                ))}
+
+                {/* Extras */}
                 {pan.extras?.length > 0 && (
                   <div className="mt-1 ml-2">
                     <span className="font-semibold">Extras:</span>
                     {pan.extras.map(extra => (
-                      <div key={extra.id}>• {extra.icon ? extra.icon + ' ' : ''}{extra.name} ({formatPrice(extra.price)})</div>
+                      <div key={extra.id}>
+                        • {extra.icon ? extra.icon + ' ' : ''}{extra.name} ({formatPrice(extra.price)})
+                      </div>
                     ))}
                   </div>
                 )}
+
+                {/* Precio total pan */}
                 <span className="mt-1 font-bold">
                   Precio: {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
                 </span>
@@ -226,13 +252,12 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
           </div>
         </div>
 
-        {/* Total + info entrega */}
+        {/* Total + entrega */}
         <div className="border-t pt-3 mt-3">
           <div className="flex justify-between items-center text-xl font-bold">
             <span>Total:</span>
             <span>{formatPrice(calculateTotal())}</span>
           </div>
-
           <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
             🚴‍♂️ <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
           </div>

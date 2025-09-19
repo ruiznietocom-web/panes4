@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { motion } from 'framer-motion';
-import { ShoppingCart, MessageCircle, Trash2 } from 'lucide-react';
+import { Basket, MessageCircle, Trash2 } from 'lucide-react';
 import { bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
@@ -19,7 +19,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     );
   };
 
-  // Filtrados por tipo
   const pansPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
@@ -48,11 +47,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const generateWhatsAppMessage = () => {
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n`;
 
-    // Panes personalizados
     if (pansPersonalizados.length > 0) {
       message += `\n*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
-        // 🌾 Icono de trigo delante del pan
         message += `🌾 Pan ${index + 1}:\n`;
         pan.harinas.forEach(h => {
           const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
@@ -69,7 +66,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Bollitos
     if (bollitosInCart.length > 0) {
       message += `\n*BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
@@ -78,7 +74,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Pulguitas
     if (pulguitasInCart.length > 0) {
       message += `\n*PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
@@ -87,7 +82,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Extras opcionales
     if (selectedOptionalExtras.length > 0) {
       message += `\n*MANUEL, QUÉ RICO TU PAN!...:*\n`;
       selectedOptionalExtras.forEach(id => {
@@ -122,14 +116,14 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-          <ShoppingCart className="w-6 h-6" /> Resumen del Pedido
+          <Basket className="w-6 h-6" /> Resumen del Pedido
         </h2>
       </div>
 
       <div className="space-y-3 mb-6">
         {isOrderEmpty && (
           <div className="text-center py-4 text-gray-500">
-            Tu carrito está vacío. ¡Añade algo delicioso!
+            Tu cesta está vacía. ¡Añade algo delicioso!
           </div>
         )}
 

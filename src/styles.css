@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Importamos una fuente elegante desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Estilos globales */
+body {
+    @apply bg-gradient-to-b from-amber-50 to-white text-gray-800 antialiased;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    @apply font-semibold text-gray-900;
+}
+
+p {
+    @apply leading-relaxed text-gray-600;
+}
+
+button {
+    @apply focus:outline-none focus:ring-2 focus:ring-amber-400;
+}

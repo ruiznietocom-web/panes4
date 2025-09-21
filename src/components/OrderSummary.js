@@ -45,7 +45,21 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   };
 
   const generateWhatsAppMessage = () => {
-    let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n`;
+    let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n
+⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣴⣶⣶⣶⣶⣶⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣠⣶⠿⠛⠉⠉⠀⢀⡄⠉⠉⠙⠻⢿⣷⣦⣄⠀⠀⠀⠀
+⠀⠀⠀⣠⣾⡟⠁⠀⠀⠀⢀⡄⢀⡇⢀⡀⠀⠀⠀⠹⢿⣿⣷⡄⠀⠀
+⠀⠀⣴⡿⠋⠀⠀⠀⠀⢠⠈⡇⡞⢳⡄⡇⡄⠀⠀⠀⠈⠹⢿⣿⡀⠀
+⠀⣸⡿⠁⠀⠀⠀⠀⠀⢸⢀⡇⢧⡸⢣⠇⡇⠀⠀⠀⠀⠀⠈⢿⣧⠀
+⢠⣿⠇⠀⠀⠀⠀⠀⠀⢸⡶⢼⣾⣷⡮⠖⡇⠀⠀⠀⠀⠀⠀⠘⣿⡇
+⢸⣿⠀⠀⠀⠀⠀⠀⠀⢘⠣⣀⢹⡟⣁⡼⡁⠀⠀⠀⠀⠀⠀⠀⣿⡇
+⢸⣿⣆⠀⠀⠀⠀⠀⠀⢸⡍⠻⣽⣯⠟⢉⡇⠀⠀⠀⠀⠀⠀⠀⣿⡇
+⠨⣿⣿⡄⠀⠀⠀⠀⠀⢠⢑⡦⢸⣏⢴⣎⡄⠀⠀⠀⠀⠀⠀⢰⣿⠁
+⠀⠸⣿⣷⡀⠀⠀⠀⠀⠸⣆⠉⢾⡷⠋⢠⠇⠀⠀⠀⠀⠀⢀⣾⠇⠀
+⠀⠀⠘⢿⣷⣄⠀⠀⠀⠀⠈⠓⢾⡷⠚⠁⠀⠀⠀⠀⠀⣠⡾⠃⠀⠀
+⠀⠀⠀⠈⠻⠿⣷⣤⣀⠀⠀⠀⢸⡇⠀⠀⠀⠀⢀⣠⡾⠋⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠈⠙⠿⢿⣶⣦⣼⡇⠀⣤⠶⠾⠛⠉⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠁⠀⠀⠀⠀⠀⠀\n`;
 
     if (pansPersonalizados.length > 0) {
       message += `\n*PANES PERSONALIZADOS:*\n`;

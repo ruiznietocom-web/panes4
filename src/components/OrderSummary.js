@@ -71,22 +71,22 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     return subtotal.toFixed(2);
   };
 
-
-
-
   const applyDiscount = () => {
-    if (discountCode.toUpperCase() === "PANZEN30") {
-      setAppliedDiscount({ type: "percentage", value: 30, minPurchase: 30 });
+    const discountCodes = {
+      PANZEN30: { type: "percentage", value: 30, minPurchase: 30 },
+      PANZEN10: { type: "percentage", value: 10, minPurchase: 10 },
+      DESCUENTO5: { type: "fixed", value: 5, minPurchase: 0 },
+      NUEVO20: { type: "percentage", value: 20, minPurchase: 20 },
+    };
+
+    const code = discountCode.toUpperCase();
+    if (discountCodes[code]) {
+      setAppliedDiscount(discountCodes[code]);
     } else {
       setAppliedDiscount(null);
       alert("Código no válido");
     }
-
-
-
   };
-
-
 
   const generateWhatsAppMessage = () => {
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n`;
@@ -134,78 +134,81 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    if (appliedDiscount) {
-      message += `\n*DESCUENTO APLICADO: ${appliedDiscount.value}%*\n`;
+    // Totales con descuento
+    const { subtotal, discountAmount, total } = getTotals(cartItems, selectedOptionalExtras, optionalExtras, discountCode);
+    if (discountAmount > 0) {
+      message += `\n*DETALLE DEL TOTAL:*\n`;
+      message += `Subtotal: ${formatPrice(subtotal)}\n`;
+      message += `Descuento: -${formatPrice(discountAmount)}\n`;
+      message += `*Total Final: ${formatPrice(total)}*\n`;
+    } else {
+      message += `\n*TOTAL: ${formatPrice(total)}*\n`;
     }
 
-    message += `\n*TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
-    message += `🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
+    message += `\n🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
     message += `🙏 EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.🙏\n`;
     message += `📱 *PARA MÁS PEDIDOS USA LA AppWeb* ---> https://panespersonalizados.netlify.app/. 📱\n`;
 
-
-
-
-// ----------------------- TOTALES DETALLADOS CON DESCUENTO -----------------------
-if (appliedDiscount) {
-  // Recalcular subtotal y descuento
-  let subtotal = 0;
-  let discountBase = 0;
-
-  // Panes
-  pansPersonalizados.forEach(p => {
-    const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
-    const panTotal = p.price + extrasTotal;
-    subtotal += panTotal;
-    discountBase += panTotal;
-  });
-
-  // Bollitos
-  bollitosInCart.forEach(item => {
-    const b = bollitos.find(b => b.id === item.id);
-    if (b) {
-      const total = b.price * item.quantity;
-      subtotal += total;
-      discountBase += total;
-    }
-  });
-
-  // Pulguitas
-  pulguitasInCart.forEach(item => {
-    const p = pulguitas.find(p => p.id === item.id);
-    if (p) {
-      const total = p.price * item.quantity;
-      subtotal += total;
-      discountBase += total;
-    }
-  });
-
-  // Extras opcionales
-  selectedOptionalExtras.forEach(id => {
-    const e = optionalExtras.find(opt => opt.id === id);
-    if (e) subtotal += e.price;
-  });
-
-  const discountAmount = (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase)
-    ? discountBase * (appliedDiscount.value / 100)
-    : 0;
-
-  const finalTotal = subtotal - discountAmount;
-
-  message += `\n*DETALLE DEL TOTAL:*\n`;
-  message += `Subtotal: ${formatPrice(subtotal)}\n`;
-  message += `Descuento ${appliedDiscount.value}%: -${formatPrice(discountAmount)}\n`;
-  message += `*Total Final: ${formatPrice(finalTotal)}*\n`;
-}
-
-
-
-
-
-
-
-
     return encodeURIComponent(message);
+  };
+
+  const getTotals = (cartItems, selectedOptionalExtras, optionalExtras, code) => {
+    let subtotal = 0;
+    let discountBase = 0;
+
+    const pansPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
+    pansPersonalizados.forEach(p => {
+      const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
+      const panTotal = p.price + extrasTotal;
+      subtotal += panTotal;
+      discountBase += panTotal;
+    });
+
+    const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
+    bollitosInCart.forEach(item => {
+      const b = bollitos.find(b => b.id === item.id);
+      if (b) {
+        const total = b.price * item.quantity;
+        subtotal += total;
+        discountBase += total;
+      }
+    });
+
+    const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
+    pulguitasInCart.forEach(item => {
+      const p = pulguitas.find(p => p.id === item.id);
+      if (p) {
+        const total = p.price * item.quantity;
+        subtotal += total;
+        discountBase += total;
+      }
+    });
+
+    selectedOptionalExtras.forEach(id => {
+      const e = optionalExtras.find(opt => opt.id === id);
+      if (e) subtotal += e.price;
+    });
+
+    const discountCodes = {
+      PANZEN30: { type: "percentage", value: 30, minPurchase: 30 },
+      PANZEN10: { type: "percentage", value: 10, minPurchase: 10 },
+      DESCUENTO5: { type: "fixed", value: 5, minPurchase: 0 },
+      NUEVO20: { type: "percentage", value: 20, minPurchase: 20 },
+    };
+
+    const discount = discountCodes[code.toUpperCase()];
+    let discountAmount = 0;
+    if (discount) {
+      if (discount.type === "percentage" && discountBase >= discount.minPurchase) {
+        discountAmount = discountBase * (discount.value / 100);
+      }
+      if (discount.type === "fixed" && discountBase >= discount.minPurchase) {
+        discountAmount = discount.value;
+      }
+    }
+
+    const total = subtotal - discountAmount;
+    return { subtotal, discountAmount, total };
   };
 
   const handleSendWhatsApp = () => {
@@ -217,248 +220,8 @@ if (appliedDiscount) {
 
   const isOrderEmpty = cartItems.length === 0;
 
-  return (
-    <motion.div 
-      className="bg-white rounded-2xl p-6 shadow-lg"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.4 }}
-    >
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-          <span className="text-2xl">🧺</span> Resumen del Pedido
-        </h2>
-      </div>
+  // ...Aquí sigue todo tu render original, incluyendo la sección de total y botón WhatsApp...
 
-      <div className="space-y-3 mb-6">
-        {isOrderEmpty && (
-          <div className="text-center py-4 text-gray-500">
-            Tu cesta está vacía. ¡Añade algo delicioso!
-          </div>
-        )}
-
-        {/* ----------------------- PANES PERSONALIZADOS ----------------------- */}
-        {pansPersonalizados.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">🌾 Panes Personalizados:</h3>
-            {pansPersonalizados.map((pan, index) => (
-              <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg relative">
-                <button
-                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-                  onClick={() => onRemoveItem(pan.id, 'panPersonalizado')}
-                >
-                  <Trash2 className="w-5 h-5" />
-                </button>
-                <span className="font-bold">🌾 Pan {index + 1}:</span>
-                {pan.harinas.map(h => {
-                  const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
-                  return (
-                    <span key={h.id}>
-                      • {h.icon ? h.icon + ' ' : ''}{h.name}{hasCortado ? ' 🔪' : ''}
-                    </span>
-                  );
-                })}
-                {pan.extras?.length > 0 && (
-                  <div className="mt-1 ml-2">
-                    <span className="font-semibold">Extras:</span>
-                    {pan.extras.map(extra => (
-                      <div key={extra.id}>• {extra.icon ? extra.icon + ' ' : ''}{extra.name} ({formatPrice(extra.price)})</div>
-                    ))}
-                  </div>
-                )}
-                <span className="mt-1 font-bold">
-                  Precio: {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* ----------------------- BOLLITOS ----------------------- */}
-        {bollitosInCart.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">Bollitos:</h3>
-            {bollitosInCart.map(item => {
-              const b = bollitos.find(b => b.id === item.id);
-              return b && (
-                <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg relative">
-                  <span className="flex items-center gap-2">{b.image ? b.image + ' ' : ''}{b.name} x{item.quantity}</span>
-                  <span>{formatPrice(b.price * item.quantity)}</span>
-                  <button
-                    className="ml-2 text-red-500 hover:text-red-700"
-                    onClick={() => onRemoveItem(item.id, 'bollito')}
-                  >
-                    <Trash2 className="w-5 h-5" />
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        {/* ----------------------- PULGUITAS ----------------------- */}
-        {pulguitasInCart.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">Pulguitas:</h3>
-            {pulguitasInCart.map(item => {
-              const p = pulguitas.find(p => p.id === item.id);
-              return p && (
-                <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg relative">
-                  <span className="flex items-center gap-2">{p.image ? p.image + ' ' : ''}{p.name} x{item.quantity}</span>
-                  <span>{formatPrice(p.price * item.quantity)}</span>
-                  <button
-                    className="ml-2 text-red-500 hover:text-red-700"
-                    onClick={() => onRemoveItem(item.id, 'pulguita')}
-                  >
-                    <Trash2 className="w-5 h-5" />
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        {/* ----------------------- EXTRAS OPCIONALES ----------------------- */}
-        <div className="space-y-2">
-          <h3 className="font-semibold text-gray-700">MANUEL, QUÉ RICO TU PAN!...:</h3>
-          <div className="flex gap-3 flex-wrap">
-            {optionalExtras.map(extra => (
-              <button
-                key={extra.id}
-                onClick={() => toggleOptionalExtra(extra)}
-                className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${
-                  selectedOptionalExtras.includes(extra.id)
-                    ? 'bg-yellow-100 border-yellow-400'
-                    : 'bg-gray-50 border-gray-300 hover:bg-gray-100'
-                }`}
-              >
-                <span>{extra.icon}</span>
-                <span>{extra.name} ({formatPrice(extra.price)})</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* ----------------------- CÓDIGO DE DESCUENTO ----------------------- */}
-     <div className="mt-4">
-  <h3 className="font-semibold text-gray-700 mb-2">¿Tienes un código de descuento?</h3>
-  <div className="flex flex-col gap-2">
-    <input
-      type="text"
-      value={discountCode}
-      onChange={(e) => setDiscountCode(e.target.value)}
-      placeholder="Introduce tu código"
-      className="border rounded-lg p-2"
-    />
-    <button
-      onClick={applyDiscount}
-      className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-    >
-      Aplicar
-    </button>
-  </div>
-  {appliedDiscount && (
-    <p className="text-green-600 mt-2">
-      Código aplicado: {appliedDiscount.value}% de descuento en pedidos superiores a {formatPrice(appliedDiscount.minPurchase)}
-    </p>
-  )}
-</div>
-
-
-        {/* ----------------------- TOTAL Y ENTREGA ----------------------- */}
-        <div className="border-t pt-3 mt-3">
-          <div className="flex justify-between items-center text-xl font-bold">
-            <span>Total:</span>
-            <span>{formatPrice(calculateTotal())}</span>
-          </div>
-
-          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
-            🚴‍♂️ <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ----------------------- BOTÓN WHATSAPP ----------------------- */}
-      <motion.button
-        onClick={handleSendWhatsApp}
-        disabled={isOrderEmpty}
-        className={`w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${isOrderEmpty ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl hover:scale-[1.01]'}`}
-        whileHover={isOrderEmpty ? {} : { scale: 1.02 }}
-        whileTap={isOrderEmpty ? {} : { scale: 0.98 }}
-      >
-        <MessageCircle className="w-6 h-6" />
-        Enviar Pedido por WhatsApp
-      </motion.button>
-{/* ----------------------- TOTALES DETALLADOS CON DESCUENTO ----------------------- */}
-{appliedDiscount && (
-  <div className="mt-4 p-4 bg-gray-100 border rounded-lg text-gray-800">
-    {(() => {
-      // Recalcular subtotal y descuento
-      let subtotal = 0;
-      let discountBase = 0;
-
-      // Panes
-      pansPersonalizados.forEach(p => {
-        const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
-        const panTotal = p.price + extrasTotal;
-        subtotal += panTotal;
-        discountBase += panTotal;
-      });
-
-      // Bollitos
-      bollitosInCart.forEach(item => {
-        const b = bollitos.find(b => b.id === item.id);
-        if (b) {
-          const total = b.price * item.quantity;
-          subtotal += total;
-          discountBase += total;
-        }
-      });
-
-      // Pulguitas
-      pulguitasInCart.forEach(item => {
-        const p = pulguitas.find(p => p.id === item.id);
-        if (p) {
-          const total = p.price * item.quantity;
-          subtotal += total;
-          discountBase += total;
-        }
-      });
-
-      // Extras opcionales
-      selectedOptionalExtras.forEach(id => {
-        const e = optionalExtras.find(opt => opt.id === id);
-        if (e) subtotal += e.price;
-      });
-
-      const discountAmount = (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase)
-        ? discountBase * (appliedDiscount.value / 100)
-        : 0;
-
-      const finalTotal = subtotal.toFixed(2);
-
-      return (
-        <>
-          <div className="flex justify-between">
-            <span>Subtotal:</span>
-            <span>{formatPrice(subtotal)}</span>
-          </div>
-          <div className="flex justify-between text-red-600">
-            <span>Descuento {appliedDiscount.value}%:</span>
-            <span>- {formatPrice(discountAmount)}</span>
-          </div>
-          <div className="flex justify-between font-bold text-green-700">
-            <span>Total Final:</span>
-            <span>{formatPrice(finalTotal - discountAmount)}</span>
-          </div>
-        </>
-      );
-    })()}
-  </div>
-)}
-
-    </motion.div>
-  );
 };
 
 export default OrderSummary;

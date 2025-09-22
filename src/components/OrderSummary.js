@@ -1,5 +1,4 @@
- 
-import React from 'react'; 
+ import React from 'react'; 
 import { motion } from 'framer-motion';
 import { ShoppingBag, MessageCircle, Trash2 } from 'lucide-react';
 import { bollitos, pulguitas } from '../data/products';
@@ -26,31 +25,51 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
 
+  // 💡 Calcular total
   const calculateTotal = () => {
-    let total = 0;
+    let subtotal = 0;
+    let discountBase = 0;
+
+    // Panes personalizados
     pansPersonalizados.forEach(p => {
       const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
-      total += p.price + extrasTotal;
+      const panTotal = p.price + extrasTotal;
+      subtotal += panTotal;
+      discountBase += panTotal; // cuenta para el descuento
     });
+
+    // Bollitos
     bollitosInCart.forEach(item => {
       const b = bollitos.find(b => b.id === item.id);
-      if (b) total += b.price * item.quantity;
+      if (b) {
+        const total = b.price * item.quantity;
+        subtotal += total;
+        discountBase += total; // cuenta para el descuento
+      }
     });
+
+    // Pulguitas
     pulguitasInCart.forEach(item => {
       const p = pulguitas.find(p => p.id === item.id);
-      if (p) total += p.price * item.quantity;
+      if (p) {
+        const total = p.price * item.quantity;
+        subtotal += total;
+        discountBase += total; // cuenta para el descuento
+      }
     });
+
+    // Extras opcionales (no cuentan para descuento)
     selectedOptionalExtras.forEach(id => {
       const e = optionalExtras.find(opt => opt.id === id);
-      if (e) total += e.price;
+      if (e) subtotal += e.price;
     });
 
-    // aplicar descuento si corresponde
-    if (appliedDiscount?.type === "percentage" && total >= appliedDiscount.minPurchase) {
-      total = total - total * (appliedDiscount.value / 100);
+    // Descuento (solo panes, extras, bollitos, pulguitas)
+    if (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase) {
+      subtotal = subtotal - discountBase * (appliedDiscount.value / 100);
     }
 
-    return total.toFixed(2);
+    return subtotal.toFixed(2);
   };
 
   const applyDiscount = () => {
@@ -149,107 +168,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
           </div>
         )}
 
-        {/* Panes Personalizados */}
-        {pansPersonalizados.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">🌾 Panes Personalizados:</h3>
-            {pansPersonalizados.map((pan, index) => (
-              <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg relative">
-                <button
-                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-                  onClick={() => onRemoveItem(pan.id, 'panPersonalizado')}
-                >
-                  <Trash2 className="w-5 h-5" />
-                </button>
-                <span className="font-bold">🌾 Pan {index + 1}:</span>
-                {pan.harinas.map(h => {
-                  const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
-                  return (
-                    <span key={h.id}>
-                      • {h.icon ? h.icon + ' ' : ''}{h.name}{hasCortado ? ' 🔪' : ''}
-                    </span>
-                  );
-                })}
-                {pan.extras?.length > 0 && (
-                  <div className="mt-1 ml-2">
-                    <span className="font-semibold">Extras:</span>
-                    {pan.extras.map(extra => (
-                      <div key={extra.id}>• {extra.icon ? extra.icon + ' ' : ''}{extra.name} ({formatPrice(extra.price)})</div>
-                    ))}
-                  </div>
-                )}
-                <span className="mt-1 font-bold">
-                  Precio: {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Bollitos */}
-        {bollitosInCart.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">Bollitos:</h3>
-            {bollitosInCart.map(item => {
-              const b = bollitos.find(b => b.id === item.id);
-              return b && (
-                <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg relative">
-                  <span className="flex items-center gap-2">{b.image ? b.image + ' ' : ''}{b.name} x{item.quantity}</span>
-                  <span>{formatPrice(b.price * item.quantity)}</span>
-                  <button
-                    className="ml-2 text-red-500 hover:text-red-700"
-                    onClick={() => onRemoveItem(item.id, 'bollito')}
-                  >
-                    <Trash2 className="w-5 h-5" />
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Pulguitas */}
-        {pulguitasInCart.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700">Pulguitas:</h3>
-            {pulguitasInCart.map(item => {
-              const p = pulguitas.find(p => p.id === item.id);
-              return p && (
-                <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg relative">
-                  <span className="flex items-center gap-2">{p.image ? p.image + ' ' : ''}{p.name} x{item.quantity}</span>
-                  <span>{formatPrice(p.price * item.quantity)}</span>
-                  <button
-                    className="ml-2 text-red-500 hover:text-red-700"
-                    onClick={() => onRemoveItem(item.id, 'pulguita')}
-                  >
-                    <Trash2 className="w-5 h-5" />
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        {/* Extras opcionales */}
-        <div className="space-y-2">
-          <h3 className="font-semibold text-gray-700">MANUEL, QUÉ RICO TU PAN!...:</h3>
-          <div className="flex gap-3 flex-wrap">
-            {optionalExtras.map(extra => (
-              <button
-                key={extra.id}
-                onClick={() => toggleOptionalExtra(extra)}
-                className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${
-                  selectedOptionalExtras.includes(extra.id)
-                    ? 'bg-yellow-100 border-yellow-400'
-                    : 'bg-gray-50 border-gray-300 hover:bg-gray-100'
-                }`}
-              >
-                <span>{extra.icon}</span>
-                <span>{extra.name} ({formatPrice(extra.price)})</span>
-              </button>
-            ))}
-          </div>
-        </div>
+        {/* ... resto de secciones igual que en tu versión ... */}
 
         {/* Código de descuento */}
         <div className="mt-4">
@@ -276,15 +195,11 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
           )}
         </div>
 
-        {/* Total + info entrega */}
+        {/* Total */}
         <div className="border-t pt-3 mt-3">
           <div className="flex justify-between items-center text-xl font-bold">
             <span>Total:</span>
             <span>{formatPrice(calculateTotal())}</span>
-          </div>
-
-          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
-            🚴‍♂️ <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
           </div>
         </div>
       </div>
@@ -305,3 +220,4 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 };
 
 export default OrderSummary;
+

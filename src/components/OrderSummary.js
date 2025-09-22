@@ -140,6 +140,63 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     message += `🙏 EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.\n`;
     message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n`;
 
+
+
+// ----------------------- TOTALES DETALLADOS CON DESCUENTO -----------------------
+if (appliedDiscount) {
+  // Recalcular subtotal y descuento
+  let subtotal = 0;
+  let discountBase = 0;
+
+  // Panes
+  pansPersonalizados.forEach(p => {
+    const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
+    const panTotal = p.price + extrasTotal;
+    subtotal += panTotal;
+    discountBase += panTotal;
+  });
+
+  // Bollitos
+  bollitosInCart.forEach(item => {
+    const b = bollitos.find(b => b.id === item.id);
+    if (b) {
+      const total = b.price * item.quantity;
+      subtotal += total;
+      discountBase += total;
+    }
+  });
+
+  // Pulguitas
+  pulguitasInCart.forEach(item => {
+    const p = pulguitas.find(p => p.id === item.id);
+    if (p) {
+      const total = p.price * item.quantity;
+      subtotal += total;
+      discountBase += total;
+    }
+  });
+
+  // Extras opcionales
+  selectedOptionalExtras.forEach(id => {
+    const e = optionalExtras.find(opt => opt.id === id);
+    if (e) subtotal += e.price;
+  });
+
+  const discountAmount = (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase)
+    ? discountBase * (appliedDiscount.value / 100)
+    : 0;
+
+  const finalTotal = subtotal - discountAmount;
+
+  message += `\n*DETALLE DEL TOTAL:*\n`;
+  message += `Subtotal: ${formatPrice(subtotal)}\n`;
+  message += `Descuento ${appliedDiscount.value}%: -${formatPrice(discountAmount)}\n`;
+  message += `*Total Final: ${formatPrice(finalTotal)}*\n`;
+}
+
+
+
+
     return encodeURIComponent(message);
   };
 

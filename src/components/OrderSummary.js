@@ -129,7 +129,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         message += `🌾 Pan ${index + 1}:\n`;
         pan.harinas.forEach(h => {
           const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
-          message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n\n`;
+          message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n`;
         });
         if (pan.extras?.length > 0) {
           message += `Extras:\n`;

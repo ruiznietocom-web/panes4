@@ -86,22 +86,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
   };
 
- };
-
-
-
-
-  const applyDiscount = () => {
-    if (discountCode.toUpperCase() === "PANZEN20") {
-      setAppliedDiscount({ type: "percentage", value: 20, minPurchase: 20 });
-    } else {
-      setAppliedDiscount(null);
-      alert("Código no válido");
-    }
-
-
-
-  };
 
 
   const generateWhatsAppMessage = () => {

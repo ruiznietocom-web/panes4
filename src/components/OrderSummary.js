@@ -188,7 +188,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
     message += `\n*TOTAL: ${formatPrice(total)}*\n\n`;
     message += `🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n`;
-    message += `🙏 PUEDES HACERME CUALQUIER CONSULTA SOBRE EL PEDIDO POR WHATSAPP. EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.\n`;
+    message += `🙏 PUEDES HACERME CUALQUIER CONSULTA o ESPECIFICACIÓN SOBRE EL PEDIDO POR WHATSAPP. EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.\n`;
     message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n`;
 
 
@@ -383,7 +383,7 @@ if (appliedDiscount) {
 
         {/* CÓDIGO DE DESCUENTO */}
          <div className="space-y-2">
-          <h2 className="font-semibold text-gray-700">¿Tienes un código descuento?:</h3>
+          <h4 className="font-semibold text-gray-700">¿Tienes un código descuento?:</h3>
         <div className="mt-4">
           <input type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)}
             placeholder="Introduce tu código"

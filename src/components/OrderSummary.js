@@ -150,23 +150,28 @@ if (pansPersonalizados.length > 0) {
 }
 
 
-    // BOLLITOS
-    if (bollitosInCart.length > 0) {
-      message += `\n*BOLLITOS:*\n`;
-      bollitosInCart.forEach(item => {
-        const b = bollitos.find(b => b.id === item.id);
-        if (b) message += `• ${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
-      });
+   // BOLLITOS
+if (bollitosInCart.length > 0) {
+  message += `\n*BOLLITOS:*\n`;
+  bollitosInCart.forEach(item => {
+    const b = bollitos.find(b => b.id === item.id);
+    if (b) {
+      message += `• ${b.image ? b.image + " " : ""}${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
     }
+  });
+}
 
-    // PULGUITAS
-    if (pulguitasInCart.length > 0) {
-      message += `\n*PULGUITAS:*\n`;
-      pulguitasInCart.forEach(item => {
-        const p = pulguitas.find(p => p.id === item.id);
-        if (p) message += `• ${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
-      });
+// PULGUITAS
+if (pulguitasInCart.length > 0) {
+  message += `\n*PULGUITAS:*\n`;
+  pulguitasInCart.forEach(item => {
+    const p = pulguitas.find(p => p.id === item.id);
+    if (p) {
+      message += `• ${p.image ? p.image + " " : ""}${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
     }
+  });
+}
+
 
     // EXTRAS OPCIONALES
     if (selectedOptionalExtras.length > 0) {

@@ -382,6 +382,8 @@ if (appliedDiscount) {
         </div>
 
         {/* CÓDIGO DE DESCUENTO */}
+         <div className="space-y-2">
+          <h2 className="font-semibold text-gray-700">¿Tienes un código descuento?:</h3>
         <div className="mt-4">
           <input type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)}
             placeholder="Introduce tu código"

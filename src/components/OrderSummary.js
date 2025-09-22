@@ -120,26 +120,35 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     // Genera mensaje de WhatsApp con precios separados por tipo
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n`;
 
-    // PANES PERSONALIZADOS
-    if (pansPersonalizados.length > 0) {
-      message += `*PANES PERSONALIZADOS:*\n`;
-      pansPersonalizados.forEach((pan, index) => {
-        const panExtrasTotal = pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
-        const panTotal = pan.price + panExtrasTotal;
-        message += `🌾 Pan ${index + 1}:\n`;
-        pan.harinas.forEach(h => {
-          const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
-          message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n`;
-        });
-        if (pan.extras?.length > 0) {
-          message += `Extras:\n`;
-          pan.extras.forEach(e => {
-            message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
-          });
-        }
-        message += `Precio Pan con extras: ${formatPrice(panTotal)}\n`;
+ // PANES PERSONALIZADOS
+if (pansPersonalizados.length > 0) {
+  message += `*PANES PERSONALIZADOS:*\n`;
+  pansPersonalizados.forEach((pan, index) => {
+    const panExtrasTotal = pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
+    const panTotal = pan.price + panExtrasTotal;
+
+    // Cabecera pan
+    message += `🌾 Pan ${index + 1}:\n`;
+
+    // Harinas
+    pan.harinas.forEach(h => {
+      const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
+      message += `   • ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n`;
+    });
+
+    // Extras (si tiene)
+    if (pan.extras?.length > 0) {
+      message += `   Extras:\n`;
+      pan.extras.forEach(e => {
+        message += `   • ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
       });
     }
+
+    // Precio final
+    message += `👉 Precio Pan con extras: *${formatPrice(panTotal)}*\n\n`;
+  });
+}
+
 
     // BOLLITOS
     if (bollitosInCart.length > 0) {

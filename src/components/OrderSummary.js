@@ -120,26 +120,42 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     // Genera mensaje de WhatsApp con precios separados por tipo
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n`;
 
-    // PANES PERSONALIZADOS
-    if (pansPersonalizados.length > 0) {
-      message += `*PANES PERSONALIZADOS:*\n`;
-      pansPersonalizados.forEach((pan, index) => {
-        const panExtrasTotal = pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
-        const panTotal = pan.price + panExtrasTotal;
-        message += `🌾 Pan ${index + 1}:\n`;
-        pan.harinas.forEach(h => {
-          const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
-          message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n\n`;
-        });
-        if (pan.extras?.length > 0) {
-          message += `Extras:\n`;
-          pan.extras.forEach(e => {
-            message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
-          });
-        }
-        message += `Precio Pan con extras: ${formatPrice(panTotal)}\n`;
+
+
+// PANES PERSONALIZADOS
+if (pansPersonalizados.length > 0) {
+  message += `*PANES PERSONALIZADOS:*\n`;
+  pansPersonalizados.forEach((pan, index) => {
+    const panExtrasTotal = pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
+    const panTotal = pan.price + panExtrasTotal;
+    subtotalPanes += panTotal;
+
+    // Cabecera pan
+    message += `🌾 Pan ${index + 1}:\n`;
+
+    // Harinas en una sola lista sin saltos extra
+    pan.harinas.forEach(h => {
+      const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
+      message += `   • ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n`;
+    });
+
+    // Extras (si existen)
+    if (pan.extras?.length > 0) {
+      message += `   Extras:\n`;
+      pan.extras.forEach(e => {
+        message += `   • ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
       });
     }
+
+    // Precio final del pan
+    message += `👉 Precio Pan con extras: *${formatPrice(panTotal)}*\n\n`;
+  });
+
+  message += `Subtotal Panes Personalizados: *${formatPrice(subtotalPanes)}*\n\n`;
+}
+
+
+
 
     // BOLLITOS
     if (bollitosInCart.length > 0) {

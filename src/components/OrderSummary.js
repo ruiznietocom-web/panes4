@@ -56,7 +56,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
   // Códigos de descuento válidos
   const discountCodes = {
-    PANZEN30: { type: "percentage", value: 30, minPurchase: 30 }
+    PANZEN30: { type: "percentage", value: 30, minPurchase: 30 },
     PANZEN20: { type: "percentage", value: 20, minPurchase: 40 }
   };
 

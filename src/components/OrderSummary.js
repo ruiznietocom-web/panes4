@@ -332,29 +332,30 @@ if (appliedDiscount) {
         </div>
 
         {/* ----------------------- CÓDIGO DE DESCUENTO ----------------------- */}
-        <div className="mt-4">
-          <h3 className="font-semibold text-gray-700 mb-2">¿Tienes un código de descuento?</h3>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={discountCode}
-              onChange={(e) => setDiscountCode(e.target.value)}
-              placeholder="Introduce tu código"
-              className="flex-1 border rounded-lg p-2"
-            />
-            <button
-              onClick={applyDiscount}
-              className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-            >
-              Aplicar
-            </button>
-          </div>
-          {appliedDiscount && (
-            <p className="text-green-600 mt-2">
-              Código aplicado: {appliedDiscount.value}% de descuento en pedidos superiores a {formatPrice(appliedDiscount.minPurchase)}
-            </p>
-          )}
-        </div>
+     <div className="mt-4">
+  <h3 className="font-semibold text-gray-700 mb-2">¿Tienes un código de descuento?</h3>
+  <div className="flex flex-col gap-2">
+    <input
+      type="text"
+      value={discountCode}
+      onChange={(e) => setDiscountCode(e.target.value)}
+      placeholder="Introduce tu código"
+      className="border rounded-lg p-2"
+    />
+    <button
+      onClick={applyDiscount}
+      className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+    >
+      Aplicar
+    </button>
+  </div>
+  {appliedDiscount && (
+    <p className="text-green-600 mt-2">
+      Código aplicado: {appliedDiscount.value}% de descuento en pedidos superiores a {formatPrice(appliedDiscount.minPurchase)}
+    </p>
+  )}
+</div>
+
 
         {/* ----------------------- TOTAL Y ENTREGA ----------------------- */}
         <div className="border-t pt-3 mt-3">

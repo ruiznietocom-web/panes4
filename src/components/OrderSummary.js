@@ -173,14 +173,16 @@ if (pulguitasInCart.length > 0) {
 }
 
 
-    // EXTRAS OPCIONALES
-    if (selectedOptionalExtras.length > 0) {
-      message += `\n*EXTRAS OPCIONALES:*\n`;
-      selectedOptionalExtras.forEach(id => {
-        const e = optionalExtras.find(opt => opt.id === id);
-        if (e) message += `• ${e.name} - ${formatPrice(e.price)}\n`;
-      });
+// MANUEL, QUÉ RICO TU PAN!...
+if (selectedOptionalExtras.length > 0) {
+  message += `\n*MANUEL, QUÉ RICO TU PAN!:*\n`;
+  selectedOptionalExtras.forEach(id => {
+    const e = optionalExtras.find(opt => opt.id === id);
+    if (e) {
+      message += `• ${e.icon ? e.icon + " " : ""}${e.name} - ${formatPrice(e.price)}\n`;
     }
+  });
+}
 
     // Descuento
     if (appliedDiscount) {

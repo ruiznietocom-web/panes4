@@ -139,3 +139,10 @@ export const otrosPanes = [
   { id: 2, name: "Pan de Maíz", description: "Dulce y esponjoso, ideal para acompañar", image: "🌽", price: 4.00 },
   { id: 3, name: "Pan de Ajo y Perejil", description: "Sabor intenso, perfecto para comidas", image: "🧄", price: 4.75 }
 ];
+
+
+export const optionalExtras = [
+  { id: "propina", name: "Propina", price: 1, icon: "💶" },
+  { id: "cafe", name: "Café", price: 1.5, icon: "☕" },
+  { id: "cerveza", name: "Cerveza", price: 2, icon: "🍺" },
+];

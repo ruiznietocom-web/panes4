@@ -1,36 +1,63 @@
 import React from 'react'; 
-import { motion } from 'framer-motion';
-import { MessageCircle, Trash2 } from 'lucide-react';
-import { bollitos, pulguitas } from '../data/products';
-import { formatPrice } from '../utils/formatPrice';
+// Importa React, necesario para crear componentes funcionales y usar hooks como useState.
 
+import { motion } from 'framer-motion';
+// Importa 'motion' de framer-motion para animar elementos (entrada, hover, tap, etc.).
+
+import { MessageCircle, Trash2 } from 'lucide-react';
+// Importa iconos: MessageCircle (WhatsApp) y Trash2 (botón eliminar).
+
+import { bollitos, pulguitas } from '../data/products';
+// Importa los productos "bollitos" y "pulguitas" desde un archivo de datos.
+
+import { formatPrice } from '../utils/formatPrice';
+// Función para formatear precios (ej: 1.5 → "1,50 €").
+
+
+// Componente principal OrderSummary
 const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
+  // cartItems: array de productos en la cesta
+  // onSendWhatsApp: función para enviar pedido por WhatsApp
+  // onRemoveItem: función para eliminar un producto de la cesta
+
+  // Lista de extras opcionales
   const optionalExtras = [
     { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
     { id: 'cerveza', name: 'Tómate una Cerveza a mi Salud!', price: 1.50, icon: '🍺' },
   ];
 
+  // Estados
   const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
-  const [discountCode, setDiscountCode] = React.useState("");
-  const [appliedDiscount, setAppliedDiscount] = React.useState(null);
+  // Guarda los ids de extras seleccionados
 
+  const [discountCode, setDiscountCode] = React.useState("");
+  // Código de descuento ingresado
+
+  const [appliedDiscount, setAppliedDiscount] = React.useState(null);
+  // Descuento aplicado actualmente (objeto o null)
+
+
+  // Función para añadir o quitar un extra opcional
   const toggleOptionalExtra = (extra) => {
     setSelectedOptionalExtras(prev => 
       prev.includes(extra.id) ? prev.filter(id => id !== extra.id) : [...prev, extra.id]
     );
   };
 
+  // Filtra los productos por tipo
   const pansPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
 
+  // Códigos de descuento válidos
   const discountCodes = {
     PANZEN30: { type: "percentage", value: 30, minPurchase: 30 }
   };
 
+  // Aplica descuento si el código es válido
   const applyDiscount = () => {
-    const code = discountCode.toUpperCase();
+    const code = discountCode.toUpperCase(); // pasar a mayúsculas
     if (discountCodes[code]) {
       setAppliedDiscount(discountCodes[code]);
     } else {
@@ -39,13 +66,14 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     }
   };
 
+  // Función para calcular subtotal, descuento y total
   const calculateTotals = () => {
-    let subtotal = 0;
-    let discountBase = 0;
+    let subtotal = 0; // suma de todo
+    let discountBase = 0; // suma que aplica para descuento
 
     // Panes personalizados
     pansPersonalizados.forEach(p => {
-      const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
+      const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0; // sumar extras
       const panTotal = p.price + extrasTotal;
       subtotal += panTotal;
       discountBase += panTotal;
@@ -75,7 +103,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       if (e) subtotal += e.price;
     });
 
-    // Aplicar descuento
+    // Aplicar descuento si corresponde
     let discountAmount = 0;
     if (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase) {
       discountAmount = discountBase * (appliedDiscount.value / 100);
@@ -85,11 +113,14 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     return { subtotal, discountAmount, total };
   };
 
+  // Desestructurar los totales
   const { subtotal, discountAmount, total } = calculateTotals();
 
+  // Función para generar el mensaje de WhatsApp
   const generateWhatsAppMessage = () => {
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n`;
 
+    // Agregar panes personalizados
     if (pansPersonalizados.length > 0) {
       message += `\n*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
@@ -107,6 +138,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
+    // Bollitos
     if (bollitosInCart.length > 0) {
       message += `\n*BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
@@ -115,6 +147,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
+    // Pulguitas
     if (pulguitasInCart.length > 0) {
       message += `\n*PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
@@ -123,6 +156,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
+    // Extras opcionales
     if (selectedOptionalExtras.length > 0) {
       message += `\n*EXTRAS OPCIONALES:*\n`;
       selectedOptionalExtras.forEach(id => {
@@ -131,6 +165,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
+    // Descuento aplicado
     if (appliedDiscount) {
       message += `\n*DESCUENTO APLICADO: ${appliedDiscount.value}%*\n`;
     }
@@ -140,66 +175,10 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     message += `🙏 EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.\n`;
     message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n`;
 
-
-
-// ----------------------- TOTALES DETALLADOS CON DESCUENTO -----------------------
-if (appliedDiscount) {
-  // Recalcular subtotal y descuento
-  let subtotal = 0;
-  let discountBase = 0;
-
-  // Panes
-  pansPersonalizados.forEach(p => {
-    const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
-    const panTotal = p.price + extrasTotal;
-    subtotal += panTotal;
-    discountBase += panTotal;
-  });
-
-  // Bollitos
-  bollitosInCart.forEach(item => {
-    const b = bollitos.find(b => b.id === item.id);
-    if (b) {
-      const total = b.price * item.quantity;
-      subtotal += total;
-      discountBase += total;
-    }
-  });
-
-  // Pulguitas
-  pulguitasInCart.forEach(item => {
-    const p = pulguitas.find(p => p.id === item.id);
-    if (p) {
-      const total = p.price * item.quantity;
-      subtotal += total;
-      discountBase += total;
-    }
-  });
-
-  // Extras opcionales
-  selectedOptionalExtras.forEach(id => {
-    const e = optionalExtras.find(opt => opt.id === id);
-    if (e) subtotal += e.price;
-  });
-
-  const discountAmount = (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase)
-    ? discountBase * (appliedDiscount.value / 100)
-    : 0;
-
-  const finalTotal = subtotal - discountAmount;
-
-  message += `\n*DETALLE DEL TOTAL:*\n`;
-  message += `Subtotal: ${formatPrice(subtotal)}\n`;
-  message += `Descuento ${appliedDiscount.value}%: -${formatPrice(discountAmount)}\n`;
-  message += `*Total Final: ${formatPrice(finalTotal)}*\n`;
-}
-
-
-
-
-    return encodeURIComponent(message);
+    return encodeURIComponent(message); // codifica el mensaje para URL
   };
 
+  // Función para abrir WhatsApp con mensaje predefinido
   const handleSendWhatsApp = () => {
     const message = generateWhatsAppMessage();
     const phoneNumber = "627526380";
@@ -207,14 +186,16 @@ if (appliedDiscount) {
     onSendWhatsApp();
   };
 
+  // Booleano para saber si la cesta está vacía
   const isOrderEmpty = cartItems.length === 0;
 
   return (
     <motion.div className="bg-white rounded-2xl p-6 shadow-lg"
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 20 }} // animación de entrada
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
     >
+      {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
           <span className="text-2xl">🧺</span> Resumen del Pedido
@@ -222,6 +203,7 @@ if (appliedDiscount) {
       </div>
 
       <div className="space-y-3 mb-6">
+        {/* Mensaje cesta vacía */}
         {isOrderEmpty && (
           <div className="text-center py-4 text-gray-500">
             Tu cesta está vacía. ¡Añade algo delicioso!
@@ -355,79 +337,9 @@ if (appliedDiscount) {
         <MessageCircle className="w-6 h-6" /> Enviar Pedido por WhatsApp
       </motion.button>
 
-
-{/* ----------------------- TOTALES DETALLADOS CON DESCUENTO ----------------------- */}
-{appliedDiscount && (
-  <div className="mt-4 p-4 bg-gray-100 border rounded-lg text-gray-800">
-    {(() => {
-      // Recalcular subtotal y descuento
-      let subtotal = 0;
-      let discountBase = 0;
-
-      // Panes
-      pansPersonalizados.forEach(p => {
-        const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
-        const panTotal = p.price + extrasTotal;
-        subtotal += panTotal;
-        discountBase += panTotal;
-      });
-
-      // Bollitos
-      bollitosInCart.forEach(item => {
-        const b = bollitos.find(b => b.id === item.id);
-        if (b) {
-          const total = b.price * item.quantity;
-          subtotal += total;
-          discountBase += total;
-        }
-      });
-
-      // Pulguitas
-      pulguitasInCart.forEach(item => {
-        const p = pulguitas.find(p => p.id === item.id);
-        if (p) {
-          const total = p.price * item.quantity;
-          subtotal += total;
-          discountBase += total;
-        }
-      });
-
-      // Extras opcionales
-      selectedOptionalExtras.forEach(id => {
-        const e = optionalExtras.find(opt => opt.id === id);
-        if (e) subtotal += e.price;
-      });
-
-      const discountAmount = (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase)
-        ? discountBase * (appliedDiscount.value / 100)
-        : 0;
-
-      const finalTotal = subtotal.toFixed(2);
-
-      return (
-        <>
-          <div className="flex justify-between">
-            <span>Subtotal:</span>
-            <span>{formatPrice(subtotal)}</span>
-          </div>
-          <div className="flex justify-between text-red-600">
-            <span>Descuento {appliedDiscount.value}%:</span>
-            <span>- {formatPrice(discountAmount)}</span>
-          </div>
-          <div className="flex justify-between font-bold text-green-700">
-            <span>Total Final:</span>
-            <span>{formatPrice(finalTotal - discountAmount)}</span>
-          </div>
-        </>
-      );
-    })()}
-  </div>
-)}
-
-
-
     </motion.div>
   );
 };
 
 export default OrderSummary;
+// Exporta el componente para poder usarlo en otros archivos

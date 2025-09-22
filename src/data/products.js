@@ -77,7 +77,7 @@ export const extras = [
 export const bollitos = [
   { id: 1, name: "Bollito Integral Clásico", description: "Suave y esponjoso, ideal para el desayuno", image: "🍞", price: 1 },
 
-  { id: 1.05, name: "Pan para Perrito Caliente Integral ", description: "Un panecillo alargado para tus perritos", image: "🌭", price: 1 },
+  { id: 1.05, name: "Panecillo para Perrito Caliente Integral ", description: "Un panecillo alargado para tus perritos", image: "🌭", price: 1 },
 
 
   { id: 1.06, name: "PACK Surtido 6 Bollitos Integrales Clásicos", description: "Tu pack clásico", image: "🧺", price: 6 },

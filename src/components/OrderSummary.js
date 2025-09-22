@@ -341,6 +341,76 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         <MessageCircle className="w-6 h-6" /> Enviar Pedido por WhatsApp
       </motion.button>
 
+
+{/* ----------------------- TOTALES DETALLADOS CON DESCUENTO ----------------------- */}
+{appliedDiscount && (
+  <div className="mt-4 p-4 bg-gray-100 border rounded-lg text-gray-800">
+    {(() => {
+      // Recalcular subtotal y descuento
+      let subtotal = 0;
+      let discountBase = 0;
+
+      // Panes
+      pansPersonalizados.forEach(p => {
+        const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
+        const panTotal = p.price + extrasTotal;
+        subtotal += panTotal;
+        discountBase += panTotal;
+      });
+
+      // Bollitos
+      bollitosInCart.forEach(item => {
+        const b = bollitos.find(b => b.id === item.id);
+        if (b) {
+          const total = b.price * item.quantity;
+          subtotal += total;
+          discountBase += total;
+        }
+      });
+
+      // Pulguitas
+      pulguitasInCart.forEach(item => {
+        const p = pulguitas.find(p => p.id === item.id);
+        if (p) {
+          const total = p.price * item.quantity;
+          subtotal += total;
+          discountBase += total;
+        }
+      });
+
+      // Extras opcionales
+      selectedOptionalExtras.forEach(id => {
+        const e = optionalExtras.find(opt => opt.id === id);
+        if (e) subtotal += e.price;
+      });
+
+      const discountAmount = (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase)
+        ? discountBase * (appliedDiscount.value / 100)
+        : 0;
+
+      const finalTotal = subtotal.toFixed(2);
+
+      return (
+        <>
+          <div className="flex justify-between">
+            <span>Subtotal:</span>
+            <span>{formatPrice(subtotal)}</span>
+          </div>
+          <div className="flex justify-between text-red-600">
+            <span>Descuento {appliedDiscount.value}%:</span>
+            <span>- {formatPrice(discountAmount)}</span>
+          </div>
+          <div className="flex justify-between font-bold text-green-700">
+            <span>Total Final:</span>
+            <span>{formatPrice(finalTotal - discountAmount)}</span>
+          </div>
+        </>
+      );
+    })()}
+  </div>
+)}
+
+
     </motion.div>
   );
 };

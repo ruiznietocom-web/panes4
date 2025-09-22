@@ -174,8 +174,17 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     }
 
     message += `\n*TOTAL: ${formatPrice(total)}*\n\n`;
+  <p>
+        &nbsp;
+      </p>
     message += `🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n`;
+  <p>
+        &nbsp;
+      </p>
     message += `🙏 PUEDES HACERME CUALQUIER CONSULTA o ESPECIFICACIÓN SOBRE EL PEDIDO POR WHATSAPP.\n`;
+  <p>
+        &nbsp;
+      </p>
     message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n`;
 // ----------------------- TOTALES DETALLADOS CON DESCUENTO -----------------------
 if (appliedDiscount) {

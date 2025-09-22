@@ -50,9 +50,14 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
 
+
+
+
+
   // Códigos de descuento válidos
   const discountCodes = {
     PANZEN30: { type: "percentage", value: 30, minPurchase: 30 }
+    PANZEN20: { type: "percentage", value: 20, minPurchase: 40 }
   };
 
   // Aplica descuento si el código es válido

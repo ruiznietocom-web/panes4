@@ -122,19 +122,19 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
     // PANES PERSONALIZADOS
     if (pansPersonalizados.length > 0) {
-      message += `*PANES PERSONALIZADOS:*\n`;
+      message += `*PANES PERSONALIZADOS:*\n\n`;
       pansPersonalizados.forEach((pan, index) => {
         const panExtrasTotal = pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
         const panTotal = pan.price + panExtrasTotal;
         message += `🌾 Pan ${index + 1}:\n`;
         pan.harinas.forEach(h => {
           const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
-          message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n`;
+          message += `• ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n\n`;
         });
         if (pan.extras?.length > 0) {
           message += `Extras:\n`;
           pan.extras.forEach(e => {
-            message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
+            message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n\n`;
           });
         }
         message += `Precio Pan con extras: ${formatPrice(panTotal)}\n`;
@@ -174,17 +174,11 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     }
 
     message += `\n*TOTAL: ${formatPrice(total)}*\n\n`;
-  <p>
-        &nbsp;
-      </p>
-    message += `🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n`;
-  <p>
-        &nbsp;
-      </p>
-    message += `🙏 PUEDES HACERME CUALQUIER CONSULTA o ESPECIFICACIÓN SOBRE EL PEDIDO POR WHATSAPP.\n`;
-  <p>
-        &nbsp;
-      </p>
+  
+    message += `🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
+ 
+    message += `🙏 PUEDES HACERME CUALQUIER CONSULTA o ESPECIFICACIÓN SOBRE EL PEDIDO POR WHATSAPP.\n\n`;
+  
     message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n`;
 // ----------------------- TOTALES DETALLADOS CON DESCUENTO -----------------------
 if (appliedDiscount) {

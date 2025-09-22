@@ -122,7 +122,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
     // PANES PERSONALIZADOS
     if (pansPersonalizados.length > 0) {
-      message += `*PANES PERSONALIZADOS:*\n\n`;
+      message += `*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
         const panExtrasTotal = pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
         const panTotal = pan.price + panExtrasTotal;

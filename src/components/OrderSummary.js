@@ -56,7 +56,19 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
   // Códigos de descuento válidos
   const discountCodes = {
-    PANZEN30: { type: "percentage", value: 30, minPurchase: 30 }
+    PANZEN30: { type: "percentage", value: 30, minPurchase: 30 },
+  PANZEN20: { type: "percentage", value: 20, minPurchase: 40 }, // 20% de descuento si compras >= 20€
+  BIENVENIDA10: { type: "percentage", value: 10, minPurchase: 15 }, // 10% de descuento si compras >= 15€
+  CUPON5: { type: "fixed", value: 5, minPurchase: 20 }, // 5€ de descuento si compras >= 20€
+  REGALO3: { type: "fixed", value: 3, minPurchase: 10 } // 3€ de descuento si compras >= 10€
+
+
+
+
+
+
+
+
   };
 
   // Aplica descuento si el código es válido
@@ -176,7 +188,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
     message += `\n*TOTAL: ${formatPrice(total)}*\n\n`;
     message += `🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n`;
-    message += `🙏 EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.\n`;
+    message += `🙏 PUEDES HACERME CUALQUIER CONSULTA SOBRE EL PEDIDO POR WHATSAPP. EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.\n`;
     message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n`;
 
 

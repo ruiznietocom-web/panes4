@@ -14,20 +14,18 @@ import { formatPrice } from '../utils/formatPrice';
 // Función para formatear precios (ej: 1.5 → "1,50 €").
 
 
-// Componente principal OrderSummary
 const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   // cartItems: array de productos en la cesta
   // onSendWhatsApp: función para enviar pedido por WhatsApp
   // onRemoveItem: función para eliminar un producto de la cesta
 
-  // Lista de extras opcionales
   const optionalExtras = [
     { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
     { id: 'cerveza', name: 'Tómate una Cerveza a mi Salud!', price: 1.50, icon: '🍺' },
   ];
+  // Lista de extras opcionales
 
-  // Estados
   const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
   // Guarda los ids de extras seleccionados
 
@@ -37,59 +35,45 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const [appliedDiscount, setAppliedDiscount] = React.useState(null);
   // Descuento aplicado actualmente (objeto o null)
 
-
-  // Función para añadir o quitar un extra opcional
   const toggleOptionalExtra = (extra) => {
-    setSelectedOptionalExtras(prev => 
+    // Añade o quita un extra opcional del estado
+    setSelectedOptionalExtras(prev =>
       prev.includes(extra.id) ? prev.filter(id => id !== extra.id) : [...prev, extra.id]
     );
   };
 
-  // Filtra los productos por tipo
   const pansPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
+  // Filtra los productos según su tipo
 
-
-
-
-
-  // Códigos de descuento válidos
   const discountCodes = {
     PANZEN30: { type: "percentage", value: 30, minPurchase: 30 },
-  PANZEN20: { type: "percentage", value: 20, minPurchase: 40 }, // 20% de descuento si compras >= 20€
-  BIENVENIDA10: { type: "percentage", value: 10, minPurchase: 15 }, // 10% de descuento si compras >= 15€
-  CUPON5: { type: "fixed", value: 5, minPurchase: 20 }, // 5€ de descuento si compras >= 20€
-  REGALO3: { type: "fixed", value: 3, minPurchase: 10 } // 3€ de descuento si compras >= 10€
-
-
-
-
-
-
-
-
+    PANZEN20: { type: "percentage", value: 20, minPurchase: 40 },
+    BIENVENIDA10: { type: "percentage", value: 10, minPurchase: 15 },
+    CUPON5: { type: "fixed", value: 5, minPurchase: 20 },
+    REGALO3: { type: "fixed", value: 3, minPurchase: 10 }
   };
+  // Códigos de descuento válidos
 
-  // Aplica descuento si el código es válido
   const applyDiscount = () => {
+    // Aplica descuento si el código es válido
     const code = discountCode.toUpperCase(); // pasar a mayúsculas
-    if (discountCodes[code]) {
-      setAppliedDiscount(discountCodes[code]);
-    } else {
+    if (discountCodes[code]) setAppliedDiscount(discountCodes[code]);
+    else {
       setAppliedDiscount(null);
       alert("Código no válido");
     }
   };
 
-  // Función para calcular subtotal, descuento y total
   const calculateTotals = () => {
-    let subtotal = 0; // suma de todo
-    let discountBase = 0; // suma que aplica para descuento
+    // Calcula subtotal, descuento y total
+    let subtotal = 0;
+    let discountBase = 0;
 
     // Panes personalizados
     pansPersonalizados.forEach(p => {
-      const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0; // sumar extras
+      const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
       const panTotal = p.price + extrasTotal;
       subtotal += panTotal;
       discountBase += panTotal;
@@ -129,17 +113,19 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     return { subtotal, discountAmount, total };
   };
 
-  // Desestructurar los totales
   const { subtotal, discountAmount, total } = calculateTotals();
+  // Desestructurar los totales
 
-  // Función para generar el mensaje de WhatsApp
   const generateWhatsAppMessage = () => {
+    // Genera mensaje de WhatsApp con precios separados por tipo
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n`;
 
-    // Agregar panes personalizados
+    // PANES PERSONALIZADOS
     if (pansPersonalizados.length > 0) {
-      message += `\n*PANES PERSONALIZADOS:*\n`;
+      message += `*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
+        const panExtrasTotal = pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
+        const panTotal = pan.price + panExtrasTotal;
         message += `🌾 Pan ${index + 1}:\n`;
         pan.harinas.forEach(h => {
           const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
@@ -151,10 +137,11 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
             message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
           });
         }
+        message += `Precio Pan con extras: ${formatPrice(panTotal)}\n`;
       });
     }
 
-    // Bollitos
+    // BOLLITOS
     if (bollitosInCart.length > 0) {
       message += `\n*BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
@@ -163,7 +150,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Pulguitas
+    // PULGUITAS
     if (pulguitasInCart.length > 0) {
       message += `\n*PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
@@ -172,7 +159,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Extras opcionales
+    // EXTRAS OPCIONALES
     if (selectedOptionalExtras.length > 0) {
       message += `\n*EXTRAS OPCIONALES:*\n`;
       selectedOptionalExtras.forEach(id => {
@@ -181,17 +168,15 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Descuento aplicado
+    // Descuento
     if (appliedDiscount) {
       message += `\n*DESCUENTO APLICADO: ${appliedDiscount.value}%*\n`;
     }
 
     message += `\n*TOTAL: ${formatPrice(total)}*\n\n`;
     message += `🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n`;
-    message += `🙏 PUEDES HACERME CUALQUIER CONSULTA o ESPECIFICACIÓN SOBRE EL PEDIDO POR WHATSAPP. EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.\n`;
+    message += `🙏 PUEDES HACERME CUALQUIER CONSULTA o ESPECIFICACIÓN SOBRE EL PEDIDO POR WHATSAPP.\n`;
     message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n`;
-
-
 // ----------------------- TOTALES DETALLADOS CON DESCUENTO -----------------------
 if (appliedDiscount) {
   // Recalcular subtotal y descuento
@@ -245,26 +230,23 @@ if (appliedDiscount) {
 }
 
 
-
-
-
-    return encodeURIComponent(message); // codifica el mensaje para URL
+    return encodeURIComponent(message); // Codifica para URL
   };
 
-  // Función para abrir WhatsApp con mensaje predefinido
   const handleSendWhatsApp = () => {
+    // Abre WhatsApp con mensaje predefinido
     const message = generateWhatsAppMessage();
     const phoneNumber = "627526380";
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
     onSendWhatsApp();
   };
 
-  // Booleano para saber si la cesta está vacía
   const isOrderEmpty = cartItems.length === 0;
+  // Booleano para saber si la cesta está vacía
 
   return (
     <motion.div className="bg-white rounded-2xl p-6 shadow-lg"
-      initial={{ opacity: 0, y: 20 }} // animación de entrada
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
     >
@@ -276,7 +258,6 @@ if (appliedDiscount) {
       </div>
 
       <div className="space-y-3 mb-6">
-        {/* Mensaje cesta vacía */}
         {isOrderEmpty && (
           <div className="text-center py-4 text-gray-500">
             Tu cesta está vacía. ¡Añade algo delicioso!
@@ -381,21 +362,17 @@ if (appliedDiscount) {
           </div>
         </div>
 
-
-
-      {/* CÓDIGO DE DESCUENTO */}
-<div className="mt-4">
-  <p className="font-bold mb-2">¿Tienes un código de descuento?</p>  {/* NUEVO TEXTO */}
-  <input type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)}
-    placeholder="Introduce tu código"
-    className="border rounded-lg p-2 mr-2" />
-  <button onClick={applyDiscount} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Aplicar</button>
-  {appliedDiscount && <p className="text-green-600 mt-2">
-    Código aplicado: {appliedDiscount.value}% de descuento
-  </p>}
-</div>
-
-
+        {/* CÓDIGO DE DESCUENTO */}
+        <div className="mt-4">
+          <p className="font-bold mb-2">¿Tienes un código de descuento?</p>
+          <input type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)}
+            placeholder="Introduce tu código"
+            className="border rounded-lg p-2 mr-2" />
+          <button onClick={applyDiscount} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Aplicar</button>
+          {appliedDiscount && <p className="text-green-600 mt-2">
+            Código aplicado: {appliedDiscount.value}% de descuento
+          </p>}
+        </div>
 
         {/* TOTAL */}
         <div className="border-t pt-3 mt-3 flex justify-between items-center text-xl font-bold">
@@ -414,7 +391,7 @@ if (appliedDiscount) {
       >
         <MessageCircle className="w-6 h-6" /> Enviar Pedido por WhatsApp
       </motion.button>
-
+    
 
 {/* ----------------------- TOTALES DETALLADOS CON DESCUENTO ----------------------- */}
 {appliedDiscount && (
@@ -491,3 +468,4 @@ if (appliedDiscount) {
 
 export default OrderSummary;
 // Exporta el componente para poder usarlo en otros archivos
+

@@ -1,110 +1,80 @@
- import React from 'react'; 
+ 
+import React from 'react'; 
 import { motion } from 'framer-motion';
 import { ShoppingBag, MessageCircle, Trash2 } from 'lucide-react';
 import { bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
-  // Extras opcionales (propina, café, cerveza)
   const optionalExtras = [
     { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
     { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
     { id: 'cerveza', name: 'Tómate una Cerveza a mi Salud!', price: 1.50, icon: '🍺' },
   ];
 
-  // Estado para extras opcionales
   const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
 
-  // Estado para el código de descuento introducido
+  // 🔥 Estados para descuentos
   const [discountCode, setDiscountCode] = React.useState("");
-  const [appliedDiscount, setAppliedDiscount] = React.useState(null);
+  const [discount, setDiscount] = React.useState(0);
+  const [discountMessage, setDiscountMessage] = React.useState("");
 
-  // Lista de descuentos configurables
-  const discountCodes = {
-    PANZEN30: { type: "percent", value: 30, min: 30 }, // -30% si gasto > 30€
-    PAN10: { type: "percent", value: 10, min: 0 }, // -10% siempre
-    FREESHIP: { type: "shipping", value: 5, min: 20 }, // Simulación envío gratis
-  };
-
-  // Cambiar selección de extras opcionales
   const toggleOptionalExtra = (extra) => {
     setSelectedOptionalExtras(prev => 
       prev.includes(extra.id) ? prev.filter(id => id !== extra.id) : [...prev, extra.id]
     );
   };
 
-  // Filtrar items por tipo
   const pansPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
 
-  // Calcular total (sin descuentos)
-  const calculateSubtotal = () => {
+  const calculateTotal = () => {
     let total = 0;
-    // Panes personalizados con extras
     pansPersonalizados.forEach(p => {
       const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
       total += p.price + extrasTotal;
     });
-    // Bollitos
     bollitosInCart.forEach(item => {
       const b = bollitos.find(b => b.id === item.id);
       if (b) total += b.price * item.quantity;
     });
-    // Pulguitas
     pulguitasInCart.forEach(item => {
       const p = pulguitas.find(p => p.id === item.id);
       if (p) total += p.price * item.quantity;
     });
-    // Extras opcionales
     selectedOptionalExtras.forEach(id => {
       const e = optionalExtras.find(opt => opt.id === id);
       if (e) total += e.price;
     });
-    return total;
-  };
 
-  // Calcular total con descuento aplicado
-  const calculateTotal = () => {
-    const subtotal = calculateSubtotal();
-    if (!appliedDiscount) return subtotal;
-
-    // Si el pedido no cumple condiciones (min)
-    if (subtotal < appliedDiscount.min) return subtotal;
-
-    if (appliedDiscount.type === "percent") {
-      return subtotal * (1 - appliedDiscount.value / 100);
-    } else if (appliedDiscount.type === "shipping") {
-      return subtotal - appliedDiscount.value;
+    // 🔥 Aplica descuento si existe
+    if (discount > 0 && total > 30) {
+      total = total - total * discount;
     }
-    return subtotal;
+
+    return total.toFixed(2);
   };
 
-  // Aplicar un código de descuento
+  // 🔥 Función para validar códigos
   const applyDiscount = () => {
-    const code = discountCode.toUpperCase().trim();
-    const discount = discountCodes[code];
+    const codes = {
+      PANZEN30: 0.3, // 30% de descuento
+      // aquí puedes añadir más códigos en el futuro
+    };
 
-    if (!discount) {
-      alert("Código inválido ❌");
-      setAppliedDiscount(null);
-      return;
+    if (codes[discountCode.toUpperCase()]) {
+      setDiscount(codes[discountCode.toUpperCase()]);
+      setDiscountMessage("✅ Descuento aplicado correctamente!");
+    } else {
+      setDiscount(0);
+      setDiscountMessage("❌ Código inválido");
     }
-
-    if (calculateSubtotal() < discount.min) {
-      alert(`Este código requiere un gasto mínimo de ${discount.min}€`);
-      setAppliedDiscount(null);
-      return;
-    }
-
-    setAppliedDiscount({ code, ...discount });
   };
 
-  // Generar mensaje para WhatsApp
   const generateWhatsAppMessage = () => {
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n`;
 
-    // Panes personalizados
     if (pansPersonalizados.length > 0) {
       message += `\n*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
@@ -124,7 +94,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Bollitos
     if (bollitosInCart.length > 0) {
       message += `\n*BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
@@ -133,7 +102,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Pulguitas
     if (pulguitasInCart.length > 0) {
       message += `\n*PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
@@ -142,7 +110,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Extras opcionales
     if (selectedOptionalExtras.length > 0) {
       message += `\n*MANUEL, QUÉ RICO TU PAN!...:*\n`;
       selectedOptionalExtras.forEach(id => {
@@ -151,26 +118,14 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Totales
-    const subtotal = calculateSubtotal();
-    const total = calculateTotal();
-
-    if (appliedDiscount) {
-      message += `\n🔑 Código aplicado: ${appliedDiscount.code}`;
-      message += `\n💰 Subtotal: ${formatPrice(subtotal)}`;
-      message += `\n✅ Total con descuento: ${formatPrice(total)}`;
-    } else {
-      message += `\n*TOTAL: ${formatPrice(total)}*`;
-    }
-
-    message += `\n\n🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
+    message += `\n*TOTAL: ${formatPrice(calculateTotal())}*\n\n`;
+    message += `🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
     message += `🙏 EN CUANTO PUEDA CONTACTO CONTIGO Y TE CONFIRMO EL DÍA DE ENTREGA. MUCHAS GRACIAS!!.🙏\n`;
     message += `📱 *PARA MÁS PEDIDOS USA LA AppWeb* ---> https://panespersonalizados.netlify.app/. 📱\n`;
 
     return encodeURIComponent(message);
   };
 
-  // Enviar pedido a WhatsApp
   const handleSendWhatsApp = () => {
     const message = generateWhatsAppMessage();
     const phoneNumber = "627526380"; 
@@ -189,62 +144,63 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
     >
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-          <span className="text-2xl">🧺</span> Resumen del Pedido
+  <span className="text-2xl">🧺</span> Resumen del Pedido
         </h2>
       </div>
 
-      {/* Aquí irían las secciones de panes, bollitos, pulguitas (igual que antes) */}
+      <div className="space-y-3 mb-6">
+        {isOrderEmpty && (
+          <div className="text-center py-4 text-gray-500">
+            Tu cesta está vacía. ¡Añade algo delicioso!
+          </div>
+        )}
 
-      {/* Casilla para código de descuento */}
-      <div className="mt-4 flex gap-2">
-        <input
-          type="text"
-          value={discountCode}
-          onChange={(e) => setDiscountCode(e.target.value)}
-          placeholder="Código descuento"
-          className="border p-2 rounded w-full"
-        />
-        <button
-          onClick={applyDiscount}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          Aplicar
-        </button>
-      </div>
+        {/* Panes Personalizados */}
+        {/* ... tu código original aquí ... */}
 
-      {/* Mostrar total */}
-      <div className="border-t pt-3 mt-3">
-        <div className="flex justify-between items-center text-xl font-bold">
-          <span>Total:</span>
-          {appliedDiscount ? (
-            <>
-              <span className="line-through text-gray-500 mr-2">
-                {formatPrice(calculateSubtotal())}
-              </span>
-              <span className="text-green-600">
-                {formatPrice(calculateTotal())}
-              </span>
-            </>
-          ) : (
-            <span>{formatPrice(calculateTotal())}</span>
+        {/* Extras opcionales */}
+        {/* ... tu código original aquí ... */}
+
+        {/* 🔥 Código de descuento */}
+        <div className="mt-4">
+          <h3 className="font-semibold text-gray-700 mb-2">Código de descuento:</h3>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={discountCode}
+              onChange={(e) => setDiscountCode(e.target.value)}
+              placeholder="Introduce tu código"
+              className="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
+            />
+            <button
+              onClick={applyDiscount}
+              className="bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition"
+            >
+              Agregar
+            </button>
+          </div>
+          {discountMessage && (
+            <p className="mt-2 text-sm text-green-600">{discountMessage}</p>
           )}
+        </div>
+
+        {/* Total + info entrega */}
+        <div className="border-t pt-3 mt-3">
+          <div className="flex justify-between items-center text-xl font-bold">
+            <span>Total:</span>
+            <span>{formatPrice(calculateTotal())}</span>
+          </div>
+
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
+            🚴‍♂️ <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
+          </div>
         </div>
       </div>
 
       {/* Botón WhatsApp */}
-      <motion.button
-        onClick={handleSendWhatsApp}
-        disabled={isOrderEmpty}
-        className={`w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${isOrderEmpty ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl hover:scale-[1.01]'}`}
-        whileHover={isOrderEmpty ? {} : { scale: 1.02 }}
-        whileTap={isOrderEmpty ? {} : { scale: 0.98 }}
-      >
-        <MessageCircle className="w-6 h-6" />
-        Enviar Pedido por WhatsApp
-      </motion.button>
+      {/* ... tu código original aquí ... */}
     </motion.div>
   );
 };
 
 export default OrderSummary;
-

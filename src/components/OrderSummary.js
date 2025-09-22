@@ -1,4 +1,4 @@
- import React from 'react'; 
+import React from 'react'; 
 import { motion } from 'framer-motion';
 import { ShoppingBag, MessageCircle, Trash2 } from 'lucide-react';
 import { bollitos, pulguitas } from '../data/products';
@@ -25,7 +25,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const bollitosInCart = cartItems.filter(item => item.type === 'bollito');
   const pulguitasInCart = cartItems.filter(item => item.type === 'pulguita');
 
-  // 💡 Calcular total
   const calculateTotal = () => {
     let subtotal = 0;
     let discountBase = 0;
@@ -35,7 +34,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
       const panTotal = p.price + extrasTotal;
       subtotal += panTotal;
-      discountBase += panTotal; // cuenta para el descuento
+      discountBase += panTotal;
     });
 
     // Bollitos
@@ -44,7 +43,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       if (b) {
         const total = b.price * item.quantity;
         subtotal += total;
-        discountBase += total; // cuenta para el descuento
+        discountBase += total;
       }
     });
 
@@ -54,17 +53,17 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       if (p) {
         const total = p.price * item.quantity;
         subtotal += total;
-        discountBase += total; // cuenta para el descuento
+        discountBase += total;
       }
     });
 
-    // Extras opcionales (no cuentan para descuento)
+    // Extras opcionales (propina, café, cerveza) → NO cuentan para descuento
     selectedOptionalExtras.forEach(id => {
       const e = optionalExtras.find(opt => opt.id === id);
       if (e) subtotal += e.price;
     });
 
-    // Descuento (solo panes, extras, bollitos, pulguitas)
+    // Aplicar descuento solo sobre discountBase
     if (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase) {
       subtotal = subtotal - discountBase * (appliedDiscount.value / 100);
     }
@@ -84,6 +83,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const generateWhatsAppMessage = () => {
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n`;
 
+    // Panes personalizados
     if (pansPersonalizados.length > 0) {
       message += `\n*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
@@ -103,6 +103,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
+    // Bollitos
     if (bollitosInCart.length > 0) {
       message += `\n*BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
@@ -111,6 +112,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
+    // Pulguitas
     if (pulguitasInCart.length > 0) {
       message += `\n*PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
@@ -119,6 +121,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
+    // Extras opcionales
     if (selectedOptionalExtras.length > 0) {
       message += `\n*MANUEL, QUÉ RICO TU PAN!...:*\n`;
       selectedOptionalExtras.forEach(id => {
@@ -127,6 +130,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
+    // Descuento
     if (appliedDiscount) {
       message += `\n*DESCUENTO APLICADO: ${appliedDiscount.value}%*\n`;
     }
@@ -168,7 +172,8 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
           </div>
         )}
 
-        {/* ... resto de secciones igual que en tu versión ... */}
+        {/* Secciones de Panes, Bollitos, Pulguitas y Extras opcionales */}
+        {/* ... copia completa de tu render actual de items ... */}
 
         {/* Código de descuento */}
         <div className="mt-4">
@@ -220,4 +225,3 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 };
 
 export default OrderSummary;
-

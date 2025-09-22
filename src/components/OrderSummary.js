@@ -57,7 +57,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       }
     });
 
-    // Extras opcionales (propina, café, cerveza) → NO cuentan para descuento
+    // Extras opcionales → NO cuentan para descuento
     selectedOptionalExtras.forEach(id => {
       const e = optionalExtras.find(opt => opt.id === id);
       if (e) subtotal += e.price;
@@ -83,7 +83,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const generateWhatsAppMessage = () => {
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n`;
 
-    // Panes personalizados
     if (pansPersonalizados.length > 0) {
       message += `\n*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
@@ -103,7 +102,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Bollitos
     if (bollitosInCart.length > 0) {
       message += `\n*BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
@@ -112,7 +110,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Pulguitas
     if (pulguitasInCart.length > 0) {
       message += `\n*PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
@@ -121,7 +118,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Extras opcionales
     if (selectedOptionalExtras.length > 0) {
       message += `\n*MANUEL, QUÉ RICO TU PAN!...:*\n`;
       selectedOptionalExtras.forEach(id => {
@@ -130,7 +126,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Descuento
     if (appliedDiscount) {
       message += `\n*DESCUENTO APLICADO: ${appliedDiscount.value}%*\n`;
     }
@@ -172,10 +167,109 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
           </div>
         )}
 
-        {/* Secciones de Panes, Bollitos, Pulguitas y Extras opcionales */}
-        {/* ... copia completa de tu render actual de items ... */}
+        {/* ----------------------- PANES PERSONALIZADOS ----------------------- */}
+        {pansPersonalizados.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">🌾 Panes Personalizados:</h3>
+            {pansPersonalizados.map((pan, index) => (
+              <div key={pan.id} className="flex flex-col p-2 bg-amber-50 rounded-lg relative">
+                <button
+                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                  onClick={() => onRemoveItem(pan.id, 'panPersonalizado')}
+                >
+                  <Trash2 className="w-5 h-5" />
+                </button>
+                <span className="font-bold">🌾 Pan {index + 1}:</span>
+                {pan.harinas.map(h => {
+                  const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
+                  return (
+                    <span key={h.id}>
+                      • {h.icon ? h.icon + ' ' : ''}{h.name}{hasCortado ? ' 🔪' : ''}
+                    </span>
+                  );
+                })}
+                {pan.extras?.length > 0 && (
+                  <div className="mt-1 ml-2">
+                    <span className="font-semibold">Extras:</span>
+                    {pan.extras.map(extra => (
+                      <div key={extra.id}>• {extra.icon ? extra.icon + ' ' : ''}{extra.name} ({formatPrice(extra.price)})</div>
+                    ))}
+                  </div>
+                )}
+                <span className="mt-1 font-bold">
+                  Precio: {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
 
-        {/* Código de descuento */}
+        {/* ----------------------- BOLLITOS ----------------------- */}
+        {bollitosInCart.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Bollitos:</h3>
+            {bollitosInCart.map(item => {
+              const b = bollitos.find(b => b.id === item.id);
+              return b && (
+                <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 rounded-lg relative">
+                  <span className="flex items-center gap-2">{b.image ? b.image + ' ' : ''}{b.name} x{item.quantity}</span>
+                  <span>{formatPrice(b.price * item.quantity)}</span>
+                  <button
+                    className="ml-2 text-red-500 hover:text-red-700"
+                    onClick={() => onRemoveItem(item.id, 'bollito')}
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* ----------------------- PULGUITAS ----------------------- */}
+        {pulguitasInCart.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="font-semibold text-gray-700">Pulguitas:</h3>
+            {pulguitasInCart.map(item => {
+              const p = pulguitas.find(p => p.id === item.id);
+              return p && (
+                <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 rounded-lg relative">
+                  <span className="flex items-center gap-2">{p.image ? p.image + ' ' : ''}{p.name} x{item.quantity}</span>
+                  <span>{formatPrice(p.price * item.quantity)}</span>
+                  <button
+                    className="ml-2 text-red-500 hover:text-red-700"
+                    onClick={() => onRemoveItem(item.id, 'pulguita')}
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* ----------------------- EXTRAS OPCIONALES ----------------------- */}
+        <div className="space-y-2">
+          <h3 className="font-semibold text-gray-700">MANUEL, QUÉ RICO TU PAN!...:</h3>
+          <div className="flex gap-3 flex-wrap">
+            {optionalExtras.map(extra => (
+              <button
+                key={extra.id}
+                onClick={() => toggleOptionalExtra(extra)}
+                className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${
+                  selectedOptionalExtras.includes(extra.id)
+                    ? 'bg-yellow-100 border-yellow-400'
+                    : 'bg-gray-50 border-gray-300 hover:bg-gray-100'
+                }`}
+              >
+                <span>{extra.icon}</span>
+                <span>{extra.name} ({formatPrice(extra.price)})</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* ----------------------- CÓDIGO DE DESCUENTO ----------------------- */}
         <div className="mt-4">
           <h3 className="font-semibold text-gray-700 mb-2">¿Tienes un código de descuento?</h3>
           <div className="flex gap-2">
@@ -200,16 +294,20 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
           )}
         </div>
 
-        {/* Total */}
+        {/* ----------------------- TOTAL Y ENTREGA ----------------------- */}
         <div className="border-t pt-3 mt-3">
           <div className="flex justify-between items-center text-xl font-bold">
             <span>Total:</span>
             <span>{formatPrice(calculateTotal())}</span>
           </div>
+
+          <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-gray-700 flex items-center gap-2 shadow-sm">
+            🚴‍♂️ <span><strong>Entrega a domicilio en Chiclana</strong> <span className="text-green-600 font-semibold">GRATUITA!</span> 🎉</span>
+          </div>
         </div>
       </div>
 
-      {/* Botón WhatsApp */}
+      {/* ----------------------- BOTÓN WHATSAPP ----------------------- */}
       <motion.button
         onClick={handleSendWhatsApp}
         disabled={isOrderEmpty}

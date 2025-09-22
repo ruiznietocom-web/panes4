@@ -134,7 +134,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         if (pan.extras?.length > 0) {
           message += `Extras:\n`;
           pan.extras.forEach(e => {
-            message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n\n`;
+            message += `• ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
           });
         }
         message += `Precio Pan con extras: ${formatPrice(panTotal)}\n`;

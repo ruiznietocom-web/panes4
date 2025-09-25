@@ -196,6 +196,13 @@ if (selectedOptionalExtras.length > 0) {
     message += `🙏 PUEDES HACERME CUALQUIER CONSULTA o ESPECIFICACIÓN SOBRE EL PEDIDO POR WHATSAPP.\n\n`;
   
     message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n`;
+
+    message += `🙏 *MUCHAS GRACIAS!* 🙏\n\n`;
+
+
+
+
+
 // ----------------------- TOTALES DETALLADOS CON DESCUENTO -----------------------
 if (appliedDiscount) {
   // Recalcular subtotal y descuento

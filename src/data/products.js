@@ -106,7 +106,7 @@ export const bollitos = [
   { id: 5, name: "Bollito de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 1.30 },
   { id: 6, name: "Bollito de Semillas", description: "Crujiente, lleno de fibra y minerales", image: "🌻", price: 1.30 },
   { id: 7, name: "Bollito de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 1.30 },
-  { id: 8, name: "Bollito de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 1.30 }
+  { id: 8, name: "Bollito de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 1.40 }
 ];
 
 export const pulguitas = [

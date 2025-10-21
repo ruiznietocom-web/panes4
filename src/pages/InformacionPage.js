@@ -31,7 +31,7 @@ const InformacionPage = () => {
  {/* BOTÓN PARA DESCARGAR PDF AL PRINCIPIO */}
       <div className="my-6 flex justify-center">
         <a
-          href="/docs/PRECIOSPANES31052025.pdf"
+          href="/docs/PRECIOS PANES INTEGRALES 30 11 2025.pdf"
           download
           target="_blank"
           rel="noopener noreferrer"

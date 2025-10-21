@@ -36,7 +36,7 @@ const Navigation = () => {
               transition={{
                 duration: 1.2,
                 repeat: Infinity,
-                repeatDelay: 4,
+                repeatDelay: 2,
               }}
             >
               <item.icon className="w-6 h-6 mb-1" />

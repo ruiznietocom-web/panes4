@@ -8,7 +8,7 @@ const Navigation = () => {
     { name: 'Pan Personalizado', path: '/', icon: Wheat },
     { name: 'Bollitos', path: '/bollitos', icon: Cookie },
     { name: 'Pulguitas', path: '/pulguitas', icon: Circle },
-    { name: '+ INFORMACIÓN', path: '/informacion', icon: Info },
+    { name: '+ INFO', path: '/informacion', icon: Info },
   ];
 
   return (

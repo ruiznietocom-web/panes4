@@ -42,25 +42,7 @@ const Header = ({ cartItemCount, onOpenCart }) => {
           </div>
         </motion.div>
 
-        {/* Carrito */}
-        <motion.button
-          onClick={onOpenCart}
-          className="relative p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-300 shadow-md"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ShoppingBag className="w-8 h-8 text-white" />
-          {cartItemCount > 0 && (
-            <motion.span
-              className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center shadow-lg"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-            >
-              {cartItemCount}
-            </motion.span>
-          )}
-        </motion.button>
+      
       </div>
     </motion.header>
   );

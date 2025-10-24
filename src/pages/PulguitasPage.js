@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { pulguitas } from "../data/products";
 import { formatPrice } from "../utils/formatPrice";
@@ -38,17 +38,17 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
               {formatPrice(pulguita.price)}
             </p>
 
-           {/* Botón "Ver foto" solo para PACK Surtido 12 Pulguitas Integrales Clásicas */}
-{pulguita.id === 1.05 && (
-  <a
-    href="/images/pulguitaclasica12.jpg"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-blue-500 underline mt-2 block"
-  >
-    Ver foto
-  </a>
-)}
+            {/* Botón para ver foto si existe */}
+            {pulguita.viewPhotoText && pulguita.photoUrl && (
+              <a
+                href={pulguita.photoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                {pulguita.viewPhotoText}
+              </a>
+            )}
 
             <div className="flex items-center justify-center gap-2 mt-3">
               <button
@@ -83,4 +83,3 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
 };
 
 export default PulguitasPage;
-

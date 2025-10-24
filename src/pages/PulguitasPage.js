@@ -1,9 +1,11 @@
-import React from "react";
+ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { pulguitas } from "../data/products";
 import { formatPrice } from "../utils/formatPrice";
 
 const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
+  const [modalPhoto, setModalPhoto] = useState(null); // Estado para la foto del modal
+
   return (
     <motion.div
       className="bg-white rounded-2xl p-6 shadow-lg"
@@ -15,7 +17,6 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
         Elige tus Pulguitas
       </h2>
 
-      {/* Mensaje informativo */}
       <p className="text-sm text-gray-500 mb-4 text-center">
         Si deseas alguna pulguita de una harina en especial contacta conmigo por WhatsApp cuando envíes el pedido.
       </p>
@@ -38,16 +39,14 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
               {formatPrice(pulguita.price)}
             </p>
 
-            {/* Botón para ver foto si existe */}
-            {pulguita.viewPhotoText && pulguita.photoUrl && (
-              <a
-		href="/images/pulguitaclasica12.jpg"                
-		target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+            {/* Botón "Ver foto" para el pack específico */}
+            {pulguita.id === 1.05 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitaclasica12.jpg")}
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
               >
-                {pulguita.viewPhotoText}
-              </a>
+                Ver foto
+              </button>
             )}
 
             <div className="flex items-center justify-center gap-2 mt-3">
@@ -78,8 +77,28 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
           </motion.div>
         ))}
       </div>
+
+      {/* Modal para mostrar la foto */}
+      {modalPhoto && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+          <div className="relative bg-white p-4 rounded-lg max-w-md w-full">
+            <button
+              onClick={() => setModalPhoto(null)}
+              className="absolute top-2 right-2 text-gray-700 font-bold text-lg hover:text-red-500"
+            >
+              ✕
+            </button>
+            <img
+              src={modalPhoto}
+              alt="Pulguitas Clásicas"
+              className="w-full h-auto rounded"
+            />
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 };
 
 export default PulguitasPage;
+

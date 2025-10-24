@@ -41,8 +41,8 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
             {/* Botón para ver foto si existe */}
             {pulguita.viewPhotoText && pulguita.photoUrl && (
               <a
-                href={pulguita.photoUrl}
-                target="_blank"
+		href="/images/pulguitaclasica12.jpg"                
+		target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
               >

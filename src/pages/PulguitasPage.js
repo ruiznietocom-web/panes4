@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import { motion } from "framer-motion";
 import { pulguitas } from "../data/products";
 import { formatPrice } from "../utils/formatPrice";
@@ -15,13 +15,10 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
         Elige tus Pulguitas
       </h2>
 
-
- {/* Mensaje informativo */}
+      {/* Mensaje informativo */}
       <p className="text-sm text-gray-500 mb-4 text-center">
         Si deseas alguna pulguita de una harina en especial contacta conmigo por WhatsApp cuando envíes el pedido.
       </p>
-
-
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {pulguitas.map((pulguita, index) => (
@@ -40,6 +37,18 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
             <p className="text-lg font-semibold text-purple-600">
               {formatPrice(pulguita.price)}
             </p>
+
+            {/* Botón para ver foto si existe */}
+            {pulguita.viewPhotoText && pulguita.photoUrl && (
+              <a
+                href={pulguita.photoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                {pulguita.viewPhotoText}
+              </a>
+            )}
 
             <div className="flex items-center justify-center gap-2 mt-3">
               <button
@@ -74,3 +83,4 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
 };
 
 export default PulguitasPage;
+

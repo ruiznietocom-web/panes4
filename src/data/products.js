@@ -58,8 +58,7 @@ export const pulguitas = [
     image: "🧺", 
     price: 6,
     viewPhotoText: "Ver foto",
-    photoUrl: "/assets/images/pulguitaclasica12.jpg"
-  },
+      },
 
   { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (dos de cada)", description: "2x Semillas, 2x Ajo, 2x Cacao, 2x Cúrcuma, 2x Nueces, 2x Ciruelas Pasas, 2x Tomate y Orégano. Pruébalos todos!", image: "🧺", price: 8.50 },
   { id: 1.2, name: "PACK Surtido 12 Pulguitas Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🧺🌻", price: 7.50 },

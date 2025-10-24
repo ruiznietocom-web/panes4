@@ -1,12 +1,9 @@
- // src/pages/PulguitasPage.js
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { pulguitas } from "../data/products";
 import { formatPrice } from "../utils/formatPrice";
 
 const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-
   return (
     <motion.div
       className="bg-white rounded-2xl p-6 shadow-lg"
@@ -18,9 +15,13 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
         Elige tus Pulguitas
       </h2>
 
+
+ {/* Mensaje informativo */}
       <p className="text-sm text-gray-500 mb-4 text-center">
         Si deseas alguna pulguita de una harina en especial contacta conmigo por WhatsApp cuando envíes el pedido.
       </p>
+
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {pulguitas.map((pulguita, index) => (
@@ -39,16 +40,6 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
             <p className="text-lg font-semibold text-purple-600">
               {formatPrice(pulguita.price)}
             </p>
-
-            {/* Botón "Ver foto" solo si tiene foto */}
-            {pulguita.photo && (
-              <button
-                className="mt-3 text-sm text-purple-600 underline hover:text-purple-800 flex items-center justify-center gap-1"
-                onClick={() => setSelectedPhoto(pulguita.photo)}
-              >
-                📷 Ver foto
-              </button>
-            )}
 
             <div className="flex items-center justify-center gap-2 mt-3">
               <button
@@ -78,32 +69,8 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
           </motion.div>
         ))}
       </div>
-
-      {/* Modal para ver la foto */}
-      <AnimatePresence>
-        {selectedPhoto && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedPhoto(null)}
-          >
-            <motion.img
-              src={selectedPhoto}
-              alt="Foto de Pulguitas"
-              className="max-w-[90%] max-h-[80%] rounded-2xl shadow-2xl border-4 border-white"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.div>
   );
 };
 
 export default PulguitasPage;
-

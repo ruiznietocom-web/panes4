@@ -408,7 +408,7 @@ if (appliedDiscount) {
       </div>
 {/* ENTREGA GRATUITA */}
 <div className="mt-2 text-center text-green-700 font-semibold">
-  🚴‍♂️ Entrega a domicilio gratuita 🎉en <span className="font-bold">Chiclana</span> 
+  🚴‍♂️ Entrega a domicilio gratuita en <span className="font-bold">Chiclana</span>🚴‍♂️ 
 </div>
       {/* BOTÓN WHATSAPP */}
       <motion.button

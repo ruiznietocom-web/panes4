@@ -62,7 +62,7 @@ const Header = () => {
           </div>
 
           <span className="font-medium text-xs tracking-wide text-amber-100">
-            Descarga la app
+            Descarga la App
           </span>
         </motion.a>
 

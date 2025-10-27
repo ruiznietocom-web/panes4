@@ -1,6 +1,6 @@
  import React from 'react';
 import { motion } from 'framer-motion';
-import logo from '../assets/logo.jpg'; // tu logo redondo de la izquierda
+import logo from '../assets/logo.jpg';
 
 const Header = () => {
   return (
@@ -11,7 +11,8 @@ const Header = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between">
-        {/* 🥖 Logo PanZen a la izquierda */}
+        
+        {/* Logo con animación de latido */}
         <motion.div 
           className="flex items-center gap-4"
           initial={{ scale: 0 }}
@@ -40,23 +41,28 @@ const Header = () => {
           </div>
         </motion.div>
 
-        {/* 📱 Botón de descarga app a la derecha */}
+        {/* Botón de descarga APK */}
         <motion.a
           href="/PanZen.apk"
           download
-          className="flex items-center gap-3 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-2xl shadow-lg transition-all"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          className="flex flex-col items-center text-white hover:opacity-90 transition-opacity duration-200"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <img 
+          <motion.img 
             src="/logoandroid.png" 
             alt="Descargar App Android" 
-            className="w-[35px] h-[35px] object-contain" 
+            className="w-[35px] h-[35px] object-contain mb-1"
+            animate={{ y: [0, -4, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           />
-          <span className="font-semibold text-white text-sm">
+          {/* Texto más pequeño */}
+          <span className="font-medium text-xs tracking-wide text-amber-100">
             Descarga la app
           </span>
         </motion.a>
+
       </div>
     </motion.header>
   );

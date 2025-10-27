@@ -51,7 +51,7 @@ const Header = () => {
           <img 
             src="/logoandroid.png" 
             alt="Descargar App Android" 
-            className="w-[60px] h-[60px] object-contain" 
+            className="w-[35px] h-[35px] object-contain" 
           />
           <span className="font-semibold text-white text-lg">
             Descarga la app

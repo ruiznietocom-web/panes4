@@ -1,9 +1,8 @@
-  import React from 'react';
+ import React from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag } from 'lucide-react';
-import logo from '../assets/logo.jpg';
+import logo from '../assets/logo.jpg'; // tu logo redondo de la izquierda
 
-const Header = ({ cartItemCount, onOpenCart }) => {
+const Header = () => {
   return (
     <motion.header 
       className="bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 text-white p-6 shadow-xl backdrop-blur-sm"
@@ -12,14 +11,13 @@ const Header = ({ cartItemCount, onOpenCart }) => {
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between">
-        {/* Logo y título */}
+        {/* 🥖 Logo PanZen a la izquierda */}
         <motion.div 
           className="flex items-center gap-4"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          {/* Logo redondo con latido doble cada 2 segundos */}
           <motion.div
             className="p-1 bg-white/20 rounded-full overflow-hidden shadow-md"
             animate={{ scale: [1, 1.05, 1, 1.05, 1] }}
@@ -42,12 +40,27 @@ const Header = ({ cartItemCount, onOpenCart }) => {
           </div>
         </motion.div>
 
-      
+        {/* 📱 Botón de descarga app a la derecha */}
+        <motion.a
+          href="/PanZen.apk"
+          download
+          className="flex items-center gap-3 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-2xl shadow-lg transition-all"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <img 
+            src="/logoandroid.png" 
+            alt="Descargar App Android" 
+            className="w-[60px] h-[60px] object-contain" 
+          />
+          <span className="font-semibold text-white text-lg">
+            Descarga la app
+          </span>
+        </motion.a>
       </div>
     </motion.header>
   );
 };
 
 export default Header;
-
 

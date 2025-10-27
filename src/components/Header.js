@@ -53,7 +53,7 @@ const Header = () => {
             alt="Descargar App Android" 
             className="w-[35px] h-[35px] object-contain" 
           />
-          <span className="font-semibold text-white text-lg">
+          <span className="font-semibold text-white text-sm">
             Descarga la app
           </span>
         </motion.a>

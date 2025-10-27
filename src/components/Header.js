@@ -51,7 +51,7 @@ const Header = () => {
           transition={{ delay: 0.8, duration: 0.6 }}
         >
           {/* Fondo redondeado detrás del logo */}
-          <div className="bg-green-500 p-3 rounded-full shadow-lg flex items-center justify-center mb-1">
+          <div className="bg-white p-3 rounded-full shadow-lg flex items-center justify-center mb-1">
             <motion.img 
               src="/logoandroid.png" 
               alt="Descargar App Android" 

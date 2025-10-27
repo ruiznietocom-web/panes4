@@ -12,7 +12,7 @@ const Header = () => {
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between">
         
-        {/* Logo con animación de latido */}
+        {/* Logo principal */}
         <motion.div 
           className="flex items-center gap-4"
           initial={{ scale: 0 }}
@@ -50,14 +50,17 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <motion.img 
-            src="/logoandroid.png" 
-            alt="Descargar App Android" 
-            className="w-[35px] h-[35px] object-contain mb-1"
-            animate={{ y: [0, -4, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          />
-          {/* Texto más pequeño */}
+          {/* Fondo redondeado detrás del logo */}
+          <div className="bg-green-500 p-3 rounded-full shadow-lg flex items-center justify-center mb-1">
+            <motion.img 
+              src="/logoandroid.png" 
+              alt="Descargar App Android" 
+              className="w-[45px] h-[45px] object-contain"
+              animate={{ y: [0, -4, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            />
+          </div>
+
           <span className="font-medium text-xs tracking-wide text-amber-100">
             Descarga la app
           </span>

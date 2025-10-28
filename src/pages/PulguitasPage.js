@@ -116,7 +116,7 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
             {/* Botón para cerrar el modal */}
             <button
               onClick={() => setModalPhoto(null)} // Cierra el modal
-              className="absolute top-2 right-2 w-12 h-12 flex items-center justify-center text-white bg-purple-500 rounded-full text-3xl font-bold hover:bg-orange-700"
+              className="absolute top-2 right-2 w-12 h-12 flex items-center justify-center text-white bg-purple-500 rounded-full text-3xl font-bold hover:bg-purple-700"
 >
               ✕
             </button>

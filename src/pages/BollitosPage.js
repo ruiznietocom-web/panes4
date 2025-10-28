@@ -51,7 +51,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
             </p>
 
             {/* Botón para ver la foto solo en bollitos clásicos */}
-            {bollito.id === 2.03 && (
+            {bollito.id === 1.06 && (
               <button
                 onClick={() => setModalPhoto("/images/bollitoclasico6.jpg")}
                 className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"

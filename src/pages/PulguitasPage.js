@@ -65,7 +65,7 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
        {/* Botón "Ver foto" solo para el pack de pulguitas nueces */}
             {pulguita.id === 1.3 && (
               <button
-                onClick={() => setModalPhoto("/images/pulguitaclasica12.jpg")} 
+                onClick={() => setModalPhoto("/images/pulguitanuez12.jpg")} 
                 // Al hacer click, se abre el modal con la foto
                 className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
               >

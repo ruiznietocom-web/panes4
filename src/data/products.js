@@ -5,7 +5,7 @@
   { id: 4, name: "KHORASAN Integral Ecológico", description: "Antiguo cereal, sabor intenso y alto en proteínas.", image: "🌾", price: 5.50 },
   { id: 5, name: "TRITORDEUM Integral Ecológico", description: "Innovadora, híbrido del trigo y la cebada y de fácil digestión", image: "🌾", price: 5.50 },
   { id: 6, name: "PAN CORTADO FINO (gratuito)", description: "¿quieres tu pan cortado fino?", image: "🔪", price: 0 },
-  { id: 7, name: "PAN CORTADO NORMAL (gratuito)", description: "¿quieres tu pan cortado normal?", image: "🔪🔪", price: 0 },
+  { id: 7, name: "PAN CORTADO NORMAL. (gratuito)", description: "¿quieres tu pan cortado normal?", image: "🔪🔪", price: 0 },
   { id: 8, name: "PAN CORTADO GRUESO (gratuito)", description: "¿quieres tu pan cortado grueso?", image: "🔪🔪🔪", price: 0 }
 ];
 

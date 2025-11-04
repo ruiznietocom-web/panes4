@@ -50,6 +50,9 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
               {formatPrice(pulguita.price)}
             </p>
 
+
+
+
             {/* Botón "Ver foto" solo para el pack de pulguitas clásicas */}
             {pulguita.id === 1.05 && (
               <button
@@ -72,6 +75,26 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
                 Ver foto
               </button>
             )}
+
+
+
+       {/* Botón "Ver foto" solo para el pack de pulguitas unidad */}
+            {pulguita.id === 1 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitaclasicaunidad.jpg")} 
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+
+
+
+
+
+
 
 
             {/* Controles de cantidad */}

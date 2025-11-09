@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -13,9 +11,10 @@ import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
 import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
+import WhatsAppButton from './components/WhatsAppButton'; // <-- Importar botón WhatsApp
 import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
-// 👉 Componente ScrollToTop (sube la página al cambiar de ruta)
+// Subir la página al cambiar de ruta
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -29,7 +28,6 @@ const App = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
-  // 👉 Helper para buscar detalles de productos
   const getProductDetails = (id, type) => {
     switch (type) {
       case 'extra': return extras.find(p => p.id === id);
@@ -40,12 +38,10 @@ const App = () => {
     }
   };
 
-  // 👉 Añadir Pan Personalizado
   const handleAddPanPersonalizado = (pan) => {
     setCartItems(prev => [...prev, { ...pan, extras: [] }]);
   };
 
-  // 👉 Actualizar cantidades (bollitos, pulguitas, otros panes)
   const handleUpdateCartItem = (id, quantity, type) => {
     setCartItems(prevItems => {
       const existingIndex = prevItems.findIndex(item => item.id === id && item.type === type);
@@ -81,44 +77,38 @@ const App = () => {
     });
   };
 
-  // 👉 Eliminar item del carrito
   const handleRemoveCartItem = (id, type) => {
     setCartItems(prevItems =>
       prevItems.filter(item => !(item.id === id && item.type === type))
     );
   };
 
-  // 👉 Actualizar extras de un pan
   const handleUpdatePanExtras = (updatedCart) => {
     setCartItems(updatedCart);
   };
 
-  // 👉 Enviar pedido por WhatsApp
   const handleSendWhatsApp = () => { 
     setShowSuccessModal(true); 
     setShowCart(false); 
   };
 
-  // 👉 Cerrar modal de éxito
   const handleCloseModal = () => { 
     setShowSuccessModal(false); 
     setCartItems([]); 
   };
 
-  // 👉 Contador total de items
   const cartItemCount = cartItems.reduce((count, item) => count + (item.quantity || 1), 0);
 
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 relative">
         <Header cartItemCount={cartItemCount} onOpenCart={() => setShowCart(true)} />
         <Navigation />
 
         <div className="max-w-6xl mx-auto p-4 py-8">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Columna izquierda */}
               <div className="lg:col-span-2 space-y-6">
                 <Routes>
                   <Route path="/" element={
@@ -148,7 +138,6 @@ const App = () => {
                 </Routes>
               </div>
 
-              {/* Columna derecha */}
               <div className="lg:col-span-1">
                 <div className="sticky top-4">
                   <OrderSummary 
@@ -162,7 +151,6 @@ const App = () => {
           </motion.div>
         </div>
 
-        {/* Modales y carrito lateral */}
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
         <ShoppingCart 
           isOpen={showCart} 
@@ -171,6 +159,9 @@ const App = () => {
           onUpdateQuantity={handleUpdateCartItem} 
           onRemoveItem={handleRemoveCartItem} 
         />
+
+        {/* Botón flotante de WhatsApp */}
+        <WhatsAppButton />
       </div>
     </Router>
   );

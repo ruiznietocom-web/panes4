@@ -20,7 +20,7 @@ const WhatsAppButton = () => {
       {/* Texto con icono debajo */}
       <div className="mt-1 flex items-center gap-1 bg-white/50 text-gray-800 px-2 py-1 rounded-full shadow-sm border border-gray-400">
         <FaUser className="w-3 h-4" />
-        <span className="text-sm font-medium">Puedo ayudarte?</span>
+        <span className="text-xs font-medium">Puedo ayudarte?</span>
       </div>
     </div>
   );

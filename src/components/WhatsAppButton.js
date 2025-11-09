@@ -8,9 +8,11 @@ const message = "Hola, ";
 
   return (
     <div className="fixed bottom-6 right-6 flex flex-col items-center z-50">
+
+
       {/* Botón de WhatsApp */}
       <a
-        href={`https://wa.me/${phoneNumber}`}
+        href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
         target="_blank"
         rel="noopener noreferrer"
         className="bg-green-500 hover:bg-green-600 text-white w-10 h-10 flex justify-center items-center rounded-full shadow-lg transition-all duration-30000 animate-pulse"

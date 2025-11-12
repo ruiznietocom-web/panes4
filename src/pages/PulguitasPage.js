@@ -16,7 +16,7 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
     >
       {/* Título de la página */}
       <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-        Elige tus Pulguitas
+        Elige tus Pulguitas Integrales Ecológicas
       </h2>
 
       {/* Mensaje informativo */}

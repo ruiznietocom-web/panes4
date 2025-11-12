@@ -16,7 +16,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
     >
       {/* Título */}
       <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-        Elige tus Bollitos
+        Elige tus Bollitos Integrales Ecológicos
       </h2>
 
       {/* Mensaje informativo */}
@@ -50,7 +50,36 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
               {formatPrice(bollito.price)}
             </p>
 
+
+
+
             {/* Botón para ver la foto solo en bollitos clásicos */}
+            {bollito.id === 1 && (
+              <button
+                onClick={() => setModalPhoto("/images/bolloclasicounidad.jpg")}
+                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+
+ {/* Botón para ver la foto solo 7 bollitos  */}
+            {bollito.id === 1.1 && (
+              <button
+                onClick={() => setModalPhoto("/images/7bollos.jpg")}
+                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+
+
+
+
+
+   {/* Botón para ver la foto solo en bollitos unidad */}
             {bollito.id === 1.06 && (
               <button
                 onClick={() => setModalPhoto("/images/bollitoclasico6.jpg")}
@@ -59,6 +88,10 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
                 Ver foto
               </button>
             )}
+
+
+
+
 
             {/* Controles de cantidad */}
             <div className="flex items-center justify-center gap-2 mt-3">

@@ -121,7 +121,86 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
             )}
 
 
+       {/* Botón "Ver foto" solo para el pack de pulguitas cacao */}
+            {pulguita.id === 2 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitaunidadcacao.jpg")} 
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
 
+
+
+  {/* Botón "Ver foto" solo para el pack de pulguitas 14 */}
+            {pulguita.id === 1.1 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitasurtido14.jpg")} 
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+
+ {/* Botón "Ver foto" solo para el pack de pulguitas tomate */}
+            {pulguita.id === 1.7 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitastomate12.jpg")} 
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+ {/* Botón "Ver foto" solo para el pack de pulguita nuez */}
+            {pulguita.id === 3 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitaunidadnuez.jpg")} 
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+
+{/* Botón "Ver foto" solo para el pack de pulguita ajo */}
+            {pulguita.id === 7 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitaunidadajo.jpg")} 
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+{/* Botón "Ver foto" solo para el pack de pulguita curcuma */}
+            {pulguita.id === 5 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitaunidadcurcuma.jpg")} 
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+{/* Botón "Ver foto" solo para el pack de pulguita pasas */}
+            {pulguita.id === 4 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitaunidadpasas.jpg")} 
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
 
 
 

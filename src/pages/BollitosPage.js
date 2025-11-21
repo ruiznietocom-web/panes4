@@ -91,6 +91,28 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
 
 
 
+  {/* Botón para ver la foto solo en bollitos nueces 6 */}
+            {bollito.id === 1.3 && (
+              <button
+                onClick={() => setModalPhoto("/images/bollitosnueces6.jpg")}
+                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+
+   {/* Botón para ver la foto solo en bollitos unidad */}
+            {bollito.id === 1.07 && (
+              <button
+                onClick={() => setModalPhoto("/images/molletescenteno.jpg")}
+                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
+
+
 
 
             {/* Controles de cantidad */}

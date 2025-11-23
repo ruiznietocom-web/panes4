@@ -87,14 +87,14 @@ const App = () => {
     setCartItems(updatedCart);
   };
 
-  const handleSendWhatsApp = () => { 
-    setShowSuccessModal(true); 
-    setShowCart(false); 
+  const handleSendWhatsApp = () => {
+    setShowSuccessModal(true);
+    setShowCart(false);
   };
 
-  const handleCloseModal = () => { 
-    setShowSuccessModal(false); 
-    setCartItems([]); 
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
+    setCartItems([]);
   };
 
   const cartItemCount = cartItems.reduce((count, item) => count + (item.quantity || 1), 0);
@@ -102,7 +102,7 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 relative">
+      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:bg-slate-900 relative transition-colors duration-300">
         <Header cartItemCount={cartItemCount} onOpenCart={() => setShowCart(true)} />
         <Navigation />
 
@@ -114,21 +114,21 @@ const App = () => {
                   <Route path="/" element={
                     <>
                       <HarinaSelector onAddPan={handleAddPanPersonalizado} />
-                      <ExtrasSelector 
+                      <ExtrasSelector
                         cartItems={cartItems}
                         onUpdatePanExtras={handleUpdatePanExtras}
                       />
                     </>
                   } />
                   <Route path="/bollitos" element={
-                    <BollitosPage 
+                    <BollitosPage
                       selectedBollitos={cartItems.filter(item => item.type === 'bollito')
                         .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
                       onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')}
                     />
                   } />
                   <Route path="/pulguitas" element={
-                    <PulguitasPage 
+                    <PulguitasPage
                       selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')
                         .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
                       onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')}
@@ -140,10 +140,10 @@ const App = () => {
 
               <div className="lg:col-span-1">
                 <div className="sticky top-4">
-                  <OrderSummary 
-                    cartItems={cartItems} 
-                    onSendWhatsApp={handleSendWhatsApp} 
-                    onRemoveItem={handleRemoveCartItem} 
+                  <OrderSummary
+                    cartItems={cartItems}
+                    onSendWhatsApp={handleSendWhatsApp}
+                    onRemoveItem={handleRemoveCartItem}
                   />
                 </div>
               </div>
@@ -152,12 +152,12 @@ const App = () => {
         </div>
 
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
-        <ShoppingCart 
-          isOpen={showCart} 
-          onClose={() => setShowCart(false)} 
-          cartItems={cartItems} 
-          onUpdateQuantity={handleUpdateCartItem} 
-          onRemoveItem={handleRemoveCartItem} 
+        <ShoppingCart
+          isOpen={showCart}
+          onClose={() => setShowCart(false)}
+          cartItems={cartItems}
+          onUpdateQuantity={handleUpdateCartItem}
+          onRemoveItem={handleRemoveCartItem}
         />
 
         {/* Botón flotante de WhatsApp */}

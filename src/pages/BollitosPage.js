@@ -1,4 +1,4 @@
- import React, { useState } from "react"; // React y hook useState
+import React, { useState } from "react"; // React y hook useState
 import { motion } from "framer-motion"; // Para animaciones suaves
 import { bollitos } from "../data/products"; // Lista de productos (bollitos)
 import { formatPrice } from "../utils/formatPrice"; // Función para formatear precios
@@ -9,18 +9,18 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
 
   return (
     <motion.div
-      className="bg-white rounded-2xl p-6 shadow-lg"
+      className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg transition-colors duration-300"
       initial={{ opacity: 0, y: 20 }} // animación inicial
       animate={{ opacity: 1, y: 0 }}  // animación final
       transition={{ duration: 0.5 }}   // duración de la animación
     >
       {/* Título */}
-      <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">
         Elige tus Bollitos Integrales Ecológicos
       </h2>
 
       {/* Mensaje informativo */}
-      <p className="text-sm text-gray-500 mb-4 text-center">
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-center">
         Si deseas algún bollito de una harina en especial contacta conmigo por WhatsApp cuando envíes el pedido.
       </p>
 
@@ -29,7 +29,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
         {bollitos.map((bollito, index) => (
           <motion.div
             key={bollito.id}
-            className="p-4 rounded-xl border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 text-center"
+            className="p-4 rounded-xl border-2 border-gray-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-slate-700 transition-all duration-300 text-center"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             initial={{ opacity: 0, y: 20 }}
@@ -40,13 +40,13 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
             <div className="text-4xl mb-2">{bollito.image}</div>
 
             {/* Nombre */}
-            <h3 className="font-bold text-gray-800 mb-1">{bollito.name}</h3>
+            <h3 className="font-bold text-gray-800 dark:text-white mb-1">{bollito.name}</h3>
 
             {/* Descripción */}
-            <p className="text-sm text-gray-600 mb-2">{bollito.description}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{bollito.description}</p>
 
             {/* Precio */}
-            <p className="text-lg font-semibold text-blue-600">
+            <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">
               {formatPrice(bollito.price)}
             </p>
 
@@ -64,7 +64,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
             )}
 
 
- {/* Botón para ver la foto solo 7 bollitos  */}
+            {/* Botón para ver la foto solo 7 bollitos  */}
             {bollito.id === 1.1 && (
               <button
                 onClick={() => setModalPhoto("/images/7bollos.jpg")}
@@ -79,7 +79,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
 
 
 
-   {/* Botón para ver la foto solo en bollitos unidad */}
+            {/* Botón para ver la foto solo en bollitos unidad */}
             {bollito.id === 1.06 && (
               <button
                 onClick={() => setModalPhoto("/images/bollitoclasico6.jpg")}
@@ -91,7 +91,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
 
 
 
-  {/* Botón para ver la foto solo en bollitos nueces 6 */}
+            {/* Botón para ver la foto solo en bollitos nueces 6 */}
             {bollito.id === 1.3 && (
               <button
                 onClick={() => setModalPhoto("/images/bollitosnueces6.jpg")}
@@ -102,7 +102,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
             )}
 
 
-   {/* Botón para ver la foto solo en bollitos unidad */}
+            {/* Botón para ver la foto solo en bollitos unidad */}
             {bollito.id === 1.07 && (
               <button
                 onClick={() => setModalPhoto("/images/molletescenteno.jpg")}
@@ -118,7 +118,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
             {/* Controles de cantidad */}
             <div className="flex items-center justify-center gap-2 mt-3">
               <button
-                className="px-3 py-1 bg-gray-200 rounded"
+                className="px-3 py-1 bg-gray-200 dark:bg-slate-600 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-slate-500 transition"
                 onClick={() =>
                   onUpdateBollitoQuantity(
                     bollito.id,
@@ -128,9 +128,9 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
               >
                 -
               </button>
-              <span>{selectedBollitos[bollito.id] || 0}</span>
+              <span className="dark:text-white">{selectedBollitos[bollito.id] || 0}</span>
               <button
-                className="px-3 py-1 bg-gray-200 rounded"
+                className="px-3 py-1 bg-gray-200 dark:bg-slate-600 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-slate-500 transition"
                 onClick={() =>
                   onUpdateBollitoQuantity(
                     bollito.id,
@@ -148,7 +148,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
       {/* Modal para mostrar la foto */}
       {modalPhoto && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="relative bg-white p-4 rounded-lg max-w-md w-full">
+          <div className="relative bg-white dark:bg-slate-800 p-4 rounded-lg max-w-md w-full">
             {/* Botón cerrar */}
             <button
               onClick={() => setModalPhoto(null)}

@@ -1,19 +1,37 @@
- import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { Sun, Moon } from 'lucide-react';
 import logo from '../assets/logo.jpg';
+import { useTheme } from '../context/ThemeContext';
 
 const Header = () => {
+  const { theme, toggleTheme } = useTheme();
   return (
-    <motion.header 
+    <motion.header
       className="bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 text-white p-6 shadow-xl backdrop-blur-sm"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between">
-        
+
+        {/* Theme Toggle Button */}
+        <motion.button
+          onClick={toggleTheme}
+          className="fixed top-4 right-4 z-50 p-3 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md transition-all duration-300 shadow-lg"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? (
+            <Sun className="w-6 h-6 text-amber-300" />
+          ) : (
+            <Moon className="w-6 h-6 text-white" />
+          )}
+        </motion.button>
+
         {/* Logo principal */}
-        <motion.div 
+        <motion.div
           className="flex items-center gap-4"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -24,10 +42,10 @@ const Header = () => {
             animate={{ scale: [1, 1.05, 1, 1.05, 1] }}
             transition={{ duration: 0.6, repeat: Infinity, repeatDelay: 1.4, ease: "easeInOut" }}
           >
-            <img 
-              src={logo} 
-              alt="Logo PanZen" 
-              className="w-[80px] h-[80px] object-cover rounded-full" 
+            <img
+              src={logo}
+              alt="Logo PanZen"
+              className="w-[80px] h-[80px] object-cover rounded-full"
             />
           </motion.div>
 
@@ -52,9 +70,9 @@ const Header = () => {
         >
           {/* Fondo redondeado detrás del logo */}
           <div className="bg-white p-1.5 rounded-full shadow-md flex items-center justify-center mb-1">
-            <motion.img 
-              src="/logoandroid.png" 
-              alt="Descargar App Android" 
+            <motion.img
+              src="/logoandroid.png"
+              alt="Descargar App Android"
               className="w-[35px] h-[35px] object-contain"
               animate={{ y: [0, -4, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}

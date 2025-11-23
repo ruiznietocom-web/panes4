@@ -12,17 +12,16 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="bg-gradient-to-r from-orange-100 to-orange-200 shadow-md p-4 sticky top-0 z-10">
+    <nav className="bg-gradient-to-r from-orange-100 to-orange-200 dark:from-slate-800 dark:to-slate-900 shadow-md p-4 sticky top-0 z-10 transition-colors duration-300">
       <div className="max-w-4xl mx-auto flex justify-around">
         {navItems.map((item) => (
           <NavLink
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `flex flex-col items-center p-2 rounded-lg transition-all duration-300 ${
-                isActive
-                  ? 'text-white bg-gradient-to-r from-orange-400 to-orange-500 shadow-lg'
-                  : 'text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-orange-200 hover:to-orange-300'
+              `flex flex-col items-center p-2 rounded-lg transition-all duration-300 ${isActive
+                ? 'text-white bg-gradient-to-r from-orange-400 to-orange-500 dark:bg-slate-700 dark:text-amber-400 shadow-lg'
+                : 'text-gray-700 dark:text-slate-400 hover:text-white dark:hover:text-amber-400 hover:bg-gradient-to-r hover:from-orange-200 hover:to-orange-300 dark:hover:bg-slate-800'
               }`
             }
           >

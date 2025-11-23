@@ -38,7 +38,7 @@ const Header = () => {
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight font-serif text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]">
               PanZen
             </h1>
-            <p className="text-amber-50 font-medium text-xs md:text-sm font-sans hidden md:block drop-shadow-sm">
+            <p className="text-amber-50 font-medium text-xs md:text-sm font-sans block drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
               Tu pan consciente personalizado
             </p>
           </div>

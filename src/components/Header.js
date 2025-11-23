@@ -45,7 +45,7 @@ const Header = () => {
         </motion.div>
 
         {/* Contenedor derecha: Descarga + Toggle */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-start gap-4">
           {/* Botón de descarga APK */}
           <motion.a
             href="/PanZen.apk"

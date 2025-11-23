@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 import HarinaSelector from './components/HarinaSelector';
@@ -10,9 +11,8 @@ import SuccessModal from './components/SuccessModal';
 import BollitosPage from './pages/BollitosPage';
 import PulguitasPage from './pages/PulguitasPage';
 import InformacionPage from './pages/InformacionPage';
-import ShoppingCart from './components/ShoppingCart';
-import WhatsAppButton from './components/WhatsAppButton'; // <-- Importar botón WhatsApp
-import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
+import WhatsAppButton from './components/WhatsAppButton';
+import { extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
 // Subir la página al cambiar de ruta
 const ScrollToTop = () => {
@@ -26,7 +26,6 @@ const ScrollToTop = () => {
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [showCart, setShowCart] = useState(false);
 
   const getProductDetails = (id, type) => {
     switch (type) {
@@ -89,7 +88,6 @@ const App = () => {
 
   const handleSendWhatsApp = () => {
     setShowSuccessModal(true);
-    setShowCart(false);
   };
 
   const handleCloseModal = () => {
@@ -103,7 +101,8 @@ const App = () => {
     <Router>
       <ScrollToTop />
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 relative transition-colors duration-300">
-        <Header cartItemCount={cartItemCount} onOpenCart={() => setShowCart(true)} />
+        <Toaster position="top-center" reverseOrder={false} />
+        <Header />
         <Navigation />
 
         <div className="max-w-6xl mx-auto p-4 py-8">
@@ -152,13 +151,6 @@ const App = () => {
         </div>
 
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
-        <ShoppingCart
-          isOpen={showCart}
-          onClose={() => setShowCart(false)}
-          cartItems={cartItems}
-          onUpdateQuantity={handleUpdateCartItem}
-          onRemoveItem={handleRemoveCartItem}
-        />
 
         {/* Botón flotante de WhatsApp */}
         <WhatsAppButton />

@@ -7,6 +7,10 @@ import { motion } from 'framer-motion';
 import { MessageCircle, Trash2 } from 'lucide-react';
 // Importa iconos: MessageCircle (WhatsApp) y Trash2 (botón eliminar).
 
+import confetti from 'canvas-confetti';
+import toast from 'react-hot-toast';
+// Importa confetti y toast
+
 import { bollitos, pulguitas } from '../data/products';
 // Importa los productos "bollitos" y "pulguitas" desde un archivo de datos.
 
@@ -36,9 +40,42 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   // Descuento aplicado actualmente (objeto o null)
 
   const toggleOptionalExtra = (extra) => {
-    // Añade o quita un extra opcional del estado
+    const isAdding = !selectedOptionalExtras.includes(extra.id);
+
+    if (isAdding) {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#006effff', '#00ff2aff', '#ff00f2ff', '#ff0000ff', '#FFA500', '#ffffff']
+      });
+
+      toast.custom((t) => (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5, y: -20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.5, y: -20 }}
+          className={`${t.visible ? 'animate-enter' : 'animate-leave'
+            } max-w-md w-full bg-gradient-to-br from-neutral-900 via-stone-900 to-amber-950 border border-amber-500/30 shadow-2xl rounded-2xl pointer-events-auto flex flex-col items-center justify-center p-6 text-center`}
+        >
+          <div className="bg-amber-500/10 p-3 rounded-full mb-3 ring-1 ring-amber-500/30">
+            <span className="text-3xl filter drop-shadow-lg">💖</span>
+          </div>
+          <h3 className="text-xl font-serif font-bold text-amber-400 mb-1 tracking-wide">
+            ¡Muchas Gracias!
+          </h3>
+          <p className="text-slate-300 font-light text-sm tracking-wide">
+            🙏 Por tu generosidad. Bendiciones!! 🙏
+          </p>
+        </motion.div>
+      ), {
+        duration: 4000,
+        position: 'top-center',
+      });
+    }
+
     setSelectedOptionalExtras(prev =>
-      prev.includes(extra.id) ? prev.filter(id => id !== extra.id) : [...prev, extra.id]
+      isAdding ? [...prev, extra.id] : prev.filter(id => id !== extra.id)
     );
   };
 
@@ -376,8 +413,8 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
                 key={extra.id}
                 onClick={() => toggleOptionalExtra(extra)}
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${selectedOptionalExtras.includes(extra.id)
-                    ? 'bg-yellow-100 border-yellow-400 dark:bg-yellow-900 dark:border-yellow-600 dark:text-white'
-                    : 'bg-gray-50 border-gray-300 hover:bg-gray-100 dark:bg-slate-700 dark:border-slate-600 dark:text-gray-300 dark:hover:bg-slate-600'
+                  ? 'bg-yellow-100 border-yellow-400 dark:bg-yellow-900 dark:border-yellow-600 dark:text-white'
+                  : 'bg-gray-50 border-gray-300 hover:bg-gray-100 dark:bg-slate-700 dark:border-slate-600 dark:text-gray-300 dark:hover:bg-slate-600'
                   }`}
               >
                 <span>{extra.icon}</span>

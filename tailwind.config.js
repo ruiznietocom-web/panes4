@@ -7,15 +7,19 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'], // Fuente elegante
+        sans: ['Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
       colors: {
-        brandOrange: '#F97316', // Puedes usarlo para botones, headers
-        brandAmber: '#F59E0B',  // Para destacar elementos
+        brandOrange: '#F97316',
+        brandAmber: '#F59E0B',
+        brandDark: '#1E293B',
+        brandDarker: '#0F172A',
       },
     },
   },
   plugins: [
-    require('tailwindcss-animate'), // Si quieres animaciones elegantes
+    require('tailwindcss-animate'),
   ],
 }

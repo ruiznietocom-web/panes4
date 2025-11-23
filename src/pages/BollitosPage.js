@@ -24,12 +24,12 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
         Si deseas algún bollito de una harina en especial contacta conmigo por WhatsApp cuando envíes el pedido.
       </p>
 
-      {/* Contenedor en cuadrícula */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* Contenedor centrado con Flexbox */}
+      <div className="flex flex-wrap justify-center gap-6">
         {bollitos.map((bollito, index) => (
           <motion.div
             key={bollito.id}
-            className="p-4 rounded-xl border-2 border-gray-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-slate-700 transition-all duration-300 text-center"
+            className="w-full sm:w-80 p-4 rounded-xl border-2 border-gray-200 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-slate-700 transition-all duration-300 text-center flex flex-col justify-between"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             initial={{ opacity: 0, y: 20 }}
@@ -171,4 +171,3 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
 };
 
 export default BollitosPage;
-

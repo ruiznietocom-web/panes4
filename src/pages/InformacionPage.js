@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Download } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import PantoMateImg from '../assets/images/pantomate.jpg';
 import BarrasPan from '../assets/images/barras.jpg';
@@ -16,6 +16,16 @@ import Bolloswenos from '../assets/images/bollos.jpg';
 
 const InformacionPage = () => {
   const { t } = useTranslation();
+  const [selectedImage, setSelectedImage] = React.useState(null);
+
+  const handleImageClick = (src) => {
+    setSelectedImage(src);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <motion.div
       className="max-w-4xl mx-auto p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-xl transition-colors duration-300 border border-amber-50 dark:border-slate-700"
@@ -61,7 +71,8 @@ const InformacionPage = () => {
           <img
             src={PantoMateImg}
             alt="Pan de tomate"
-            className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer hover:scale-105 transition-transform"
+            onClick={() => handleImageClick(PantoMateImg)}
           />
         </div>
 
@@ -90,7 +101,8 @@ const InformacionPage = () => {
           <img
             src={BarrasPan}
             alt="Barras"
-            className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer hover:scale-105 transition-transform"
+            onClick={() => handleImageClick(BarrasPan)}
           />
         </div>
 
@@ -130,7 +142,8 @@ const InformacionPage = () => {
           <img
             src={PantoMate}
             alt="Pan tomate"
-            className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer hover:scale-105 transition-transform"
+            onClick={() => handleImageClick(PantoMate)}
           />
         </div>
 
@@ -167,7 +180,8 @@ const InformacionPage = () => {
           <img
             src={CorazonHarina}
             alt="Bollo Pulguita"
-            className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer hover:scale-105 transition-transform"
+            onClick={() => handleImageClick(CorazonHarina)}
           />
         </div>
 
@@ -191,15 +205,49 @@ const InformacionPage = () => {
 
         {/* Galería de imágenes final */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-          <img src={BollosPulguitas} alt="Corazon de Harina" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
-          <img src={Bolloswenos} alt="Bollitos" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
-          <img src={PandeAjo} alt="Pan Ajo" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
-          <img src={PandeCacao} alt="Pan Cacao" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
-          <img src={PandeOliva} alt="Pan Oliva" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
-          <img src={Pulguitascenteno} alt="Pulguitas" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
+          {[BollosPulguitas, Bolloswenos, PandeAjo, PandeCacao, PandeOliva, Pulguitascenteno].map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`Galería ${index}`}
+              className="rounded-lg shadow-md hover:scale-105 transition-transform cursor-pointer"
+              onClick={() => handleImageClick(img)}
+            />
+          ))}
         </div>
 
       </div>
+
+      {/* Modal para imagen ampliada */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleCloseModal}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4 cursor-pointer"
+          >
+            <motion.img
+              src={selectedImage}
+              alt="Ampliada"
+              className="max-w-full max-h-full rounded-lg shadow-2xl"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            />
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-4 right-4 text-white bg-gray-800 bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

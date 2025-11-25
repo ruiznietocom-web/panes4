@@ -45,7 +45,7 @@ const HarinaSelector = ({ onAddPan }) => {
     });
 
     // Mostrar notificación de éxito
-    toast.success("Pan añadido, añade otro pan o elige tus extras", {
+    toast.success(t('harina_selector.pan_added_toast'), {
       duration: 4000,
       position: 'top-center',
       style: {

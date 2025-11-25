@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
@@ -23,6 +23,70 @@ const ScrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [pathname]);
   return null;
+};
+
+// Componente para manejar las rutas con animaciones
+const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanExtras, handleUpdateCartItem }) => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <HarinaSelector onAddPan={handleAddPanPersonalizado} />
+            <ExtrasSelector
+              cartItems={cartItems}
+              onUpdatePanExtras={handleUpdatePanExtras}
+            />
+          </motion.div>
+        } />
+        <Route path="/bollitos" element={
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <BollitosPage
+              selectedBollitos={cartItems.filter(item => item.type === 'bollito')
+                .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
+              onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')}
+            />
+          </motion.div>
+        } />
+        <Route path="/pulguitas" element={
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PulguitasPage
+              selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')
+                .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
+              onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')}
+            />
+          </motion.div>
+        } />
+        <Route path="/informacion" element={
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <InformacionPage />
+          </motion.div>
+        } />
+      </Routes>
+    </AnimatePresence>
+  );
 };
 
 const App = () => {
@@ -113,32 +177,12 @@ const App = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2 space-y-6">
                 <Suspense fallback={<div className="text-center p-10">Cargando...</div>}>
-                  <Routes>
-                    <Route path="/" element={
-                      <>
-                        <HarinaSelector onAddPan={handleAddPanPersonalizado} />
-                        <ExtrasSelector
-                          cartItems={cartItems}
-                          onUpdatePanExtras={handleUpdatePanExtras}
-                        />
-                      </>
-                    } />
-                    <Route path="/bollitos" element={
-                      <BollitosPage
-                        selectedBollitos={cartItems.filter(item => item.type === 'bollito')
-                          .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
-                        onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')}
-                      />
-                    } />
-                    <Route path="/pulguitas" element={
-                      <PulguitasPage
-                        selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')
-                          .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
-                        onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')}
-                      />
-                    } />
-                    <Route path="/informacion" element={<InformacionPage />} />
-                  </Routes>
+                  <AnimatedRoutes
+                    cartItems={cartItems}
+                    handleAddPanPersonalizado={handleAddPanPersonalizado}
+                    handleUpdatePanExtras={handleUpdatePanExtras}
+                    handleUpdateCartItem={handleUpdateCartItem}
+                  />
                 </Suspense>
               </div>
 

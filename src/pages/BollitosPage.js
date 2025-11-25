@@ -57,75 +57,10 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
 
 
 
-            {/* Botón para ver la foto solo en bollitos clásicos */}
-            {bollito.id === 1 && (
+            {/* Botón para ver la foto si existe */}
+            {bollito.photo && (
               <button
-                onClick={() => setModalPhoto("/images/bolloclasicounidad.jpg")}
-                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
-              >
-                {t('bollitos_page.view_photo')}
-              </button>
-            )}
-
-
-            {/* Botón para ver la foto solo 7 bollitos  */}
-            {bollito.id === 1.1 && (
-              <button
-                onClick={() => setModalPhoto("/images/7bollos.jpg")}
-                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
-              >
-                {t('bollitos_page.view_photo')}
-              </button>
-            )}
-
-            {/* Botón para ver la foto solo 6 bollitos curcuma */}
-            {bollito.id === 1.6 && (
-              <button
-                onClick={() => setModalPhoto("/images/bollitoscurcuma6.jpg")}
-                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
-              >
-                {t('bollitos_page.view_photo')}
-              </button>
-            )}
-
-            {/* Botón para ver la foto solo  bollito curcuma */}
-            {bollito.id === 5 && (
-              <button
-                onClick={() => setModalPhoto("/images/bollitoscurcuma.jpg")}
-                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
-              >
-                {t('bollitos_page.view_photo')}
-              </button>
-            )}
-
-
-            {/* Botón para ver la foto solo en bollitos unidad */}
-            {bollito.id === 1.06 && (
-              <button
-                onClick={() => setModalPhoto("/images/bollitoclasico6.jpg")}
-                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
-              >
-                {t('bollitos_page.view_photo')}
-              </button>
-            )}
-
-
-
-            {/* Botón para ver la foto solo en bollitos nueces 6 */}
-            {bollito.id === 1.3 && (
-              <button
-                onClick={() => setModalPhoto("/images/bollitosnueces6.jpg")}
-                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
-              >
-                {t('bollitos_page.view_photo')}
-              </button>
-            )}
-
-
-            {/* Botón para ver la foto solo en bollitos unidad */}
-            {bollito.id === 1.07 && (
-              <button
-                onClick={() => setModalPhoto("/images/molletescenteno.jpg")}
+                onClick={() => setModalPhoto(bollito.photo)}
                 className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
               >
                 {t('bollitos_page.view_photo')}

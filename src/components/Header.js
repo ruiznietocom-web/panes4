@@ -53,14 +53,18 @@ const Header = () => {
               <button onClick={() => changeLanguage('es')} className="hover:scale-110 transition-transform" title="Español">
                 <img src="/images/banderaespana.png" alt="Español" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
               </button>
+              <button onClick={() => changeLanguage('fr')} className="hover:scale-110 transition-transform" title="Français">
+                <img src="/images/banderafrancia.png" alt="Français" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
+              </button>
               <button onClick={() => changeLanguage('de')} className="hover:scale-110 transition-transform" title="Deutsch">
                 <img src="/images/banderaalemania.png" alt="Deutsch" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
               </button>
               <button onClick={() => changeLanguage('en')} className="hover:scale-110 transition-transform" title="English">
                 <img src="/images/banderareinounido.png" alt="English" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
               </button>
-              <button onClick={() => changeLanguage('fr')} className="hover:scale-110 transition-transform" title="Français">
-                <img src="/images/banderafrancia.png" alt="Français" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
+
+              <button onClick={() => changeLanguage('it')} className="hover:scale-110 transition-transform" title="Italiano">
+                <img src="/images/banderaitalia.png" alt="Italiano" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
               </button>
             </div>
           </div>

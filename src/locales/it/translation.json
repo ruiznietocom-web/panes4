@@ -1,5 +1,305 @@
 {
-    "summary": "Riepilogo dell'ordine",
-    "note": "Scrivi qualsiasi richiesta riguardo al tuo ordine",
-    "send_order": "Invia ordine tramite WhatsApp"
+    "header": {
+        "title": "PanZen",
+        "subtitle": "Il tuo pane consapevole personalizzato",
+        "app_download": "App"
+    },
+    "nav": {
+        "pan_personalizado": "Pane Personalizzato",
+        "bollitos": "Panini",
+        "pulguitas": "Mini Panini",
+        "info": "+ INFO"
+    },
+    "harina_selector": {
+        "title": "Scegli le tue Farine Base",
+        "instructions": "Puoi scegliere fino a 5 tipi di farina e, se vuoi, anche il tipo di taglio. Configura e aggiungi tutti i pani che desideri e, una volta aggiunti, qui sotto scegli gli extra che preferisci per ogni pane. Il prezzo del pane, senza contare gli extra, è fisso: {{price}}.",
+        "add_button": "Aggiungi il tuo Pane Personalizzato"
+    },
+    "order_summary": {
+        "title": "Riepilogo Ordine",
+        "empty": "Il tuo carrello è vuoto. Aggiungi qualcosa di delizioso!",
+        "panes_personalizados": "Pani Personalizzati:",
+        "bollitos": "Panini:",
+        "pulguitas": "Mini Panini:",
+        "extras_opcionales": "MANUEL, IL TUO PANE È DELIZIOSO!...",
+        "discount_code": "Hai un codice sconto?",
+        "discount_placeholder": "Inserisci il tuo codice",
+        "apply": "Applica",
+        "code_applied": "Codice applicato: sconto del {{value}}%",
+        "total": "Totale:",
+        "delivery_free": "Consegna a domicilio gratuita in",
+        "whatsapp_button": "Invia Ordine via WhatsApp",
+        "subtotal": "Subtotale:",
+        "discount": "Sconto {{value}}%:",
+        "final_total": "Totale Finale:",
+        "pan": "Pane",
+        "extras": "Extra:",
+        "price": "Prezzo:",
+        "thank_you_title": "Grazie mille per la tua generosità!",
+        "thank_you_body": "🙏 Benedizioni! 🙏"
+    },
+    "products": {
+        "harinas": {
+            "1": {
+                "name": "GRANO Tenero Integrale Biologico",
+                "description": "Classico, versatile, base tradizionale per il pane quotidiano."
+            },
+            "2": {
+                "name": "SEGALE Integrale Biologica",
+                "description": "Scura, aromatica, povera di glutine, rustica e ricca di minerali."
+            },
+            "3": {
+                "name": "FARRO Integrale Biologico",
+                "description": "Farina ancestrale, morbida, digeribile e ricca di fibre."
+            },
+            "4": {
+                "name": "KHORASAN Integrale Biologico",
+                "description": "Cereale antico, sapore intenso e alto contenuto proteico."
+            },
+            "5": {
+                "name": "TRITORDEUM Integrale Biologico",
+                "description": "Innovativo, ibrido di grano e orzo, facile da digerire."
+            },
+            "6": {
+                "name": "PANE A FETTE SOTTILI (gratis)",
+                "description": "Vuoi il tuo pane tagliato a fette sottili?"
+            },
+            "7": {
+                "name": "PANE A FETTE NORMALI (gratis)",
+                "description": "Vuoi il tuo pane tagliato normalmente?"
+            },
+            "8": {
+                "name": "PANE A FETTE SPESSE (gratis)",
+                "description": "Vuoi il tuo pane tagliato spesso?"
+            }
+        },
+        "extras": {
+            "1": "Mix di Semi Bio 100g",
+            "2": "Noci",
+            "3": "Prugne Secche",
+            "4": "Datteri",
+            "5": "Olive Nere",
+            "6": "Pomodoro e Origano",
+            "7": "Formaggio Roquefort",
+            "8": "Curcuma",
+            "9": "Pepe",
+            "10": "Curry",
+            "11": "Zenzero",
+            "12": "Cacao Puro in Polvere",
+            "13": "Miele Puro",
+            "14": "Aglio"
+        },
+        "bollitos": {
+            "1": {
+                "name": "Panino Classico Integrale",
+                "description": "Morbido e soffice, ideale per la colazione"
+            },
+            "1_05": {
+                "name": "Panino Integrale per Hot Dog",
+                "description": "Un panino allungato per i tuoi hot dog"
+            },
+            "1_06": {
+                "name": "PACCO Assortito 6 Panini Classici Integrali",
+                "description": "Il tuo pacco classico"
+            },
+            "1_07": {
+                "name": "PACCO Assortito 6 Molletes di Segale Integrale",
+                "description": "Molletes di Segale"
+            },
+            "1_1": {
+                "name": "PACCO Assortito 7 Panini Integrali (uno di ciascuno)",
+                "description": "1x Semi, 1x Aglio, 1x Cacao, 1x Curcuma, 1x Noci, 1x Prugne, 1x Pomodoro e Origano. Provali tutti!"
+            },
+            "1_2": {
+                "name": "PACCO Assortito 6 Panini Integrali ai Semi",
+                "description": "Croccanti, ricchi di fibre e minerali"
+            },
+            "1_3": {
+                "name": "PACCO Assortito 6 Panini Integrali alle Noci",
+                "description": "Nutriente e delizioso"
+            },
+            "1_4": {
+                "name": "PACCO Assortito 6 Panini Integrali al Cacao",
+                "description": "Con Cacao Puro"
+            },
+            "1_5": {
+                "name": "PACCO Assortito 6 Panini Integrali alle Prugne",
+                "description": "Dolci ed energetici, con prugne disidratate"
+            },
+            "1_6": {
+                "name": "PACCO Assortito 6 Panini Integrali alla Curcuma",
+                "description": "Aromatici ed esotici, con un tocco dorato"
+            },
+            "1_7": {
+                "name": "PACCO Assortito 6 Panini Integrali al Pomodoro e Origano",
+                "description": "Mediterranei, gustosi e dal profumo casalingo"
+            },
+            "1_8": {
+                "name": "PACCO Assortito 6 Panini Integrali all'Aglio",
+                "description": "Sapore intenso, perfetti per accompagnare i pasti"
+            },
+            "2": {
+                "name": "Panino al Cacao",
+                "description": "Con cacao puro in polvere"
+            },
+            "3": {
+                "name": "Panino alle Noci",
+                "description": "Con noci, nutriente e delizioso"
+            },
+            "4": {
+                "name": "Panino alle Prugne",
+                "description": "Dolce ed energetico, con prugne disidratate"
+            },
+            "5": {
+                "name": "Panino alla Curcuma",
+                "description": "Aromatico ed esotico, con un tocco dorato"
+            },
+            "6": {
+                "name": "Panino ai Semi",
+                "description": "Croccante, ricco di fibre e minerali"
+            },
+            "7": {
+                "name": "Panino all'Aglio",
+                "description": "Sapore intenso, perfetto per i pasti"
+            },
+            "8": {
+                "name": "Panino al Pomodoro e Origano",
+                "description": "Mediterraneo, gustoso e profumato"
+            }
+        },
+        "pulguitas": {
+            "1": {
+                "name": "Mini Panino Integrale",
+                "description": "Piccolo e croccante, ideale per panini"
+            },
+            "1_05": {
+                "name": "PACCO Assortito 12 Mini Panini Classici Integrali",
+                "description": "Il tuo pacco di mini panini classici"
+            },
+            "1_1": {
+                "name": "PACCO Assortito 14 Mini Panini Integrali (due di ciascuno)",
+                "description": "2x Semi, 2x Aglio, 2x Cacao, 2x Curcuma, 2x Noci, 2x Prugne, 2x Pomodoro e Origano. Provali tutti!"
+            },
+            "1_2": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali ai Semi",
+                "description": "Croccanti, ricchi di fibre e minerali"
+            },
+            "1_3": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali alle Noci",
+                "description": "Nutrienti e deliziosi"
+            },
+            "1_4": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali al Cacao",
+                "description": "Con Cacao Puro"
+            },
+            "1_5": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali alle Prugne",
+                "description": "Dolci ed energetici, con prugne disidratate"
+            },
+            "1_6": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali alla Curcuma",
+                "description": "Aromatici ed esotici, con un tocco dorato"
+            },
+            "1_7": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali al Pomodoro e Origano",
+                "description": "Mediterranei, gustosi e profumati"
+            },
+            "1_8": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali all'Aglio",
+                "description": "Intensi e saporiti in formato mini"
+            },
+            "2": {
+                "name": "Mini Panino al Cacao",
+                "description": "Con cacao puro in polvere"
+            },
+            "3": {
+                "name": "Mini Panino alle Noci",
+                "description": "Con noci, nutriente ed energetico"
+            },
+            "4": {
+                "name": "Mini Panino alle Prugne",
+                "description": "Piccolo, dolce e salutare"
+            },
+            "5": {
+                "name": "Mini Panino alla Curcuma",
+                "description": "Dorato e aromatico, esotico e leggero"
+            },
+            "6": {
+                "name": "Mini Panino ai Semi",
+                "description": "Croccante con mix di semi nutrienti"
+            },
+            "7": {
+                "name": "Mini Panino all'Aglio",
+                "description": "Intenso e gustoso in versione mini"
+            },
+            "8": {
+                "name": "Mini Panino al Pomodoro e Origano",
+                "description": "Mediterraneo e delizioso in piccolo formato"
+            }
+        },
+        "optional_extras": {
+            "propina": "Lascia una Mancia!",
+            "cafe": "Offrimi un Caffè!",
+            "cerveza": "Offrimi una Birra!"
+        }
+    },
+    "extras_selector": {
+        "title": "SCEGLI GLI EXTRA PER IL TUO PANE {{number}} ({{flours}})"
+    },
+    "bollitos_page": {
+        "title": "Scegli i tuoi Panini Integrali Biologici",
+        "message": "Se desideri un panino fatto con una farina specifica, contattami via WhatsApp quando invii l’ordine.",
+        "view_photo": "Vedi foto"
+    },
+    "pulguitas_page": {
+        "title": "Scegli i tuoi Mini Panini Integrali Biologici",
+        "message": "Se desideri un mini panino fatto con una farina specifica, contattami via WhatsApp quando invii l’ordine.",
+        "view_photo": "Vedi foto"
+    },
+    "info_page": {
+        "title": "+ INFO",
+        "download_pdf": "Scarica PDF dei Prezzi",
+        "quote": "\"Riscontrare il pane, un alimento con anima.\"",
+        "p1": "E se ti dicessi che il pane può essere molto più di un semplice accompagnamento? In un mondo pieno di fretta, abbiamo dimenticato la profonda connessione che esiste tra il cibo più basico e la nostra salute. Ti invito a riscoprire il pane reale, quello che onora la tradizione, rispetta la terra e nutre il tuo corpo in modo consapevole.",
+        "p2": "Pani, panini e mini panini non sono solo prodotti; sono il frutto di un lavoro pensato affinché il tuo organismo assorba i nutrienti nel modo più equilibrato possibile. Ogni pezzo è 100% integrale e realizzato con farine biologiche, prive di qualsiasi tipo di additivo. Qui non c’è spazio per farine forti o raffinate, né per conservanti, grassi industriali o miglioratori del pane. Si tratta semplicemente di tornare alle origini.",
+        "p3": "La ricetta di questo pane è un patto di purezza: utilizzo solo sale marino naturale delle nostre saline di Chiclana, acqua minerale, lievito fresco e farina integrale 100% biologica. A tutto ciò aggiungiamo, a scelta, altri ingredienti come uvetta, noci o miele puro, che apportano sapore e benessere in modo naturale.",
+        "fermentation_title": "Il potere della fermentazione breve",
+        "p4": "Questo è il vero cuore del processo di elaborazione e la chiave per un pane che fa davvero bene. Oltre a utilizzare ingredienti di alta qualità, il segreto sta nella fermentazione breve e controllata. Questo processo, sacrificato nella produzione industriale, è fondamentale per la digestione.",
+        "p5": "Il nostro corpo ha un proprio sistema di elaborazione: le amilasi, enzimi presenti nella saliva e nel tratto digestivo, sono responsabili della decomposizione degli amidi. Quando il pane ha una fermentazione molto lunga, diventa eccessivamente acido, il che può inibire l’azione di questi enzimi naturali.",
+        "p6": "Optando per una fermentazione più breve, otteniamo un pane a bassa acidità che rispetta il funzionamento digestivo e l’equilibrio del tuo organismo. È come dare una mano al tuo sistema digestivo, non un ostacolo. Questo si traduce in una migliore assimilazione degli amidi e in una sensazione di leggerezza e benessere dopo il pasto. Non è solo un pane più digeribile; è un pane che lavora in armonia con il tuo corpo.",
+        "know_flours": "SCOPRI LE FARINE",
+        "flours": {
+            "1": {
+                "title": "1. Farro",
+                "desc": "È un grano primitivo, le cui proprietà sono conosciute e apprezzate fin dall'antichità in Europa. Il suo valore nutrizionale è paragonabile a quello dell'avena. È ricco di proteine, carboidrati, sali minerali e vitamine A, B ed E, oltre a magnesio, fosforo, ferro e potassio. Il suo consumo quotidiano riduce i livelli di colesterolo e regola il metabolismo. Offre una quantità maggiore di aminoacidi essenziali rispetto al grano comune e lo supera anche per ricchezza di vitamine e minerali. Alcune persone allergiche al grano digeriscono bene il farro."
+            },
+            "2": {
+                "title": "2. Khorasan",
+                "desc": "È un grano ancestrale dell'Egitto, ricco di sali minerali e vitamine del gruppo B. Molto apprezzato perché povero di glutine e causa meno allergie o intolleranze rispetto ai grani moderni, poiché l'organismo umano è più adattato al tipo di proteina dei grani antichi."
+            },
+            "3": {
+                "title": "3. Grano Integrale",
+                "desc": "Il grano lavorato (raffinato) non contiene le parti migliori del chicco. Durante la lavorazione del grano, viene eliminato il 40% del suo contenuto originale (germe e crusca), lasciando principalmente i carboidrati (zuccheri) dell'endosperma, rendendolo meno nutriente. Conservando la crusca e il germe, la farina integrale si distingue per una quantità di fibre 3 volte superiore alla farina bianca raffinata, oltre a un alto contenuto di vitamine e minerali come vitamine del gruppo B, vitamina E, ferro, potassio, magnesio, zinco, tra gli altri."
+            },
+            "4": {
+                "title": "4. Segale",
+                "desc": "Oltre ai minerali, vitamine, magnesio, fosforo e fibre che fornisce, è un cereale molto apprezzato per le sue proprietà depurative del sangue e per aiutare a mantenere l'elasticità dei vasi sanguigni."
+            },
+            "5": {
+                "title": "5. Tritordeum",
+                "desc": "È un cereale ibrido nato dalla combinazione naturale del grano duro e dell'orzo selvatico. È stato scoperto da ricercatori spagnoli alla fine degli anni '70. NON è un organismo geneticamente modificato (OGM). È il risultato di un incrocio naturale. Ed è registrato come nuova specie nell'Unione Europea. Ha un sapore leggermente dolce, con un alto contenuto di acido oleico e luteina, e ha anche il 30% di fibre in più rispetto al grano comune."
+            }
+        },
+        "yeast": "Lievito naturale o fresco: a differenza del lievito chimico, è di origine biologica, un fungo microscopico vivo e attivo. È venduto nei supermercati come lievito fresco, naturale o da panettiere.",
+        "salt": "Il sale marino naturale non è stato trattato chimicamente: è il risultato della semplice evaporazione dell’acqua di mare. Certo, il 90% della sua composizione è cloro e sodio naturalmente, ma contiene un maggior numero di oligoelementi, minerali e iodio di grande rilevanza nutrizionale per il corpo. Assumere sale marino non raffinato in quantità moderate contribuisce a un buon drenaggio delle tossine, aumenta la vitalità, favorisce la funzione renale, migliora la sessualità, ricostituisce ossa e capelli e migliora la digestione favorendo la produzione di succhi gastrici.",
+        "commitment_title": "L’impegno del panettiere artigianale",
+        "p7": "Dietro ogni pezzo ci sono ore di dedizione e passione per un mestiere ancestrale. Non si tratta solo di mescolare ingredienti, ma di un processo di pazienza, di sentire l’impasto e comprenderne i tempi. L’elaborazione artigianale garantisce che ogni pane che arriva sulla tua tavola sia unico, con un sapore autentico e una consistenza ineguagliabile.",
+        "p8": "Questo pane fa per te se cerchi un’opzione consapevole e nutritiva che sostenga uno stile di vita più sano e sostenibile, lontano da digestioni pesanti e fermentative. Scopri il piacere di mangiare bene senza rinunciare a sapore o qualità, e senti la differenza in un alimento così nutriente.",
+        "thanks": "Grazie mille per aver creduto in questo progetto. Mi piace fare il pane per te e spero che tu possa goderti ogni fetta con salute e gioia. 🍞 🙏☀️",
+        "contact": "Se hai bisogno di più informazioni, contattami su WhatsApp",
+        "tips_title": "🍞 Consigli per la conservazione ottimale del pane integrale biologico 🍞",
+        "tip1": "Come sai, questo pane 100% biologico e integrale è privo di conservanti e additivi artificiali. Il modo migliore per conservarlo è in frigorifero. Tienilo dentro il sacchetto di carta e a sua volta in un sacchetto di plastica ben chiuso. Posizionalo preferibilmente sul ripiano più alto del frigorifero: lì può durare perfettamente fino a 3 o 4 giorni. Poi è preferibile congelare il resto che non hai consumato.",
+        "tip2": "Se preferisci, puoi anche tagliarlo a fette o porzioni che consumerai e congelarlo direttamente il giorno della consegna, sempre in un sacchetto o contenitore ben chiuso, affinché non si formi ghiaccio.",
+        "tip3": "Il pane, i panini o i mini panini vengono sempre consegnati freschi del giorno, e talvolta anche caldi; se è così, mettili sulla griglia del forno e aspetta sempre un’ora dalla consegna prima di consumarli. Non conservarli né congelarli in frigorifero finché non sono completamente freddi. Grazie!! 🙏"
+    }
 }

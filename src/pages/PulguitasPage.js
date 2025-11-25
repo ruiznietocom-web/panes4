@@ -1,9 +1,11 @@
 import React, { useState } from "react"; // React y hook useState
+import { useTranslation } from 'react-i18next';
 import { motion } from "framer-motion"; // Para animaciones suaves
 import { pulguitas } from "../data/products"; // Lista de productos (pulguitas)
 import { formatPrice } from "../utils/formatPrice"; // Función para formatear precios
 
 const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
+  const { t } = useTranslation();
   // Estado para controlar qué foto mostrar en el modal
   const [modalPhoto, setModalPhoto] = useState(null);
 
@@ -15,13 +17,14 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
       transition={{ duration: 0.5 }}   // duración de la animación
     >
       {/* Título de la página */}
+      {/* Título de la página */}
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">
-        Elige tus Pulguitas Integrales Ecológicas
+        {t('pulguitas_page.title')}
       </h2>
 
       {/* Mensaje informativo */}
       <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-center">
-        Si deseas alguna pulguita de una harina en especial contacta conmigo por WhatsApp cuando envíes el pedido.
+        {t('pulguitas_page.message')}
       </p>
 
       {/* Contenedor centrado con Flexbox */}
@@ -40,10 +43,11 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
             <div className="text-4xl mb-2">{pulguita.image}</div>
 
             {/* Nombre del producto */}
-            <h3 className="font-bold text-gray-800 dark:text-white mb-1">{pulguita.name}</h3>
+            {/* Nombre del producto */}
+            <h3 className="font-bold text-gray-800 dark:text-white mb-1">{t(`products.pulguitas.${pulguita.id.toString().replace('.', '_')}.name`)}</h3>
 
             {/* Descripción */}
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{pulguita.description}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{t(`products.pulguitas.${pulguita.id.toString().replace('.', '_')}.description`)}</p>
 
             {/* Precio formateado */}
             <p className="text-lg font-semibold text-purple-600 dark:text-purple-400">
@@ -198,7 +202,7 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
                 // Al hacer click, se abre el modal con la foto
                 className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
               >
-                Ver foto
+                {t('pulguitas_page.view_photo')}
               </button>
             )}
 

@@ -12,6 +12,7 @@ import PulguitasPage from './pages/PulguitasPage';
 import InformacionPage from './pages/InformacionPage';
 import ShoppingCart from './components/ShoppingCart';
 import WhatsAppButton from './components/WhatsAppButton'; // <-- Importar botón WhatsApp
+import { Toaster } from 'react-hot-toast';
 import { harinas, extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
 // Subir la página al cambiar de ruta
@@ -102,6 +103,7 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 relative transition-colors duration-300">
         <Header cartItemCount={cartItemCount} onOpenCart={() => setShowCart(true)} />
         <Navigation />

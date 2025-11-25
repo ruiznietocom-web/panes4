@@ -13,16 +13,23 @@ import { bollitos, pulguitas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 // Función para formatear precios (ej: 1.5 → "1,50 €").
 
+import { useTranslation } from 'react-i18next';
+
+
+import confetti from 'canvas-confetti';
+import toast from 'react-hot-toast';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
+  const { t } = useTranslation();
   // cartItems: array de productos en la cesta
   // onSendWhatsApp: función para enviar pedido por WhatsApp
   // onRemoveItem: función para eliminar un producto de la cesta
 
   const optionalExtras = [
-    { id: 'propina', name: 'Toma una Propina!', price: 0.50, icon: '💰' },
-    { id: 'cafe', name: 'Toma para un Café!', price: 1.00, icon: '☕' },
-    { id: 'cerveza', name: 'Tómate una Cerveza a mi Salud!', price: 1.50, icon: '🍺' },
+    { id: 'propina', name: t('products.optional_extras.propina'), price: 0.50, icon: '💰' },
+    { id: 'cafe', name: t('products.optional_extras.cafe'), price: 1.00, icon: '☕' },
+    { id: 'cerveza', name: t('products.optional_extras.cerveza'), price: 1.50, icon: '🍺' },
+
   ];
   // Lista de extras opcionales
 
@@ -37,9 +44,74 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
   const toggleOptionalExtra = (extra) => {
     // Añade o quita un extra opcional del estado
-    setSelectedOptionalExtras(prev =>
-      prev.includes(extra.id) ? prev.filter(id => id !== extra.id) : [...prev, extra.id]
-    );
+    setSelectedOptionalExtras(prev => {
+      const isSelected = prev.includes(extra.id);
+      if (!isSelected) {
+        // Trigger confetti and toast when adding
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff', '#4b0082', '#ee82ee'] // 7 colors (rainbow)
+        });
+        toast.custom((t) => (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.9 }}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            className={`${t.visible ? 'animate-enter' : 'animate-leave'}
+      max-w-md w-full bg-white dark:bg-slate-800 shadow-2xl rounded-2xl
+      pointer-events-auto flex ring-1 ring-black ring-opacity-5
+      border-2 border-amber-400 overflow-hidden`}
+          >
+
+            {/* CONTENIDO */}
+            <div className="flex-1 w-0 p-4">
+              <div className="flex items-center justify-center gap-3">
+
+                {/* Estrella izquierda con animación */}
+                <motion.span
+                  className="text-4xl"
+                  animate={{ rotate: [0, 20, -20, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                >
+                  ✨
+                </motion.span>
+
+                {/* Texto centrado */}
+                <div className="flex flex-col text-center">
+                  <p className="text-xl font-semibold text-amber-900 dark:text-amber-100">
+                    ¡Muchas gracias por tu generosidad!
+                  </p>
+                  <p className="mt-1 text-lg text-gray-500 dark:text-gray-400">
+                    🙏 ¡Bendiciones! 🙏
+                  </p>
+                </div>
+
+                {/* Estrella derecha con animación */}
+                <motion.span
+                  className="text-4xl"
+                  animate={{ rotate: [0, -20, 20, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                >
+                  ✨
+                </motion.span>
+
+              </div>
+            </div>
+
+          </motion.div>
+        ), {
+          id: 'thank-you-toast',
+          duration: 4000,
+          position: 'top-center',
+        });
+        return [...prev, extra.id];
+      } else {
+        return prev.filter(id => id !== extra.id);
+      }
+    });
   };
 
   const pansPersonalizados = cartItems.filter(item => item.type === 'panPersonalizado');
@@ -279,21 +351,21 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
-          <span className="text-2xl">🧺</span> Resumen del Pedido
+          <span className="text-2xl">🧺</span> {t('order_summary.title')}
         </h2>
       </div>
 
       <div className="space-y-3 mb-6">
         {isOrderEmpty && (
           <div className="text-center py-4 text-gray-500 dark:text-gray-400">
-            Tu cesta está vacía. ¡Añade algo delicioso!
+            {t('order_summary.empty')}
           </div>
         )}
 
         {/* PANES PERSONALIZADOS */}
         {pansPersonalizados.length > 0 && (
           <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700 dark:text-gray-200">🌾 Panes Personalizados:</h3>
+            <h3 className="font-semibold text-gray-700 dark:text-gray-200">🌾 {t('order_summary.panes_personalizados')}</h3>
             {pansPersonalizados.map((pan, index) => (
               <div key={pan.id} className="flex flex-col p-2 bg-amber-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
                 <button
@@ -302,25 +374,25 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
                 >
                   <Trash2 className="w-5 h-5" />
                 </button>
-                <span className="font-bold">🌾 Pan {index + 1}:</span>
+                <span className="font-bold">🌾 {t('order_summary.pan')} {index + 1}:</span>
                 {pan.harinas.map(h => {
                   const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
                   return (
                     <span key={h.id}>
-                      • {h.icon ? h.icon + ' ' : ''}{h.name}{hasCortado ? ' 🔪' : ''}
+                      • {h.icon ? h.icon + ' ' : ''}{t(`products.harinas.${h.id}.name`)}{hasCortado ? ' 🔪' : ''}
                     </span>
                   );
                 })}
                 {pan.extras?.length > 0 && (
                   <div className="mt-1 ml-2">
-                    <span className="font-semibold">Extras:</span>
+                    <span className="font-semibold">{t('order_summary.extras')}</span>
                     {pan.extras.map(extra => (
-                      <div key={extra.id}>• {extra.icon ? extra.icon + ' ' : ''}{extra.name} ({formatPrice(extra.price)})</div>
+                      <div key={extra.id}>• {extra.icon ? extra.icon + ' ' : ''}{t(`products.extras.${extra.id}`)} ({formatPrice(extra.price)})</div>
                     ))}
                   </div>
                 )}
                 <span className="mt-1 font-bold">
-                  Precio: {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
+                  {t('order_summary.price')} {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
                 </span>
               </div>
             ))}
@@ -330,12 +402,12 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         {/* BOLLITOS */}
         {bollitosInCart.length > 0 && (
           <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700 dark:text-gray-200">Bollitos:</h3>
+            <h3 className="font-semibold text-gray-700 dark:text-gray-200">{t('order_summary.bollitos')}</h3>
             {bollitosInCart.map(item => {
               const b = bollitos.find(b => b.id === item.id);
               return b && (
                 <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
-                  <span>{b.name} x{item.quantity}</span>
+                  <span>{t(`products.bollitos.${b.id.toString().replace('.', '_')}.name`)} x{item.quantity}</span>
                   <span>{formatPrice(b.price * item.quantity)}</span>
                   <button className="ml-2 text-red-500 hover:text-red-700"
                     onClick={() => onRemoveItem(item.id, 'bollito')}>
@@ -350,12 +422,12 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         {/* PULGUITAS */}
         {pulguitasInCart.length > 0 && (
           <div className="space-y-2">
-            <h3 className="font-semibold text-gray-700 dark:text-gray-200">Pulguitas:</h3>
+            <h3 className="font-semibold text-gray-700 dark:text-gray-200">{t('order_summary.pulguitas')}</h3>
             {pulguitasInCart.map(item => {
               const p = pulguitas.find(p => p.id === item.id);
               return p && (
                 <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
-                  <span>{p.name} x{item.quantity}</span>
+                  <span>{t(`products.pulguitas.${p.id.toString().replace('.', '_')}.name`)} x{item.quantity}</span>
                   <span>{formatPrice(p.price * item.quantity)}</span>
                   <button className="ml-2 text-red-500 hover:text-red-700"
                     onClick={() => onRemoveItem(item.id, 'pulguita')}>
@@ -369,15 +441,15 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
         {/* EXTRAS OPCIONALES */}
         <div className="space-y-2">
-          <h3 className="font-semibold text-gray-700 dark:text-gray-200">MANUEL, QUÉ RICO TU PAN!...:</h3>
+          <h3 className="font-semibold text-gray-700 dark:text-gray-200">{t('order_summary.extras_opcionales')}</h3>
           <div className="flex gap-3 flex-wrap">
             {optionalExtras.map(extra => (
               <button
                 key={extra.id}
                 onClick={() => toggleOptionalExtra(extra)}
                 className={`flex items-center gap-1 px-3 py-2 rounded-lg border transition ${selectedOptionalExtras.includes(extra.id)
-                    ? 'bg-yellow-100 border-yellow-400 dark:bg-yellow-900 dark:border-yellow-600 dark:text-white'
-                    : 'bg-gray-50 border-gray-300 hover:bg-gray-100 dark:bg-slate-700 dark:border-slate-600 dark:text-gray-300 dark:hover:bg-slate-600'
+                  ? 'bg-yellow-100 border-yellow-400 dark:bg-yellow-900 dark:border-yellow-600 dark:text-white'
+                  : 'bg-gray-50 border-gray-300 hover:bg-gray-100 dark:bg-slate-700 dark:border-slate-600 dark:text-gray-300 dark:hover:bg-slate-600'
                   }`}
               >
                 <span>{extra.icon}</span>
@@ -389,25 +461,25 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
         {/* CÓDIGO DE DESCUENTO */}
         <div className="mt-4 text-gray-800 dark:text-white">
-          <p className="font-bold mb-2">¿Tienes un código de descuento?</p>
+          <p className="font-bold mb-2">{t('order_summary.discount_code')}</p>
           <input type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)}
-            placeholder="Introduce tu código"
+            placeholder={t('order_summary.discount_placeholder')}
             className="border rounded-lg p-2 mr-2 dark:bg-slate-700 dark:border-slate-600 dark:text-white" />
-          <button onClick={applyDiscount} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Aplicar</button>
+          <button onClick={applyDiscount} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">{t('order_summary.apply')}</button>
           {appliedDiscount && <p className="text-green-600 mt-2">
-            Código aplicado: {appliedDiscount.value}% de descuento
+            {t('order_summary.code_applied', { value: appliedDiscount.value })}
           </p>}
         </div>
 
         {/* TOTAL */}
         <div className="border-t pt-3 mt-3 flex justify-between items-center text-xl font-bold text-gray-800 dark:text-white">
-          <span>Total:</span>
+          <span>{t('order_summary.total')}</span>
           <span>{formatPrice(total)}</span>
         </div>
       </div>
       {/* ENTREGA GRATUITA */}
       <div className="mt-2 text-center text-green-700 font-semibold">
-        🚴‍♂️ Entrega a domicilio gratuita en <span className="font-bold">Chiclana</span>🚴‍♂️
+        🚴‍♂️ {t('order_summary.delivery_free')} <span className="font-bold">Chiclana</span>🚴‍♂️
       </div>
       {/* BOTÓN WHATSAPP */}
       <motion.button
@@ -417,7 +489,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         whileHover={isOrderEmpty ? {} : { scale: 1.02 }}
         whileTap={isOrderEmpty ? {} : { scale: 0.98 }}
       >
-        <MessageCircle className="w-6 h-6" /> Enviar Pedido por WhatsApp
+        <MessageCircle className="w-6 h-6" /> {t('order_summary.whatsapp_button')}
       </motion.button>
 
 
@@ -472,15 +544,15 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
             return (
               <>
                 <div className="flex justify-between">
-                  <span>Subtotal:</span>
+                  <span>{t('order_summary.subtotal')}</span>
                   <span>{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-red-600">
-                  <span>Descuento {appliedDiscount.value}%:</span>
+                  <span>{t('order_summary.discount', { value: appliedDiscount.value })}</span>
                   <span>- {formatPrice(discountAmount)}</span>
                 </div>
                 <div className="flex justify-between font-bold text-green-700">
-                  <span>Total Final:</span>
+                  <span>{t('order_summary.final_total')}</span>
                   <span>{formatPrice(finalTotal - discountAmount)}</span>
                 </div>
               </>

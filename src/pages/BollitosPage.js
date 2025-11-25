@@ -1,9 +1,11 @@
 import React, { useState } from "react"; // React y hook useState
+import { useTranslation } from 'react-i18next';
 import { motion } from "framer-motion"; // Para animaciones suaves
 import { bollitos } from "../data/products"; // Lista de productos (bollitos)
 import { formatPrice } from "../utils/formatPrice"; // Función para formatear precios
 
 const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
+  const { t } = useTranslation();
   // Estado para controlar qué foto mostrar en el modal
   const [modalPhoto, setModalPhoto] = useState(null);
 
@@ -15,13 +17,14 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
       transition={{ duration: 0.5 }}   // duración de la animación
     >
       {/* Título */}
+      {/* Título */}
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4 text-center">
-        Elige tus Bollitos Integrales Ecológicos
+        {t('bollitos_page.title')}
       </h2>
 
       {/* Mensaje informativo */}
       <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-center">
-        Si deseas algún bollito de una harina en especial contacta conmigo por WhatsApp cuando envíes el pedido.
+        {t('bollitos_page.message')}
       </p>
 
       {/* Contenedor centrado con Flexbox */}
@@ -40,10 +43,11 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
             <div className="text-4xl mb-2">{bollito.image}</div>
 
             {/* Nombre */}
-            <h3 className="font-bold text-gray-800 dark:text-white mb-1">{bollito.name}</h3>
+            {/* Nombre */}
+            <h3 className="font-bold text-gray-800 dark:text-white mb-1">{t(`products.bollitos.${bollito.id.toString().replace('.', '_')}.name`)}</h3>
 
             {/* Descripción */}
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{bollito.description}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{t(`products.bollitos.${bollito.id.toString().replace('.', '_')}.description`)}</p>
 
             {/* Precio */}
             <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">
@@ -59,7 +63,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
                 onClick={() => setModalPhoto("/images/bolloclasicounidad.jpg")}
                 className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
               >
-                Ver foto
+                {t('bollitos_page.view_photo')}
               </button>
             )}
 
@@ -70,7 +74,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
                 onClick={() => setModalPhoto("/images/7bollos.jpg")}
                 className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
               >
-                Ver foto
+                {t('bollitos_page.view_photo')}
               </button>
             )}
 
@@ -85,7 +89,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
                 onClick={() => setModalPhoto("/images/bollitoclasico6.jpg")}
                 className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
               >
-                Ver foto
+                {t('bollitos_page.view_photo')}
               </button>
             )}
 
@@ -97,7 +101,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
                 onClick={() => setModalPhoto("/images/bollitosnueces6.jpg")}
                 className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
               >
-                Ver foto
+                {t('bollitos_page.view_photo')}
               </button>
             )}
 
@@ -108,7 +112,7 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
                 onClick={() => setModalPhoto("/images/molletescenteno.jpg")}
                 className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
               >
-                Ver foto
+                {t('bollitos_page.view_photo')}
               </button>
             )}
 

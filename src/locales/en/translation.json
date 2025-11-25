@@ -1,5 +1,303 @@
 {
-    "summary": "Order summary",
-    "note": "Write any request about your order",
-    "send_order": "Send order via WhatsApp"
+    "header": {
+        "title": "PanZen",
+        "subtitle": "Your personalized conscious bread",
+        "app_download": "App"
+    },
+    "nav": {
+        "pan_personalizado": "Custom Bread",
+        "bollitos": "Buns",
+        "pulguitas": "Mini Bread Rolls",
+        "info": "+ INFO"
+    },
+    "harina_selector": {
+        "title": "Choose your Base Flours",
+        "instructions": "You can choose up to 5 types of flour and, if you like, also the type of cut. Configure and add all the breads you want and once added, below, choose the extras you prefer for each bread. The price of the bread, without counting the extras, is fixed: {{price}}.",
+        "add_button": "Add your Custom Bread"
+    },
+    "order_summary": {
+        "title": "Order Summary",
+        "empty": "Your basket is empty. Add something delicious!",
+        "panes_personalizados": "Custom Breads:",
+        "bollitos": "Buns:",
+        "pulguitas": "Mini Bread Rolls:",
+        "extras_opcionales": "MANUEL, YOUR BREAD IS DELICIOUS!...",
+        "discount_code": "Do you have a discount code?",
+        "discount_placeholder": "Enter your code",
+        "apply": "Apply",
+        "code_applied": "Code applied: {{value}}% discount",
+        "total": "Total:",
+        "delivery_free": "Free home delivery in",
+        "whatsapp_button": "Send Order via WhatsApp",
+        "subtotal": "Subtotal:",
+        "discount": "Discount {{value}}%:",
+        "final_total": "Final Total:",
+        "pan": "Bread",
+        "extras": "Extras:",
+        "price": "Price:"
+    },
+    "products": {
+        "harinas": {
+            "1": {
+                "name": "Organic Whole WHEAT",
+                "description": "Classic, versatile, traditional base for daily bread."
+            },
+            "2": {
+                "name": "Organic Whole RYE",
+                "description": "Dark, aromatic, low in gluten, rustic and full of minerals"
+            },
+            "3": {
+                "name": "Organic Whole SPELT",
+                "description": "Ancestral flour, soft, digestive and rich in fiber."
+            },
+            "4": {
+                "name": "Organic Whole KHORASAN",
+                "description": "Ancient cereal, intense flavor and high in protein."
+            },
+            "5": {
+                "name": "Organic Whole TRITORDEUM",
+                "description": "Innovative, hybrid of wheat and barley and easy to digest"
+            },
+            "6": {
+                "name": "THIN SLICED BREAD (free)",
+                "description": "do you want your bread thinly sliced?"
+            },
+            "7": {
+                "name": "NORMAL SLICED BREAD (free)",
+                "description": "do you want your bread normally sliced?"
+            },
+            "8": {
+                "name": "THICK SLICED BREAD (free)",
+                "description": "do you want your bread thick sliced?"
+            }
+        },
+        "extras": {
+            "1": "Eco Seed Mix 100g",
+            "2": "Walnuts",
+            "3": "Prunes",
+            "4": "Dates",
+            "5": "Black Olives",
+            "6": "Tomato and oregano",
+            "7": "Roquefort Cheese",
+            "8": "Turmeric",
+            "9": "Pepper",
+            "10": "Curry",
+            "11": "Ginger",
+            "12": "Pure Cocoa Powder",
+            "13": "Pure Honey",
+            "14": "Garlic"
+        },
+        "bollitos": {
+            "1": {
+                "name": "Classic Whole Bun",
+                "description": "Soft and fluffy, ideal for breakfast"
+            },
+            "1_05": {
+                "name": "Whole Hot Dog Bun",
+                "description": "An elongated bun for your hot dogs"
+            },
+            "1_06": {
+                "name": "PACK Assorted 6 Classic Whole Buns",
+                "description": "Your classic pack"
+            },
+            "1_07": {
+                "name": "PACK Assorted 6 Whole Rye Molletes",
+                "description": "Rye Molletes"
+            },
+            "1_1": {
+                "name": "PACK Assorted 7 Whole Buns (one of each)",
+                "description": "1x Seeds, 1x Garlic, 1x Cocoa, 1x Turmeric, 1x Walnuts, 1x Prunes, 1x Tomato and Oregano. Try them all!"
+            },
+            "1_2": {
+                "name": "PACK Assorted 6 Whole Seed Buns",
+                "description": "Crunchy, full of fiber and minerals"
+            },
+            "1_3": {
+                "name": "PACK Assorted 6 Whole Walnut Buns",
+                "description": "Nutritious and delicious"
+            },
+            "1_4": {
+                "name": "PACK Assorted 6 Whole Cocoa Powder Buns",
+                "description": "With Pure Cocoa"
+            },
+            "1_5": {
+                "name": "PACK Assorted 6 Whole Prune Buns",
+                "description": "Sweet and energetic, with dehydrated prunes"
+            },
+            "1_6": {
+                "name": "PACK Assorted 6 Whole Turmeric Buns",
+                "description": "Aromatic and exotic, with a golden touch"
+            },
+            "1_7": {
+                "name": "PACK Assorted 6 Whole Tomato and Oregano Buns",
+                "description": "Mediterranean, tasty and with a homemade aroma"
+            },
+            "1_8": {
+                "name": "PACK Assorted 6 Whole Garlic Buns",
+                "description": "Intense flavor, perfect to accompany meals"
+            },
+            "2": {
+                "name": "Cocoa Bun",
+                "description": "With pure cocoa powder"
+            },
+            "3": {
+                "name": "Walnut Bun",
+                "description": "With walnuts, nutritious and delicious"
+            },
+            "4": {
+                "name": "Prune Bun",
+                "description": "Sweet and energetic, with dehydrated prunes"
+            },
+            "5": {
+                "name": "Turmeric Bun",
+                "description": "Aromatic and exotic, with a golden touch"
+            },
+            "6": {
+                "name": "Seed Bun",
+                "description": "Crunchy, full of fiber and minerals"
+            },
+            "7": {
+                "name": "Garlic Bun",
+                "description": "Intense flavor, perfect to accompany meals"
+            },
+            "8": {
+                "name": "Tomato and Oregano Bun",
+                "description": "Mediterranean, tasty and with a homemade aroma"
+            }
+        },
+        "pulguitas": {
+            "1": {
+                "name": "Whole Mini Bread Roll",
+                "description": "Small and crunchy, ideal for sandwiches"
+            },
+            "1_05": {
+                "name": "PACK Assorted 12 Classic Whole Mini Bread Rolls",
+                "description": "Your classic mini bread roll pack"
+            },
+            "1_1": {
+                "name": "PACK Assorted 14 Whole Mini Bread Rolls (two of each)",
+                "description": "2x Seeds, 2x Garlic, 2x Cocoa, 2x Turmeric, 2x Walnuts, 2x Prunes, 2x Tomato and Oregano. Try them all!"
+            },
+            "1_2": {
+                "name": "PACK Assorted 12 Whole Seed Mini Bread Rolls",
+                "description": "Crunchy, full of fiber and minerals"
+            },
+            "1_3": {
+                "name": "PACK Assorted 12 Whole Walnut Mini Bread Rolls",
+                "description": "Nutritious and delicious"
+            },
+            "1_4": {
+                "name": "PACK Assorted 12 Whole Cocoa Powder Mini Bread Rolls",
+                "description": "With Pure Cocoa"
+            },
+            "1_5": {
+                "name": "PACK Assorted 12 Whole Prune Mini Bread Rolls",
+                "description": "Sweet and energetic, with dehydrated prunes"
+            },
+            "1_6": {
+                "name": "PACK Assorted 12 Whole Turmeric Mini Bread Rolls",
+                "description": "Aromatic and exotic, with a golden touch"
+            },
+            "1_7": {
+                "name": "PACK Assorted 12 Whole Tomato and Oregano Mini Bread Rolls",
+                "description": "Mediterranean, tasty and with a homemade aroma"
+            },
+            "1_8": {
+                "name": "PACK Assorted 12 Whole Garlic Mini Bread Rolls",
+                "description": "Intense flavor, perfect to accompany meals"
+            },
+            "2": {
+                "name": "Cocoa Mini Bread Roll",
+                "description": "With pure cocoa powder"
+            },
+            "3": {
+                "name": "Walnut Mini Bread Roll",
+                "description": "With walnuts, nutritious and energetic"
+            },
+            "4": {
+                "name": "Prune Mini Bread Roll",
+                "description": "Small, sweet and healthy"
+            },
+            "5": {
+                "name": "Turmeric Mini Bread Roll",
+                "description": "Golden and aromatic, exotic and light"
+            },
+            "6": {
+                "name": "Seed Mini Bread Roll",
+                "description": "Crunchy with nutritious seed mix"
+            },
+            "7": {
+                "name": "Garlic Mini Bread Roll",
+                "description": "Intense and tasty in mini version"
+            },
+            "8": {
+                "name": "Tomato and Oregano Mini Bread Roll",
+                "description": "Mediterranean and delicious in small size"
+            }
+        },
+        "optional_extras": {
+            "propina": "Take a Tip!",
+            "cafe": "Have a Coffee!",
+            "cerveza": "Have a Beer on me!"
+        }
+    },
+    "extras_selector": {
+        "title": "CHOOSE EXTRAS FOR YOUR BREAD {{number}} ({{flours}})"
+    },
+    "bollitos_page": {
+        "title": "Choose your Organic Whole Buns",
+        "message": "If you want a bun made of a specific flour, contact me via WhatsApp when you send the order.",
+        "view_photo": "View photo"
+    },
+    "pulguitas_page": {
+        "title": "Choose your Organic Whole Mini Bread Rolls",
+        "message": "If you want a mini bread roll made of a specific flour, contact me via WhatsApp when you send the order.",
+        "view_photo": "View photo"
+    },
+    "info_page": {
+        "title": "+ INFO",
+        "download_pdf": "Download Price PDF",
+        "quote": "\"Rediscovering bread, a food with soul.\"",
+        "p1": "What if I told you that bread can be much more than a simple accompaniment? In a world full of haste, we have forgotten the deep connection that exists between the most basic food and our health. I invite you to rediscover real bread, one that honors tradition, respects the land, and nourishes your body in a conscious way.",
+        "p2": "Breads, buns, and mini bread rolls are not just products; they are the fruit of work designed so that your organism absorbs nutrients in the most balanced way possible. Each piece is 100% whole grain and made with organic flours, free of any type of additives. Here there is no room for strong or refined flours, nor for preservatives, industrial fats, or bread improvers. It is simply about returning to the origins.",
+        "p3": "The recipe for this bread is a pact of purity: I only use natural sea salt from our Chiclana salt flats, mineral water, fresh yeast, and 100% organic whole flour. To this, we add, by choice, other ingredients such as raisins, walnuts, or pure honey, which also provide flavor and well-being naturally.",
+        "fermentation_title": "The power of short fermentation",
+        "p4": "This is the true heart of the elaboration process and the key to bread that really feels good. Beyond using high-quality ingredients, the secret lies in short and controlled fermentation. This process, sacrificed in industrial production, is fundamental for your digestion.",
+        "p5": "Our body has its own processing system: amylases, enzymes present in saliva and the digestive tract, are responsible for breaking down starches. When bread has a very long fermentation, it becomes excessively acidic, which can inhibit the action of these natural enzymes.",
+        "p6": "By opting for a shorter fermentation, we obtain bread with low acidity that respects the digestive and balanced functioning of your organism. It's like giving your digestive system a hand, not an obstacle. This translates into better assimilation of starches and a feeling of lightness and well-being after eating. It is not just a more digestive bread; it is bread that works in harmony with your body.",
+        "know_flours": "KNOW THE FLOURS",
+        "flours": {
+            "1": {
+                "title": "1. Spelt",
+                "desc": "It is a primitive wheat, whose properties are well known and appreciated since ancient times in Europe. Its nutritional value is comparable to that of oats. It is rich in proteins, carbohydrates, mineral salts, and vitamins A, B, and E, as well as magnesium, phosphorus, iron, and potassium. Its daily consumption reduces cholesterol levels and regulates metabolism. It offers a greater amount of essential amino acids than common wheat and also surpasses it in vitamin and mineral richness. Some people allergic to wheat digest spelt well."
+            },
+            "2": {
+                "title": "2. Khorasan",
+                "desc": "It is an ancestral wheat from Egypt, rich in mineral salts and group B vitamins. Highly appreciated because it is low in gluten and produces fewer allergies or intolerances than modern wheats, since the human organism is more adapted to the type of protein of ancient wheats."
+            },
+            "3": {
+                "title": "3. Whole Wheat",
+                "desc": "Processed (refined) wheat does not contain the best parts of the grain. During grain processing, 40% of its original content (germ and bran) is removed, leaving mainly the carbohydrates (sugars) of the endosperm, making it less nutritious. By preserving the bran and wheat germ, whole wheat flour stands out for a fiber amount 3 times higher than refined white flour, in addition to having a high content of vitamins and minerals, such as B complex vitamins, vitamin E, iron, potassium, magnesium, zinc, among others."
+            },
+            "4": {
+                "title": "4. Rye",
+                "desc": "In addition to the minerals, vitamins, magnesium, phosphorus, and fiber it provides, it is a cereal highly appreciated for its blood purifying properties and for helping to maintain the elasticity of blood vessels."
+            },
+            "5": {
+                "title": "5. Tritordeum",
+                "desc": "It is a hybrid cereal born from the natural combination of durum wheat and wild barley. It was discovered by Spanish researchers in the late 70s. It is NOT a genetically modified organism (GMO). It is the result of a natural cross. And it is registered as a new species in the European Union. It has a slightly sweet flavor, with a high content of oleic acid and lutein, and also has 30% more fiber than common wheat."
+            }
+        },
+        "yeast": "Natural or fresh yeast: unlike chemical baking powder, it is of biological origin, a living and active microscopic fungus. It is sold in supermarkets as fresh, natural, or baker's yeast.",
+        "salt": "Natural sea salt has not been chemically treated: it is the consequence of the simple evaporation of seawater. Of course, 90% of its composition is chlorine and sodium naturally, but it contains a greater number of trace elements, minerals, and iodine that are of great nutritional relevance to the body. Taking unrefined sea salt in moderate amounts contributes to good toxin drainage, raises vitality, favors kidney function, improves sexuality, and reconstitutes bones and hair, in addition, it improves digestion favoring the generation of gastric juices.",
+        "commitment_title": "The commitment of the artisan baker",
+        "p7": "Behind each piece, there are hours of dedication and passion for an ancestral trade. It is not just about mixing ingredients, but a process of patience, of feeling the dough and understanding its times. Artisan elaboration guarantees that every bread that reaches your table is unique, with an authentic flavor and unmatched texture.",
+        "p8": "This bread is for you if you are looking for a conscious and nutritious option that supports a healthier and more sustainable lifestyle, away from those heavy and fermentative digestions. Discover the pleasure of eating well without giving up flavor or quality, and feel the difference in such a nutritious food.",
+        "thanks": "Thank you very much for trusting in this project. I enjoy baking for you and I hope you also enjoy every slice with health and joy. 🍞 🙏☀️",
+        "contact": "If you need more information, contact me on my WhatsApp",
+        "tips_title": "🍞 Tips for optimal conservation of organic whole bread 🍞",
+        "tip1": "As you know, this 100% organic and whole bread is free of preservatives and artificial additives. The best way to preserve bread is in the refrigerator. Keep it inside the same paper bag and this in turn in a tightly closed plastic bag. Place it, preferably, on the highest shelf of your refrigerator, there it can last perfectly up to 3 or 4 days. Then it is preferable that you freeze the rest that you have not consumed.",
+        "tip2": "If you prefer, you can also cut it into slices or portions that you are going to consume and freeze it directly on the day of delivery, always in a bag or a tightly closed container so that it does not generate frost.",
+        "tip3": "Bread, buns, or mini bread rolls are always delivered fresh from the day, and sometimes even warm; if so, place it on the oven rack and always wait an hour from delivery to consume it. Do not store or freeze it in the refrigerator until you notice that it is completely cold. Thank you!! 🙏"
+    }
 }

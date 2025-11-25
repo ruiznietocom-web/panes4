@@ -2,13 +2,16 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Wheat, Cookie, Circle, Info } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Navigation = () => {
+  const { t } = useTranslation();
+
   const navItems = [
-    { name: 'Pan Personalizado', path: '/', icon: Wheat },
-    { name: 'Bollitos', path: '/bollitos', icon: Cookie },
-    { name: 'Pulguitas', path: '/pulguitas', icon: Circle },
-    { name: '+ INFO', path: '/informacion', icon: Info },
+    { name: t('nav.pan_personalizado'), path: '/', icon: Wheat },
+    { name: t('nav.bollitos'), path: '/bollitos', icon: Cookie },
+    { name: t('nav.pulguitas'), path: '/pulguitas', icon: Circle },
+    { name: t('nav.info'), path: '/informacion', icon: Info },
   ];
 
   return (

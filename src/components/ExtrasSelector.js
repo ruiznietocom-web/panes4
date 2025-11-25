@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { extras as allExtras } from '../data/products';
 
 const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
+  const { t } = useTranslation();
   const toggleExtra = (panId, extra) => {
     const newCartItems = cartItems.map(pan => {
       if (pan.id === panId) {
@@ -23,7 +25,7 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
         .map((pan, index) => (
           <div key={pan.id} className="bg-green-50 dark:bg-slate-800 p-4 rounded-2xl shadow-md transition-colors duration-300">
             <h3 className="font-bold mb-3 text-lg text-gray-800 dark:text-white">
-              ELIGE LOS EXTRAS DE TU PAN {index + 1} ({pan.harinas.map(h => h.name).join(', ')})
+              {t('extras_selector.title', { number: index + 1, flours: pan.harinas.map(h => t(`products.harinas.${h.id}.name`)).join(', ') })}
             </h3>
             <div className="flex flex-wrap gap-4">
               {allExtras.map(extra => {
@@ -38,7 +40,7 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
                         : 'bg-white border-gray-300 hover:bg-gray-100 hover:scale-105 dark:bg-slate-700 dark:border-slate-600 dark:text-gray-300 dark:hover:bg-slate-600'}`}
                   >
                     <span className="text-4xl mb-2">{extra.icon}</span>
-                    <span className="text-center font-semibold text-sm">{extra.name}</span>
+                    <span className="text-center font-semibold text-sm">{t(`products.extras.${extra.id}`)}</span>
                     <span className="text-center text-xs text-gray-600 dark:text-gray-400">{extra.price.toFixed(2)}€</span>
                   </button>
                 );

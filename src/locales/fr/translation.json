@@ -1,0 +1,303 @@
+{
+    "header": {
+        "title": "PanZen",
+        "subtitle": "Votre pain conscient personnalisé",
+        "app_download": "App"
+    },
+    "nav": {
+        "pan_personalizado": "Pain Personnalisé",
+        "bollitos": "Petits Pains",
+        "pulguitas": "Petits Pains Mini Ronds",
+        "info": "+ INFO"
+    },
+    "harina_selector": {
+        "title": "Choisissez vos Farines de Base",
+        "instructions": "Vous pouvez choisir jusqu'à 5 types de farines et, si vous le souhaitez, aussi le type de coupe. Configurez et ajoutez tous les pains que vous voulez et une fois ajoutés, ci-dessous, choisissez les extras que vous préférez pour chaque pain. Le prix du pain, sans compter les extras, est fixe : {{price}}.",
+        "add_button": "Ajoutez votre Pain Personnalisé"
+    },
+    "order_summary": {
+        "title": "Résumé de la Commande",
+        "empty": "Votre panier est vide. Ajoutez quelque chose de délicieux !",
+        "panes_personalizados": "Pains Personnalisés :",
+        "bollitos": "Petits Pains :",
+        "pulguitas": "Petits Pains Mini Ronds :",
+        "extras_opcionales": "MANUEL, TON PAIN EST DÉLICIEUX !...",
+        "discount_code": "Avez-vous un code de réduction ?",
+        "discount_placeholder": "Entrez votre code",
+        "apply": "Appliquer",
+        "code_applied": "Code appliqué : {{value}}% de réduction",
+        "total": "Total :",
+        "delivery_free": "Livraison à domicile gratuite à",
+        "whatsapp_button": "Envoyer la Commande par WhatsApp",
+        "subtotal": "Sous-total :",
+        "discount": "Réduction {{value}}% :",
+        "final_total": "Total Final :",
+        "pan": "Pain",
+        "extras": "Extras :",
+        "price": "Prix :"
+    },
+    "products": {
+        "harinas": {
+            "1": {
+                "name": "BLÉ Complet Biologique",
+                "description": "Classique, polyvalent, base traditionnelle du pain quotidien."
+            },
+            "2": {
+                "name": "SEIGLE Complet Biologique",
+                "description": "Foncé, aromatique, faible en gluten, rustique et plein de minéraux"
+            },
+            "3": {
+                "name": "ÉPEAUTRE Complet Biologique",
+                "description": "Farine ancestrale, douce, digestive et riche en fibres."
+            },
+            "4": {
+                "name": "KHORASAN Complet Biologique",
+                "description": "Céréale ancienne, saveur intense et riche en protéines."
+            },
+            "5": {
+                "name": "TRITORDEUM Complet Biologique",
+                "description": "Innovant, hybride de blé et d'orge et facile à digérer"
+            },
+            "6": {
+                "name": "PAIN COUPÉ FIN (gratuit)",
+                "description": "voulez-vous votre pain coupé fin ?"
+            },
+            "7": {
+                "name": "PAIN COUPÉ NORMAL (gratuit)",
+                "description": "voulez-vous votre pain coupé normal ?"
+            },
+            "8": {
+                "name": "PAIN COUPÉ ÉPAIS (gratuit)",
+                "description": "voulez-vous votre pain coupé épais ?"
+            }
+        },
+        "extras": {
+            "1": "Mélange de Graines Bio 100g",
+            "2": "Noix",
+            "3": "Pruneaux",
+            "4": "Dattes",
+            "5": "Olives Noires",
+            "6": "Tomate et origan",
+            "7": "Fromage Roquefort",
+            "8": "Curcuma",
+            "9": "Poivre",
+            "10": "Curry",
+            "11": "Gingembre",
+            "12": "Poudre de Cacao Pur",
+            "13": "Miel Pur",
+            "14": "Ail"
+        },
+        "bollitos": {
+            "1": {
+                "name": "Petit Pain Complet Classique",
+                "description": "Doux et moelleux, idéal pour le petit déjeuner"
+            },
+            "1_05": {
+                "name": "Pain à Hot Dog Complet",
+                "description": "Un petit pain allongé pour vos hot dogs"
+            },
+            "1_06": {
+                "name": "PACK Assortiment 6 Petits Pains Complets Classiques",
+                "description": "Votre pack classique"
+            },
+            "1_07": {
+                "name": "PACK Assortiment 6 Molletes Complets de Seigle",
+                "description": "Molletes de Seigle"
+            },
+            "1_1": {
+                "name": "PACK Assortiment 7 Petits Pains Complets (un de chaque)",
+                "description": "1x Graines, 1x Ail, 1x Cacao, 1x Curcuma, 1x Noix, 1x Pruneaux, 1x Tomate et Origan. Essayez-les tous !"
+            },
+            "1_2": {
+                "name": "PACK Assortiment 6 Petits Pains Complets aux Graines",
+                "description": "Croustillants, pleins de fibres et de minéraux"
+            },
+            "1_3": {
+                "name": "PACK Assortiment 6 Petits Pains Complets aux Noix",
+                "description": "Nutritif et délicieux"
+            },
+            "1_4": {
+                "name": "PACK Assortiment 6 Petits Pains Complets au Cacao en Poudre",
+                "description": "Au Cacao Pur"
+            },
+            "1_5": {
+                "name": "PACK Assortiment 6 Petits Pains Complets aux Pruneaux",
+                "description": "Doux et énergétique, aux pruneaux déshydratés"
+            },
+            "1_6": {
+                "name": "PACK Assortiment 6 Petits Pains Complets au Curcuma",
+                "description": "Aromatique et exotique, avec une touche dorée"
+            },
+            "1_7": {
+                "name": "PACK Assortiment 6 Petits Pains Complets Tomate et Origan",
+                "description": "Méditerranéen, savoureux et avec un arôme maison"
+            },
+            "1_8": {
+                "name": "PACK Assortiment 6 Petits Pains Complets à l'Ail",
+                "description": "Saveur intense, parfait pour accompagner les repas"
+            },
+            "2": {
+                "name": "Petit Pain au Cacao",
+                "description": "Au cacao pur en poudre"
+            },
+            "3": {
+                "name": "Petit Pain aux Noix",
+                "description": "Aux noix, nutritif et délicieux"
+            },
+            "4": {
+                "name": "Petit Pain aux Pruneaux",
+                "description": "Doux et énergétique, aux pruneaux déshydratés"
+            },
+            "5": {
+                "name": "Petit Pain au Curcuma",
+                "description": "Aromatique et exotique, avec une touche dorée"
+            },
+            "6": {
+                "name": "Petit Pain aux Graines",
+                "description": "Croustillant, plein de fibres et de minéraux"
+            },
+            "7": {
+                "name": "Petit Pain à l'Ail",
+                "description": "Saveur intense, parfait pour accompagner les repas"
+            },
+            "8": {
+                "name": "Petit Pain Tomate et Origan",
+                "description": "Méditerranéen, savoureux et avec un arôme maison"
+            }
+        },
+        "pulguitas": {
+            "1": {
+                "name": "Petit Pain Mini Rond Complet",
+                "description": "Petite et croustillante, idéale pour les sandwichs"
+            },
+            "1_05": {
+                "name": "PACK Assortiment 12 Petits Pains Mini Ronds Complets Classiques",
+                "description": "Votre pack de petits pains mini ronds classiques"
+            },
+            "1_1": {
+                "name": "PACK Assortiment 14 Petits Pains Mini Ronds Complets (deux de chaque)",
+                "description": "2x Graines, 2x Ail, 2x Cacao, 2x Curcuma, 2x Noix, 2x Pruneaux, 2x Tomate et Origan. Essayez-les tous !"
+            },
+            "1_2": {
+                "name": "PACK Assortiment 12 Petits Pains Mini Ronds Complets aux Graines",
+                "description": "Croustillantes, pleines de fibres et de minéraux"
+            },
+            "1_3": {
+                "name": "PACK Assortiment 12 Petits Pains Mini Ronds Complets aux Noix",
+                "description": "Nutritif et délicieux"
+            },
+            "1_4": {
+                "name": "PACK Assortiment 12 Petits Pains Mini Ronds Complets au Cacao en Poudre",
+                "description": "Au Cacao Pur"
+            },
+            "1_5": {
+                "name": "PACK Assortiment 12 Petits Pains Mini Ronds Complets aux Pruneaux",
+                "description": "Doux et énergétique, aux pruneaux déshydratés"
+            },
+            "1_6": {
+                "name": "PACK Assortiment 12 Petits Pains Mini Ronds Complets au Curcuma",
+                "description": "Aromatique et exotique, avec une touche dorée"
+            },
+            "1_7": {
+                "name": "PACK Assortiment 12 Petits Pains Mini Ronds Complets Tomate et Origan",
+                "description": "Méditerranéen, savoureux et avec un arôme maison"
+            },
+            "1_8": {
+                "name": "PACK Assortiment 12 Petits Pains Mini Ronds Complets à l'Ail",
+                "description": "Saveur intense, parfait pour accompagner les repas"
+            },
+            "2": {
+                "name": "Petit Pain Mini Rond au Cacao",
+                "description": "Au cacao pur en poudre"
+            },
+            "3": {
+                "name": "Petit Pain Mini Rond aux Noix",
+                "description": "Aux noix, nutritive et énergétique"
+            },
+            "4": {
+                "name": "Petit Pain Mini Rond aux Pruneaux",
+                "description": "Petite, douce et saine"
+            },
+            "5": {
+                "name": "Petit Pain Mini Rond au Curcuma",
+                "description": "Dorée et aromatique, exotique et légère"
+            },
+            "6": {
+                "name": "Petit Pain Mini Rond aux Graines",
+                "description": "Croustillante avec un mélange de graines nutritives"
+            },
+            "7": {
+                "name": "Petit Pain Mini Rond à l'Ail",
+                "description": "Intense et savoureuse en version mini"
+            },
+            "8": {
+                "name": "Petit Pain Mini Rond Tomate et Origan",
+                "description": "Méditerranéenne et délicieuse en petite taille"
+            }
+        },
+        "optional_extras": {
+            "propina": "Prends un Pourboire !",
+            "cafe": "Prends un Café !",
+            "cerveza": "Prends une Bière à ma santé !"
+        }
+    },
+    "extras_selector": {
+        "title": "CHOISISSEZ LES EXTRAS POUR VOTRE PAIN {{number}} ({{flours}})"
+    },
+    "bollitos_page": {
+        "title": "Choisissez vos Petits Pains Complets Biologiques",
+        "message": "Si vous souhaitez un petit pain d'une farine spécifique, contactez-moi par WhatsApp lors de l'envoi de la commande.",
+        "view_photo": "Voir photo"
+    },
+    "pulguitas_page": {
+        "title": "Choisissez vos Petits Pains Mini Ronds Complets Biologiques",
+        "message": "Si vous souhaitez un petit pain mini rond d'une farine spécifique, contactez-moi par WhatsApp lors de l'envoi de la commande.",
+        "view_photo": "Voir photo"
+    },
+    "info_page": {
+        "title": "+ INFO",
+        "download_pdf": "Télécharger le PDF des Prix",
+        "quote": "\"Redécouvrir le pain, un aliment avec une âme.\"",
+        "p1": "Et si je vous disais que le pain peut être bien plus qu'un simple accompagnement ? Dans un monde plein de précipitation, nous avons oublié la connexion profonde qui existe entre l'aliment le plus basique et notre santé. Je vous invite à redécouvrir le vrai pain, celui qui honore la tradition, respecte la terre et nourrit votre corps de manière consciente.",
+        "p2": "Les pains, petits pains et petits pains mini ronds ne sont pas seulement des produits, ils sont le fruit d'un travail pensé pour que votre organisme absorbe les nutriments de la manière la plus équilibrée possible. Chaque pièce est 100% complète et élaborée avec des farines de culture biologique, sans aucun type d'additifs. Ici, il n'y a pas de place pour les farines de force ou raffinées, ni pour les conservateurs, les graisses industrielles ou les améliorants de panification. Il s'agit simplement de revenir aux origines.",
+        "p3": "La recette de ce pain est un pacte de pureté : j'utilise uniquement du sel marin naturel de nos salines de Chiclana, de l'eau minérale, de la levure fraîche et de la farine 100% complète de culture biologique. À cela, nous ajoutons, au choix, d'autres ingrédients comme des raisins secs, des noix ou du miel pur d'abeilles, qui apportent également saveur et bien-être de manière naturelle.",
+        "fermentation_title": "Le pouvoir de la fermentation courte",
+        "p4": "C'est le véritable cœur du processus d'élaboration et la clé d'un pain qui vous fait vraiment du bien. Au-delà de l'utilisation d'ingrédients de haute qualité, le secret réside dans la fermentation courte et contrôlée. Ce processus, sacrifié dans la production industrielle, est fondamental pour votre digestion.",
+        "p5": "Notre corps a son propre système de traitement : les amylases, des enzymes présentes dans la salive et le tube digestif, sont chargées de décomposer les amidons. Lorsqu'un pain a une fermentation très longue, il devient excessivement acide, ce qui peut inhiber l'action de ces enzymes naturelles.",
+        "p6": "En optant pour une fermentation plus courte, nous obtenons un pain avec une faible acidité qui respecte le fonctionnement digestif et équilibré de votre organisme. C'est comme donner un coup de main à votre système digestif, pas un obstacle. Cela se traduit par une meilleure assimilation des amidons et une sensation de légèreté et de bien-être après avoir mangé. Ce n'est pas seulement un pain plus digestif, c'est un pain qui travaille en harmonie avec votre corps.",
+        "know_flours": "CONNAISSEZ LES FARINES",
+        "flours": {
+            "1": {
+                "title": "1. Épeautre",
+                "desc": "C'est un blé primitif, dont les propriétés sont bien connues et appréciées depuis l'Antiquité en Europe. Sa valeur nutritive est comparable à celle de l'avoine. Elle est riche en protéines, glucides, sels minéraux et vitamines A, B et E, ainsi qu'en magnésium, phosphore, fer et potassium. Sa consommation quotidienne réduit le taux de cholestérol et régule le métabolisme. Elle offre une plus grande quantité d'acides aminés essentiels que le blé commun et le surpasse également en richesse vitaminique et minérale. Certaines personnes allergiques au blé digèrent bien l'épeautre."
+            },
+            "2": {
+                "title": "2. Khorasan",
+                "desc": "C'est un blé ancestral d'Égypte, riche en sels minéraux et en vitamines du groupe B. Très apprécié car il est faible en gluten et produit moins d'allergies ou d'intolérances que les blés modernes, car l'organisme humain est plus adapté au type de protéine des blés anciens."
+            },
+            "3": {
+                "title": "3. Blé Complet",
+                "desc": "Le blé transformé (raffiné) ne contient pas les meilleures parties du grain. Lors du traitement du grain, 40% de son contenu original (germe et son) est éliminé, ne laissant principalement que les glucides (sucres) de l'endosperme, ce qui le rend moins nutritif. En conservant le son et le germe de blé, la farine de blé complet se distingue par une quantité de fibres 3 fois supérieure à la farine blanche raffinée, en plus d'avoir une teneur élevée en vitamines et minéraux, comme les vitamines du complexe B, la vitamine E, le fer, le potassium, le magnésium, le zinc, entre autres."
+            },
+            "4": {
+                "title": "4. Seigle",
+                "desc": "En plus des minéraux, vitamines, magnésium, phosphore et fibres qu'il apporte, c'est une céréale très appréciée pour ses propriétés dépuratives du sang et pour aider à maintenir l'élasticité des vaisseaux sanguins."
+            },
+            "5": {
+                "title": "5. Tritordeum",
+                "desc": "C'est une céréale hybride née de la combinaison naturelle du blé dur et de l'orge sauvage. Elle a été découverte par des chercheurs espagnols à la fin des années 70. Ce n'est PAS un organisme génétiquement modifié (OGM). C'est le résultat d'un croisement naturel. Et elle est enregistrée comme nouvelle espèce dans l'Union Européenne. Elle a une saveur légèrement sucrée, avec une teneur élevée en acide oléique et en lutéine, et a également 30% de fibres en plus que le blé commun."
+            }
+        },
+        "yeast": "Levure naturelle ou fraîche : contrairement à la levure chimique en poudre, elle est d'origine biologique, un champignon microscopique vivant et actif. Elle est vendue dans les supermarchés sous forme de levure fraîche, naturelle ou de boulanger.",
+        "salt": "Le sel marin naturel n'a pas été traité chimiquement : c'est la conséquence de la simple évaporation de l'eau de mer. Bien sûr, 90% de sa composition est du chlore et du sodium naturellement, mais il contient un plus grand nombre d'oligo-éléments, de minéraux et d'iode qui sont d'une grande pertinence nutritionnelle pour le corps. Prendre du sel marin non raffiné en quantités modérées contribue à un bon drainage des toxines, élève la vitalité, favorise le fonctionnement des reins, améliore la sexualité et reconstitue les os et les cheveux, en plus, il améliore la digestion en favorisant la génération de sucs gastriques.",
+        "commitment_title": "L'engagement du boulanger artisanal",
+        "p7": "Derrière chaque pièce, il y a des heures de dévouement et la passion pour un métier ancestral. Il ne s'agit pas seulement de mélanger des ingrédients, mais d'un processus de patience, de sentir la pâte et de comprendre ses temps. L'élaboration artisanale garantit que chaque pain qui arrive à votre table est unique, avec une saveur authentique et une texture inégalée.",
+        "p8": "Ce pain est pour vous si vous cherchez une option consciente et nutritive qui soutient un mode de vie plus sain et durable, loin de ces digestions lourdes et fermentatives. Découvrez le plaisir de bien manger sans renoncer à la saveur ni à la qualité, et sentez la différence dans un aliment si nutritif.",
+        "thanks": "Merci beaucoup de faire confiance à ce projet. J'aime cuisiner pour vous et j'espère que vous apprécierez également chaque tranche avec santé et joie. 🍞 🙏☀️",
+        "contact": "Si vous avez besoin de plus d'informations, contactez-moi sur mon WhatsApp",
+        "tips_title": "🍞 Conseils pour une conservation optimale du pain complet biologique 🍞",
+        "tip1": "Comme vous le savez, ce pain 100% écologique et complet est exempt de conservateurs et d'additifs artificiels. La meilleure façon de conserver le pain est au réfrigérateur. Conservez-le à l'intérieur dans le même sac en papier et celui-ci à son tour dans un sac en plastique bien fermé. Placez-le, de préférence, sur l'étagère la plus haute de votre réfrigérateur, là il peut tenir parfaitement jusqu'à 3 ou 4 jours. Ensuite, il est préférable que vous congeliez le reste que vous n'avez pas consommé.",
+        "tip2": "Si vous préférez, vous pouvez également le couper en tranches ou en portions que vous allez consommer et le congeler directement le jour de la livraison, toujours dans un sac ou un récipient bien fermé pour qu'il ne génère pas de givre.",
+        "tip3": "Le pain, les petits pains ou les petits pains mini ronds sont toujours livrés frais du jour, et parfois même encore chauds ; si c'est le cas, déposez-le sur la grille du four et attendez toujours une heure après la livraison pour le consommer. Ne le gardez pas ou ne le congelez pas au réfrigérateur jusqu'à ce que vous remarquiez qu'il est complètement froid. Merci !! 🙏"
+    }
+}

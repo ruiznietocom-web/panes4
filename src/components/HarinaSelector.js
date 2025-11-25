@@ -3,8 +3,10 @@ import { motion } from 'framer-motion'; // Librería para animaciones suaves
 import { Check } from 'lucide-react'; // Icono de check para selección
 import { harinas } from '../data/products'; // Datos de harinas disponibles
 import { formatPrice } from '../utils/formatPrice'; // Función para formatear precios
+import { useTranslation } from 'react-i18next';
 
 const HarinaSelector = ({ onAddPan }) => {
+  const { t } = useTranslation();
   // Estado para almacenar las harinas seleccionadas por el usuario
   const [selectedHarinas, setSelectedHarinas] = useState([]);
 
@@ -54,14 +56,12 @@ const HarinaSelector = ({ onAddPan }) => {
     >
       {/* Título del selector */}
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2 text-center">
-        Elige tus Harinas Base
+        {t('harina_selector.title')}
       </h2>
 
       {/* Instrucciones para el usuario */}
       <p className="text-gray-500 dark:text-slate-300 text-center mb-4">
-        Puedes escoger hasta 5 tipos de harinas y, si te apetece, también el tipo de corte.
-        Configura y añade todos los panes que quieras y una vez añadidos, más abajo, elige los extras que prefieras para cada pan.
-        El precio del pan, sin contar los extras, es fijo: {formatPrice(fixedHarinaPrice)}.
+        {t('harina_selector.instructions', { price: formatPrice(fixedHarinaPrice) })}
       </p>
 
       {/* Grid de las harinas disponibles */}
@@ -70,8 +70,8 @@ const HarinaSelector = ({ onAddPan }) => {
           <motion.div
             key={harina.id}
             className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${selectedHarinas.find(h => h.id === harina.id)
-                ? 'border-amber-500 bg-amber-50 dark:bg-slate-700 dark:border-amber-400 shadow-md' // Estilo cuando está seleccionada
-                : 'border-gray-200 dark:border-slate-600 hover:border-amber-300 dark:hover:border-amber-500 dark:bg-slate-700/50' // Estilo normal / hover
+              ? 'border-amber-500 bg-amber-50 dark:bg-slate-700 dark:border-amber-400 shadow-md' // Estilo cuando está seleccionada
+              : 'border-gray-200 dark:border-slate-600 hover:border-amber-300 dark:hover:border-amber-500 dark:bg-slate-700/50' // Estilo normal / hover
               }`}
             onClick={() => toggleHarina(harina)} // Selecciona/deselecciona al hacer click
             whileHover={{ scale: 1.02 }} // Pequeño efecto al pasar el ratón
@@ -95,8 +95,8 @@ const HarinaSelector = ({ onAddPan }) => {
             {/* Contenido de la tarjeta de harina */}
             <div className="text-center">
               <div className="text-4xl mb-2">{harina.image}</div> {/* Emoji o imagen de la harina */}
-              <h3 className="font-bold text-gray-800 dark:text-white mb-1">{harina.name}</h3> {/* Nombre */}
-              <p className="text-sm text-gray-600 dark:text-slate-300 mb-2">{harina.description}</p> {/* Descripción */}
+              <h3 className="font-bold text-gray-800 dark:text-white mb-1">{t(`products.harinas.${harina.id}.name`)}</h3> {/* Nombre */}
+              <p className="text-sm text-gray-600 dark:text-slate-300 mb-2">{t(`products.harinas.${harina.id}.description`)}</p> {/* Descripción */}
               <span className="text-lg font-bold text-amber-600 dark:text-amber-400">{formatPrice(harina.price)}</span> {/* Precio individual */}
             </div>
           </motion.div>
@@ -110,7 +110,7 @@ const HarinaSelector = ({ onAddPan }) => {
             onClick={handleAddPan} // Llama a la función para añadir pan
             className="bg-amber-500 text-white px-6 py-2 rounded-xl font-bold shadow-md hover:bg-amber-600 transition"
           >
-            Añade tu Pan Personalizado
+            {t('harina_selector.add_button')}
           </button>
         </div>
       )}

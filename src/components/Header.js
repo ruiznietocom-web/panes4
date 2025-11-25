@@ -3,9 +3,16 @@ import { motion } from 'framer-motion';
 import { Sun, Moon } from 'lucide-react';
 import logo from '../assets/logo.jpg';
 import { useTheme } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const { theme, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <motion.header
       className="bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-white p-4 shadow-xl backdrop-blur-sm transition-colors duration-300"
@@ -36,11 +43,26 @@ const Header = () => {
 
           <div className="text-left">
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight font-serif text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.3)]">
-              PanZen
+              {t('header.title')}
             </h1>
             <p className="text-amber-50 font-medium text-xs md:text-sm font-sans hidden md:block drop-shadow-sm">
-              Tu pan consciente personalizado
+              {t('header.subtitle')}
             </p>
+            {/* Banderitas para cambio de idioma */}
+            <div className="flex gap-2 mt-1">
+              <button onClick={() => changeLanguage('es')} className="hover:scale-110 transition-transform" title="Español">
+                <img src="/images/banderaespana.png" alt="Español" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
+              </button>
+              <button onClick={() => changeLanguage('de')} className="hover:scale-110 transition-transform" title="Deutsch">
+                <img src="/images/banderaalemania.png" alt="Deutsch" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
+              </button>
+              <button onClick={() => changeLanguage('en')} className="hover:scale-110 transition-transform" title="English">
+                <img src="/images/banderareinounido.png" alt="English" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
+              </button>
+              <button onClick={() => changeLanguage('fr')} className="hover:scale-110 transition-transform" title="Français">
+                <img src="/images/banderafrancia.png" alt="Français" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
+              </button>
+            </div>
           </div>
         </motion.div>
 

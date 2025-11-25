@@ -34,7 +34,9 @@
         "final_total": "Final Total:",
         "pan": "Bread",
         "extras": "Extras:",
-        "price": "Price:"
+        "price": "Price:",
+        "thank_you_title": "Thank you very much for your generosity!",
+        "thank_you_body": "🙏 Blessings! 🙏"
     },
     "products": {
         "harinas": {

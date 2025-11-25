@@ -54,13 +54,13 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
           origin: { y: 0.6 },
           colors: ['#ff0000', '#ffa500', '#ffff00', '#008000', '#0000ff', '#4b0082', '#ee82ee'] // 7 colors (rainbow)
         });
-        toast.custom((t) => (
+        toast.custom((toastEntry) => (
           <motion.div
             initial={{ opacity: 0, y: -20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.9 }}
             transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            className={`${t.visible ? 'animate-enter' : 'animate-leave'}
+            className={`${toastEntry.visible ? 'animate-enter' : 'animate-leave'}
       max-w-md w-full bg-white dark:bg-slate-800 shadow-2xl rounded-2xl
       pointer-events-auto flex ring-1 ring-black ring-opacity-5
       border-2 border-amber-400 overflow-hidden`}
@@ -82,10 +82,10 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
                 {/* Texto centrado */}
                 <div className="flex flex-col text-center">
                   <p className="text-xl font-semibold text-amber-900 dark:text-amber-100">
-                    ¡Muchas gracias por tu generosidad!
+                    {t('order_summary.thank_you_title')}
                   </p>
                   <p className="mt-1 text-lg text-gray-500 dark:text-gray-400">
-                    🙏 ¡Bendiciones! 🙏
+                    {t('order_summary.thank_you_body')}
                   </p>
                 </div>
 

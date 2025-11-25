@@ -34,7 +34,9 @@
         "final_total": "Total Final :",
         "pan": "Pain",
         "extras": "Extras :",
-        "price": "Prix :"
+        "price": "Prix :",
+        "thank_you_title": "Merci beaucoup pour votre générosité !",
+        "thank_you_body": "🙏 Bénédictions ! 🙏"
     },
     "products": {
         "harinas": {

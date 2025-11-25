@@ -5,6 +5,8 @@ import { harinas } from '../data/products'; // Datos de harinas disponibles
 import { formatPrice } from '../utils/formatPrice'; // Función para formatear precios
 import { useTranslation } from 'react-i18next';
 
+import { toast } from 'react-hot-toast'; // Importar toast para notificaciones
+
 const HarinaSelector = ({ onAddPan }) => {
   const { t } = useTranslation();
   // Estado para almacenar las harinas seleccionadas por el usuario
@@ -40,6 +42,21 @@ const HarinaSelector = ({ onAddPan }) => {
       price: fixedHarinaPrice, // Precio base
       quantity: 1, // Cantidad inicial
       extras: [] // Inicia sin extras, luego se pueden añadir
+    });
+
+    // Mostrar notificación de éxito
+    toast.success("Pan añadido, añade otro pan o elige tus extras", {
+      duration: 4000,
+      position: 'top-center',
+      style: {
+        background: '#10B981',
+        color: '#fff',
+        fontWeight: 'bold',
+      },
+      iconTheme: {
+        primary: '#fff',
+        secondary: '#10B981',
+      },
     });
 
     // Limpiar selección para que se pueda crear otro pan

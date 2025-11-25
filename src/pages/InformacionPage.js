@@ -165,7 +165,7 @@ const InformacionPage = () => {
         {/* Imagen dentro del contenido */}
         <div className="my-8 flex justify-center">
           <img
-            src={BollosPulguitas}
+            src={CorazonHarina}
             alt="Bollo Pulguita"
             className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
           />
@@ -191,7 +191,7 @@ const InformacionPage = () => {
 
         {/* Galería de imágenes final */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-          <img src={CorazonHarina} alt="Corazon de Harina" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
+          <img src={BollosPulguitas} alt="Corazon de Harina" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
           <img src={Bolloswenos} alt="Bollitos" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
           <img src={PandeAjo} alt="Pan Ajo" className="rounded-lg shadow-md hover:scale-105 transition-transform" />
           <img src={PandeCacao} alt="Pan Cacao" className="rounded-lg shadow-md hover:scale-105 transition-transform" />

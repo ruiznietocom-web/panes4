@@ -7,6 +7,10 @@ import { motion } from 'framer-motion';
 import { MessageCircle, Trash2 } from 'lucide-react';
 // Importa iconos: MessageCircle (WhatsApp) y Trash2 (botón eliminar).
 
+import confetti from 'canvas-confetti';
+import toast from 'react-hot-toast';
+// Importa confetti y toast
+
 import { bollitos, pulguitas } from '../data/products';
 // Importa los productos "bollitos" y "pulguitas" desde un archivo de datos.
 
@@ -14,10 +18,6 @@ import { formatPrice } from '../utils/formatPrice';
 // Función para formatear precios (ej: 1.5 → "1,50 €").
 
 import { useTranslation } from 'react-i18next';
-
-
-import confetti from 'canvas-confetti';
-import toast from 'react-hot-toast';
 
 const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const { t } = useTranslation();
@@ -99,6 +99,15 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
                 </motion.span>
 
               </div>
+            </div>
+
+            <div className="flex border-l border-gray-200 dark:border-gray-700">
+              <button
+                onClick={() => toast.dismiss(t.id)}
+                className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-amber-600 dark:text-amber-400 hover:text-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              >
+                Cerrar
+              </button>
             </div>
 
           </motion.div>
@@ -568,4 +577,3 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
 export default OrderSummary;
 // Exporta el componente para poder usarlo en otros archivos
-

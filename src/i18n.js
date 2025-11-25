@@ -17,7 +17,7 @@ i18n
       fr: { translation: fr },
       it: { translation: it }
     },
-    lng: "es", // idioma por defecto
+    lng: localStorage.getItem('language') || "es", // idioma por defecto o guardado
     fallbackLng: "es",
     interpolation: {
       escapeValue: false

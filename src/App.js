@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
@@ -8,11 +8,13 @@ import HarinaSelector from './components/HarinaSelector';
 import ExtrasSelector from './components/ExtrasSelector';
 import OrderSummary from './components/OrderSummary';
 import SuccessModal from './components/SuccessModal';
-import BollitosPage from './pages/BollitosPage';
-import PulguitasPage from './pages/PulguitasPage';
-import InformacionPage from './pages/InformacionPage';
 import WhatsAppButton from './components/WhatsAppButton';
 import { extras, bollitos, pulguitas, otrosPanes } from './data/products';
+
+// Lazy loading de páginas
+const BollitosPage = React.lazy(() => import('./pages/BollitosPage'));
+const PulguitasPage = React.lazy(() => import('./pages/PulguitasPage'));
+const InformacionPage = React.lazy(() => import('./pages/InformacionPage'));
 
 // Subir la página al cambiar de ruta
 const ScrollToTop = () => {
@@ -110,32 +112,34 @@ const App = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2 space-y-6">
-                <Routes>
-                  <Route path="/" element={
-                    <>
-                      <HarinaSelector onAddPan={handleAddPanPersonalizado} />
-                      <ExtrasSelector
-                        cartItems={cartItems}
-                        onUpdatePanExtras={handleUpdatePanExtras}
+                <Suspense fallback={<div className="text-center p-10">Cargando...</div>}>
+                  <Routes>
+                    <Route path="/" element={
+                      <>
+                        <HarinaSelector onAddPan={handleAddPanPersonalizado} />
+                        <ExtrasSelector
+                          cartItems={cartItems}
+                          onUpdatePanExtras={handleUpdatePanExtras}
+                        />
+                      </>
+                    } />
+                    <Route path="/bollitos" element={
+                      <BollitosPage
+                        selectedBollitos={cartItems.filter(item => item.type === 'bollito')
+                          .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
+                        onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')}
                       />
-                    </>
-                  } />
-                  <Route path="/bollitos" element={
-                    <BollitosPage
-                      selectedBollitos={cartItems.filter(item => item.type === 'bollito')
-                        .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
-                      onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')}
-                    />
-                  } />
-                  <Route path="/pulguitas" element={
-                    <PulguitasPage
-                      selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')
-                        .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
-                      onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')}
-                    />
-                  } />
-                  <Route path="/informacion" element={<InformacionPage />} />
-                </Routes>
+                    } />
+                    <Route path="/pulguitas" element={
+                      <PulguitasPage
+                        selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')
+                          .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
+                        onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')}
+                      />
+                    } />
+                    <Route path="/informacion" element={<InformacionPage />} />
+                  </Routes>
+                </Suspense>
               </div>
 
               <div className="lg:col-span-1">

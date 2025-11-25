@@ -80,7 +80,27 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
               </button>
             )}
 
+            {/* Botón "Ver foto" solo para 12 de pulguitas curcuma */}
+            {pulguita.id === 1.6 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitacurcuma12.jpg")}
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
 
+            {/* Botón "Ver foto" solo para una de pulguitas tomate */}
+            {pulguita.id === 8 && (
+              <button
+                onClick={() => setModalPhoto("/images/pulguitaunidadtomate.jpg")}
+                // Al hacer click, se abre el modal con la foto
+                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
+              >
+                Ver foto
+              </button>
+            )}
 
 
 

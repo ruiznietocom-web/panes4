@@ -78,9 +78,25 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
               </button>
             )}
 
+            {/* Botón para ver la foto solo 6 bollitos curcuma */}
+            {bollito.id === 1.6 && (
+              <button
+                onClick={() => setModalPhoto("/images/bollitoscurcuma6.jpg")}
+                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
+              >
+                {t('bollitos_page.view_photo')}
+              </button>
+            )}
 
-
-
+            {/* Botón para ver la foto solo  bollito curcuma */}
+            {bollito.id === 5 && (
+              <button
+                onClick={() => setModalPhoto("/images/bollitoscurcuma.jpg")}
+                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
+              >
+                {t('bollitos_page.view_photo')}
+              </button>
+            )}
 
 
             {/* Botón para ver la foto solo en bollitos unidad */}

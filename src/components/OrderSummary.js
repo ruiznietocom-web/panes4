@@ -101,15 +101,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
               </div>
             </div>
 
-            <div className="flex border-l border-gray-200 dark:border-gray-700">
-              <button
-                onClick={() => toast.dismiss(t.id)}
-                className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-amber-600 dark:text-amber-400 hover:text-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
-              >
-                Cerrar
-              </button>
-            </div>
-
           </motion.div>
         ), {
           id: 'thank-you-toast',

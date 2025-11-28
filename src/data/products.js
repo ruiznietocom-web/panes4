@@ -34,18 +34,18 @@ export const bollitos = [
   { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "1x Semillas, 1x Ajo, 1x Cacao, 1x Cúrcuma, 1x Nueces, 1x Ciruelas Pasas, 1x Tomate y Orégano.Pruébalos todos!", image: "🧺🍞", price: 8.50, photo: "/images/7bollos.jpg" },
   { id: 1.2, name: "PACK Surtido 6 Bollitos Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🧺🌻", price: 7.50 },
   { id: 1.3, name: "PACK Surtido 6 Bollitos Integrales de Nueces", description: "Nutritivo y delicioso", image: "🧺🥜", price: 7.50, photo: "/images/bollitosnueces6.jpg" },
-  { id: 1.4, name: "PACK Surtido 6 Bollitos Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🧺🍫", price: 7 },
+  { id: 1.4, name: "PACK Surtido 6 Bollitos Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🧺🍫", price: 7, photo: "/images/bollitoscacao6.jpg" },
   { id: 1.5, name: "PACK Surtido 6 Bollitos Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🧺🍇", price: 7.50 },
   { id: 1.6, name: "PACK Surtido 6 Bollitos Integrales de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧺🧡", price: 7, photo: "/images/bollitoscurcuma6.jpg" },
-  { id: 1.7, name: "PACK Surtido 6 Bollitos Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🧺🍅", price: 8 },
+  { id: 1.7, name: "PACK Surtido 6 Bollitos Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🧺🍅", price: 8, photo: "/images/bollitostomate6.jpg" },
   { id: 1.8, name: "PACK Surtido 6 Bollitos Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧺🧄", price: 7.50 },
-  { id: 2, name: "Bollito de Cacao", description: "Con cacao puro en polvo", image: "🍫", price: 1.30 },
-  { id: 3, name: "Bollito de Nueces", description: "Con nueces, nutritivo y delicioso", image: "🥜", price: 1.30 },
-  { id: 4, name: "Bollito de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 1.30 },
+  { id: 2, name: "Bollito de Cacao", description: "Con cacao puro en polvo", image: "🍫", price: 1.30, photo: "/images/bollitocacao.jpg" },
+  { id: 3, name: "Bollito de Nueces", description: "Con nueces, nutritivo y delicioso", image: "🥜", price: 1.30, photo: "/images/bollitonuez.jpg" },
+  { id: 4, name: "Bollito de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 1.30, photo: "/images/bollitopasas.jpg" },
   { id: 5, name: "Bollito de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧡", price: 1.30, photo: "/images/bollitoscurcuma.jpg" },
-  { id: 6, name: "Bollito de Semillas", description: "Crujiente, lleno de fibra y minerales", image: "🌻", price: 1.30 },
-  { id: 7, name: "Bollito de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 1.30 },
-  { id: 8, name: "Bollito de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 1.40 }
+  { id: 6, name: "Bollito de Semillas", description: "Crujiente, lleno de fibra y minerales", image: "🌻", price: 1.30, photo: "/images/bollitosemillas.jpg" },
+  { id: 7, name: "Bollito de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧄", price: 1.30, photo: "/images/bollitoajo.jpg" },
+  { id: 8, name: "Bollito de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🍅", price: 1.40, photo: "/images/bollitotomate.jpg" }
 ];
 
 export const pulguitas = [

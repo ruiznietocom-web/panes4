@@ -14,6 +14,8 @@ import PandeOliva from '../assets/images/panoliva.jpg';
 import Pulguitascenteno from '../assets/images/pulguitas.jpg';
 import Bolloswenos from '../assets/images/bollos.jpg';
 
+import Mistletoe from '../components/Mistletoe';
+
 const InformacionPage = () => {
   const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = React.useState(null);
@@ -33,9 +35,13 @@ const InformacionPage = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white font-serif border-b-2 border-amber-100 dark:border-slate-600 pb-4">
-        {t('info_page.title')}
-      </h1>
+      <div className="flex items-center justify-center gap-4 mb-8 border-b-2 border-amber-100 dark:border-slate-600 pb-4">
+        <Mistletoe className="w-10 h-10" />
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white font-serif">
+          {t('info_page.title')}
+        </h1>
+        <Mistletoe className="w-10 h-10" />
+      </div>
 
       {/* BOTÓN PARA DESCARGAR PDF AL PRINCIPIO */}
       <div className="my-8 flex justify-center">

@@ -20,6 +20,8 @@ import { formatPrice } from '../utils/formatPrice';
 import { useTranslation } from 'react-i18next';
 import { showThankYouToast } from './ThankYouToast';
 
+import Mistletoe from './Mistletoe';
+
 const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   const { t } = useTranslation();
   // cartItems: array de productos en la cesta
@@ -218,7 +220,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
     message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n\n`;
 
-    message += `🙏 *MUCHAS GRACIAS!* 🙏\n\n`;
+    message += `🙏 *MUCHAS GRACIAS!* 🙏 🌿\n\n`;
 
 
 
@@ -292,7 +294,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   // Booleano para saber si la cesta está vacía
 
   return (
-    <motion.div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg transition-colors duration-300"
+    <motion.div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg transition-colors duration-300 snow-cap"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
@@ -300,7 +302,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
-          <span className="text-2xl">🧺</span> {t('order_summary.title')}
+          <span className="text-2xl">🧺</span> {t('order_summary.title')} <Mistletoe className="w-8 h-8" />
         </h2>
       </div>
 
@@ -414,7 +416,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
           <input type="text" value={discountCode} onChange={(e) => setDiscountCode(e.target.value)}
             placeholder={t('order_summary.discount_placeholder')}
             className="border rounded-lg p-2 mr-2 dark:bg-slate-700 dark:border-slate-600 dark:text-white" />
-          <button onClick={applyDiscount} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">{t('order_summary.apply')}</button>
+          <button onClick={applyDiscount} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 snow-cap">{t('order_summary.apply')}</button>
           {appliedDiscount && <p className="text-green-600 mt-2">
             {t('order_summary.code_applied', { value: appliedDiscount.value })}
           </p>}
@@ -434,7 +436,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       <motion.button
         onClick={handleSendWhatsApp}
         disabled={isOrderEmpty}
-        className={`w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-3 ${isOrderEmpty ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl hover:scale-[1.01]'}`}
+        className={`w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center gap-3 snow-cap ${isOrderEmpty ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-xl hover:scale-[1.01]'}`}
         whileHover={isOrderEmpty ? {} : { scale: 1.02 }}
         whileTap={isOrderEmpty ? {} : { scale: 0.98 }}
       >

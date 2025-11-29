@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next';
 
 import { toast } from 'react-hot-toast'; // Importar toast para notificaciones
 
+import Mistletoe from './Mistletoe';
+
 const HarinaSelector = ({ onAddPan }) => {
   const { t } = useTranslation();
   // Estado para almacenar las harinas seleccionadas por el usuario
@@ -72,9 +74,13 @@ const HarinaSelector = ({ onAddPan }) => {
       transition={{ duration: 0.5 }}
     >
       {/* Título del selector */}
-      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2 text-center">
-        {t('harina_selector.title')}
-      </h2>
+      <div className="flex items-center justify-center gap-2 mb-2">
+        <Mistletoe className="w-8 h-8" />
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center">
+          {t('harina_selector.title')}
+        </h2>
+        <Mistletoe className="w-8 h-8" />
+      </div>
 
       {/* Instrucciones para el usuario */}
       <p className="text-gray-500 dark:text-slate-300 text-center mb-4">
@@ -86,7 +92,7 @@ const HarinaSelector = ({ onAddPan }) => {
         {harinas.map((harina, index) => (
           <motion.div
             key={harina.id}
-            className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${selectedHarinas.find(h => h.id === harina.id)
+            className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 snow-cap ${selectedHarinas.find(h => h.id === harina.id)
               ? 'border-amber-500 bg-amber-50 dark:bg-slate-700 dark:border-amber-400 shadow-md' // Estilo cuando está seleccionada
               : 'border-gray-200 dark:border-slate-600 hover:border-amber-300 dark:hover:border-amber-500 dark:bg-slate-700/50' // Estilo normal / hover
               }`}

@@ -21,7 +21,7 @@ const Header = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="max-w-5xl mx-auto flex items-center justify-between">
+      <div className="max-w-5xl mx-auto flex items-center justify-between relative z-10">
 
         {/* Logo principal */}
         <motion.div
@@ -117,6 +117,11 @@ const Header = () => {
             </span>
           </div>
         </div>
+
+      </div>
+
+      {/* Decoración Navideña Inferior - Tira de Luces */}
+      <div className="absolute bottom-0 left-0 w-full h-16 pointer-events-none overflow-hidden">
 
       </div>
     </motion.header>

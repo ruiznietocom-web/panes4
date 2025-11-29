@@ -1,8 +1,8 @@
- import React from "react";
+import React from "react";
 import { FaWhatsapp, FaUser } from "react-icons/fa";
 
 const WhatsAppButton = () => {
-const message = "Hola, ";
+  const message = "Hola, ";
 
   const phoneNumber = "627526380"; // Cambia por tu número de WhatsApp
 
@@ -15,7 +15,7 @@ const message = "Hola, ";
         href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-green-500 hover:bg-green-600 text-white w-10 h-10 flex justify-center items-center rounded-full shadow-lg transition-all duration-30000 animate-pulse"
+        className="bg-green-500 hover:bg-green-600 text-white w-10 h-10 flex justify-center items-center rounded-full shadow-lg transition-all duration-30000 animate-pulse snow-cap"
         title="Enviar mensaje por WhatsApp"
       >
         <FaWhatsapp className="w-8 h-8" />

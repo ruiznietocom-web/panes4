@@ -10,9 +10,10 @@ const Nutcracker = ({ isVisible }) => {
                     animate={{ y: 0 }}
                     exit={{ y: 200 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-[60] pointer-events-none"
+                    className="fixed bottom-0 left-4 z-[60] pointer-events-none"
                 >
-                    <div className="relative w-24 h-auto md:w-40 md:h-56">
+                    {/* PARA CAMBIAR EL TAMAÑO EN MÓVIL: Cambia w-24 por otro valor (ej. w-32 para más grande, w-16 para más pequeño) */}
+                    <div className="relative w-16 h-auto md:w-40 md:h-56">
                         {/* Globo de diálogo */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0 }}

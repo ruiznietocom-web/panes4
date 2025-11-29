@@ -40,11 +40,12 @@ const ChristmasDecorations = () => {
     const specialChars = ['nutcracker', 'snowman'];
 
     useEffect(() => {
-        const flakes = Array.from({ length: 50 }).map((_, i) => ({
+        // CAMBIA EL 50 POR OTRO NÚMERO (ej. 100 para más nieve, 20 para menos)
+        const flakes = Array.from({ length: 20 }).map((_, i) => ({
             id: i,
             delay: Math.random() * 5,
             duration: 8 + Math.random() * 10,
-            xStart: Math.random() * 50,
+            xStart: Math.random() * 100,
             size: 10 + Math.random() * 15
         }));
         setSnowflakes(flakes);

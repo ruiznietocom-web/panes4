@@ -10,7 +10,7 @@ const Rudolph = ({ isVisible }) => {
                     animate={{ y: 0 }}   // Sube
                     exit={{ y: 200 }}    // Baja al salir
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-[60] pointer-events-none"
+                    className="fixed bottom-0 left-4 z-[60] pointer-events-none"
                 >
                     <div className="relative w-24 h-24 md:w-40 md:h-40">
                         {/* Globo de diálogo */}

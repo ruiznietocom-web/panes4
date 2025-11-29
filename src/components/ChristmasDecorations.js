@@ -44,7 +44,7 @@ const ChristmasDecorations = () => {
             id: i,
             delay: Math.random() * 5,
             duration: 8 + Math.random() * 10,
-            xStart: Math.random() * 100,
+            xStart: Math.random() * 50,
             size: 10 + Math.random() * 15
         }));
         setSnowflakes(flakes);

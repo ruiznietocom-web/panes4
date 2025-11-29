@@ -19,7 +19,7 @@ const PapaNoel3 = ({ isVisible }) => {
                             initial={{ opacity: 0, scale: 0 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.5 }}
-                            className="absolute -top-16 -right-10 bg-white p-3 rounded-2xl rounded-bl-none shadow-lg border-2 border-red-600"
+                            className="absolute -top-16 -right-16 bg-white p-3 rounded-2xl rounded-bl-none shadow-lg border-2 border-red-600"
                         >
                             <p className="text-sm font-bold text-red-700 whitespace-nowrap">¡Jo Jo Jo! Feliz Navidad 🎅</p>
                         </motion.div>

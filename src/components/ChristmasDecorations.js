@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Rudolph from './Rudolph';
-import SantaClaus from './SantaClaus';
+
+import PapaNoel3 from './PapaNoel3';
 import Nutcracker from './Nutcracker';
 import Snowman from './Snowman';
+import Reno from './Reno';
+import Elfo from './Elfo';
 
 const Snowflake = ({ delay, duration, xStart, size }) => (
     <motion.div
@@ -37,7 +39,7 @@ const ChristmasDecorations = () => {
     const [activeCharacter, setActiveCharacter] = useState(null);
     const [step, setStep] = useState(0);
 
-    const specialChars = ['nutcracker', 'snowman'];
+    const specialChars = ['nutcracker', 'snowman', 'reno', 'elfo'];
 
     useEffect(() => {
         // CAMBIA EL 50 POR OTRO NÚMERO (ej. 100 para más nieve, 20 para menos)
@@ -64,9 +66,8 @@ const ChristmasDecorations = () => {
                 const index = (step / 2) % specialChars.length;
                 nextChar = specialChars[index];
             } else {
-                // Turno de Santa o Rudolph
-                const cycle = Math.floor(step / 2);
-                nextChar = cycle % 2 === 0 ? 'santa' : 'rudolph';
+                // Turno de Papa Noel
+                nextChar = 'papanoel3';
             }
 
             setActiveCharacter(nextChar);
@@ -108,10 +109,12 @@ const ChristmasDecorations = () => {
                 />
             ))}
 
-            <Rudolph isVisible={activeCharacter === 'rudolph'} />
-            <SantaClaus isVisible={activeCharacter === 'santa'} />
+
+            <PapaNoel3 isVisible={activeCharacter === 'papanoel3'} />
             <Nutcracker isVisible={activeCharacter === 'nutcracker'} />
             <Snowman isVisible={activeCharacter === 'snowman'} />
+            <Reno isVisible={activeCharacter === 'reno'} />
+            <Elfo isVisible={activeCharacter === 'elfo'} />
         </div>
     );
 };

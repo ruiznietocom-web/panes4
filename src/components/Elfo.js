@@ -11,7 +11,7 @@ const Elfo = ({ isVisible }) => {
                     animate={{ y: 0 }}
                     exit={{ y: 200 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="fixed -bottom-12 left-4 z-[60] pointer-events-none"
+                    className="fixed -bottom-7 left-4 z-[60] pointer-events-none"
                 >
                     <div className="relative w-36 h-48 md:w-48 md:h-64">
                         <motion.div

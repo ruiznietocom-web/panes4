@@ -11,16 +11,16 @@ const Elfo = ({ isVisible }) => {
                     animate={{ y: 0 }}
                     exit={{ y: 200 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="fixed bottom-0 left-4 z-[60] pointer-events-none"
+                    className="fixed -bottom-12 left-4 z-[60] pointer-events-none"
                 >
                     <div className="relative w-32 h-auto md:w-48 md:h-64">
                         <motion.div
                             initial={{ opacity: 0, scale: 0 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.5 }}
-                            className="absolute -top-12 -right-10 bg-white p-2 rounded-2xl rounded-bl-none shadow-lg border-2 border-green-600"
+                            className="absolute -top-4 -right-10 bg-white p-2 rounded-2xl rounded-bl-none shadow-lg border-2 border-green-600"
                         >
-                            <p className="text-xs font-bold text-green-700 whitespace-nowrap">¡Ayudando a Santa! 🧝‍♂️</p>
+                            <p className="text-xs font-bold text-green-700 whitespace-nowrap">¡Ayudando a Santa! 🎁</p>
                         </motion.div>
                         <ElfoSvg className="w-full h-full drop-shadow-2xl" />
                     </div>

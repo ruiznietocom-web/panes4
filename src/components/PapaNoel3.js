@@ -11,7 +11,7 @@ const PapaNoel3 = ({ isVisible }) => {
                     animate={{ y: 0 }}   // Sube
                     exit={{ y: 200 }}    // Baja al salir
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="fixed -bottom-14 left-4 z-[60] pointer-events-none"
+                    className="fixed -bottom-11 left-4 z-[60] pointer-events-none"
                 >
                     <div className="relative w-36 h-48 md:w-48 md:h-64">
                         {/* Globo de diálogo */}

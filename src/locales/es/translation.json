@@ -172,7 +172,7 @@
         "pulguitas": {
             "1": {
                 "name": "Pulguita Integral",
-                "description": "Pequeña y crujiente, ideal para bocadillos"
+                "description": "Pequeña, ideal para bocadillos"
             },
             "1_05": {
                 "name": "PACK Surtido 12 Pulguitas Integrales Clásicas",
@@ -246,7 +246,8 @@
         }
     },
     "extras_selector": {
-        "title": "ELIGE LOS EXTRAS DE TU PAN {{number}} ({{flours}})"
+        "title": "Personaliza tu Pan {{number}} ({{flours}}) con nuestros Extras",
+        "subtitle": "Añade un toque especial a tu pan con los extras que más te gusten"
     },
     "bollitos_page": {
         "title": "Elige tus Bollitos Integrales Ecológicos",
@@ -303,5 +304,8 @@
         "tip1": "Como sabéis, este pan 100% ecológico e integral está libre de conservantes y añadidos artificiales. La mejor forma para conservar el pan es en el frigorífico. Consérvalo dentro en la misma bolsa de papel y ésta a su vez en una bolsa de plástico bien cerrada. Colócalo, preferentemente, en la bandeja más alta de tu frigorífico, allí puede aguantar hasta 3 ó 4 días perfectamente. Luego es preferible que congeles el resto que no hayas consumido.",
         "tip2": "Si prefieres, también puedes cortarlo en rodajas o en porciones que vayas a consumir y congelarlo directamente el día de la entrega, siempre en una bolsa o un táper bien cerrado para que no genere escarcha.",
         "tip3": "El pan, los bollitos o pulguitas se entregan siempre hechos del día, y algunas veces aún calentitos, si es así, deposítalo en la rejilla del horno y espera siempre una hora desde la entrega para consumirlo. No lo guardes o congeles en el frigorífico hasta que notes que está completamente frío. Gracias!! 🙏"
+    },
+    "EXTRAS": {
+        "pan": "EXTRAS"
     }
 }

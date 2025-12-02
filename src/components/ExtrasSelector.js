@@ -23,25 +23,49 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
       {cartItems
         .filter(item => item.type === 'panPersonalizado')
         .map((pan, index) => (
-          <div key={pan.id} className="bg-green-50 dark:bg-slate-800 p-4 rounded-2xl shadow-md transition-colors duration-300">
-            <h3 className="font-bold mb-3 text-lg text-gray-800 dark:text-white">
-              {t('extras_selector.title', { number: index + 1, flours: pan.harinas.map(h => t(`products.harinas.${h.id}.name`)).join(', ') })}
-            </h3>
-            <div className="flex flex-wrap gap-4">
+          <div key={pan.id} className="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-xl border border-stone-100 dark:border-slate-700 relative overflow-hidden group">
+            {/* Decorative background element */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-100 dark:bg-amber-900/20 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110 duration-700 ease-out"></div>
+
+            <div className="relative z-10 mb-8">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                  {t('EXTRAS.pan')} {index + 1}
+                </span>
+                <div className="h-px flex-1 bg-gradient-to-r from-amber-200 to-transparent dark:from-slate-600"></div>
+              </div>
+
+              <h3 className="text-2xl md:text-3xl font-serif text-stone-800 dark:text-stone-100 mb-2">
+                {pan.harinas.map(h => t(`products.harinas.${h.id}.name`).replace(' Integral Ecológico', '')).join(' + ')}
+              </h3>
+
+              <p className="text-stone-500 dark:text-stone-400 text-sm font-medium">
+                {t('extras_selector.subtitle', { defaultValue: 'Personaliza tu pan con nuestros ingredientes premium' })}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {allExtras.map(extra => {
                 const selected = pan.extras?.some(e => e.id === extra.id);
                 return (
                   <button
                     key={extra.id}
                     onClick={() => toggleExtra(pan.id, extra)}
-                    className={`flex flex-col items-center justify-center w-24 h-28 p-3 rounded-xl border transition-all duration-200
+                    className={`relative flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all duration-300 group/btn
                       ${selected
-                        ? 'bg-green-200 border-green-400 scale-105 shadow-lg dark:bg-green-900 dark:border-green-500 dark:text-white'
-                        : 'bg-white border-gray-300 hover:bg-gray-100 hover:scale-105 dark:bg-slate-700 dark:border-slate-600 dark:text-gray-300 dark:hover:bg-slate-600'}`}
+                        ? 'bg-amber-50 border-amber-500 shadow-md dark:bg-slate-700 dark:border-amber-400'
+                        : 'bg-stone-50 border-transparent hover:border-amber-200 hover:bg-white hover:shadow-lg dark:bg-slate-700/50 dark:hover:bg-slate-700 dark:hover:border-slate-500'}`}
                   >
-                    <span className="text-4xl mb-2">{extra.icon}</span>
-                    <span className="text-center font-semibold text-sm">{t(`products.extras.${extra.id}`)}</span>
-                    <span className="text-center text-xs text-gray-600 dark:text-gray-400">{extra.price.toFixed(2)}€</span>
+                    {selected && (
+                      <div className="absolute top-2 right-2 w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                    )}
+                    <span className="text-3xl mb-3 transform group-hover/btn:scale-110 transition-transform duration-300">{extra.icon}</span>
+                    <span className={`text-center font-medium text-sm leading-tight mb-1 ${selected ? 'text-amber-900 dark:text-amber-100' : 'text-stone-600 dark:text-stone-300'}`}>
+                      {t(`products.extras.${extra.id}`)}
+                    </span>
+                    <span className={`text-xs font-bold ${selected ? 'text-amber-600 dark:text-amber-400' : 'text-stone-400 dark:text-stone-500'}`}>
+                      {extra.price.toFixed(2)}€
+                    </span>
                   </button>
                 );
               })}

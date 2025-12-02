@@ -172,7 +172,7 @@
         "pulguitas": {
             "1": {
                 "name": "Vollkorn-Mini-Brötchen",
-                "description": "Klein und knusprig, ideal für Sandwiches"
+                "description": "Klein, ideal für Sandwiches"
             },
             "1_05": {
                 "name": "PACK Sortiment 12 Klassische Vollkorn-Mini-Brötchen",
@@ -246,10 +246,11 @@
         }
     },
     "extras_selector": {
-        "title": "WÄHLEN SIE EXTRAS FÜR IHR BROT {{number}} ({{flours}})"
+        "title": "Personalisieren Sie Ihr Brot {{number}} ({{flours}}) mit unseren Extras",
+        "subtitle": "Verleihen Sie Ihrem Brot eine besondere Note mit den Extras, die Ihnen am besten gefallen"
     },
     "bollitos_page": {
-        "title": "Wählen Sie Ihre Bio-Vollkornbrötchen",
+        "title": "Wählen Sie Ihre Bio-Vollkorn-Brötchen",
         "message": "Wenn Sie ein Brötchen aus einem bestimmten Mehl wünschen, kontaktieren Sie mich bitte per WhatsApp, wenn Sie die Bestellung senden.",
         "view_photo": "Foto ansehen"
     },
@@ -303,5 +304,8 @@
         "tip1": "Wie Sie wissen, ist dieses 100% ökologische und Vollkornbrot frei von Konservierungsstoffen und künstlichen Zusätzen. Die beste Art, Brot aufzubewahren, ist im Kühlschrank. Bewahren Sie es in derselben Papiertüte und diese wiederum in einer gut verschlossenen Plastiktüte auf. Legen Sie es vorzugsweise in das oberste Fach Ihres Kühlschranks, dort kann es perfekt bis zu 3 oder 4 Tage halten. Dann ist es besser, den Rest, den Sie nicht verbraucht haben, einzufrieren.",
         "tip2": "Wenn Sie es vorziehen, können Sie es auch in Scheiben oder Portionen schneiden, die Sie verbrauchen werden, und es direkt am Tag der Lieferung einfrieren, immer in einem Beutel oder einem gut verschlossenen Behälter, damit sich kein Frost bildet.",
         "tip3": "Brot, Brötchen oder Mini-Brötchen werden immer frisch vom Tag geliefert und manchmal sogar noch warm; wenn ja, legen Sie es auf den Ofenrost und warten Sie immer eine Stunde nach der Lieferung, um es zu verzehren. Bewahren Sie es nicht im Kühlschrank auf oder frieren Sie es ein, bis Sie bemerken, dass es vollständig kalt ist. Danke!! 🙏"
+    },
+    "EXTRAS": {
+        "pan": "EXTRAS"
     }
 }

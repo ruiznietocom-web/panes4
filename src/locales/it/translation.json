@@ -172,7 +172,7 @@
         "pulguitas": {
             "1": {
                 "name": "Mini Panino Integrale",
-                "description": "Piccolo e croccante, ideale per panini"
+                "description": "Piccolo, ideale per panini"
             },
             "1_05": {
                 "name": "PACCO Assortito 12 Mini Panini Classici Integrali",
@@ -241,12 +241,13 @@
         },
         "optional_extras": {
             "propina": "Lascia una Mancia!",
-            "cafe": "Offrimi un Caffè!",
-            "cerveza": "Offrimi una Birra!"
+            "cafe": "Prendi un Caffè!",
+            "cerveza": "Prenditi una Birra alla mia salute!"
         }
     },
     "extras_selector": {
-        "title": "SCEGLI GLI EXTRA PER IL TUO PANE {{number}} ({{flours}})"
+        "title": "Personalizza il tuo Pane {{number}} ({{flours}}) con i nostri Extra",
+        "subtitle": "Dai un tocco speciale al tuo pane con gli extra che ti piacciono di più"
     },
     "bollitos_page": {
         "title": "Scegli i tuoi Panini Integrali Biologici",
@@ -303,5 +304,8 @@
         "tip1": "Come sai, questo pane 100% biologico e integrale è privo di conservanti e additivi artificiali. Il modo migliore per conservarlo è in frigorifero. Tienilo dentro il sacchetto di carta e a sua volta in un sacchetto di plastica ben chiuso. Posizionalo preferibilmente sul ripiano più alto del frigorifero: lì può durare perfettamente fino a 3 o 4 giorni. Poi è preferibile congelare il resto che non hai consumato.",
         "tip2": "Se preferisci, puoi anche tagliarlo a fette o porzioni che consumerai e congelarlo direttamente il giorno della consegna, sempre in un sacchetto o contenitore ben chiuso, affinché non si formi ghiaccio.",
         "tip3": "Il pane, i panini o i mini panini vengono sempre consegnati freschi del giorno, e talvolta anche caldi; se è così, mettili sulla griglia del forno e aspetta sempre un’ora dalla consegna prima di consumarli. Non conservarli né congelarli in frigorifero finché non sono completamente freddi. Grazie!! 🙏"
+    },
+    "EXTRAS": {
+        "pan": "EXTRAS"
     }
 }

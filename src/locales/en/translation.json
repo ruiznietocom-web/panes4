@@ -172,7 +172,7 @@
         "pulguitas": {
             "1": {
                 "name": "Whole Mini Bread Roll",
-                "description": "Small and crunchy, ideal for sandwiches"
+                "description": "Small, ideal for sandwiches"
             },
             "1_05": {
                 "name": "PACK Assorted 12 Classic Whole Mini Bread Rolls",
@@ -246,7 +246,8 @@
         }
     },
     "extras_selector": {
-        "title": "CHOOSE EXTRAS FOR YOUR BREAD {{number}} ({{flours}})"
+        "title": "Customize your Bread {{number}} ({{flours}}) with our Extras",
+        "subtitle": "Add a special touch to your bread with the extras you like the most"
     },
     "bollitos_page": {
         "title": "Choose your Organic Whole Buns",
@@ -303,5 +304,8 @@
         "tip1": "As you know, this 100% organic and whole bread is free of preservatives and artificial additives. The best way to preserve bread is in the refrigerator. Keep it inside the same paper bag and this in turn in a tightly closed plastic bag. Place it, preferably, on the highest shelf of your refrigerator, there it can last perfectly up to 3 or 4 days. Then it is preferable that you freeze the rest that you have not consumed.",
         "tip2": "If you prefer, you can also cut it into slices or portions that you are going to consume and freeze it directly on the day of delivery, always in a bag or a tightly closed container so that it does not generate frost.",
         "tip3": "Bread, buns, or mini bread rolls are always delivered fresh from the day, and sometimes even warm; if so, place it on the oven rack and always wait an hour from delivery to consume it. Do not store or freeze it in the refrigerator until you notice that it is completely cold. Thank you!! 🙏"
+    },
+    "EXTRAS": {
+        "pan": "EXTRAS"
     }
 }

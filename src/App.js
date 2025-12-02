@@ -27,7 +27,7 @@ const ScrollToTop = () => {
 };
 
 // Componente para manejar las rutas con animaciones
-const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanExtras, handleUpdateCartItem }) => {
+const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanExtras, handleUpdateCartItem, setIsAddButtonVisible }) => {
   const location = useLocation();
 
   return (
@@ -43,6 +43,7 @@ const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanE
             <HarinaSelector
               onAddPan={handleAddPanPersonalizado}
               existingPanesCount={cartItems.filter(item => item.type === 'panPersonalizado').length}
+              setIsAddButtonVisible={setIsAddButtonVisible}
             />
             <ExtrasSelector
               cartItems={cartItems}
@@ -96,6 +97,7 @@ const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanE
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [isAddButtonVisible, setIsAddButtonVisible] = useState(false);
 
   const getProductDetails = (id, type) => {
     switch (type) {
@@ -187,6 +189,7 @@ const App = () => {
                     handleAddPanPersonalizado={handleAddPanPersonalizado}
                     handleUpdatePanExtras={handleUpdatePanExtras}
                     handleUpdateCartItem={handleUpdateCartItem}
+                    setIsAddButtonVisible={setIsAddButtonVisible}
                   />
                 </Suspense>
               </div>
@@ -207,7 +210,7 @@ const App = () => {
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
 
         {/* Botón flotante de WhatsApp */}
-        <WhatsAppButton />
+        <WhatsAppButton isRaised={isAddButtonVisible} />
       </div>
     </Router>
   );

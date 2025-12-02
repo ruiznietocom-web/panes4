@@ -1,13 +1,13 @@
 import React from "react";
 import { FaWhatsapp, FaUser } from "react-icons/fa";
 
-const WhatsAppButton = () => {
+const WhatsAppButton = ({ isRaised }) => {
   const message = "Hola, ";
 
   const phoneNumber = "627526380"; // Cambia por tu número de WhatsApp
 
   return (
-    <div className="fixed bottom-24 right-6 flex flex-col items-center z-50">
+    <div className={`fixed right-6 flex flex-col items-center z-50 transition-all duration-500 ${isRaised ? 'bottom-40' : 'bottom-4'}`}>
 
 
       {/* Botón de WhatsApp */}

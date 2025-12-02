@@ -1,7 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.64ef2fc8.css",
-    "main.js": "/static/js/main.1e6a98e5.js",
+    "main.css": "/static/css/main.b11bfa1f.css",
+    "main.js": "/static/js/main.1aa0ada4.js",
+    "static/js/28.58373c9e.chunk.js": "/static/js/28.58373c9e.chunk.js",
+    "static/js/76.dba26a62.chunk.js": "/static/js/76.dba26a62.chunk.js",
+    "static/js/620.e4cca304.chunk.js": "/static/js/620.e4cca304.chunk.js",
     "static/media/corazon.jpg": "/static/media/corazon.c12469a87a0698c2bd0f.jpg",
     "static/media/barras.jpg": "/static/media/barras.123faecddc12a5408546.jpg",
     "static/media/panoliva.jpg": "/static/media/panoliva.d762a917ee90e46cfff6.jpg",
@@ -12,13 +15,19 @@
     "static/media/panajo.jpg": "/static/media/panajo.069ba661aa4d2efc22c6.jpg",
     "static/media/bollopulga.jpg": "/static/media/bollopulga.7c13e9ffcb5c3b450f2f.jpg",
     "static/media/pulguitas.jpg": "/static/media/pulguitas.abaa2b24e630637e04f6.jpg",
+    "static/media/reno.svg": "/static/media/reno.b374ff79b9e3057811bedaef5934bd7f.svg",
+    "static/media/papanoel3.svg": "/static/media/papanoel3.48033fbc654242e08c7c99861399da06.svg",
+    "static/media/elfo.svg": "/static/media/elfo.548a8cbbca80aeecf93997393b29cfe6.svg",
     "static/media/logo.jpg": "/static/media/logo.fc2347e3893c0c13a391.jpg",
     "index.html": "/index.html",
-    "main.64ef2fc8.css.map": "/static/css/main.64ef2fc8.css.map",
-    "main.1e6a98e5.js.map": "/static/js/main.1e6a98e5.js.map"
+    "main.b11bfa1f.css.map": "/static/css/main.b11bfa1f.css.map",
+    "main.1aa0ada4.js.map": "/static/js/main.1aa0ada4.js.map",
+    "28.58373c9e.chunk.js.map": "/static/js/28.58373c9e.chunk.js.map",
+    "76.dba26a62.chunk.js.map": "/static/js/76.dba26a62.chunk.js.map",
+    "620.e4cca304.chunk.js.map": "/static/js/620.e4cca304.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.64ef2fc8.css",
-    "static/js/main.1e6a98e5.js"
+    "static/css/main.b11bfa1f.css",
+    "static/js/main.1aa0ada4.js"
   ]
 }

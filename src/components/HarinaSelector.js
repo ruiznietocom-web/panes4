@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Importamos React y useState para manejar estados
+import React, { useState, useEffect } from 'react'; // Importamos React y useState para manejar estados
 import { motion } from 'framer-motion'; // Librería para animaciones suaves
 import { Check } from 'lucide-react'; // Icono de check para selección
 import { harinas } from '../data/products'; // Datos de harinas disponibles
@@ -9,10 +9,22 @@ import { toast } from 'react-hot-toast'; // Importar toast para notificaciones
 
 import Mistletoe from './Mistletoe';
 
-const HarinaSelector = ({ onAddPan, existingPanesCount }) => {
+const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible }) => {
   const { t } = useTranslation();
   // Estado para almacenar las harinas seleccionadas por el usuario
   const [selectedHarinas, setSelectedHarinas] = useState([]);
+
+  // Notificar al componente padre si el botón flotante debe ser visible
+  useEffect(() => {
+    if (setIsAddButtonVisible) {
+      setIsAddButtonVisible(selectedHarinas.length > 0);
+    }
+    return () => {
+      if (setIsAddButtonVisible) {
+        setIsAddButtonVisible(false);
+      }
+    };
+  }, [selectedHarinas, setIsAddButtonVisible]);
 
   const maxHarinas = 6; // Máximo de harinas que se pueden seleccionar
   const fixedHarinaPrice = 5.50; // Precio fijo del pan base (sin extras)

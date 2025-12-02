@@ -40,6 +40,11 @@
         "thank_you_title": "Vielen Dank für Ihre Großzügigkeit!",
         "thank_you_body": "🙏 Segen! 🙏"
     },
+    "optional_extras": {
+        "propina": "Hier ist ein Trinkgeld!",
+        "cafe": "Nimm dir einen Kaffee!",
+        "cerveza": "Trink ein Bier auf mich!"
+    },
     "extras_selector": {
         "title": "Personalisieren Sie Ihr Brot {{number}} ({{flours}}) mit unseren Extras",
         "subtitle": "Verleihen Sie Ihrem Brot eine besondere Note mit den Extras, die Ihnen am besten gefallen"
@@ -300,9 +305,6 @@
             "1_8": {
                 "name": "PACK Sortiment 12 Vollkorn-Knoblauch-Mini-Brötchen",
                 "description": "Intensiver Geschmack, perfekt als Beilage"
-            },
-            "EXTRAS": {
-                "pan": "EXTRAS"
             }
         }
     }

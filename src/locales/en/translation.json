@@ -41,9 +41,9 @@
         "thank_you_body": "🙏 Blessings! 🙏"
     },
     "optional_extras": {
-        "propina": "Leave a Tip!",
+        "propina": "Take a Tip!",
         "cafe": "Have a Coffee!",
-        "cerveza": "Have a Beer on my health!"
+        "cerveza": "Have a Beer on Me!"
     },
     "extras_selector": {
         "title": "Customize your Bread {{number}} ({{flours}}) with our Extras",
@@ -506,9 +506,6 @@
                         "description": "Intense flavor, perfect to accompany meals"
                     }
                 }
-            },
-            "EXTRAS": {
-                "pan": "EXTRAS"
             }
         }
     }

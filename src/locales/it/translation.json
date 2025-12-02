@@ -40,6 +40,11 @@
         "thank_you_title": "Grazie mille per la tua generosità!",
         "thank_you_body": "🙏 Benedizioni! 🙏"
     },
+    "optional_extras": {
+        "propina": "Prendi una mancia!",
+        "cafe": "Prenditi un caffè!",
+        "cerveza": "Beviti una birra alla mia salute!"
+    },
     "extras_selector": {
         "title": "Personalizza il tuo Pane {{number}} ({{flours}}) con i nostri Extra",
         "subtitle": "Dai un tocco speciale al tuo pane con gli extra che ti piacciono di più"
@@ -300,9 +305,6 @@
             "1_8": {
                 "name": "PACCO Assortito 12 Mini Panini Integrali all'Aglio",
                 "description": "Intensi e saporiti in formato mini"
-            },
-            "EXTRAS": {
-                "pan": "EXTRAS"
             }
         }
     }

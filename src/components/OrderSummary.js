@@ -29,9 +29,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
   // onRemoveItem: función para eliminar un producto de la cesta
 
   const optionalExtras = [
-    { id: 'propina', name: t('products.optional_extras.propina'), price: 0.50, icon: '💰' },
-    { id: 'cafe', name: t('products.optional_extras.cafe'), price: 1.00, icon: '☕' },
-    { id: 'cerveza', name: t('products.optional_extras.cerveza'), price: 1.50, icon: '🍺' },
+    { id: 'propina', name: t('optional_extras.propina'), price: 0.50, icon: '💰' },
+    { id: 'cafe', name: t('optional_extras.cafe'), price: 1.00, icon: '☕' },
+    { id: 'cerveza', name: t('optional_extras.cerveza'), price: 1.50, icon: '🍺' },
 
   ];
   // Lista de extras opcionales

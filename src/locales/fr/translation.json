@@ -40,6 +40,11 @@
         "thank_you_title": "Merci beaucoup pour votre générosité !",
         "thank_you_body": "🙏 Bénédictions ! 🙏"
     },
+    "optional_extras": {
+        "propina": "Prends un pourboire !",
+        "cafe": "Prends un café !",
+        "cerveza": "Prends une bière à ma santé !"
+    },
     "extras_selector": {
         "title": "Personnalisez votre Pain {{number}} ({{flours}}) avec nos Extras",
         "subtitle": "Ajoutez une touche spéciale à votre pain avec les extras que vous préférez"
@@ -300,9 +305,6 @@
             "1_8": {
                 "name": "PACK Assortiment 12 Petits Pains Mini Ronds Complets à l'Ail",
                 "description": "Saveur intense, parfait pour accompagner les repas"
-            },
-            "EXTRAS": {
-                "pan": "EXTRAS"
             }
         }
     }

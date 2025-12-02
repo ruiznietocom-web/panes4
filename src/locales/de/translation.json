@@ -12,8 +12,9 @@
     },
     "harina_selector": {
         "title": "Wählen Sie Ihre Basismehle",
-        "instructions": "Sie können bis zu 5 Mehlsorten und, wenn Sie möchten, auch die Schnittart wählen. Konfigurieren und fügen Sie alle Brote hinzu, die Sie möchten, und wählen Sie unten die Extras für jedes Brot. Der Preis des Brotes, ohne Extras, ist fest: {{price}}.",
-        "add_button": "Fügen Sie Ihr personalisiertes Brot hinzu",
+        "instructions": "Sie können bis zu 5 Mehlsorten auswählen und kombinieren, um Ihr Brot zusammenzustellen, wenn Sie möchten, auch die Schnittart. Stellen Sie so viele Brote zusammen und fügen Sie sie hinzu, wie Sie möchten. Sobald sie hinzugefügt sind, wählen Sie unten die Extras für jedes Brot aus. Der Preis für das Brot ist ohne Extras fest: {{price}}.",
+        "add_button": "Fügen Sie Ihr Brot hinzu oder wählen Sie weitere Mehle ",
+        "add_button_dynamic": "Brot aus {{flours}}, wählen Sie ein anderes Mehl, die Art des 🔪 oder fügen Sie es Ihrer Bestellung hinzu",
         "pan_added_toast": "Brot hinzugefügt, fügen Sie ein weiteres Brot hinzu oder wählen Sie Ihre Extras"
     },
     "order_summary": {

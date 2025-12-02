@@ -12,8 +12,9 @@
     },
     "harina_selector": {
         "title": "Choose your Base Flours",
-        "instructions": "You can choose up to 5 types of flour and, if you like, also the type of cut. Configure and add all the breads you want and once added, below, choose the extras you prefer for each bread. The price of the bread, without counting the extras, is fixed: {{price}}.",
-        "add_button": "Add your Custom Bread",
+        "instructions": "You can choose and combine up to 5 types of flour to configure your bread, if you like, also the type of cut. Configure and add all the breads you want and once added, below, choose the extras you prefer for each bread. The price of the bread, excluding extras, is fixed: {{price}}.",
+        "add_button": "Add your Bread or choose more flours ",
+        "add_button_dynamic": "Bread of {{flours}}, choose another flour, the type of 🔪 or add it to your order",
         "pan_added_toast": "Bread added, add another bread or choose your extras"
     },
     "order_summary": {

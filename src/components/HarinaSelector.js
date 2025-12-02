@@ -9,7 +9,7 @@ import { toast } from 'react-hot-toast'; // Importar toast para notificaciones
 
 import Mistletoe from './Mistletoe';
 
-const HarinaSelector = ({ onAddPan }) => {
+const HarinaSelector = ({ onAddPan, existingPanesCount }) => {
   const { t } = useTranslation();
   // Estado para almacenar las harinas seleccionadas por el usuario
   const [selectedHarinas, setSelectedHarinas] = useState([]);
@@ -120,7 +120,7 @@ const HarinaSelector = ({ onAddPan }) => {
               <div className="text-4xl mb-2">{harina.image}</div> {/* Emoji o imagen de la harina */}
               <h3 className="font-bold text-gray-800 dark:text-white mb-1">{t(`products.harinas.${harina.id}.name`)}</h3> {/* Nombre */}
               <p className="text-sm text-gray-600 dark:text-slate-300 mb-2">{t(`products.harinas.${harina.id}.description`)}</p> {/* Descripción */}
-              <span className="text-lg font-bold text-amber-600 dark:text-amber-400">{formatPrice(harina.price)}</span> {/* Precio individual */}
+
             </div>
           </motion.div>
         ))}
@@ -128,14 +128,27 @@ const HarinaSelector = ({ onAddPan }) => {
 
       {/* Botón para añadir pan al carrito, solo visible si hay harinas seleccionadas */}
       {selectedHarinas.length > 0 && (
-        <div className="text-center mt-4">
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="fixed bottom-6 left-0 right-0 flex justify-center z-50 pointer-events-none"
+        >
           <button
-            onClick={handleAddPan} // Llama a la función para añadir pan
-            className="bg-amber-500 text-white px-6 py-2 rounded-xl font-bold shadow-md hover:bg-amber-600 transition"
+            onClick={handleAddPan}
+            className="bg-amber-500 text-white px-8 py-3 rounded-full font-bold shadow-xl hover:bg-amber-600 transition-all transform hover:scale-105 pointer-events-auto border-2 border-white dark:border-slate-800"
           >
-            {t('harina_selector.add_button')}
+            {existingPanesCount > 0 ? `${existingPanesCount + 1}º ` : ''}
+            {t('harina_selector.add_button_dynamic', {
+              flours: selectedHarinas
+                .map(h => t(`products.harinas.${h.id}.name`)
+                  .replace(' Integral Ecológico', '')
+                  .replace('PAN CORTADO', 'CORTE')
+                  .replace(' (gratuito)', '')
+                )
+                .reduce((acc, curr, idx, src) => idx === src.length - 1 ? acc + ' y ' + curr : acc + ', ' + curr)
+            })}
           </button>
-        </div>
+        </motion.div>
       )}
     </motion.div>
   );

@@ -7,7 +7,7 @@ const WhatsAppButton = () => {
   const phoneNumber = "627526380"; // Cambia por tu número de WhatsApp
 
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col items-center z-50">
+    <div className="fixed bottom-24 right-6 flex flex-col items-center z-50">
 
 
       {/* Botón de WhatsApp */}

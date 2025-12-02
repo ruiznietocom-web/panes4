@@ -12,8 +12,9 @@
     },
     "harina_selector": {
         "title": "Scegli le tue Farine Base",
-        "instructions": "Puoi scegliere fino a 5 tipi di farina e, se vuoi, anche il tipo di taglio. Configura e aggiungi tutti i pani che desideri e, una volta aggiunti, qui sotto scegli gli extra che preferisci per ogni pane. Il prezzo del pane, senza contare gli extra, è fisso: {{price}}.",
-        "add_button": "Aggiungi il tuo Pane Personalizzato",
+        "instructions": "Puoi scegliere e combinare fino a 5 tipi di farine per configurare il tuo pane, se vuoi, anche il tipo di taglio. Configura e aggiungi tutti i pani che vuoi, e una volta aggiunti, scegli qui sotto gli extra che preferisci per ogni pane. Il prezzo del pane, esclusi gli extra, è fisso: {{price}}.",
+        "add_button": "Aggiungi il tuo Pane o scegli altre farine ",
+        "add_button_dynamic": "Pane di {{flours}}, scegli un'altra farina, il tipo di 🔪 o aggiungilo al tuo ordine",
         "pan_added_toast": "Pane aggiunto, aggiungi un altro pane o scegli i tuoi extra"
     },
     "order_summary": {

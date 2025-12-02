@@ -40,7 +40,10 @@ const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanE
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.3 }}
           >
-            <HarinaSelector onAddPan={handleAddPanPersonalizado} />
+            <HarinaSelector
+              onAddPan={handleAddPanPersonalizado}
+              existingPanesCount={cartItems.filter(item => item.type === 'panPersonalizado').length}
+            />
             <ExtrasSelector
               cartItems={cartItems}
               onUpdatePanExtras={handleUpdatePanExtras}

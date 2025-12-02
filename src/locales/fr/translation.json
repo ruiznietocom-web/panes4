@@ -12,8 +12,9 @@
     },
     "harina_selector": {
         "title": "Choisissez vos Farines de Base",
-        "instructions": "Vous pouvez choisir jusqu'à 5 types de farines et, si vous le souhaitez, aussi le type de coupe. Configurez et ajoutez tous les pains que vous voulez et une fois ajoutés, ci-dessous, choisissez les extras que vous préférez pour chaque pain. Le prix du pain, sans compter les extras, est fixe : {{price}}.",
-        "add_button": "Ajoutez votre Pain Personnalisé",
+        "instructions": "Vous pouvez choisir et combiner jusqu'à 5 types de farines pour configurer votre pain, si vous le souhaitez, le type de coupe également. Configurez et ajoutez tous les pains que vous voulez, et une fois ajoutés, choisissez ci-dessous les extras que vous préférez pour chaque pain. Le prix du pain, hors extras, est fixe : {{price}}.",
+        "add_button": "Ajoutez votre Pain ou choisissez plus de farines ",
+        "add_button_dynamic": "Pain de {{flours}}, choisissez une autre farine, le type de 🔪 ou ajoutez-le à votre commande",
         "pan_added_toast": "Pain ajouté, ajoutez un autre pain ou choisissez vos suppléments"
     },
     "order_summary": {

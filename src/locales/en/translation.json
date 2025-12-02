@@ -11,7 +11,7 @@
         "info": "+ INFO"
     },
     "harina_selector": {
-        "title": "Choose your Base Flours",
+        "title": "Choose the flours for your bread",
         "instructions": "You can choose and combine up to 5 types of flour to configure your bread, if you like, also the type of cut. Configure and add all the breads you want and once added, below, choose the extras you prefer for each bread. The price of the bread, excluding extras, is fixed: {{price}}.",
         "add_button": "Add your Bread or choose more flours ",
         "add_button_dynamic": "Bread of {{flours}}, choose another flour, the type of 🔪 or add it to your order",
@@ -40,210 +40,10 @@
         "thank_you_title": "Thank you very much for your generosity!",
         "thank_you_body": "🙏 Blessings! 🙏"
     },
-    "products": {
-        "harinas": {
-            "1": {
-                "name": "Organic Whole WHEAT",
-                "description": "Classic, versatile, traditional base for daily bread."
-            },
-            "2": {
-                "name": "Organic Whole RYE",
-                "description": "Dark, aromatic, low in gluten, rustic and full of minerals"
-            },
-            "3": {
-                "name": "Organic Whole SPELT",
-                "description": "Ancestral flour, soft, digestive and rich in fiber."
-            },
-            "4": {
-                "name": "Organic Whole KHORASAN",
-                "description": "Ancient cereal, intense flavor and high in protein."
-            },
-            "5": {
-                "name": "Organic Whole TRITORDEUM",
-                "description": "Innovative, hybrid of wheat and barley and easy to digest"
-            },
-            "6": {
-                "name": "THIN SLICED BREAD (free)",
-                "description": "do you want your bread thinly sliced?"
-            },
-            "7": {
-                "name": "NORMAL SLICED BREAD (free)",
-                "description": "do you want your bread normally sliced?"
-            },
-            "8": {
-                "name": "THICK SLICED BREAD (free)",
-                "description": "do you want your bread thick sliced?"
-            }
-        },
-        "extras": {
-            "1": "Eco Seed Mix 100g",
-            "2": "Walnuts",
-            "3": "Prunes",
-            "4": "Dates",
-            "5": "Black Olives",
-            "6": "Tomato and oregano",
-            "7": "Roquefort Cheese",
-            "8": "Turmeric",
-            "9": "Pepper",
-            "10": "Curry",
-            "11": "Ginger",
-            "12": "Pure Cocoa Powder",
-            "13": "Pure Honey",
-            "14": "Garlic"
-        },
-        "bollitos": {
-            "1": {
-                "name": "Classic Whole Bun",
-                "description": "Soft and fluffy, ideal for breakfast"
-            },
-            "1_05": {
-                "name": "Whole Hot Dog Bun",
-                "description": "An elongated bun for your hot dogs"
-            },
-            "1_06": {
-                "name": "PACK Assorted 6 Classic Whole Buns",
-                "description": "Your classic pack"
-            },
-            "1_07": {
-                "name": "PACK Assorted 6 Whole Rye Molletes",
-                "description": "Rye Molletes"
-            },
-            "1_1": {
-                "name": "PACK Assorted 7 Whole Buns (one of each)",
-                "description": "1x Seeds, 1x Garlic, 1x Cocoa, 1x Turmeric, 1x Walnuts, 1x Prunes, 1x Tomato and Oregano. Try them all!"
-            },
-            "1_2": {
-                "name": "PACK Assorted 6 Whole Seed Buns",
-                "description": "Crunchy, full of fiber and minerals"
-            },
-            "1_3": {
-                "name": "PACK Assorted 6 Whole Walnut Buns",
-                "description": "Nutritious and delicious"
-            },
-            "1_4": {
-                "name": "PACK Assorted 6 Whole Cocoa Powder Buns",
-                "description": "With Pure Cocoa"
-            },
-            "1_5": {
-                "name": "PACK Assorted 6 Whole Prune Buns",
-                "description": "Sweet and energetic, with dehydrated prunes"
-            },
-            "1_6": {
-                "name": "PACK Assorted 6 Whole Turmeric Buns",
-                "description": "Aromatic and exotic, with a golden touch"
-            },
-            "1_7": {
-                "name": "PACK Assorted 6 Whole Tomato and Oregano Buns",
-                "description": "Mediterranean, tasty and with a homemade aroma"
-            },
-            "1_8": {
-                "name": "PACK Assorted 6 Whole Garlic Buns",
-                "description": "Intense flavor, perfect to accompany meals"
-            },
-            "2": {
-                "name": "Cocoa Bun",
-                "description": "With pure cocoa powder"
-            },
-            "3": {
-                "name": "Walnut Bun",
-                "description": "With walnuts, nutritious and delicious"
-            },
-            "4": {
-                "name": "Prune Bun",
-                "description": "Sweet and energetic, with dehydrated prunes"
-            },
-            "5": {
-                "name": "Turmeric Bun",
-                "description": "Aromatic and exotic, with a golden touch"
-            },
-            "6": {
-                "name": "Seed Bun",
-                "description": "Crunchy, full of fiber and minerals"
-            },
-            "7": {
-                "name": "Garlic Bun",
-                "description": "Intense flavor, perfect to accompany meals"
-            },
-            "8": {
-                "name": "Tomato and Oregano Bun",
-                "description": "Mediterranean, tasty and with a homemade aroma"
-            }
-        },
-        "pulguitas": {
-            "1": {
-                "name": "Whole Mini Bread Roll",
-                "description": "Small, ideal for sandwiches"
-            },
-            "1_05": {
-                "name": "PACK Assorted 12 Classic Whole Mini Bread Rolls",
-                "description": "Your classic mini bread roll pack"
-            },
-            "1_1": {
-                "name": "PACK Assorted 14 Whole Mini Bread Rolls (two of each)",
-                "description": "2x Seeds, 2x Garlic, 2x Cocoa, 2x Turmeric, 2x Walnuts, 2x Prunes, 2x Tomato and Oregano. Try them all!"
-            },
-            "1_2": {
-                "name": "PACK Assorted 12 Whole Seed Mini Bread Rolls",
-                "description": "Crunchy, full of fiber and minerals"
-            },
-            "1_3": {
-                "name": "PACK Assorted 12 Whole Walnut Mini Bread Rolls",
-                "description": "Nutritious and delicious"
-            },
-            "1_4": {
-                "name": "PACK Assorted 12 Whole Cocoa Powder Mini Bread Rolls",
-                "description": "With Pure Cocoa"
-            },
-            "1_5": {
-                "name": "PACK Assorted 12 Whole Prune Mini Bread Rolls",
-                "description": "Sweet and energetic, with dehydrated prunes"
-            },
-            "1_6": {
-                "name": "PACK Assorted 12 Whole Turmeric Mini Bread Rolls",
-                "description": "Aromatic and exotic, with a golden touch"
-            },
-            "1_7": {
-                "name": "PACK Assorted 12 Whole Tomato and Oregano Mini Bread Rolls",
-                "description": "Mediterranean, tasty and with a homemade aroma"
-            },
-            "1_8": {
-                "name": "PACK Assorted 12 Whole Garlic Mini Bread Rolls",
-                "description": "Intense flavor, perfect to accompany meals"
-            },
-            "2": {
-                "name": "Cocoa Mini Bread Roll",
-                "description": "With pure cocoa powder"
-            },
-            "3": {
-                "name": "Walnut Mini Bread Roll",
-                "description": "With walnuts, nutritious and energetic"
-            },
-            "4": {
-                "name": "Prune Mini Bread Roll",
-                "description": "Small, sweet and healthy"
-            },
-            "5": {
-                "name": "Turmeric Mini Bread Roll",
-                "description": "Golden and aromatic, exotic and light"
-            },
-            "6": {
-                "name": "Seed Mini Bread Roll",
-                "description": "Crunchy with nutritious seed mix"
-            },
-            "7": {
-                "name": "Garlic Mini Bread Roll",
-                "description": "Intense and tasty in mini version"
-            },
-            "8": {
-                "name": "Tomato and Oregano Mini Bread Roll",
-                "description": "Mediterranean and delicious in small size"
-            }
-        },
-        "optional_extras": {
-            "propina": "Take a Tip!",
-            "cafe": "Have a Coffee!",
-            "cerveza": "Have a Beer on me!"
-        }
+    "optional_extras": {
+        "propina": "Leave a Tip!",
+        "cafe": "Have a Coffee!",
+        "cerveza": "Have a Beer on my health!"
     },
     "extras_selector": {
         "title": "Customize your Bread {{number}} ({{flours}}) with our Extras",
@@ -305,7 +105,411 @@
         "tip2": "If you prefer, you can also cut it into slices or portions that you are going to consume and freeze it directly on the day of delivery, always in a bag or a tightly closed container so that it does not generate frost.",
         "tip3": "Bread, buns, or mini bread rolls are always delivered fresh from the day, and sometimes even warm; if so, place it on the oven rack and always wait an hour from delivery to consume it. Do not store or freeze it in the refrigerator until you notice that it is completely cold. Thank you!! 🙏"
     },
-    "EXTRAS": {
-        "pan": "EXTRAS"
+    "christmas_characters": {
+        "elf": "Helping Santa! 🎁",
+        "nutcracker": "At your service! 💂‍♂️",
+        "santa": "Ho Ho Ho! Merry Christmas 🎅",
+        "reindeer": "Merry Christmas!! 🦌",
+        "snowman": "Brrr, it's cold! ⛄"
+    },
+    "products": {
+        "harinas": {
+            "1": {
+                "name": "Organic Whole WHEAT",
+                "description": "Classic, versatile, traditional base for daily bread."
+            },
+            "2": {
+                "name": "Organic Whole RYE",
+                "description": "Dark, aromatic, low in gluten, rustic and full of minerals"
+            },
+            "3": {
+                "name": "Organic Whole SPELT",
+                "description": "Ancestral flour, soft, digestive and rich in fiber."
+            },
+            "4": {
+                "name": "Organic Whole KHORASAN",
+                "description": "Ancient cereal, intense flavor and high in protein."
+            },
+            "5": {
+                "name": "Organic Whole TRITORDEUM",
+                "description": "Innovative, hybrid of wheat and barley and easy to digest"
+            },
+            "6": {
+                "name": "THIN SLICED BREAD (free)",
+                "description": "do you want your bread thinly sliced?"
+            },
+            "7": {
+                "name": "NORMAL SLICED BREAD (free)",
+                "description": "do you want your bread normally sliced?"
+            },
+            "8": {
+                "name": "THICK SLICED BREAD (free)",
+                "description": "do you want your bread thick sliced?"
+            }
+        },
+        "extras": {
+            "1": "Eco Seed Mix 100g",
+            "2": "Walnuts",
+            "3": "Prunes",
+            "4": "Dates",
+            "5": "Black Olives",
+            "6": "Tomato and oregano",
+            "7": "Roquefort Cheese",
+            "8": "Turmeric",
+            "9": "Pepper",
+            "10": "Curry",
+            "11": "Ginger",
+            "12": "Pure Cocoa Powder",
+            "13": "Pure Honey",
+            "14": "Garlic"
+        },
+        "bollitos": {
+            "1": {
+                "name": "Classic Whole Bun",
+                "description": "Soft and fluffy, ideal for breakfast"
+            },
+            "2": {
+                "name": "Cocoa Bun",
+                "description": "With pure cocoa powder"
+            },
+            "3": {
+                "name": "Walnut Bun",
+                "description": "With walnuts, nutritious and delicious"
+            },
+            "4": {
+                "name": "Prune Bun",
+                "description": "Sweet and energetic, with dehydrated prunes"
+            },
+            "5": {
+                "name": "Turmeric Bun",
+                "description": "Aromatic and exotic, with a golden touch"
+            },
+            "6": {
+                "name": "Seed Bun",
+                "description": "Crunchy, full of fiber and minerals"
+            },
+            "7": {
+                "name": "Garlic Bun",
+                "description": "Intense flavor, perfect to accompany meals"
+            },
+            "8": {
+                "name": "Tomato and Oregano Bun",
+                "description": "Mediterranean, tasty and with a homemade aroma"
+            },
+            "1_05": {
+                "name": "Whole Hot Dog Bun",
+                "description": "An elongated bun for your hot dogs"
+            },
+            "1_06": {
+                "name": "PACK Assorted 6 Classic Whole Buns",
+                "description": "Your classic pack"
+            },
+            "1_07": {
+                "name": "PACK Assorted 6 Whole Rye Molletes",
+                "description": "Rye Molletes"
+            },
+            "1_1": {
+                "name": "PACK Assorted 7 Whole Buns (one of each)",
+                "description": "1x Seeds, 1x Garlic, 1x Cocoa, 1x Turmeric, 1x Walnuts, 1x Prunes, 1x Tomato and Oregano. Try them all!"
+            },
+            "1_2": {
+                "name": "PACK Assorted 6 Whole Seed Buns",
+                "description": "Crunchy, full of fiber and minerals"
+            },
+            "1_3": {
+                "name": "PACK Assorted 6 Whole Walnut Buns",
+                "description": "Nutritious and delicious"
+            },
+            "1_4": {
+                "name": "PACK Assorted 6 Whole Cocoa Powder Buns",
+                "description": "With Pure Cocoa"
+            },
+            "1_5": {
+                "name": "PACK Assorted 6 Whole Prune Buns",
+                "description": "Sweet and energetic, with dehydrated prunes"
+            },
+            "1_6": {
+                "name": "PACK Assorted 6 Whole Turmeric Buns",
+                "description": "Aromatic and exotic, with a golden touch"
+            },
+            "1_7": {
+                "name": "PACK Assorted 6 Whole Tomato and Oregano Buns",
+                "description": "Mediterranean, tasty and with a homemade aroma"
+            },
+            "1_8": {
+                "name": "PACK Assorted 6 Whole Garlic Buns",
+                "description": "Intense flavor, perfect to accompany meals"
+            }
+        },
+        "pulguitas": {
+            "1": {
+                "name": "Whole Mini Bread Roll",
+                "description": "Small, ideal for sandwiches"
+            },
+            "2": {
+                "name": "Cocoa Mini Bread Roll",
+                "description": "With pure cocoa powder"
+            },
+            "3": {
+                "name": "Walnut Mini Bread Roll",
+                "description": "With walnuts, nutritious and energetic"
+            },
+            "4": {
+                "name": "Prune Mini Bread Roll",
+                "description": "Small, sweet and healthy"
+            },
+            "5": {
+                "name": "Turmeric Mini Bread Roll",
+                "description": "Golden and aromatic, exotic and light"
+            },
+            "6": {
+                "name": "Seed Mini Bread Roll",
+                "final_total": "Final Total:",
+                "pan": "Bread",
+                "extras": "Extras:",
+                "price": "Price:",
+                "thank_you_title": "Thank you very much for your generosity!",
+                "thank_you_body": "🙏 Blessings! 🙏"
+            },
+            "1_05": {
+                "name": "PACK Assorted 12 Classic Whole Mini Bread Rolls",
+                "description": "Your classic mini bread roll pack"
+            },
+            "1_1": {
+                "name": "PACK Assorted 14 Whole Mini Bread Rolls (two of each)",
+                "description": "2x Seeds, 2x Garlic, 2x Cocoa, 2x Turmeric, 2x Walnuts, 2x Prunes, 2x Tomato and Oregano. Try them all!"
+            },
+            "1_2": {
+                "name": "PACK Assorted 12 Whole Seed Mini Bread Rolls",
+                "description": "Crunchy, full of fiber and minerals"
+            },
+            "1_3": {
+                "name": "PACK Assorted 12 Whole Walnut Mini Bread Rolls",
+                "description": "Nutritious and delicious"
+            },
+            "1_4": {
+                "name": "PACK Assorted 12 Whole Cocoa Powder Mini Bread Rolls",
+                "description": "With Pure Cocoa"
+            },
+            "1_5": {
+                "name": "PACK Assorted 12 Whole Prune Mini Bread Rolls",
+                "description": "Sweet and energetic, with dehydrated prunes"
+            },
+            "1_6": {
+                "name": "PACK Assorted 12 Whole Turmeric Mini Bread Rolls",
+                "description": "Aromatic and exotic, with a golden touch"
+            },
+            "1_7": {
+                "name": "PACK Assorted 12 Whole Tomato and Oregano Mini Bread Rolls",
+                "description": "Mediterranean, tasty and with a homemade aroma"
+            },
+            "1_8": {
+                "name": "PACK Assorted 12 Whole Garlic Mini Bread Rolls",
+                "description": "Intense flavor, perfect to accompany meals"
+            },
+            "products": {
+                "harinas": {
+                    "1": {
+                        "name": "Organic Whole WHEAT",
+                        "description": "Classic, versatile, traditional base for daily bread."
+                    },
+                    "2": {
+                        "name": "Organic Whole RYE",
+                        "description": "Dark, aromatic, low in gluten, rustic and full of minerals"
+                    },
+                    "3": {
+                        "name": "Organic Whole SPELT",
+                        "description": "Ancestral flour, soft, digestive and rich in fiber."
+                    },
+                    "4": {
+                        "name": "Organic Whole KHORASAN",
+                        "description": "Ancient cereal, intense flavor and high in protein."
+                    },
+                    "5": {
+                        "name": "Organic Whole TRITORDEUM",
+                        "description": "Innovative, hybrid of wheat and barley and easy to digest"
+                    },
+                    "6": {
+                        "name": "THIN SLICED BREAD (free)",
+                        "description": "do you want your bread thinly sliced?"
+                    },
+                    "7": {
+                        "name": "NORMAL SLICED BREAD (free)",
+                        "description": "do you want your bread normally sliced?"
+                    },
+                    "8": {
+                        "name": "THICK SLICED BREAD (free)",
+                        "description": "do you want your bread thick sliced?"
+                    }
+                },
+                "extras": {
+                    "1": "Eco Seed Mix 100g",
+                    "2": "Walnuts",
+                    "3": "Prunes",
+                    "4": "Dates",
+                    "5": "Black Olives",
+                    "6": "Tomato and oregano",
+                    "7": "Roquefort Cheese",
+                    "8": "Turmeric",
+                    "9": "Pepper",
+                    "10": "Curry",
+                    "11": "Ginger",
+                    "12": "Pure Cocoa Powder",
+                    "13": "Pure Honey",
+                    "14": "Garlic"
+                },
+                "bollitos": {
+                    "1": {
+                        "name": "Classic Whole Bun",
+                        "description": "Soft and fluffy, ideal for breakfast"
+                    },
+                    "2": {
+                        "name": "Cocoa Bun",
+                        "description": "With pure cocoa powder"
+                    },
+                    "3": {
+                        "name": "Walnut Bun",
+                        "description": "With walnuts, nutritious and delicious"
+                    },
+                    "4": {
+                        "name": "Prune Bun",
+                        "description": "Sweet and energetic, with dehydrated prunes"
+                    },
+                    "5": {
+                        "name": "Turmeric Bun",
+                        "description": "Aromatic and exotic, with a golden touch"
+                    },
+                    "6": {
+                        "name": "Seed Bun",
+                        "description": "Crunchy, full of fiber and minerals"
+                    },
+                    "7": {
+                        "name": "Garlic Bun",
+                        "description": "Intense flavor, perfect to accompany meals"
+                    },
+                    "8": {
+                        "name": "Tomato and Oregano Bun",
+                        "description": "Mediterranean, tasty and with a homemade aroma"
+                    },
+                    "1_05": {
+                        "name": "Whole Hot Dog Bun",
+                        "description": "An elongated bun for your hot dogs"
+                    },
+                    "1_06": {
+                        "name": "PACK Assorted 6 Classic Whole Buns",
+                        "description": "Your classic pack"
+                    },
+                    "1_07": {
+                        "name": "PACK Assorted 6 Whole Rye Molletes",
+                        "description": "Rye Molletes"
+                    },
+                    "1_1": {
+                        "name": "PACK Assorted 7 Whole Buns (one of each)",
+                        "description": "1x Seeds, 1x Garlic, 1x Cocoa, 1x Turmeric, 1x Walnuts, 1x Prunes, 1x Tomato and Oregano. Try them all!"
+                    },
+                    "1_2": {
+                        "name": "PACK Assorted 6 Whole Seed Buns",
+                        "description": "Crunchy, full of fiber and minerals"
+                    },
+                    "1_3": {
+                        "name": "PACK Assorted 6 Whole Walnut Buns",
+                        "description": "Nutritious and delicious"
+                    },
+                    "1_4": {
+                        "name": "PACK Assorted 6 Whole Cocoa Powder Buns",
+                        "description": "With Pure Cocoa"
+                    },
+                    "1_5": {
+                        "name": "PACK Assorted 6 Whole Prune Buns",
+                        "description": "Sweet and energetic, with dehydrated prunes"
+                    },
+                    "1_6": {
+                        "name": "PACK Assorted 6 Whole Turmeric Buns",
+                        "description": "Aromatic and exotic, with a golden touch"
+                    },
+                    "1_7": {
+                        "name": "PACK Assorted 6 Whole Tomato and Oregano Buns",
+                        "description": "Mediterranean, tasty and with a homemade aroma"
+                    },
+                    "1_8": {
+                        "name": "PACK Assorted 6 Whole Garlic Buns",
+                        "description": "Intense flavor, perfect to accompany meals"
+                    }
+                },
+                "pulguitas": {
+                    "1": {
+                        "name": "Whole Mini Bread Roll",
+                        "description": "Small, ideal for sandwiches"
+                    },
+                    "2": {
+                        "name": "Cocoa Mini Bread Roll",
+                        "description": "With pure cocoa powder"
+                    },
+                    "3": {
+                        "name": "Walnut Mini Bread Roll",
+                        "description": "With walnuts, nutritious and energetic"
+                    },
+                    "4": {
+                        "name": "Prune Mini Bread Roll",
+                        "description": "Small, sweet and healthy"
+                    },
+                    "5": {
+                        "name": "Turmeric Mini Bread Roll",
+                        "description": "Golden and aromatic, exotic and light"
+                    },
+                    "6": {
+                        "name": "Seed Mini Bread Roll",
+                        "description": "Crunchy with nutritious seed mix"
+                    },
+                    "7": {
+                        "name": "Garlic Mini Bread Roll",
+                        "description": "Intense and tasty in mini version"
+                    },
+                    "8": {
+                        "name": "Tomato and Oregano Mini Bread Roll",
+                        "description": "Mediterranean and delicious in small format"
+                    },
+                    "1_05": {
+                        "name": "PACK Assorted 12 Classic Whole Mini Bread Rolls",
+                        "description": "Your classic mini bread roll pack"
+                    },
+                    "1_1": {
+                        "name": "PACK Assorted 14 Whole Mini Bread Rolls (two of each)",
+                        "description": "2x Seeds, 2x Garlic, 2x Cocoa, 2x Turmeric, 2x Walnuts, 2x Prunes, 2x Tomato and Oregano. Try them all!"
+                    },
+                    "1_2": {
+                        "name": "PACK Assorted 12 Whole Seed Mini Bread Rolls",
+                        "description": "Crunchy, full of fiber and minerals"
+                    },
+                    "1_3": {
+                        "name": "PACK Assorted 12 Whole Walnut Mini Bread Rolls",
+                        "description": "Nutritious and delicious"
+                    },
+                    "1_4": {
+                        "name": "PACK Assorted 12 Whole Cocoa Powder Mini Bread Rolls",
+                        "description": "With Pure Cocoa"
+                    },
+                    "1_5": {
+                        "name": "PACK Assorted 12 Whole Prune Mini Bread Rolls",
+                        "description": "Sweet and energetic, with dehydrated prunes"
+                    },
+                    "1_6": {
+                        "name": "PACK Assorted 12 Whole Turmeric Mini Bread Rolls",
+                        "description": "Aromatic and exotic, with a golden touch"
+                    },
+                    "1_7": {
+                        "name": "PACK Assorted 12 Whole Tomato and Oregano Mini Bread Rolls",
+                        "description": "Mediterranean, tasty and with a homemade aroma"
+                    },
+                    "1_8": {
+                        "name": "PACK Assorted 12 Whole Garlic Mini Bread Rolls",
+                        "description": "Intense flavor, perfect to accompany meals"
+                    }
+                }
+            },
+            "EXTRAS": {
+                "pan": "EXTRAS"
+            }
+        }
     }
 }

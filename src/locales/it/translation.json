@@ -11,7 +11,7 @@
         "info": "+ INFO"
     },
     "harina_selector": {
-        "title": "Scegli le tue Farine Base",
+        "title": "Scegli le farine per il tuo pane",
         "instructions": "Puoi scegliere e combinare fino a 5 tipi di farine per configurare il tuo pane, se vuoi, anche il tipo di taglio. Configura e aggiungi tutti i pani che vuoi, e una volta aggiunti, scegli qui sotto gli extra che preferisci per ogni pane. Il prezzo del pane, esclusi gli extra, è fisso: {{price}}.",
         "add_button": "Aggiungi il tuo Pane o scegli altre farine ",
         "add_button_dynamic": "Pane di {{flours}}, scegli un'altra farina, il tipo di 🔪 o aggiungilo al tuo ordine",
@@ -39,211 +39,6 @@
         "price": "Prezzo:",
         "thank_you_title": "Grazie mille per la tua generosità!",
         "thank_you_body": "🙏 Benedizioni! 🙏"
-    },
-    "products": {
-        "harinas": {
-            "1": {
-                "name": "GRANO Tenero Integrale Biologico",
-                "description": "Classico, versatile, base tradizionale per il pane quotidiano."
-            },
-            "2": {
-                "name": "SEGALE Integrale Biologica",
-                "description": "Scura, aromatica, povera di glutine, rustica e ricca di minerali."
-            },
-            "3": {
-                "name": "FARRO Integrale Biologico",
-                "description": "Farina ancestrale, morbida, digeribile e ricca di fibre."
-            },
-            "4": {
-                "name": "KHORASAN Integrale Biologico",
-                "description": "Cereale antico, sapore intenso e alto contenuto proteico."
-            },
-            "5": {
-                "name": "TRITORDEUM Integrale Biologico",
-                "description": "Innovativo, ibrido di grano e orzo, facile da digerire."
-            },
-            "6": {
-                "name": "PANE A FETTE SOTTILI (gratis)",
-                "description": "Vuoi il tuo pane tagliato a fette sottili?"
-            },
-            "7": {
-                "name": "PANE A FETTE NORMALI (gratis)",
-                "description": "Vuoi il tuo pane tagliato normalmente?"
-            },
-            "8": {
-                "name": "PANE A FETTE SPESSE (gratis)",
-                "description": "Vuoi il tuo pane tagliato spesso?"
-            }
-        },
-        "extras": {
-            "1": "Mix di Semi Bio 100g",
-            "2": "Noci",
-            "3": "Prugne Secche",
-            "4": "Datteri",
-            "5": "Olive Nere",
-            "6": "Pomodoro e Origano",
-            "7": "Formaggio Roquefort",
-            "8": "Curcuma",
-            "9": "Pepe",
-            "10": "Curry",
-            "11": "Zenzero",
-            "12": "Cacao Puro in Polvere",
-            "13": "Miele Puro",
-            "14": "Aglio"
-        },
-        "bollitos": {
-            "1": {
-                "name": "Panino Classico Integrale",
-                "description": "Morbido e soffice, ideale per la colazione"
-            },
-            "1_05": {
-                "name": "Panino Integrale per Hot Dog",
-                "description": "Un panino allungato per i tuoi hot dog"
-            },
-            "1_06": {
-                "name": "PACCO Assortito 6 Panini Classici Integrali",
-                "description": "Il tuo pacco classico"
-            },
-            "1_07": {
-                "name": "PACCO Assortito 6 Molletes di Segale Integrale",
-                "description": "Molletes di Segale"
-            },
-            "1_1": {
-                "name": "PACCO Assortito 7 Panini Integrali (uno di ciascuno)",
-                "description": "1x Semi, 1x Aglio, 1x Cacao, 1x Curcuma, 1x Noci, 1x Prugne, 1x Pomodoro e Origano. Provali tutti!"
-            },
-            "1_2": {
-                "name": "PACCO Assortito 6 Panini Integrali ai Semi",
-                "description": "Croccanti, ricchi di fibre e minerali"
-            },
-            "1_3": {
-                "name": "PACCO Assortito 6 Panini Integrali alle Noci",
-                "description": "Nutriente e delizioso"
-            },
-            "1_4": {
-                "name": "PACCO Assortito 6 Panini Integrali al Cacao",
-                "description": "Con Cacao Puro"
-            },
-            "1_5": {
-                "name": "PACCO Assortito 6 Panini Integrali alle Prugne",
-                "description": "Dolci ed energetici, con prugne disidratate"
-            },
-            "1_6": {
-                "name": "PACCO Assortito 6 Panini Integrali alla Curcuma",
-                "description": "Aromatici ed esotici, con un tocco dorato"
-            },
-            "1_7": {
-                "name": "PACCO Assortito 6 Panini Integrali al Pomodoro e Origano",
-                "description": "Mediterranei, gustosi e dal profumo casalingo"
-            },
-            "1_8": {
-                "name": "PACCO Assortito 6 Panini Integrali all'Aglio",
-                "description": "Sapore intenso, perfetti per accompagnare i pasti"
-            },
-            "2": {
-                "name": "Panino al Cacao",
-                "description": "Con cacao puro in polvere"
-            },
-            "3": {
-                "name": "Panino alle Noci",
-                "description": "Con noci, nutriente e delizioso"
-            },
-            "4": {
-                "name": "Panino alle Prugne",
-                "description": "Dolce ed energetico, con prugne disidratate"
-            },
-            "5": {
-                "name": "Panino alla Curcuma",
-                "description": "Aromatico ed esotico, con un tocco dorato"
-            },
-            "6": {
-                "name": "Panino ai Semi",
-                "description": "Croccante, ricco di fibre e minerali"
-            },
-            "7": {
-                "name": "Panino all'Aglio",
-                "description": "Sapore intenso, perfetto per i pasti"
-            },
-            "8": {
-                "name": "Panino al Pomodoro e Origano",
-                "description": "Mediterraneo, gustoso e profumato"
-            }
-        },
-        "pulguitas": {
-            "1": {
-                "name": "Mini Panino Integrale",
-                "description": "Piccolo, ideale per panini"
-            },
-            "1_05": {
-                "name": "PACCO Assortito 12 Mini Panini Classici Integrali",
-                "description": "Il tuo pacco di mini panini classici"
-            },
-            "1_1": {
-                "name": "PACCO Assortito 14 Mini Panini Integrali (due di ciascuno)",
-                "description": "2x Semi, 2x Aglio, 2x Cacao, 2x Curcuma, 2x Noci, 2x Prugne, 2x Pomodoro e Origano. Provali tutti!"
-            },
-            "1_2": {
-                "name": "PACCO Assortito 12 Mini Panini Integrali ai Semi",
-                "description": "Croccanti, ricchi di fibre e minerali"
-            },
-            "1_3": {
-                "name": "PACCO Assortito 12 Mini Panini Integrali alle Noci",
-                "description": "Nutrienti e deliziosi"
-            },
-            "1_4": {
-                "name": "PACCO Assortito 12 Mini Panini Integrali al Cacao",
-                "description": "Con Cacao Puro"
-            },
-            "1_5": {
-                "name": "PACCO Assortito 12 Mini Panini Integrali alle Prugne",
-                "description": "Dolci ed energetici, con prugne disidratate"
-            },
-            "1_6": {
-                "name": "PACCO Assortito 12 Mini Panini Integrali alla Curcuma",
-                "description": "Aromatici ed esotici, con un tocco dorato"
-            },
-            "1_7": {
-                "name": "PACCO Assortito 12 Mini Panini Integrali al Pomodoro e Origano",
-                "description": "Mediterranei, gustosi e profumati"
-            },
-            "1_8": {
-                "name": "PACCO Assortito 12 Mini Panini Integrali all'Aglio",
-                "description": "Intensi e saporiti in formato mini"
-            },
-            "2": {
-                "name": "Mini Panino al Cacao",
-                "description": "Con cacao puro in polvere"
-            },
-            "3": {
-                "name": "Mini Panino alle Noci",
-                "description": "Con noci, nutriente ed energetico"
-            },
-            "4": {
-                "name": "Mini Panino alle Prugne",
-                "description": "Piccolo, dolce e salutare"
-            },
-            "5": {
-                "name": "Mini Panino alla Curcuma",
-                "description": "Dorato e aromatico, esotico e leggero"
-            },
-            "6": {
-                "name": "Mini Panino ai Semi",
-                "description": "Croccante con mix di semi nutrienti"
-            },
-            "7": {
-                "name": "Mini Panino all'Aglio",
-                "description": "Intenso e gustoso in versione mini"
-            },
-            "8": {
-                "name": "Mini Panino al Pomodoro e Origano",
-                "description": "Mediterraneo e delizioso in piccolo formato"
-            }
-        },
-        "optional_extras": {
-            "propina": "Lascia una Mancia!",
-            "cafe": "Prendi un Caffè!",
-            "cerveza": "Prenditi una Birra alla mia salute!"
-        }
     },
     "extras_selector": {
         "title": "Personalizza il tuo Pane {{number}} ({{flours}}) con i nostri Extra",
@@ -305,7 +100,210 @@
         "tip2": "Se preferisci, puoi anche tagliarlo a fette o porzioni che consumerai e congelarlo direttamente il giorno della consegna, sempre in un sacchetto o contenitore ben chiuso, affinché non si formi ghiaccio.",
         "tip3": "Il pane, i panini o i mini panini vengono sempre consegnati freschi del giorno, e talvolta anche caldi; se è così, mettili sulla griglia del forno e aspetta sempre un’ora dalla consegna prima di consumarli. Non conservarli né congelarli in frigorifero finché non sono completamente freddi. Grazie!! 🙏"
     },
-    "EXTRAS": {
-        "pan": "EXTRAS"
+    "christmas_characters": {
+        "elf": "Aiutando Babbo Natale! 🎁",
+        "nutcracker": "Agli ordini! 💂‍♂️",
+        "santa": "Ho Ho Ho! Buon Natale 🎅",
+        "reindeer": "Buon Natale!! 🦌",
+        "snowman": "Brrr, che freddo! ⛄"
+    },
+    "products": {
+        "harinas": {
+            "1": {
+                "name": "GRANO Tenero Integrale Biologico",
+                "description": "Classico, versatile, base tradizionale per il pane quotidiano."
+            },
+            "2": {
+                "name": "SEGALE Integrale Biologica",
+                "description": "Scura, aromatica, povera di glutine, rustica e ricca di minerali."
+            },
+            "3": {
+                "name": "FARRO Integrale Biologico",
+                "description": "Farina ancestrale, morbida, digeribile e ricca di fibre."
+            },
+            "4": {
+                "name": "KHORASAN Integrale Biologico",
+                "description": "Cereale antico, sapore intenso e alto contenuto proteico."
+            },
+            "5": {
+                "name": "TRITORDEUM Integrale Biologico",
+                "description": "Innovativo, ibrido di grano e orzo, facile da digerire."
+            },
+            "6": {
+                "name": "PANE A FETTE SOTTILI (gratis)",
+                "description": "Vuoi il tuo pane tagliato a fette sottili?"
+            },
+            "7": {
+                "name": "PANE A FETTE NORMALI (gratis)",
+                "description": "Vuoi il tuo pane tagliato normalmente?"
+            },
+            "8": {
+                "name": "PANE A FETTE SPESSE (gratis)",
+                "description": "Vuoi il tuo pane tagliato spesso?"
+            }
+        },
+        "extras": {
+            "1": "Mix di Semi Bio 100g",
+            "2": "Noci",
+            "3": "Prugne Secche",
+            "4": "Datteri",
+            "5": "Olive Nere",
+            "6": "Pomodoro e Origano",
+            "7": "Formaggio Roquefort",
+            "8": "Curcuma",
+            "9": "Pepe",
+            "10": "Curry",
+            "11": "Zenzero",
+            "12": "Cacao Puro in Polvere",
+            "13": "Miele Puro",
+            "14": "Aglio"
+        },
+        "bollitos": {
+            "1": {
+                "name": "Panino Classico Integrale",
+                "description": "Morbido e soffice, ideale per la colazione"
+            },
+            "2": {
+                "name": "Panino al Cacao",
+                "description": "Con cacao puro in polvere"
+            },
+            "3": {
+                "name": "Panino alle Noci",
+                "description": "Con noci, nutriente e delizioso"
+            },
+            "4": {
+                "name": "Panino alle Prugne",
+                "description": "Dolce ed energetico, con prugne disidratate"
+            },
+            "5": {
+                "name": "Panino alla Curcuma",
+                "description": "Aromatico ed esotico, con un tocco dorato"
+            },
+            "6": {
+                "name": "Panino ai Semi",
+                "description": "Croccante, ricco di fibre e minerali"
+            },
+            "7": {
+                "name": "Panino all'Aglio",
+                "description": "Sapore intenso, perfetto per i pasti"
+            },
+            "8": {
+                "name": "Panino al Pomodoro e Origano",
+                "description": "Mediterraneo, gustoso e profumato"
+            },
+            "1_05": {
+                "name": "Panino Integrale per Hot Dog",
+                "description": "Un panino allungato per i tuoi hot dog"
+            },
+            "1_06": {
+                "name": "PACCO Assortito 6 Panini Classici Integrali",
+                "description": "Il tuo pacco classico"
+            },
+            "1_07": {
+                "name": "PACCO Assortito 6 Molletes di Segale Integrale",
+                "description": "Molletes di Segale"
+            },
+            "1_1": {
+                "name": "PACCO Assortito 7 Panini Integrali (uno di ciascuno)",
+                "description": "1x Semi, 1x Aglio, 1x Cacao, 1x Curcuma, 1x Noci, 1x Prugne, 1x Pomodoro e Origano. Provali tutti!"
+            },
+            "1_2": {
+                "name": "PACCO Assortito 6 Panini Integrali ai Semi",
+                "description": "Croccanti, ricchi di fibre e minerali"
+            },
+            "1_3": {
+                "name": "PACCO Assortito 6 Panini Integrali alle Noci",
+                "description": "Nutriente e delizioso"
+            },
+            "1_4": {
+                "name": "PACCO Assortito 6 Panini Integrali al Cacao",
+                "description": "Con Cacao Puro"
+            },
+            "1_5": {
+                "name": "PACCO Assortito 6 Panini Integrali alle Prugne",
+                "description": "Dolci ed energetici, con prugne disidratate"
+            },
+            "1_6": {
+                "name": "PACCO Assortito 6 Panini Integrali alla Curcuma",
+                "description": "Aromatici ed esotici, con un tocco dorato"
+            },
+            "1_7": {
+                "name": "PACCO Assortito 6 Panini Integrali al Pomodoro e Origano",
+                "description": "Mediterranei, gustosi e dal profumo casalingo"
+            },
+            "1_8": {
+                "name": "PACCO Assortito 6 Panini Integrali all'Aglio",
+                "description": "Sapore intenso, perfetti per accompagnare i pasti"
+            }
+        },
+        "pulguitas": {
+            "1": {
+                "name": "Mini Panino Integrale",
+                "description": "Piccolo, ideale per panini"
+            },
+            "2": {
+                "name": "Mini Panino al Cacao",
+                "description": "Con cacao puro in polvere"
+            },
+            "3": {
+                "name": "Mini Panino alle Noci",
+                "description": "Con noci, nutriente ed energetico"
+            },
+            "4": {
+                "name": "Mini Panino alle Prugne",
+                "description": "Piccolo, dolce e salutare"
+            },
+            "5": {
+                "name": "Mini Panino alla Curcuma",
+                "description": "Dorato e aromatico, esotico e leggero"
+            },
+            "6": {
+                "name": "Mini Panino ai Semi",
+                "description": "Croccante con mix di semi nutrienti"
+            },
+            "7": {
+                "name": "Mini Panino all'Aglio",
+                "description": "Intenso e gustoso in versione mini"
+            },
+            "1_05": {
+                "name": "PACCO Assortito 12 Mini Panini Classici Integrali",
+                "description": "Il tuo pacco di mini panini classici"
+            },
+            "1_1": {
+                "name": "PACCO Assortito 14 Mini Panini Integrali (due di ciascuno)",
+                "description": "2x Semi, 2x Aglio, 2x Cacao, 2x Curcuma, 2x Noci, 2x Prugne, 2x Pomodoro e Origano. Provali tutti!"
+            },
+            "1_2": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali ai Semi",
+                "description": "Croccanti, ricchi di fibre e minerali"
+            },
+            "1_3": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali alle Noci",
+                "description": "Nutrienti e deliziosi"
+            },
+            "1_4": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali al Cacao",
+                "description": "Con Cacao Puro"
+            },
+            "1_5": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali alle Prugne",
+                "description": "Dolci ed energetici, con prugne disidratate"
+            },
+            "1_6": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali alla Curcuma",
+                "description": "Aromatici ed esotici, con un tocco dorato"
+            },
+            "1_7": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali al Pomodoro e Origano",
+                "description": "Mediterranei, gustosi e profumati"
+            },
+            "1_8": {
+                "name": "PACCO Assortito 12 Mini Panini Integrali all'Aglio",
+                "description": "Intensi e saporiti in formato mini"
+            },
+            "EXTRAS": {
+                "pan": "EXTRAS"
+            }
+        }
     }
 }

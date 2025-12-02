@@ -11,7 +11,7 @@
         "info": "+ INFO"
     },
     "harina_selector": {
-        "title": "Elige tus Harinas Base",
+        "title": "Elige las Harinas de tu Pan",
         "instructions": "Puedes escoger y combinar hasta 5 tipos de harinas para configurar tu pan, si te apetece, también el tipo de corte. Configura y añade todos los panes que quieras y una vez añadidos, más abajo, elige los extras que prefieras para cada pan. El precio del pan, sin contar los extras, es fijo: {{price}}.",
         "add_button": "Añade tu Pan o elige más harinas ",
         "add_button_dynamic": "Pan de {{flours}}, elige otra harina, el tipo de🔪o añádelo a tu pedido",
@@ -238,12 +238,12 @@
                 "name": "Pulguita de Tomate y Orégano",
                 "description": "Mediterránea y deliciosa en pequeño tamaño"
             }
-        },
-        "optional_extras": {
-            "propina": "¡Toma una Propina!",
-            "cafe": "¡Toma para un Café!",
-            "cerveza": "¡Tómate una Cerveza a mi Salud!"
         }
+    },
+    "optional_extras": {
+        "propina": "¡Toma una Propina!",
+        "cafe": "¡Toma para un Café!",
+        "cerveza": "¡Tómate una Cerveza a mi Salud!"
     },
     "extras_selector": {
         "title": "Personaliza tu Pan {{number}} ({{flours}}) con nuestros Extras",
@@ -305,7 +305,11 @@
         "tip2": "Si prefieres, también puedes cortarlo en rodajas o en porciones que vayas a consumir y congelarlo directamente el día de la entrega, siempre en una bolsa o un táper bien cerrado para que no genere escarcha.",
         "tip3": "El pan, los bollitos o pulguitas se entregan siempre hechos del día, y algunas veces aún calentitos, si es así, deposítalo en la rejilla del horno y espera siempre una hora desde la entrega para consumirlo. No lo guardes o congeles en el frigorífico hasta que notes que está completamente frío. Gracias!! 🙏"
     },
-    "EXTRAS": {
-        "pan": "EXTRAS"
+    "christmas_characters": {
+        "elf": "¡Ayudando a Santa! 🎁",
+        "nutcracker": "¡A la orden! 💂‍♂️",
+        "santa": "¡Jo Jo Jo! Feliz Navidad 🎅",
+        "reindeer": "Feliz Navidad!! 🦌",
+        "snowman": "¡Brrr, qué frío! ⛄"
     }
 }

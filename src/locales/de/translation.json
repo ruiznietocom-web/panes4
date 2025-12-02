@@ -11,7 +11,7 @@
         "info": "+ INFO"
     },
     "harina_selector": {
-        "title": "Wählen Sie Ihre Basismehle",
+        "title": "Wähle die Mehlsorten für dein Brot",
         "instructions": "Sie können bis zu 5 Mehlsorten auswählen und kombinieren, um Ihr Brot zusammenzustellen, wenn Sie möchten, auch die Schnittart. Stellen Sie so viele Brote zusammen und fügen Sie sie hinzu, wie Sie möchten. Sobald sie hinzugefügt sind, wählen Sie unten die Extras für jedes Brot aus. Der Preis für das Brot ist ohne Extras fest: {{price}}.",
         "add_button": "Fügen Sie Ihr Brot hinzu oder wählen Sie weitere Mehle ",
         "add_button_dynamic": "Brot aus {{flours}}, wählen Sie ein anderes Mehl, die Art des 🔪 oder fügen Sie es Ihrer Bestellung hinzu",
@@ -39,211 +39,6 @@
         "price": "Preis:",
         "thank_you_title": "Vielen Dank für Ihre Großzügigkeit!",
         "thank_you_body": "🙏 Segen! 🙏"
-    },
-    "products": {
-        "harinas": {
-            "1": {
-                "name": "Bio-Vollkornweizen",
-                "description": "Klassisch, vielseitig, traditionelle Basis für das tägliche Brot."
-            },
-            "2": {
-                "name": "Bio-Vollkornroggen",
-                "description": "Dunkel, aromatisch, glutenarm, rustikal und voller Mineralien"
-            },
-            "3": {
-                "name": "Bio-Vollkorndinkel",
-                "description": "Urgetreide, weich, bekömmlich und ballaststoffreich."
-            },
-            "4": {
-                "name": "Bio-Vollkorn-Khorasan",
-                "description": "Altes Getreide, intensiver Geschmack und hoher Proteingehalt."
-            },
-            "5": {
-                "name": "Bio-Vollkorn-Tritordeum",
-                "description": "Innovativ, Hybrid aus Weizen und Gerste und leicht verdaulich"
-            },
-            "6": {
-                "name": "FEIN GESCHNITTENES BROT (kostenlos)",
-                "description": "Möchten Sie Ihr Brot fein geschnitten?"
-            },
-            "7": {
-                "name": "NORMAL GESCHNITTENES BROT (kostenlos)",
-                "description": "Möchten Sie Ihr Brot normal geschnitten?"
-            },
-            "8": {
-                "name": "DICK GESCHNITTENES BROT (kostenlos)",
-                "description": "Möchten Sie Ihr Brot dick geschnitten?"
-            }
-        },
-        "extras": {
-            "1": "Bio-Samenmischung 100g",
-            "2": "Walnüsse",
-            "3": "Pflaumen",
-            "4": "Datteln",
-            "5": "Schwarze Oliven",
-            "6": "Tomate und Oregano",
-            "7": "Roquefort-Käse",
-            "8": "Kurkuma",
-            "9": "Pfeffer",
-            "10": "Curry",
-            "11": "Ingwer",
-            "12": "Reines Kakaopulver",
-            "13": "Reiner Honig",
-            "14": "Knoblauch"
-        },
-        "bollitos": {
-            "1": {
-                "name": "Klassisches Vollkornbrötchen",
-                "description": "Weich und fluffig, ideal zum Frühstück"
-            },
-            "1_05": {
-                "name": "Vollkorn-Hotdog-Brötchen",
-                "description": "Ein längliches Brötchen für Ihre Hotdogs"
-            },
-            "1_06": {
-                "name": "PACK Sortiment 6 Klassische Vollkornbrötchen",
-                "description": "Ihr klassisches Paket"
-            },
-            "1_07": {
-                "name": "PACK Sortiment 6 Vollkorn-Roggen-Molletes",
-                "description": "Roggen-Molletes"
-            },
-            "1_1": {
-                "name": "PACK Sortiment 7 Vollkornbrötchen (eins von jedem)",
-                "description": "1x Samen, 1x Knoblauch, 1x Kakao, 1x Kurkuma, 1x Walnüsse, 1x Pflaumen, 1x Tomate und Oregano. Probieren Sie alle!"
-            },
-            "1_2": {
-                "name": "PACK Sortiment 6 Vollkorn-Samenbrötchen",
-                "description": "Knusprig, voller Ballaststoffe und Mineralien"
-            },
-            "1_3": {
-                "name": "PACK Sortiment 6 Vollkorn-Walnussbrötchen",
-                "description": "Nahrhaft und lecker"
-            },
-            "1_4": {
-                "name": "PACK Sortiment 6 Vollkorn-Kakaopulver-Brötchen",
-                "description": "Mit reinem Kakao"
-            },
-            "1_5": {
-                "name": "PACK Sortiment 6 Vollkorn-Pflaumenbrötchen",
-                "description": "Süß und energetisch, mit getrockneten Pflaumen"
-            },
-            "1_6": {
-                "name": "PACK Sortiment 6 Vollkorn-Kurkuma-Brötchen",
-                "description": "Aromatisch und exotisch, mit einem goldenen Touch"
-            },
-            "1_7": {
-                "name": "PACK Sortiment 6 Vollkorn-Tomaten- und Oreganobrötchen",
-                "description": "Mediterran, lecker und mit hausgemachtem Aroma"
-            },
-            "1_8": {
-                "name": "PACK Sortiment 6 Vollkorn-Knoblauchbrötchen",
-                "description": "Intensiver Geschmack, perfekt als Beilage"
-            },
-            "2": {
-                "name": "Kakaobrötchen",
-                "description": "Mit reinem Kakaopulver"
-            },
-            "3": {
-                "name": "Walnussbrötchen",
-                "description": "Mit Walnüssen, nahrhaft und lecker"
-            },
-            "4": {
-                "name": "Pflaumenbrötchen",
-                "description": "Süß und energetisch, mit getrockneten Pflaumen"
-            },
-            "5": {
-                "name": "Kurkumabrötchen",
-                "description": "Aromatisch und exotisch, mit einem goldenen Touch"
-            },
-            "6": {
-                "name": "Samenbrötchen",
-                "description": "Knusprig, voller Ballaststoffe und Mineralien"
-            },
-            "7": {
-                "name": "Knoblauchbrötchen",
-                "description": "Intensiver Geschmack, perfekt als Beilage"
-            },
-            "8": {
-                "name": "Tomaten- und Oreganobrötchen",
-                "description": "Mediterran, lecker und mit hausgemachtem Aroma"
-            }
-        },
-        "pulguitas": {
-            "1": {
-                "name": "Vollkorn-Mini-Brötchen",
-                "description": "Klein, ideal für Sandwiches"
-            },
-            "1_05": {
-                "name": "PACK Sortiment 12 Klassische Vollkorn-Mini-Brötchen",
-                "description": "Ihr klassisches Mini-Brötchen-Paket"
-            },
-            "1_1": {
-                "name": "PACK Sortiment 14 Vollkorn-Mini-Brötchen (zwei von jedem)",
-                "description": "2x Samen, 2x Knoblauch, 2x Kakao, 2x Kurkuma, 2x Walnüsse, 2x Pflaumen, 2x Tomate und Oregano. Probieren Sie alle!"
-            },
-            "1_2": {
-                "name": "PACK Sortiment 12 Vollkorn-Samen-Mini-Brötchen",
-                "description": "Knusprig, voller Ballaststoffe und Mineralien"
-            },
-            "1_3": {
-                "name": "PACK Sortiment 12 Vollkorn-Walnuss-Mini-Brötchen",
-                "description": "Nahrhaft und lecker"
-            },
-            "1_4": {
-                "name": "PACK Sortiment 12 Vollkorn-Kakaopulver-Mini-Brötchen",
-                "description": "Mit reinem Kakao"
-            },
-            "1_5": {
-                "name": "PACK Sortiment 12 Vollkorn-Pflaumen-Mini-Brötchen",
-                "description": "Süß und energetisch, mit getrockneten Pflaumen"
-            },
-            "1_6": {
-                "name": "PACK Sortiment 12 Vollkorn-Kurkuma-Mini-Brötchen",
-                "description": "Aromatisch und exotisch, mit einem goldenen Touch"
-            },
-            "1_7": {
-                "name": "PACK Sortiment 12 Vollkorn-Tomaten- und Oregano-Mini-Brötchen",
-                "description": "Mediterran, lecker und mit hausgemachtem Aroma"
-            },
-            "1_8": {
-                "name": "PACK Sortiment 12 Vollkorn-Knoblauch-Mini-Brötchen",
-                "description": "Intensiver Geschmack, perfekt als Beilage"
-            },
-            "2": {
-                "name": "Kakao-Mini-Brötchen",
-                "description": "Mit reinem Kakaopulver"
-            },
-            "3": {
-                "name": "Walnuss-Mini-Brötchen",
-                "description": "Mit Walnüssen, nahrhaft und energetisch"
-            },
-            "4": {
-                "name": "Pflaumen-Mini-Brötchen",
-                "description": "Klein, süß und gesund"
-            },
-            "5": {
-                "name": "Kurkuma-Mini-Brötchen",
-                "description": "Golden und aromatisch, exotisch und leicht"
-            },
-            "6": {
-                "name": "Samen-Mini-Brötchen",
-                "description": "Knusprig mit nahrhafter Samenmischung"
-            },
-            "7": {
-                "name": "Knoblauch-Mini-Brötchen",
-                "description": "Intensiv und lecker in Mini-Version"
-            },
-            "8": {
-                "name": "Tomaten- und Oregano-Mini-Brötchen",
-                "description": "Mediterran und lecker in kleiner Größe"
-            }
-        },
-        "optional_extras": {
-            "propina": "Nimm ein Trinkgeld!",
-            "cafe": "Nimm einen Kaffee!",
-            "cerveza": "Trink ein Bier auf mich!"
-        }
     },
     "extras_selector": {
         "title": "Personalisieren Sie Ihr Brot {{number}} ({{flours}}) mit unseren Extras",
@@ -305,7 +100,210 @@
         "tip2": "Wenn Sie es vorziehen, können Sie es auch in Scheiben oder Portionen schneiden, die Sie verbrauchen werden, und es direkt am Tag der Lieferung einfrieren, immer in einem Beutel oder einem gut verschlossenen Behälter, damit sich kein Frost bildet.",
         "tip3": "Brot, Brötchen oder Mini-Brötchen werden immer frisch vom Tag geliefert und manchmal sogar noch warm; wenn ja, legen Sie es auf den Ofenrost und warten Sie immer eine Stunde nach der Lieferung, um es zu verzehren. Bewahren Sie es nicht im Kühlschrank auf oder frieren Sie es ein, bis Sie bemerken, dass es vollständig kalt ist. Danke!! 🙏"
     },
-    "EXTRAS": {
-        "pan": "EXTRAS"
+    "christmas_characters": {
+        "elf": "Ich helfe dem Weihnachtsmann! 🎁",
+        "nutcracker": "Zu Befehl! 💂‍♂️",
+        "santa": "Ho Ho Ho! Frohe Weihnachten 🎅",
+        "reindeer": "Frohe Weihnachten!! 🦌",
+        "snowman": "Brrr, ist das kalt! ⛄"
+    },
+    "products": {
+        "harinas": {
+            "1": {
+                "name": "Bio-Vollkornweizen",
+                "description": "Klassisch, vielseitig, traditionelle Basis für das tägliche Brot."
+            },
+            "2": {
+                "name": "Bio-Vollkornroggen",
+                "description": "Dunkel, aromatisch, glutenarm, rustikal und voller Mineralien"
+            },
+            "3": {
+                "name": "Bio-Vollkorndinkel",
+                "description": "Urgetreide, weich, bekömmlich und ballaststoffreich."
+            },
+            "4": {
+                "name": "Bio-Vollkorn-Khorasan",
+                "description": "Altes Getreide, intensiver Geschmack und hoher Proteingehalt."
+            },
+            "5": {
+                "name": "Bio-Vollkorn-Tritordeum",
+                "description": "Innovativ, Hybrid aus Weizen und Gerste und leicht verdaulich"
+            },
+            "6": {
+                "name": "FEIN GESCHNITTENES BROT (kostenlos)",
+                "description": "Möchten Sie Ihr Brot fein geschnitten?"
+            },
+            "7": {
+                "name": "NORMAL GESCHNITTENES BROT (kostenlos)",
+                "description": "Möchten Sie Ihr Brot normal geschnitten?"
+            },
+            "8": {
+                "name": "DICK GESCHNITTENES BROT (kostenlos)",
+                "description": "Möchten Sie Ihr Brot dick geschnitten?"
+            }
+        },
+        "extras": {
+            "1": "Bio-Samenmischung 100g",
+            "2": "Walnüsse",
+            "3": "Pflaumen",
+            "4": "Datteln",
+            "5": "Schwarze Oliven",
+            "6": "Tomate und Oregano",
+            "7": "Roquefort-Käse",
+            "8": "Kurkuma",
+            "9": "Pfeffer",
+            "10": "Curry",
+            "11": "Ingwer",
+            "12": "Reines Kakaopulver",
+            "13": "Reiner Honig",
+            "14": "Knoblauch"
+        },
+        "bollitos": {
+            "1": {
+                "name": "Klassisches Vollkornbrötchen",
+                "description": "Weich und fluffig, ideal zum Frühstück"
+            },
+            "2": {
+                "name": "Kakaobrötchen",
+                "description": "Mit reinem Kakaopulver"
+            },
+            "3": {
+                "name": "Walnussbrötchen",
+                "description": "Mit Walnüssen, nahrhaft und lecker"
+            },
+            "4": {
+                "name": "Pflaumenbrötchen",
+                "description": "Süß und energetisch, mit getrockneten Pflaumen"
+            },
+            "5": {
+                "name": "Kurkumabrötchen",
+                "description": "Aromatisch und exotisch, mit einem goldenen Touch"
+            },
+            "6": {
+                "name": "Samenbrötchen",
+                "description": "Knusprig, voller Ballaststoffe und Mineralien"
+            },
+            "7": {
+                "name": "Knoblauchbrötchen",
+                "description": "Intensiver Geschmack, perfekt als Beilage"
+            },
+            "8": {
+                "name": "Tomaten- und Oreganobrötchen",
+                "description": "Mediterran, lecker und mit hausgemachtem Aroma"
+            },
+            "1_05": {
+                "name": "Vollkorn-Hotdog-Brötchen",
+                "description": "Ein längliches Brötchen für Ihre Hotdogs"
+            },
+            "1_06": {
+                "name": "PACK Sortiment 6 Klassische Vollkornbrötchen",
+                "description": "Ihr klassisches Paket"
+            },
+            "1_07": {
+                "name": "PACK Sortiment 6 Vollkorn-Roggen-Molletes",
+                "description": "Roggen-Molletes"
+            },
+            "1_1": {
+                "name": "PACK Sortiment 7 Vollkornbrötchen (eins von jedem)",
+                "description": "1x Samen, 1x Knoblauch, 1x Kakao, 1x Kurkuma, 1x Walnüsse, 1x Pflaumen, 1x Tomate und Oregano. Probieren Sie alle!"
+            },
+            "1_2": {
+                "name": "PACK Sortiment 6 Vollkorn-Samenbrötchen",
+                "description": "Knusprig, voller Ballaststoffe und Mineralien"
+            },
+            "1_3": {
+                "name": "PACK Sortiment 6 Vollkorn-Walnussbrötchen",
+                "description": "Nahrhaft und lecker"
+            },
+            "1_4": {
+                "name": "PACK Sortiment 6 Vollkorn-Kakaopulver-Brötchen",
+                "description": "Mit reinem Kakao"
+            },
+            "1_5": {
+                "name": "PACK Sortiment 6 Vollkorn-Pflaumenbrötchen",
+                "description": "Süß und energetisch, mit getrockneten Pflaumen"
+            },
+            "1_6": {
+                "name": "PACK Sortiment 6 Vollkorn-Kurkuma-Brötchen",
+                "description": "Aromatisch und exotisch, mit einem goldenen Touch"
+            },
+            "1_7": {
+                "name": "PACK Sortiment 6 Vollkorn-Tomaten- und Oreganobrötchen",
+                "description": "Mediterran, lecker und mit hausgemachtem Aroma"
+            },
+            "1_8": {
+                "name": "PACK Sortiment 6 Vollkorn-Knoblauchbrötchen",
+                "description": "Intensiver Geschmack, perfekt als Beilage"
+            }
+        },
+        "pulguitas": {
+            "1": {
+                "name": "Vollkorn-Mini-Brötchen",
+                "description": "Klein, ideal für Sandwiches"
+            },
+            "2": {
+                "name": "Kakao-Mini-Brötchen",
+                "description": "Mit reinem Kakaopulver"
+            },
+            "3": {
+                "name": "Walnuss-Mini-Brötchen",
+                "description": "Mit Walnüssen, nahrhaft und energetisch"
+            },
+            "4": {
+                "name": "Pflaumen-Mini-Brötchen",
+                "description": "Klein, süß und gesund"
+            },
+            "5": {
+                "name": "Kurkuma-Mini-Brötchen",
+                "description": "Golden und aromatisch, exotisch und leicht"
+            },
+            "6": {
+                "name": "Samen-Mini-Brötchen",
+                "description": "Knusprig mit nahrhafter Samenmischung"
+            },
+            "7": {
+                "name": "Knoblauch-Mini-Brötchen",
+                "description": "Intensiv und lecker in Mini-Version"
+            },
+            "1_05": {
+                "name": "PACK Sortiment 12 Klassische Vollkorn-Mini-Brötchen",
+                "description": "Ihr klassisches Mini-Brötchen-Paket"
+            },
+            "1_1": {
+                "name": "PACK Sortiment 14 Vollkorn-Mini-Brötchen (zwei von jedem)",
+                "description": "2x Samen, 2x Knoblauch, 2x Kakao, 2x Kurkuma, 2x Walnüsse, 2x Pflaumen, 2x Tomate und Oregano. Probieren Sie alle!"
+            },
+            "1_2": {
+                "name": "PACK Sortiment 12 Vollkorn-Samen-Mini-Brötchen",
+                "description": "Knusprig, voller Ballaststoffe und Mineralien"
+            },
+            "1_3": {
+                "name": "PACK Sortiment 12 Vollkorn-Walnuss-Mini-Brötchen",
+                "description": "Nahrhaft und lecker"
+            },
+            "1_4": {
+                "name": "PACK Sortiment 12 Vollkorn-Kakaopulver-Mini-Brötchen",
+                "description": "Mit reinem Kakao"
+            },
+            "1_5": {
+                "name": "PACK Sortiment 12 Vollkorn-Pflaumen-Mini-Brötchen",
+                "description": "Süß und energetisch, mit getrockneten Pflaumen"
+            },
+            "1_6": {
+                "name": "PACK Sortiment 12 Vollkorn-Kurkuma-Mini-Brötchen",
+                "description": "Aromatisch und exotisch, mit einem goldenen Touch"
+            },
+            "1_7": {
+                "name": "PACK Sortiment 12 Vollkorn-Tomaten- und Oregano-Mini-Brötchen",
+                "description": "Mediterran, lecker und mit hausgemachtem Aroma"
+            },
+            "1_8": {
+                "name": "PACK Sortiment 12 Vollkorn-Knoblauch-Mini-Brötchen",
+                "description": "Intensiver Geschmack, perfekt als Beilage"
+            },
+            "EXTRAS": {
+                "pan": "EXTRAS"
+            }
+        }
     }
 }

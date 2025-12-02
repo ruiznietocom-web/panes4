@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { useTranslation } from 'react-i18next';
+
 const Nutcracker = ({ isVisible }) => {
+    const { t } = useTranslation();
     return (
         <AnimatePresence>
             {isVisible && (
@@ -21,7 +24,7 @@ const Nutcracker = ({ isVisible }) => {
                             transition={{ delay: 0.5 }}
                             className="absolute -top-12 -right-16 bg-white p-3 rounded-2xl rounded-bl-none shadow-lg border-2 border-red-600"
                         >
-                            <p className="text-sm font-bold text-red-700 whitespace-nowrap">¡A la orden! 💂‍♂️</p>
+                            <p className="text-sm font-bold text-red-700 whitespace-nowrap">{t('christmas_characters.nutcracker')}</p>
                         </motion.div>
 
                         {/* SVG Cascanueces */}

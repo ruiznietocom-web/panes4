@@ -2,7 +2,10 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ReactComponent as RenoSvg } from './reno.svg';
 
+import { useTranslation } from 'react-i18next';
+
 const Reno = ({ isVisible }) => {
+    const { t } = useTranslation();
     return (
         <AnimatePresence>
             {isVisible && (
@@ -21,7 +24,7 @@ const Reno = ({ isVisible }) => {
                             transition={{ delay: 0.5 }}
                             className="absolute -top-16 -right-10 bg-white p-3 rounded-2xl rounded-bl-none shadow-lg border-2 border-amber-600"
                         >
-                            <p className="text-sm font-bold text-amber-700 whitespace-nowrap">Feliz Navidad!! 🦌</p>
+                            <p className="text-sm font-bold text-amber-700 whitespace-nowrap">{t('christmas_characters.reindeer')}</p>
                         </motion.div>
 
                         <RenoSvg className="w-full h-full drop-shadow-2xl" />

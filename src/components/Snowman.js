@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { useTranslation } from 'react-i18next';
+
 const Snowman = ({ isVisible }) => {
+    const { t } = useTranslation();
     return (
         <AnimatePresence>
             {isVisible && (
@@ -20,7 +23,7 @@ const Snowman = ({ isVisible }) => {
                             transition={{ delay: 0.5 }}
                             className="absolute -top-12 -right-16 bg-white p-3 rounded-2xl rounded-bl-none shadow-lg border-2 border-cyan-600"
                         >
-                            <p className="text-sm font-bold text-cyan-700 whitespace-nowrap">¡Brrr, qué frío! ⛄</p>
+                            <p className="text-sm font-bold text-cyan-700 whitespace-nowrap">{t('christmas_characters.snowman')}</p>
                         </motion.div>
 
                         {/* SVG Snowman */}

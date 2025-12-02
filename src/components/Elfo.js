@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ReactComponent as ElfoSvg } from './elfo.svg';
+import { useTranslation } from 'react-i18next';
 
 const Elfo = ({ isVisible }) => {
+    const { t } = useTranslation();
     return (
         <AnimatePresence>
             {isVisible && (
@@ -20,7 +22,7 @@ const Elfo = ({ isVisible }) => {
                             transition={{ delay: 0.5 }}
                             className="absolute -top-4 -right-10 bg-white p-2 rounded-2xl rounded-bl-none shadow-lg border-2 border-green-600"
                         >
-                            <p className="text-xs font-bold text-green-700 whitespace-nowrap">¡Ayudando a Santa! 🎁</p>
+                            <p className="text-xs font-bold text-green-700 whitespace-nowrap">{t('christmas_characters.elf')}</p>
                         </motion.div>
                         <ElfoSvg className="w-full h-full drop-shadow-2xl" />
                     </div>
@@ -29,5 +31,7 @@ const Elfo = ({ isVisible }) => {
         </AnimatePresence>
     );
 };
+
+
 
 export default Elfo;

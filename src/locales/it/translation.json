@@ -116,34 +116,42 @@
         "harinas": {
             "1": {
                 "name": "GRANO Tenero Integrale Biologico",
+                "short_name": "Grano",
                 "description": "Classico, versatile, base tradizionale per il pane quotidiano."
             },
             "2": {
                 "name": "SEGALE Integrale Biologica",
+                "short_name": "Segale",
                 "description": "Scura, aromatica, povera di glutine, rustica e ricca di minerali."
             },
             "3": {
                 "name": "FARRO Integrale Biologico",
+                "short_name": "Farro",
                 "description": "Farina ancestrale, morbida, digeribile e ricca di fibre."
             },
             "4": {
                 "name": "KHORASAN Integrale Biologico",
+                "short_name": "Khorasan",
                 "description": "Cereale antico, sapore intenso e alto contenuto proteico."
             },
             "5": {
                 "name": "TRITORDEUM Integrale Biologico",
+                "short_name": "Tritordeum",
                 "description": "Innovativo, ibrido di grano e orzo, facile da digerire."
             },
             "6": {
                 "name": "PANE A FETTE SOTTILI (gratis)",
+                "short_name": "Taglio Sottile",
                 "description": "Vuoi il tuo pane tagliato a fette sottili?"
             },
             "7": {
                 "name": "PANE A FETTE NORMALI (gratis)",
+                "short_name": "Taglio Normale",
                 "description": "Vuoi il tuo pane tagliato normalmente?"
             },
             "8": {
                 "name": "PANE A FETTE SPESSE (gratis)",
+                "short_name": "Taglio Spesso",
                 "description": "Vuoi il tuo pane tagliato spesso?"
             }
         },

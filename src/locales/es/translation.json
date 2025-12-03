@@ -44,34 +44,42 @@
         "harinas": {
             "1": {
                 "name": "TRIGO Integral Ecológico",
+                "short_name": "Trigo",
                 "description": "Clásica, versátil, base tradicional del pan diario."
             },
             "2": {
                 "name": "CENTENO Integral Ecológico",
+                "short_name": "Centeno",
                 "description": "Oscura, aromática, bajo en gluten, rústica y llena de minerales"
             },
             "3": {
                 "name": "ESPELTA Integral Ecológico",
+                "short_name": "Espelta",
                 "description": "Harina ancestral, suave, digestiva y rica en fibra."
             },
             "4": {
                 "name": "KHORASAN Integral Ecológico",
+                "short_name": "Khorasan",
                 "description": "Antiguo cereal, sabor intenso y alto en proteínas."
             },
             "5": {
                 "name": "TRITORDEUM Integral Ecológico",
+                "short_name": "Tritordeum",
                 "description": "Innovadora, híbrido del trigo y la cebada y de fácil digestión"
             },
             "6": {
                 "name": "PAN CORTADO FINO (gratuito)",
+                "short_name": "Corte Fino",
                 "description": "¿quieres tu pan cortado fino?"
             },
             "7": {
                 "name": "PAN CORTADO NORMAL (gratuito)",
+                "short_name": "Corte Normal",
                 "description": "¿quieres tu pan cortado normal?"
             },
             "8": {
                 "name": "PAN CORTADO GRUESO (gratuito)",
+                "short_name": "Corte Grueso",
                 "description": "¿quieres tu pan cortado grueso?"
             }
         },
@@ -274,7 +282,7 @@
         "flours": {
             "1": {
                 "title": "1. Espelta",
-                "desc": "Es un trigo primitivo, cuyas propiedades son bien conocidas y apreciadas desde antiguo en Europa. Su valor nutritivo es comparable al de la avena. Es rica en proteínas, carbohidratos, sales minerales y vitaminas A, B y E, así como magnesio, fósforo, hierro y potasio. Su consumo diario reduce los niveles de colesterol y regula el metabolismo. Ofrece mayor cantidad de aminoácidos esenciales que el trigo común y también lo supera en riqueza vitamínica y minerales. Algunas personas alérgicas al trigo digieren bien la espelta."
+                "desc": "Es un trigo primitivo, cuyas propiedades son bien conocidas y apreciadas desde antiguo en Europa. Su valor nutritivo es comparable al de la avena. Es rica en proteínas, carbohidratos, sales minerales y vitaminas A, B y E, así como magnesio, fósforo, hierro y potasio. Su consumo diario reduce los niveles de colesterol y regula el metabolismo. Ofrece mayor cantidad de aminoacidi esenciales que el trigo común y también lo supera en riqueza vitamínica y minerales. Algunas personas alérgicas al trigo digieren bien la espelta."
             },
             "2": {
                 "title": "2. Khorasan",

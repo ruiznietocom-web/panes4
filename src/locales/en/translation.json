@@ -116,34 +116,42 @@
         "harinas": {
             "1": {
                 "name": "Organic Whole WHEAT",
+                "short_name": "Wheat",
                 "description": "Classic, versatile, traditional base for daily bread."
             },
             "2": {
                 "name": "Organic Whole RYE",
+                "short_name": "Rye",
                 "description": "Dark, aromatic, low in gluten, rustic and full of minerals"
             },
             "3": {
                 "name": "Organic Whole SPELT",
+                "short_name": "Spelt",
                 "description": "Ancestral flour, soft, digestive and rich in fiber."
             },
             "4": {
                 "name": "Organic Whole KHORASAN",
+                "short_name": "Khorasan",
                 "description": "Ancient cereal, intense flavor and high in protein."
             },
             "5": {
                 "name": "Organic Whole TRITORDEUM",
+                "short_name": "Tritordeum",
                 "description": "Innovative, hybrid of wheat and barley and easy to digest"
             },
             "6": {
                 "name": "THIN SLICED BREAD (free)",
+                "short_name": "Thin Cut",
                 "description": "do you want your bread thinly sliced?"
             },
             "7": {
                 "name": "NORMAL SLICED BREAD (free)",
+                "short_name": "Normal Cut",
                 "description": "do you want your bread normally sliced?"
             },
             "8": {
                 "name": "THICK SLICED BREAD (free)",
+                "short_name": "Thick Cut",
                 "description": "do you want your bread thick sliced?"
             }
         },

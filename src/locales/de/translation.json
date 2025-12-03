@@ -116,34 +116,42 @@
         "harinas": {
             "1": {
                 "name": "Bio-Vollkornweizen",
+                "short_name": "Weizen",
                 "description": "Klassisch, vielseitig, traditionelle Basis für das tägliche Brot."
             },
             "2": {
                 "name": "Bio-Vollkornroggen",
+                "short_name": "Roggen",
                 "description": "Dunkel, aromatisch, glutenarm, rustikal und voller Mineralien"
             },
             "3": {
                 "name": "Bio-Vollkorndinkel",
+                "short_name": "Dinkel",
                 "description": "Urgetreide, weich, bekömmlich und ballaststoffreich."
             },
             "4": {
                 "name": "Bio-Vollkorn-Khorasan",
+                "short_name": "Khorasan",
                 "description": "Altes Getreide, intensiver Geschmack und hoher Proteingehalt."
             },
             "5": {
                 "name": "Bio-Vollkorn-Tritordeum",
+                "short_name": "Tritordeum",
                 "description": "Innovativ, Hybrid aus Weizen und Gerste und leicht verdaulich"
             },
             "6": {
                 "name": "FEIN GESCHNITTENES BROT (kostenlos)",
+                "short_name": "Feiner Schnitt",
                 "description": "Möchten Sie Ihr Brot fein geschnitten?"
             },
             "7": {
                 "name": "NORMAL GESCHNITTENES BROT (kostenlos)",
+                "short_name": "Normaler Schnitt",
                 "description": "Möchten Sie Ihr Brot normal geschnitten?"
             },
             "8": {
                 "name": "DICK GESCHNITTENES BROT (kostenlos)",
+                "short_name": "Dicker Schnitt",
                 "description": "Möchten Sie Ihr Brot dick geschnitten?"
             }
         },

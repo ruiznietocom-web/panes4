@@ -116,34 +116,42 @@
         "harinas": {
             "1": {
                 "name": "BLÉ Complet Biologique",
+                "short_name": "Blé",
                 "description": "Classique, polyvalent, base traditionnelle du pain quotidien."
             },
             "2": {
                 "name": "SEIGLE Complet Biologique",
+                "short_name": "Seigle",
                 "description": "Foncé, aromatique, faible en gluten, rustique et plein de minéraux"
             },
             "3": {
                 "name": "ÉPEAUTRE Complet Biologique",
+                "short_name": "Épeautre",
                 "description": "Farine ancestrale, douce, digestive et riche en fibres."
             },
             "4": {
                 "name": "KHORASAN Complet Biologique",
+                "short_name": "Khorasan",
                 "description": "Céréale ancienne, saveur intense et riche en protéines."
             },
             "5": {
                 "name": "TRITORDEUM Complet Biologique",
+                "short_name": "Tritordeum",
                 "description": "Innovant, hybride de blé et d'orge et facile à digérer"
             },
             "6": {
                 "name": "PAIN COUPÉ FIN (gratuit)",
+                "short_name": "Coupe Fine",
                 "description": "voulez-vous votre pain coupé fin ?"
             },
             "7": {
                 "name": "PAIN COUPÉ NORMAL (gratuit)",
+                "short_name": "Coupe Normale",
                 "description": "voulez-vous votre pain coupé normal ?"
             },
             "8": {
                 "name": "PAIN COUPÉ ÉPAIS (gratuit)",
+                "short_name": "Coupe Épaisse",
                 "description": "voulez-vous votre pain coupé épais ?"
             }
         },

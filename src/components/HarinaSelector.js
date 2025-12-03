@@ -10,7 +10,7 @@ import { toast } from 'react-hot-toast'; // Importar toast para notificaciones
 import Mistletoe from './Mistletoe';
 
 const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   // Estado para almacenar las harinas seleccionadas por el usuario
   const [selectedHarinas, setSelectedHarinas] = useState([]);
 
@@ -151,13 +151,9 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
           >
             {existingPanesCount > 0 ? `${existingPanesCount + 1}º ` : ''}
             {t('harina_selector.add_button_dynamic', {
-              flours: selectedHarinas
-                .map(h => t(`products.harinas.${h.id}.name`)
-                  .replace(' Integral Ecológico', '')
-                  .replace('PAN CORTADO', 'CORTE')
-                  .replace(' (gratuito)', '')
-                )
-                .reduce((acc, curr, idx, src) => idx === src.length - 1 ? acc + ' y ' + curr : acc + ', ' + curr)
+              flours: new Intl.ListFormat(i18n.language, { style: 'long', type: 'conjunction' }).format(
+                selectedHarinas.map(h => t(`products.harinas.${h.id}.short_name`))
+              )
             })}
           </button>
         </motion.div>

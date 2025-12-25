@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-import PapaNoel3 from './PapaNoel3';
+// PapaNoel3 is removed
 import Nutcracker from './Nutcracker';
 import Snowman from './Snowman';
-import Reno from './Reno';
-import Elfo from './Elfo';
+// Reno is removed
+// Elfo is removed
+import YoNavidad from './YoNavidad';
+import ReyesMagos from './ReyesMagos';
 
 const Snowflake = ({ delay, duration, xStart, size }) => (
     <motion.div
@@ -39,7 +41,7 @@ const ChristmasDecorations = () => {
     const [activeCharacter, setActiveCharacter] = useState(null);
     const [step, setStep] = useState(0);
 
-    const specialChars = ['nutcracker', 'snowman', 'reno', 'elfo'];
+    const characters = ['nutcracker', 'snowman', 'yonavidad', 'reyesmagos'];
 
     useEffect(() => {
         // CAMBIA EL 50 POR OTRO NÚMERO (ej. 100 para más nieve, 20 para menos)
@@ -59,16 +61,8 @@ const ChristmasDecorations = () => {
         let startTimer;
 
         const runCycle = () => {
-            let nextChar = '';
-
-            if (step % 2 === 0) {
-                // Turno de personaje especial
-                const index = (step / 2) % specialChars.length;
-                nextChar = specialChars[index];
-            } else {
-                // Turno de Papa Noel
-                nextChar = 'papanoel3';
-            }
+            const index = step % characters.length;
+            const nextChar = characters[index];
 
             setActiveCharacter(nextChar);
 
@@ -109,14 +103,13 @@ const ChristmasDecorations = () => {
                 />
             ))}
 
-
-            <PapaNoel3 isVisible={activeCharacter === 'papanoel3'} />
             <Nutcracker isVisible={activeCharacter === 'nutcracker'} />
             <Snowman isVisible={activeCharacter === 'snowman'} />
-            <Reno isVisible={activeCharacter === 'reno'} />
-            <Elfo isVisible={activeCharacter === 'elfo'} />
+            <YoNavidad isVisible={activeCharacter === 'yonavidad'} />
+            <ReyesMagos isVisible={activeCharacter === 'reyesmagos'} />
         </div>
     );
+
 };
 
 export default ChristmasDecorations;

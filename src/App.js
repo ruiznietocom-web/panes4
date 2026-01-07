@@ -174,7 +174,7 @@ const App = () => {
       <ScrollToTop />
       <Toaster position="top-center" reverseOrder={false} />
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 relative transition-colors duration-300">
-        <ChristmasDecorations />
+        {/* <ChristmasDecorations /> */}
 
         <Header />
         <Navigation />

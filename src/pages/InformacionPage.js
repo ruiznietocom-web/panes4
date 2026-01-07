@@ -14,7 +14,7 @@ import PandeOliva from '../assets/images/panoliva.jpg';
 import Pulguitascenteno from '../assets/images/pulguitas.jpg';
 import Bolloswenos from '../assets/images/bollos.jpg';
 
-import Mistletoe from '../components/Mistletoe';
+// import Mistletoe from '../components/Mistletoe';
 
 const InformacionPage = () => {
   const { t } = useTranslation();
@@ -36,11 +36,11 @@ const InformacionPage = () => {
       transition={{ duration: 0.5 }}
     >
       <div className="flex items-center justify-center gap-4 mb-8 border-b-2 border-amber-100 dark:border-slate-600 pb-4">
-        <Mistletoe className="w-10 h-10" />
+        {/* <Mistletoe className="w-10 h-10" /> */}
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white font-serif">
           {t('info_page.title')}
         </h1>
-        <Mistletoe className="w-10 h-10" />
+        {/* <Mistletoe className="w-10 h-10" /> */}
       </div>
 
       {/* BOTÓN PARA DESCARGAR PDF AL PRINCIPIO */}

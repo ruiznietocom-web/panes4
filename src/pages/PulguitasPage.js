@@ -4,7 +4,7 @@ import { motion } from "framer-motion"; // Para animaciones suaves
 import { pulguitas } from "../data/products"; // Lista de productos (pulguitas)
 import { formatPrice } from "../utils/formatPrice"; // Función para formatear precios
 
-import Mistletoe from "../components/Mistletoe";
+// import Mistletoe from "../components/Mistletoe";
 
 const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
   const { t } = useTranslation();
@@ -20,11 +20,11 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
     >
       {/* Título de la página */}
       <div className="flex items-center justify-center gap-2 mb-4">
-        <Mistletoe className="w-8 h-8" />
+        {/* <Mistletoe className="w-8 h-8" /> */}
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white text-center">
           {t('pulguitas_page.title')}
         </h2>
-        <Mistletoe className="w-8 h-8" />
+        {/* <Mistletoe className="w-8 h-8" /> */}
       </div>
 
       {/* Mensaje informativo */}
@@ -37,7 +37,7 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
         {pulguitas.map((pulguita, index) => (
           <motion.div
             key={pulguita.id} // clave única para React
-            className="w-full sm:w-80 p-4 rounded-xl border-2 border-gray-200 dark:border-slate-600 hover:border-purple-300 dark:hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-slate-700 transition-all duration-300 text-center flex flex-col justify-between snow-cap"
+            className="w-full sm:w-80 p-4 rounded-xl border-2 border-gray-200 dark:border-slate-600 hover:border-purple-300 dark:hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-slate-700 transition-all duration-300 text-center flex flex-col justify-between"
             whileHover={{ scale: 1.02 }} // efecto al pasar el cursor
             whileTap={{ scale: 0.98 }}   // efecto al hacer click
             initial={{ opacity: 0, y: 20 }} // animación inicial

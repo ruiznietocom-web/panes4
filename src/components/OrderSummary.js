@@ -222,7 +222,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
     message += `🙏 *MUCHAS GRACIAS!* 🙏 🌿\n\n`;
 
-    message += `🎄🎁💝 *FELIZ NAVIDAD!!* 💝🎁🎄\n\n`;
 
 
 

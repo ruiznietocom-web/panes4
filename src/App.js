@@ -8,7 +8,7 @@ import HarinaSelector from './components/HarinaSelector';
 import ExtrasSelector from './components/ExtrasSelector';
 import OrderSummary from './components/OrderSummary';
 import SuccessModal from './components/SuccessModal';
-import WhatsAppButton from './components/WhatsAppButton';
+import VideoHelpButton from './components/VideoHelpButton';
 import ChristmasDecorations from './components/ChristmasDecorations';
 import { extras, bollitos, pulguitas, otrosPanes } from './data/products';
 
@@ -209,8 +209,8 @@ const App = () => {
 
         <SuccessModal isOpen={showSuccessModal} onClose={handleCloseModal} />
 
-        {/* Botón flotante de WhatsApp */}
-        <WhatsAppButton isRaised={isAddButtonVisible} />
+        {/* Botón flotante de Video Ayuda */}
+        <VideoHelpButton isRaised={isAddButtonVisible} />
       </div>
     </Router>
   );

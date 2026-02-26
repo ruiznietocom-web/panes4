@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import PantoMateImg from '../assets/images/pantomate.jpg';
@@ -43,21 +42,6 @@ const InformacionPage = () => {
         {/* <Mistletoe className="w-10 h-10" /> */}
       </div>
 
-      {/* BOTÓN PARA DESCARGAR PDF AL PRINCIPIO */}
-      <div className="my-8 flex justify-center">
-        <a
-          href="/docs/PRECIOS PANES INTEGRALES 30 11 2025.pdf"
-          download
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-700 
-                     text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:from-green-700 hover:to-green-800
-                     transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-        >
-          <Download className="w-6 h-6" />
-          {t('info_page.download_pdf')}
-        </a>
-      </div>
 
       <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed font-sans text-lg">
         <p className="font-serif text-xl text-amber-700 dark:text-amber-500 text-center italic">

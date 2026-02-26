@@ -28,9 +28,9 @@ export const extras = [
 
 export const bollitos = [
   { id: 1, name: "Bollito Integral Clásico", description: "Suave y esponjoso, ideal para el desayuno", image: "🍞", price: 1, photo: "/images/bolloclasicounidad.jpg" },
-  { id: 1.05, name: "Panecillo para Perrito Caliente Integral ", description: "Un panecillo alargado para tus perritos", image: "🌭", price: 1 },
-  { id: 1.06, name: "PACK Surtido 6 Bollitos Integrales Clásicos", description: "Tu pack clásico", image: "🧺", price: 6, photo: "/images/bollitoclasico6.jpg" },
-  { id: 1.07, name: "PACK Surtido 6 Molletes Integrales de Centeno", description: "Molletes de Centeno", image: "🧺", price: 6, photo: "/images/molletescenteno.jpg" },
+  { id: 1.05, name: "Panecillo para Perrito Caliente Integral ", description: "Un panecillo alargado para tus perritos", image: "🌭", price: 1, photo: "/images/panperrito.jpg" },
+  { id: 1.06, name: "PACK Surtido 6 Bollitos Integrales Clásicos", description: "Tu pack clásico", image: "🧺🍞", price: 6, photo: "/images/bollitoclasico6.jpg" },
+  { id: 1.07, name: "PACK Surtido 6 Molletes Integrales de Centeno", description: "Molletes de Centeno", image: "🧺🍞", price: 6, photo: "/images/molletescenteno.jpg" },
   { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "1x Semillas, 1x Ajo, 1x Cacao, 1x Cúrcuma, 1x Nueces, 1x Ciruelas Pasas, 1x Tomate y Orégano.Pruébalos todos!", image: "🧺🍞", price: 8.50, photo: "/images/7bollos.jpg" },
   { id: 1.2, name: "PACK Surtido 6 Bollitos Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🧺🌻", price: 7.50, photo: "/images/bollitossemillas6.jpg" },
   { id: 1.3, name: "PACK Surtido 6 Bollitos Integrales de Nueces", description: "Nutritivo y delicioso", image: "🧺🥜", price: 7.50, photo: "/images/bollitosnueces6.jpg" },
@@ -51,8 +51,8 @@ export const bollitos = [
 
 export const pulguitas = [
   { id: 1, name: "Pulguita Integral", description: "Pequeña y crujiente, ideal para bocadillos", image: "🍞", price: 0.50, photo: "/images/pulguitaclasicaunidad.jpg" },
-  { id: 1.05, name: "PACK Surtido 12 Pulguitas Integrales Clásicas", description: "Tu pack de pulguitas clásicas", image: "🧺", price: 6, photo: "/images/pulguitaclasica12.jpg" },
-  { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (dos de cada)", description: "2x Semillas, 2x Ajo, 2x Cacao, 2x Cúrcuma, 2x Nueces, 2x Ciruelas Pasas, 2x Tomate y Orégano. Pruébalos todos!", image: "🧺", price: 8.50, photo: "/images/pulguitasurtido14.jpg" },
+  { id: 1.05, name: "PACK Surtido 12 Pulguitas Integrales Clásicas", description: "Tu pack de pulguitas clásicas", image: "🧺🍞", price: 6, photo: "/images/pulguitaclasica12.jpg" },
+  { id: 1.1, name: "PACK Surtido 14 Pulguitas Integrales (dos de cada)", description: "2x Semillas, 2x Ajo, 2x Cacao, 2x Cúrcuma, 2x Nueces, 2x Ciruelas Pasas, 2x Tomate y Orégano. Pruébalos todos!", image: "🧺🍞", price: 8.50, photo: "/images/pulguitasurtido14.jpg" },
   { id: 1.2, name: "PACK Surtido 12 Pulguitas Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🧺🌻", price: 7.50, photo: "/images/pulguitasemilla12.jpg" },
   { id: 1.3, name: "PACK Surtido 12 Pulguitas Integrales de Nueces", description: "Nutritivo y delicioso", image: "🧺🥜", price: 7.50, photo: "/images/pulguitanuez12.jpg" },
   { id: 1.4, name: "PACK Surtido 12 Pulguitas Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🧺🍫", price: 7 },

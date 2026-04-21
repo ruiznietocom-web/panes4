@@ -22,7 +22,9 @@ export const extras = [
   { id: 10, name: "Curry", price: 0.50, icon: "🧡" },
   { id: 12, name: "Cacao Puro en Polvo", price: 0.50, icon: "🍫" },
   { id: 13, name: "Miel Pura", price: 0.50, icon: "🍯" },
-  { id: 14, name: "Ajo", price: 1.50, icon: "🧄" }
+  { id: 14, name: "Ajo", price: 1.50, icon: "🧄" },
+  { id: 15, name: "Sin sal", price: 0, icon: "🚫🧂" },
+  { id: 16, name: "1/2 sal", price: 0, icon: "½🧂" }
 ];
 
 export const bollitos = [

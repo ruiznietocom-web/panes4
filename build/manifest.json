@@ -1,0 +1,19 @@
+{
+  "name": "PanZen - Pan consciente personalizado",
+  "short_name": "PanZen",
+  "description": "Panes ecológicos personalizados, bollitos y pulguitas con entrega gratuita en Chiclana.",
+  "lang": "es",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#f59e0b",
+  "background_color": "#fffbeb",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

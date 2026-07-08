@@ -12,7 +12,7 @@ import SuccessModal from './components/SuccessModal';
 import VideoHelpButton from './components/VideoHelpButton';
 import MobileCartBar from './components/MobileCartBar';
 import TrustBar from './components/TrustBar';
-import { extras, bollitos, pulguitas, otrosPanes } from './data/products';
+import { extras, bollitos, pulguitas, otrosPanes, optionalExtras } from './data/products';
 
 // Lazy loading de páginas
 const BollitosPage = React.lazy(() => import('./pages/BollitosPage'));
@@ -143,6 +143,7 @@ const App = () => {
   const [cartItems, setCartItems] = useState(loadStoredCart);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isAddButtonVisible, setIsAddButtonVisible] = useState(false);
+  const [selectedOptionalExtras, setSelectedOptionalExtras] = useState([]);
 
   // Guardar la cesta en el navegador en cada cambio
   useEffect(() => {
@@ -229,17 +230,21 @@ const App = () => {
   const handleCloseModal = () => {
     setShowSuccessModal(false);
     setCartItems([]);
+    setSelectedOptionalExtras([]);
   };
 
   const cartItemCount = cartItems.reduce((count, item) => count + (item.quantity || 1), 0);
 
-  // Subtotal aproximado (sin descuentos) para la barra de carrito en móvil
+  // Subtotal aproximado (sin descuentos) para la barra de carrito en móvil, incluyendo la propina, café y cerveza
   const cartSubtotal = cartItems.reduce((sum, item) => {
     if (item.type === 'panPersonalizado') {
       const extrasTotal = item.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
       return sum + item.price + extrasTotal;
     }
     return sum + (item.price || 0) * (item.quantity || 1);
+  }, 0) + selectedOptionalExtras.reduce((sum, id) => {
+    const e = optionalExtras.find(opt => opt.id === id);
+    return sum + (e ? e.price : 0);
   }, 0);
 
   return (
@@ -280,6 +285,8 @@ const App = () => {
                     onSendWhatsApp={handleSendWhatsApp}
                     onRemoveItem={handleRemoveCartItem}
                     onDuplicateItem={handleDuplicatePan}
+                    selectedOptionalExtras={selectedOptionalExtras}
+                    setSelectedOptionalExtras={setSelectedOptionalExtras}
                   />
                 </div>
               </div>

@@ -22,7 +22,14 @@ import { showThankYouToast } from './ThankYouToast';
 
 // import Mistletoe from './Mistletoe';
 
-const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem, onDuplicateItem }) => {
+const OrderSummary = ({
+  cartItems,
+  onSendWhatsApp,
+  onRemoveItem,
+  onDuplicateItem,
+  selectedOptionalExtras = [],
+  setSelectedOptionalExtras
+}) => {
   const { t } = useTranslation();
   // cartItems: array de productos en la cesta
   // onSendWhatsApp: función para enviar pedido por WhatsApp
@@ -33,9 +40,6 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem, onDuplicateItem
     ...e,
     name: t(`optional_extras.${e.id}`)
   }));
-
-  const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
-  // Guarda los ids de extras seleccionados
 
   const [discountCode, setDiscountCode] = React.useState("");
   // Código de descuento ingresado

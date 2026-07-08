@@ -61,6 +61,7 @@ const InformacionPage = () => {
           <img
             src={PantoMateImg}
             alt="Pan de tomate"
+            loading="lazy"
             className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer hover:scale-105 transition-transform"
             onClick={() => handleImageClick(PantoMateImg)}
           />
@@ -91,6 +92,7 @@ const InformacionPage = () => {
           <img
             src={BarrasPan}
             alt="Barras"
+            loading="lazy"
             className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer hover:scale-105 transition-transform"
             onClick={() => handleImageClick(BarrasPan)}
           />
@@ -131,7 +133,8 @@ const InformacionPage = () => {
         <div className="my-8 flex justify-center">
           <img
             src={PantoMate}
-            alt="Pan tomate"
+            alt="Pan de tomate y orégano"
+            loading="lazy"
             className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer hover:scale-105 transition-transform"
             onClick={() => handleImageClick(PantoMate)}
           />
@@ -169,7 +172,8 @@ const InformacionPage = () => {
         <div className="my-8 flex justify-center">
           <img
             src={CorazonHarina}
-            alt="Bollo Pulguita"
+            alt="Corazón dibujado en harina"
+            loading="lazy"
             className="w-full max-w-md rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer hover:scale-105 transition-transform"
             onClick={() => handleImageClick(CorazonHarina)}
           />
@@ -199,8 +203,9 @@ const InformacionPage = () => {
             <img
               key={index}
               src={img}
-              alt={`Galería ${index}`}
-              className="rounded-lg shadow-md hover:scale-105 transition-transform cursor-pointer"
+              alt={`${t('info_page.title')} ${index + 1}`}
+              loading="lazy"
+              className="w-full aspect-square object-cover rounded-lg shadow-md hover:scale-105 transition-transform cursor-pointer"
               onClick={() => handleImageClick(img)}
             />
           ))}

@@ -11,7 +11,7 @@ const VideoHelpButton = ({ isRaised }) => {
 
     return (
         <>
-            <div className={`fixed right-6 flex flex-col items-center z-50 transition-all duration-500 ${isRaised ? 'bottom-40' : 'bottom-4'}`}>
+            <div className={`fixed right-6 flex flex-col items-center z-50 transition-all duration-500 ${isRaised ? 'bottom-44 lg:bottom-40' : 'bottom-20 lg:bottom-4'}`}>
 
                 {/* Floating Button */}
                 <button

@@ -44,8 +44,25 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
             animate={{ opacity: 1, y: 0 }}  // animación final
             transition={{ delay: index * 0.1 }} // animación escalonada
           >
-            {/* Icono del producto */}
-            <div className="text-4xl mb-2">{pulguita.image}</div>
+            {/* Foto del producto como protagonista (o emoji si no hay foto) */}
+            {pulguita.photo ? (
+              <button
+                type="button"
+                onClick={() => setModalPhoto(pulguita.photo)}
+                className="relative block w-full mb-3 rounded-lg overflow-hidden"
+                title={t('pulguitas_page.view_photo')}
+              >
+                <span className="absolute inset-0 bg-amber-100/70 dark:bg-slate-600 animate-pulse" aria-hidden="true"></span>
+                <img
+                  src={pulguita.photo}
+                  alt={t(`products.pulguitas.${pulguita.id.toString().replace('.', '_')}.name`)}
+                  loading="lazy"
+                  className="relative w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </button>
+            ) : (
+              <div className="text-4xl mb-2">{pulguita.image}</div>
+            )}
 
             {/* Nombre del producto */}
             {/* Nombre del producto */}
@@ -62,26 +79,14 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
 
 
 
-            {/* Botón para ver la foto si existe */}
-            {pulguita.photo && (
-              <button
-                onClick={() => setModalPhoto(pulguita.photo)}
-                className="mt-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition"
-              >
-                {t('pulguitas_page.view_photo')}
-              </button>
-            )}
-
-
-
-
 
 
             {/* Controles de cantidad */}
             <div className="flex items-center justify-center gap-2 mt-3">
               {/* Botón para restar 1 unidad */}
               <button
-                className="px-3 py-1 bg-gray-200 dark:bg-slate-600 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-slate-500 transition"
+                className="w-11 h-11 flex items-center justify-center text-2xl font-bold rounded-full border-2 border-gray-300 dark:border-slate-500 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-slate-600 transition"
+                aria-label="-1"
                 onClick={() =>
                   onUpdatePulguitaQuantity(
                     pulguita.id,
@@ -93,11 +98,12 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
               </button>
 
               {/* Cantidad seleccionada */}
-              <span className="dark:text-white">{selectedPulguitas[pulguita.id] || 0}</span>
+              <span className="min-w-[2.5rem] text-center text-lg font-bold text-gray-800 dark:text-white">{selectedPulguitas[pulguita.id] || 0}</span>
 
               {/* Botón para sumar 1 unidad */}
               <button
-                className="px-3 py-1 bg-gray-200 dark:bg-slate-600 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-slate-500 transition"
+                className="w-11 h-11 flex items-center justify-center text-2xl font-bold rounded-full bg-purple-500 text-white shadow-md hover:bg-purple-600 transition"
+                aria-label="+1"
                 onClick={() =>
                   onUpdatePulguitaQuantity(
                     pulguita.id,
@@ -114,8 +120,8 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
 
       {/* Modal para mostrar la foto */}
       {modalPhoto && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="relative bg-white dark:bg-slate-800 p-4 rounded-lg max-w-md w-full">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={() => setModalPhoto(null)}>
+          <div className="relative bg-white dark:bg-slate-800 p-4 rounded-lg max-w-md w-full" onClick={(e) => e.stopPropagation()}>
             {/* Botón para cerrar el modal */}
             <button
               onClick={() => setModalPhoto(null)} // Cierra el modal

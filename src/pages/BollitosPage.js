@@ -44,8 +44,25 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
           >
-            {/* Icono del producto */}
-            <div className="text-4xl mb-2">{bollito.image}</div>
+            {/* Foto del producto como protagonista (o emoji si no hay foto) */}
+            {bollito.photo ? (
+              <button
+                type="button"
+                onClick={() => setModalPhoto(bollito.photo)}
+                className="relative block w-full mb-3 rounded-lg overflow-hidden"
+                title={t('bollitos_page.view_photo')}
+              >
+                <span className="absolute inset-0 bg-amber-100/70 dark:bg-slate-600 animate-pulse" aria-hidden="true"></span>
+                <img
+                  src={bollito.photo}
+                  alt={t(`products.bollitos.${bollito.id.toString().replace('.', '_')}.name`)}
+                  loading="lazy"
+                  className="relative w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </button>
+            ) : (
+              <div className="text-4xl mb-2">{bollito.image}</div>
+            )}
 
             {/* Nombre */}
             {/* Nombre */}
@@ -62,23 +79,11 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
 
 
 
-            {/* Botón para ver la foto si existe */}
-            {bollito.photo && (
-              <button
-                onClick={() => setModalPhoto(bollito.photo)}
-                className="mt-2 px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition"
-              >
-                {t('bollitos_page.view_photo')}
-              </button>
-            )}
-
-
-
-
             {/* Controles de cantidad */}
             <div className="flex items-center justify-center gap-2 mt-3">
               <button
-                className="px-3 py-1 bg-gray-200 dark:bg-slate-600 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-slate-500 transition"
+                className="w-11 h-11 flex items-center justify-center text-2xl font-bold rounded-full border-2 border-gray-300 dark:border-slate-500 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-slate-600 transition"
+                aria-label="-1"
                 onClick={() =>
                   onUpdateBollitoQuantity(
                     bollito.id,
@@ -88,9 +93,10 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
               >
                 -
               </button>
-              <span className="dark:text-white">{selectedBollitos[bollito.id] || 0}</span>
+              <span className="min-w-[2.5rem] text-center text-lg font-bold text-gray-800 dark:text-white">{selectedBollitos[bollito.id] || 0}</span>
               <button
-                className="px-3 py-1 bg-gray-200 dark:bg-slate-600 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-slate-500 transition"
+                className="w-11 h-11 flex items-center justify-center text-2xl font-bold rounded-full bg-blue-500 text-white shadow-md hover:bg-blue-600 transition"
+                aria-label="+1"
                 onClick={() =>
                   onUpdateBollitoQuantity(
                     bollito.id,
@@ -107,8 +113,8 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
 
       {/* Modal para mostrar la foto */}
       {modalPhoto && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="relative bg-white dark:bg-slate-800 p-4 rounded-lg max-w-md w-full">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={() => setModalPhoto(null)}>
+          <div className="relative bg-white dark:bg-slate-800 p-4 rounded-lg max-w-md w-full" onClick={(e) => e.stopPropagation()}>
             {/* Botón cerrar */}
             <button
               onClick={() => setModalPhoto(null)}

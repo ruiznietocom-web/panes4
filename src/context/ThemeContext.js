@@ -13,7 +13,12 @@ export const useTheme = () => {
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
-        return savedTheme || 'light';
+        if (savedTheme) return savedTheme;
+        // Primera visita: respetar la preferencia del sistema del usuario
+        const prefersDark = typeof window !== 'undefined'
+            && window.matchMedia
+            && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return prefersDark ? 'dark' : 'light';
     });
 
     useEffect(() => {

@@ -1,18 +1,18 @@
 import React from 'react';
 // Importa React, necesario para crear componentes funcionales y usar hooks como useState.
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 // Importa 'motion' de framer-motion para animar elementos (entrada, hover, tap, etc.).
 
-import { MessageCircle, Trash2 } from 'lucide-react';
+import { MessageCircle, Trash2, Copy } from 'lucide-react';
 // Importa iconos: MessageCircle (WhatsApp) y Trash2 (botón eliminar).
 
 import confetti from 'canvas-confetti';
 import toast from 'react-hot-toast';
 // Importa confetti y toast
 
-import { bollitos, pulguitas } from '../data/products';
-// Importa los productos "bollitos" y "pulguitas" desde un archivo de datos.
+import { bollitos, pulguitas, optionalExtras as optionalExtrasData } from '../data/products';
+// Importa los productos y los extras opcionales desde la ÚNICA fuente de datos.
 
 import { formatPrice } from '../utils/formatPrice';
 // Función para formatear precios (ej: 1.5 → "1,50 €").
@@ -22,19 +22,17 @@ import { showThankYouToast } from './ThankYouToast';
 
 // import Mistletoe from './Mistletoe';
 
-const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
+const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem, onDuplicateItem }) => {
   const { t } = useTranslation();
   // cartItems: array de productos en la cesta
   // onSendWhatsApp: función para enviar pedido por WhatsApp
   // onRemoveItem: función para eliminar un producto de la cesta
 
-  const optionalExtras = [
-    { id: 'propina', name: t('optional_extras.propina'), price: 0.50, icon: '💰' },
-    { id: 'cafe', name: t('optional_extras.cafe'), price: 1.00, icon: '☕' },
-    { id: 'cerveza', name: t('optional_extras.cerveza'), price: 1.50, icon: '🍺' },
-
-  ];
-  // Lista de extras opcionales
+  // Extras opcionales: precios/iconos desde products.js, nombres traducidos
+  const optionalExtras = optionalExtrasData.map(e => ({
+    ...e,
+    name: t(`optional_extras.${e.id}`)
+  }));
 
   const [selectedOptionalExtras, setSelectedOptionalExtras] = React.useState([]);
   // Guarda los ids de extras seleccionados
@@ -81,16 +79,18 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
   const applyDiscount = () => {
     // Aplica descuento si el código es válido
-    const code = discountCode.toUpperCase(); // pasar a mayúsculas
-    if (discountCodes[code]) setAppliedDiscount(discountCodes[code]);
-    else {
+    const code = discountCode.trim().toUpperCase(); // pasar a mayúsculas
+    if (discountCodes[code]) {
+      setAppliedDiscount(discountCodes[code]);
+    } else {
       setAppliedDiscount(null);
-      alert("Código no válido");
+      toast.error(t('order_summary.invalid_code', { defaultValue: 'Código no válido' }));
     }
   };
 
   const calculateTotals = () => {
-    // Calcula subtotal, descuento y total
+    // Calcula subtotal, descuento y total (ÚNICA fuente de cálculo,
+    // usada por la interfaz y por el mensaje de WhatsApp)
     let subtotal = 0;
     let discountBase = 0;
 
@@ -126,10 +126,14 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       if (e) subtotal += e.price;
     });
 
-    // Aplicar descuento si corresponde
+    // Aplicar descuento si corresponde (porcentaje o cantidad fija)
     let discountAmount = 0;
-    if (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase) {
-      discountAmount = discountBase * (appliedDiscount.value / 100);
+    if (appliedDiscount && discountBase >= appliedDiscount.minPurchase) {
+      if (appliedDiscount.type === "percentage") {
+        discountAmount = discountBase * (appliedDiscount.value / 100);
+      } else if (appliedDiscount.type === "fixed") {
+        discountAmount = Math.min(appliedDiscount.value, discountBase);
+      }
     }
 
     const total = subtotal - discountAmount;
@@ -138,6 +142,13 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
   const { subtotal, discountAmount, total } = calculateTotals();
   // Desestructurar los totales
+
+  // Texto del descuento según tipo (porcentaje o fijo)
+  const discountLabel = appliedDiscount
+    ? (appliedDiscount.type === "percentage"
+      ? t('order_summary.discount', { value: appliedDiscount.value })
+      : t('order_summary.discount_fixed', { defaultValue: 'Descuento:' }))
+    : '';
 
   const generateWhatsAppMessage = () => {
     // Genera mensaje de WhatsApp con precios separados por tipo
@@ -207,9 +218,12 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
       });
     }
 
-    // Descuento
-    if (appliedDiscount) {
-      message += `\n*DESCUENTO APLICADO: ${appliedDiscount.value}%*\n`;
+    // Descuento (solo si realmente se aplica)
+    if (appliedDiscount && discountAmount > 0) {
+      const discountText = appliedDiscount.type === "percentage"
+        ? `${appliedDiscount.value}%`
+        : formatPrice(appliedDiscount.value);
+      message += `\n*DESCUENTO APLICADO: ${discountText}*\n`;
     }
 
     message += `\n*TOTAL: ${formatPrice(total)}*\n\n`;
@@ -222,63 +236,17 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
     message += `🙏 *MUCHAS GRACIAS!* 🙏 🌿\n\n`;
 
-
-
-
-
-
     // ----------------------- TOTALES DETALLADOS CON DESCUENTO -----------------------
-    if (appliedDiscount) {
-      // Recalcular subtotal y descuento
-      let subtotal = 0;
-      let discountBase = 0;
-
-      // Panes
-      pansPersonalizados.forEach(p => {
-        const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
-        const panTotal = p.price + extrasTotal;
-        subtotal += panTotal;
-        discountBase += panTotal;
-      });
-
-      // Bollitos
-      bollitosInCart.forEach(item => {
-        const b = bollitos.find(b => b.id === item.id);
-        if (b) {
-          const total = b.price * item.quantity;
-          subtotal += total;
-          discountBase += total;
-        }
-      });
-
-      // Pulguitas
-      pulguitasInCart.forEach(item => {
-        const p = pulguitas.find(p => p.id === item.id);
-        if (p) {
-          const total = p.price * item.quantity;
-          subtotal += total;
-          discountBase += total;
-        }
-      });
-
-      // Extras opcionales
-      selectedOptionalExtras.forEach(id => {
-        const e = optionalExtras.find(opt => opt.id === id);
-        if (e) subtotal += e.price;
-      });
-
-      const discountAmount = (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase)
-        ? discountBase * (appliedDiscount.value / 100)
-        : 0;
-
-      const finalTotal = subtotal - discountAmount;
-
+    // Usa los mismos totales calculados arriba (sin recalcular)
+    if (appliedDiscount && discountAmount > 0) {
+      const discountText = appliedDiscount.type === "percentage"
+        ? `Descuento ${appliedDiscount.value}%`
+        : `Descuento ${formatPrice(appliedDiscount.value)}`;
       message += `\n*DETALLE DEL TOTAL:*\n`;
       message += `Subtotal: ${formatPrice(subtotal)}\n`;
-      message += `Descuento ${appliedDiscount.value}%: -${formatPrice(discountAmount)}\n`;
-      message += `*Total Final: ${formatPrice(finalTotal)}*\n`;
+      message += `${discountText}: -${formatPrice(discountAmount)}\n`;
+      message += `*Total Final: ${formatPrice(total)}*\n`;
     }
-
 
     return encodeURIComponent(message); // Codifica para URL
   };
@@ -309,8 +277,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
       <div className="space-y-3 mb-6">
         {isOrderEmpty && (
-          <div className="text-center py-4 text-gray-500 dark:text-gray-400">
-            {t('order_summary.empty')}
+          <div className="flex flex-col items-center text-center py-6 text-gray-500 dark:text-gray-400">
+            <span className="text-5xl mb-3" aria-hidden="true">🧺</span>
+            <p>{t('order_summary.empty')}</p>
           </div>
         )}
 
@@ -318,14 +287,27 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         {pansPersonalizados.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700 dark:text-gray-200">🌾 {t('order_summary.panes_personalizados')}</h3>
+            <AnimatePresence initial={false}>
             {pansPersonalizados.map((pan, index) => (
-              <div key={pan.id} className="flex flex-col p-2 bg-amber-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
-                <button
-                  className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-                  onClick={() => onRemoveItem(pan.id, 'panPersonalizado')}
-                >
-                  <Trash2 className="w-5 h-5" />
-                </button>
+              <motion.div key={pan.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex flex-col p-2 bg-amber-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
+                <div className="absolute top-2 right-2 flex gap-2">
+                  {onDuplicateItem && (
+                    <button
+                      className="text-amber-600 hover:text-amber-800 dark:text-amber-400 dark:hover:text-amber-300"
+                      onClick={() => onDuplicateItem(pan)}
+                      title={t('order_summary.duplicate', { defaultValue: 'Duplicar este pan' })}
+                      aria-label={t('order_summary.duplicate', { defaultValue: 'Duplicar este pan' })}
+                    >
+                      <Copy className="w-5 h-5" />
+                    </button>
+                  )}
+                  <button
+                    className="text-red-500 hover:text-red-700"
+                    onClick={() => onRemoveItem(pan.id, 'panPersonalizado')}
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                </div>
                 <span className="font-bold">🌾 {t('order_summary.pan')} {index + 1}:</span>
                 {pan.harinas.map(h => {
                   const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
@@ -346,8 +328,9 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
                 <span className="mt-1 font-bold">
                   {t('order_summary.price')} {formatPrice(pan.price + (pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0))}
                 </span>
-              </div>
+              </motion.div>
             ))}
+            </AnimatePresence>
           </div>
         )}
 
@@ -355,19 +338,21 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         {bollitosInCart.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700 dark:text-gray-200">{t('order_summary.bollitos')}</h3>
+            <AnimatePresence initial={false}>
             {bollitosInCart.map(item => {
               const b = bollitos.find(b => b.id === item.id);
               return b && (
-                <div key={b.id} className="flex justify-between items-center p-2 bg-blue-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
+                <motion.div key={b.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex justify-between items-center p-2 bg-blue-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
                   <span>{t(`products.bollitos.${b.id.toString().replace('.', '_')}.name`)} x{item.quantity}</span>
                   <span>{formatPrice(b.price * item.quantity)}</span>
                   <button className="ml-2 text-red-500 hover:text-red-700"
                     onClick={() => onRemoveItem(item.id, 'bollito')}>
                     <Trash2 className="w-5 h-5" />
                   </button>
-                </div>
+                </motion.div>
               );
             })}
+            </AnimatePresence>
           </div>
         )}
 
@@ -375,19 +360,21 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         {pulguitasInCart.length > 0 && (
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-700 dark:text-gray-200">{t('order_summary.pulguitas')}</h3>
+            <AnimatePresence initial={false}>
             {pulguitasInCart.map(item => {
               const p = pulguitas.find(p => p.id === item.id);
               return p && (
-                <div key={p.id} className="flex justify-between items-center p-2 bg-purple-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
+                <motion.div key={p.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex justify-between items-center p-2 bg-purple-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
                   <span>{t(`products.pulguitas.${p.id.toString().replace('.', '_')}.name`)} x{item.quantity}</span>
                   <span>{formatPrice(p.price * item.quantity)}</span>
                   <button className="ml-2 text-red-500 hover:text-red-700"
                     onClick={() => onRemoveItem(item.id, 'pulguita')}>
                     <Trash2 className="w-5 h-5" />
                   </button>
-                </div>
+                </motion.div>
               );
             })}
+            </AnimatePresence>
           </div>
         )}
 
@@ -418,9 +405,21 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
             placeholder={t('order_summary.discount_placeholder')}
             className="border rounded-lg p-2 mr-2 dark:bg-slate-700 dark:border-slate-600 dark:text-white" />
           <button onClick={applyDiscount} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">{t('order_summary.apply')}</button>
-          {appliedDiscount && <p className="text-green-600 mt-2">
-            {t('order_summary.code_applied', { value: appliedDiscount.value })}
-          </p>}
+          {appliedDiscount && (
+            <p className="text-green-600 mt-2">
+              {appliedDiscount.type === "percentage"
+                ? t('order_summary.code_applied', { value: appliedDiscount.value })
+                : t('order_summary.code_applied_fixed', { value: formatPrice(appliedDiscount.value), defaultValue: 'Código aplicado: {{value}} de descuento' })}
+            </p>
+          )}
+          {appliedDiscount && discountAmount === 0 && (
+            <p className="text-amber-600 mt-1 text-sm">
+              {t('order_summary.min_purchase_note', {
+                min: formatPrice(appliedDiscount.minPurchase),
+                defaultValue: 'Compra mínima de {{min}} para este código'
+              })}
+            </p>
+          )}
         </div>
 
         {/* TOTAL */}
@@ -430,7 +429,7 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
         </div>
       </div>
       {/* ENTREGA GRATUITA */}
-      <div className="mt-2 text-center text-green-700 font-semibold">
+      <div className="mt-2 text-center text-green-700 dark:text-green-400 font-semibold">
         🚴‍♂️ {t('order_summary.delivery_free')} <span className="font-bold">Chiclana</span>🚴‍♂️
       </div>
       {/* BOTÓN WHATSAPP */}
@@ -446,70 +445,21 @@ const OrderSummary = ({ cartItems, onSendWhatsApp, onRemoveItem }) => {
 
 
       {/* ----------------------- TOTALES DETALLADOS CON DESCUENTO ----------------------- */}
-      {appliedDiscount && (
+      {/* Usa los totales ya calculados por calculateTotals (sin duplicar la lógica) */}
+      {appliedDiscount && discountAmount > 0 && (
         <div className="mt-4 p-4 bg-gray-100 dark:bg-slate-700 border dark:border-slate-600 rounded-lg text-gray-800 dark:text-white">
-          {(() => {
-            // Recalcular subtotal y descuento
-            let subtotal = 0;
-            let discountBase = 0;
-
-            // Panes
-            pansPersonalizados.forEach(p => {
-              const extrasTotal = p.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
-              const panTotal = p.price + extrasTotal;
-              subtotal += panTotal;
-              discountBase += panTotal;
-            });
-
-            // Bollitos
-            bollitosInCart.forEach(item => {
-              const b = bollitos.find(b => b.id === item.id);
-              if (b) {
-                const total = b.price * item.quantity;
-                subtotal += total;
-                discountBase += total;
-              }
-            });
-
-            // Pulguitas
-            pulguitasInCart.forEach(item => {
-              const p = pulguitas.find(p => p.id === item.id);
-              if (p) {
-                const total = p.price * item.quantity;
-                subtotal += total;
-                discountBase += total;
-              }
-            });
-
-            // Extras opcionales
-            selectedOptionalExtras.forEach(id => {
-              const e = optionalExtras.find(opt => opt.id === id);
-              if (e) subtotal += e.price;
-            });
-
-            const discountAmount = (appliedDiscount?.type === "percentage" && discountBase >= appliedDiscount.minPurchase)
-              ? discountBase * (appliedDiscount.value / 100)
-              : 0;
-
-            const finalTotal = subtotal.toFixed(2);
-
-            return (
-              <>
-                <div className="flex justify-between">
-                  <span>{t('order_summary.subtotal')}</span>
-                  <span>{formatPrice(subtotal)}</span>
-                </div>
-                <div className="flex justify-between text-red-600">
-                  <span>{t('order_summary.discount', { value: appliedDiscount.value })}</span>
-                  <span>- {formatPrice(discountAmount)}</span>
-                </div>
-                <div className="flex justify-between font-bold text-green-700">
-                  <span>{t('order_summary.final_total')}</span>
-                  <span>{formatPrice(finalTotal - discountAmount)}</span>
-                </div>
-              </>
-            );
-          })()}
+          <div className="flex justify-between">
+            <span>{t('order_summary.subtotal')}</span>
+            <span>{formatPrice(subtotal)}</span>
+          </div>
+          <div className="flex justify-between text-red-600 dark:text-red-400">
+            <span>{discountLabel}</span>
+            <span>- {formatPrice(discountAmount)}</span>
+          </div>
+          <div className="flex justify-between font-bold text-green-700 dark:text-green-400">
+            <span>{t('order_summary.final_total')}</span>
+            <span>{formatPrice(total)}</span>
+          </div>
         </div>
       )}
 

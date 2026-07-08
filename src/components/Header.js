@@ -32,8 +32,7 @@ const Header = () => {
         >
           <motion.div
             className="p-1 bg-white/20 rounded-full overflow-hidden shadow-md"
-            animate={{ scale: [1, 1.05, 1, 1.05, 1] }}
-            transition={{ duration: 0.6, repeat: Infinity, repeatDelay: 1.4, ease: "easeInOut" }}
+            whileHover={{ scale: 1.05 }}
           >
             <img
               src={logo}
@@ -49,24 +48,30 @@ const Header = () => {
             <p className="text-amber-50 font-medium text-xs md:text-sm font-sans block drop-shadow-sm">
               {t('header.subtitle')}
             </p>
-            {/* Banderitas para cambio de idioma */}
+            {/* Banderitas para cambio de idioma (la activa queda resaltada) */}
             <div className="flex gap-2 mt-1">
-              <button onClick={() => changeLanguage('es')} className="hover:scale-110 transition-transform" title="Español">
-                <img src="/images/banderaespana.png" alt="Español" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
-              </button>
-              <button onClick={() => changeLanguage('fr')} className="hover:scale-110 transition-transform" title="Français">
-                <img src="/images/banderafrancia.png" alt="Français" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
-              </button>
-              <button onClick={() => changeLanguage('de')} className="hover:scale-110 transition-transform" title="Deutsch">
-                <img src="/images/banderaalemania.png" alt="Deutsch" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
-              </button>
-              <button onClick={() => changeLanguage('en')} className="hover:scale-110 transition-transform" title="English">
-                <img src="/images/banderareinounido.png" alt="English" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
-              </button>
-
-              <button onClick={() => changeLanguage('it')} className="hover:scale-110 transition-transform" title="Italiano">
-                <img src="/images/banderaitalia.png" alt="Italiano" className="w-6 h-4 object-cover rounded-sm shadow-sm" />
-              </button>
+              {[
+                { code: 'es', flag: '/images/banderaespana.png', label: 'Español' },
+                { code: 'fr', flag: '/images/banderafrancia.png', label: 'Français' },
+                { code: 'de', flag: '/images/banderaalemania.png', label: 'Deutsch' },
+                { code: 'en', flag: '/images/banderareinounido.png', label: 'English' },
+                { code: 'it', flag: '/images/banderaitalia.png', label: 'Italiano' },
+              ].map(lang => {
+                const active = (i18n.language || 'es').startsWith(lang.code);
+                return (
+                  <button
+                    key={lang.code}
+                    onClick={() => changeLanguage(lang.code)}
+                    className={`transition-transform rounded-sm ${active
+                      ? 'scale-110 ring-2 ring-white ring-offset-1 ring-offset-amber-500 dark:ring-offset-slate-800'
+                      : 'opacity-60 hover:opacity-100 hover:scale-110'}`}
+                    title={lang.label}
+                    aria-pressed={active}
+                  >
+                    <img src={lang.flag} alt={lang.label} className="w-6 h-4 object-cover rounded-sm shadow-sm" />
+                  </button>
+                );
+              })}
             </div>
           </div>
         </motion.div>
@@ -83,12 +88,10 @@ const Header = () => {
             transition={{ delay: 0.8, duration: 0.6 }}
           >
             <div className="bg-white p-1.5 rounded-full shadow-md flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
-              <motion.img
+              <img
                 src="/logoandroid.png"
                 alt="Descargar App Android"
                 className="w-[24px] h-[24px] md:w-[30px] md:h-[30px] object-contain"
-                animate={{ y: [0, -4, 0] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
               />
             </div>
             <span className="font-medium text-[10px] md:text-xs tracking-wide text-amber-50 text-center leading-tight drop-shadow-sm">

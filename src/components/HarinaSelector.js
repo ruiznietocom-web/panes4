@@ -14,17 +14,22 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
   // Estado para almacenar las harinas seleccionadas por el usuario
   const [selectedHarinas, setSelectedHarinas] = useState([]);
 
+  // Separar harinas reales de las opciones de corte (gratuitas)
+  const flours = harinas.filter(h => h.price > 0);
+  const cortes = harinas.filter(h => h.price === 0);
+  const selectedFlourCount = selectedHarinas.filter(h => h.price > 0).length;
+
   // Notificar al componente padre si el botón flotante debe ser visible
   useEffect(() => {
     if (setIsAddButtonVisible) {
-      setIsAddButtonVisible(selectedHarinas.length > 0);
+      setIsAddButtonVisible(selectedFlourCount > 0);
     }
     return () => {
       if (setIsAddButtonVisible) {
         setIsAddButtonVisible(false);
       }
     };
-  }, [selectedHarinas, setIsAddButtonVisible]);
+  }, [selectedFlourCount, setIsAddButtonVisible]);
 
   const maxHarinas = 6; // Máximo de harinas que se pueden seleccionar
   const fixedHarinaPrice = 5.50; // Precio fijo del pan base (sin extras)
@@ -32,21 +37,25 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
   // Función para seleccionar o deseleccionar una harina
   const toggleHarina = (harina) => {
     setSelectedHarinas(prev => {
-      // Si la harina ya estaba seleccionada, la eliminamos
+      // Si ya estaba seleccionada, la eliminamos
       if (prev.find(h => h.id === harina.id)) {
         return prev.filter(h => h.id !== harina.id);
-        // Si no está seleccionada y no se ha alcanzado el máximo, la añadimos
-      } else if (prev.length < maxHarinas) {
+      }
+      // Las opciones de corte son exclusivas: elegir una quita la anterior
+      if (harina.price === 0) {
+        return [...prev.filter(h => h.price !== 0), harina];
+      }
+      // Harinas: respetar el máximo
+      if (prev.filter(h => h.price > 0).length < maxHarinas) {
         return [...prev, harina];
       }
-      // Si se alcanzó el máximo, no hacer nada
       return prev;
     });
   };
 
   // Función que se ejecuta al añadir un pan al carrito
   const handleAddPan = () => {
-    if (selectedHarinas.length === 0) return; // No añadir si no hay harinas seleccionadas
+    if (selectedFlourCount === 0) return; // Hace falta al menos una harina real (el corte solo no forma un pan)
 
     // Crear un objeto pan personalizado y enviarlo al carrito
     onAddPan({
@@ -101,10 +110,12 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
 
       {/* Grid de las harinas disponibles */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {harinas.map((harina, index) => (
-          <motion.div
+        {flours.map((harina, index) => (
+          <motion.button
             key={harina.id}
-            className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${selectedHarinas.find(h => h.id === harina.id)
+            type="button" // Botón real: accesible con teclado y lectores de pantalla
+            aria-pressed={!!selectedHarinas.find(h => h.id === harina.id)} // Estado de selección accesible
+            className={`relative w-full p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${selectedHarinas.find(h => h.id === harina.id)
               ? 'border-amber-500 bg-amber-50 dark:bg-slate-700 dark:border-amber-400 shadow-md' // Estilo cuando está seleccionada
               : 'border-gray-200 dark:border-slate-600 hover:border-amber-300 dark:hover:border-amber-500 dark:bg-slate-700/50' // Estilo normal / hover
               }`}
@@ -134,16 +145,47 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
               <p className="text-sm text-gray-600 dark:text-slate-300 mb-2">{t(`products.harinas.${harina.id}.description`)}</p> {/* Descripción */}
 
             </div>
-          </motion.div>
+          </motion.button>
         ))}
       </div>
 
+      {/* Sección de corte del pan (opcional y gratuito) */}
+      <div className="mt-6 pt-5 border-t border-dashed border-amber-200 dark:border-slate-600">
+        <h3 className="font-bold text-gray-800 dark:text-white text-center mb-1">
+          🔪 {t('harina_selector.cut_title', { defaultValue: '¿Cómo quieres el corte?' })}
+        </h3>
+        <p className="text-sm text-gray-500 dark:text-slate-400 text-center mb-3">
+          {t('harina_selector.cut_subtitle', { defaultValue: 'Opcional y gratuito' })}
+        </p>
+        <div className="flex flex-wrap justify-center gap-3">
+          {cortes.map(corte => {
+            const selected = !!selectedHarinas.find(h => h.id === corte.id);
+            return (
+              <button
+                key={corte.id}
+                type="button"
+                aria-pressed={selected}
+                onClick={() => toggleHarina(corte)}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-full border-2 text-sm font-medium transition-all duration-300 ${selected
+                  ? 'border-amber-500 bg-amber-50 text-amber-900 shadow-md dark:bg-slate-700 dark:border-amber-400 dark:text-amber-100'
+                  : 'border-gray-200 text-gray-600 hover:border-amber-300 dark:border-slate-600 dark:text-slate-300 dark:hover:border-amber-500 dark:bg-slate-700/50'
+                  }`}
+              >
+                <span>{corte.image}</span>
+                <span>{t(`products.harinas.${corte.id}.name`).replace(' (gratuito)', '').replace(' (free)', '')}</span>
+                {selected && <Check className="w-4 h-4 text-amber-500" />}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Botón para añadir pan al carrito, solo visible si hay harinas seleccionadas */}
-      {selectedHarinas.length > 0 && (
+      {selectedFlourCount > 0 && (
         <motion.div
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="fixed bottom-6 left-0 right-0 flex justify-center z-50 pointer-events-none"
+          className="fixed bottom-24 lg:bottom-6 left-0 right-0 flex justify-center z-50 pointer-events-none"
         >
           <button
             onClick={handleAddPan}
@@ -152,9 +194,10 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
             {existingPanesCount > 0 ? `${existingPanesCount + 1}º ` : ''}
             {t('harina_selector.add_button_dynamic', {
               flours: new Intl.ListFormat(i18n.language, { style: 'long', type: 'conjunction' }).format(
-                selectedHarinas.map(h => t(`products.harinas.${h.id}.short_name`))
+                selectedHarinas.filter(h => h.price > 0).map(h => t(`products.harinas.${h.id}.short_name`))
               )
             })}
+            {' · '}{formatPrice(fixedHarinaPrice)}
           </button>
         </motion.div>
       )}

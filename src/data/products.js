@@ -29,7 +29,6 @@ export const extras = [
 
 export const bollitos = [
   { id: 1, name: "Bollito Integral Clásico", description: "Suave y esponjoso, ideal para el desayuno", image: "🍞", price: 1, photo: "/images/bolloclasicounidad.jpg" },
-  { id: 1.05, name: "Panecillo para Perrito Caliente Integral ", description: "Un panecillo alargado para tus perritos", image: "🌭", price: 1, photo: "/images/panperrito.jpg" },
   { id: 1.06, name: "PACK Surtido 6 Bollitos Integrales Clásicos", description: "Tu pack clásico", image: "🧺🍞", price: 6, photo: "/images/bollitoclasico6.jpg" },
   { id: 1.07, name: "PACK Surtido 6 Molletes Integrales de Centeno", description: "Molletes de Centeno", image: "🧺🍞", price: 6, photo: "/images/molletescenteno.jpg" },
   { id: 1.1, name: "PACK Surtido 7 Bollitos Integrales (uno de cada)", description: "1x Semillas, 1x Ajo, 1x Cacao, 1x Cúrcuma, 1x Nueces, 1x Ciruelas Pasas, 1x Tomate y Orégano.Pruébalos todos!", image: "🧺🍞", price: 8.50, photo: "/images/7bollos.jpg" },
@@ -76,8 +75,10 @@ export const otrosPanes = [
   { id: 3, name: "Pan de Ajo y Perejil", description: "Sabor intenso, perfecto para comidas", image: "🧄", price: 4.75 }
 ];
 
+// ÚNICA fuente de verdad para los extras opcionales (propina, café, cerveza).
+// Los nombres traducidos se obtienen con t(`optional_extras.${id}`) en los componentes.
 export const optionalExtras = [
-  { id: "propina", name: "Propina", price: 1, icon: "💶" },
-  { id: "cafe", name: "Café", price: 1.5, icon: "☕" },
-  { id: "cerveza", name: "Cerveza", price: 2, icon: "🍺" }
+  { id: "propina", name: "Propina", price: 0.50, icon: "💰" },
+  { id: "cafe", name: "Café", price: 1.00, icon: "☕" },
+  { id: "cerveza", name: "Cerveza", price: 1.50, icon: "🍺" }
 ];

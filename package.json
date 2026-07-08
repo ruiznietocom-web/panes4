@@ -8,7 +8,6 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@snowpack/plugin-dotenv": "^2.2.0",
     "autoprefixer": "^10.0.0",
     "canvas-confetti": "^1.9.4",
     "framer-motion": "^12.23.12",
@@ -17,13 +16,11 @@
     "postcss": "^8",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.6.0",
     "react-i18next": "^13.5.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.15.0",
     "react-scripts": "^5.0.0",
-    "tailwind-merge": "^2.4.0",
     "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -42,8 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "typescript": "^4.9.5"
   }
 }

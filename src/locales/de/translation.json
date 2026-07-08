@@ -1,319 +1,336 @@
 {
-    "header": {
-        "title": "PanZen",
-        "subtitle": "Ihr personalisiertes bewusstes Brot",
-        "app_download": "App"
+  "header": {
+    "title": "PanZen",
+    "subtitle": "Ihr personalisiertes bewusstes Brot",
+    "app_download": "App"
+  },
+  "nav": {
+    "pan_personalizado": "Personalisiertes Brot",
+    "bollitos": "Brötchen",
+    "pulguitas": "Mini-Brötchen",
+    "info": "+ INFO"
+  },
+  "harina_selector": {
+    "title": "Wähle die Mehlsorten für dein Brot",
+    "instructions": "Sie können bis zu 5 Mehlsorten auswählen und kombinieren, um Ihr Brot zusammenzustellen, wenn Sie möchten, auch die Schnittart. Stellen Sie so viele Brote zusammen und fügen Sie sie hinzu, wie Sie möchten. Sobald sie hinzugefügt sind, wählen Sie unten die Extras für jedes Brot aus. Der Preis für das Brot ist ohne Extras fest: {{price}}.",
+    "add_button": "Fügen Sie Ihr Brot hinzu oder wählen Sie weitere Mehle ",
+    "add_button_dynamic": "Brot aus {{flours}}, wählen Sie ein anderes Mehl, die Art des 🔪 oder KLICKE HIER und fügen Sie es Ihrer Bestellung hinzu",
+    "pan_added_toast": "Brot hinzugefügt, fügen Sie ein weiteres Brot hinzu oder wählen Sie Ihre Extras",
+    "cut_title": "Wie möchtest du dein Brot geschnitten?",
+    "cut_subtitle": "Optional und kostenlos"
+  },
+  "order_summary": {
+    "title": "Bestellübersicht",
+    "empty": "Ihr Warenkorb ist leer. Fügen Sie etwas Leckeres hinzu!",
+    "panes_personalizados": "Personalisierte Brote:",
+    "bollitos": "Brötchen:",
+    "pulguitas": "Mini-Brötchen:",
+    "extras_opcionales": "MANUEL, DEIN BROT IST LECKER!...",
+    "discount_code": "Haben Sie einen Rabattcode?",
+    "discount_placeholder": "Geben Sie Ihren Code ein",
+    "apply": "Anwenden",
+    "code_applied": "Code angewendet: {{value}}% Rabatt",
+    "total": "Gesamt:",
+    "delivery_free": "Kostenlose Lieferung nach Hause in",
+    "whatsapp_button": "Bestellung per WhatsApp senden",
+    "subtotal": "Zwischensumme:",
+    "discount": "Rabatt {{value}}%:",
+    "final_total": "Endsumme:",
+    "pan": "Brot",
+    "extras": "Extras:",
+    "price": "Preis:",
+    "thank_you_title": "Vielen Dank für Ihre Großzügigkeit!",
+    "thank_you_body": "🙏 Segen! 🙏",
+    "invalid_code": "Ungültiger Code",
+    "code_applied_fixed": "Code angewendet: {{value}} Rabatt",
+    "discount_fixed": "Rabatt:",
+    "min_purchase_note": "Mindestbestellwert von {{min}} für diesen Code",
+    "duplicate": "Dieses Brot duplizieren"
+  },
+  "optional_extras": {
+    "propina": "Hier ist ein Trinkgeld!",
+    "cafe": "Nimm dir einen Kaffee!",
+    "cerveza": "Trink ein Bier auf mich!"
+  },
+  "extras_selector": {
+    "title": "Personalisieren Sie Ihr Brot {{number}} ({{flours}}) mit unseren Extras",
+    "subtitle": "Verleihen Sie Ihrem Brot eine besondere Note mit den Extras, die Ihnen am besten gefallen"
+  },
+  "bollitos_page": {
+    "title": "Wählen Sie Ihre Bio-Vollkorn-Brötchen",
+    "message": "Wenn Sie ein Brötchen aus einem bestimmten Mehl wünschen, kontaktieren Sie mich bitte per WhatsApp, wenn Sie die Bestellung senden.",
+    "view_photo": "Foto ansehen"
+  },
+  "pulguitas_page": {
+    "title": "Wählen Sie Ihre Bio-Vollkorn-Mini-Brötchen",
+    "message": "Wenn Sie ein Mini-Brötchen aus einem bestimmten Mehl wünschen, kontaktieren Sie mich bitte per WhatsApp, wenn Sie die Bestellung senden.",
+    "view_photo": "Foto ansehen"
+  },
+  "info_page": {
+    "title": "+ INFO",
+    "download_pdf": "Preis-PDF herunterladen",
+    "quote": "\"Brot neu entdecken, ein Lebensmittel mit Seele.\"",
+    "p1": "Was wäre, wenn ich Ihnen sagen würde, dass Brot viel mehr sein kann als eine einfache Beilage? In einer Welt voller Eile haben wir die tiefe Verbindung vergessen, die zwischen dem grundlegendsten Lebensmittel und unserer Gesundheit besteht. Ich lade Sie ein, echtes Brot neu zu entdecken, eines, das die Tradition ehrt, die Erde respektiert und Ihren Körper auf bewusste Weise nährt.",
+    "p2": "Brote, Brötchen und Mini-Brötchen sind nicht nur Produkte; sie sind das Ergebnis einer Arbeit, die darauf ausgelegt ist, dass Ihr Organismus Nährstoffe so ausgewogen wie möglich aufnimmt. Jedes Stück ist zu 100% Vollkorn und wird aus Bio-Mehlen hergestellt, frei von jeglichen Zusatzstoffen. Hier ist kein Platz für starke oder raffinierte Mehle, noch für Konservierungsstoffe, Industriefette oder Brotverbesserer. Es geht einfach darum, zu den Ursprüngen zurückzukehren.",
+    "p3": "Das Rezept für dieses Brot ist ein Pakt der Reinheit: Ich verwende nur natürliches Meersalz aus unseren Salinen von Chiclana, Mineralwasser, frische Hefe und 100% Bio-Vollkornmehl. Dazu fügen wir nach Wahl andere Zutaten wie Rosinen, Walnüsse oder reinen Bienenhonig hinzu, die ebenfalls auf natürliche Weise Geschmack und Wohlbefinden bieten.",
+    "fermentation_title": "Die Kraft der kurzen Gärung",
+    "p4": "Dies ist das wahre Herz des Herstellungsprozesses und der Schlüssel zu einem Brot, das sich wirklich gut anfühlt. Neben der Verwendung hochwertiger Zutaten liegt das Geheimnis in der kurzen und kontrollierten Gärung. Dieser Prozess, der in der industriellen Produktion geopfert wird, ist grundlegend für Ihre Verdauung.",
+    "p5": "Unser Körper hat sein eigenes Verarbeitungssystem: Amylasen, Enzyme, die im Speichel und im Verdauungstrakt vorhanden sind, sind für den Abbau von Stärke verantwortlich. Wenn Brot eine sehr lange Gärung hat, wird es übermäßig sauer, was die Wirkung dieser natürlichen Enzyme hemmen kann.",
+    "p6": "Indem wir uns für eine kürzere Gärung entscheiden, erhalten wir Brot mit geringer Säure, das die verdauungsfördernde und ausgewogene Funktion Ihres Organismus respektiert. Es ist, als würden Sie Ihrem Verdauungssystem eine Hand reichen, kein Hindernis. Dies führt zu einer besseren Assimilation von Stärke und einem Gefühl von Leichtigkeit und Wohlbefinden nach dem Essen. Es ist nicht nur ein bekömmlicheres Brot; es ist Brot, das in Harmonie mit Ihrem Körper arbeitet.",
+    "know_flours": "KENNEN SIE DIE MEHLE",
+    "flours": {
+      "1": {
+        "title": "1. Dinkel",
+        "desc": "Es ist ein Urweizen, dessen Eigenschaften in Europa seit der Antike bekannt und geschätzt sind. Sein Nährwert ist vergleichbar mit dem von Hafer. Er ist reich an Proteinen, Kohlenhydraten, Mineralsalzen und den Vitaminen A, B und E sowie Magnesium, Phosphor, Eisen und Kalium. Sein täglicher Verzehr senkt den Cholesterinspiegel und reguliert den Stoffwechsel. Er bietet eine größere Menge an essentiellen Aminosäuren als herkömmlicher Weizen und übertrifft ihn auch an Vitamin- und Mineralstoffreichtum. Manche Menschen, die allergisch auf Weizen reagieren, vertragen Dinkel gut."
+      },
+      "2": {
+        "title": "2. Khorasan",
+        "desc": "Es ist ein Urweizen aus Ägypten, reich an Mineralsalzen und Vitaminen der B-Gruppe. Sehr geschätzt, weil er glutenarm ist und weniger Allergien oder Unverträglichkeiten hervorruft als moderne Weizenarten, da der menschliche Organismus besser an die Art des Proteins alter Weizenarten angepasst ist."
+      },
+      "3": {
+        "title": "3. Vollkornweizen",
+        "desc": "Verarbeiteter (raffinierter) Weizen enthält nicht die besten Teile des Korns. Während der Getreideverarbeitung werden 40% seines ursprünglichen Inhalts (Keim und Kleie) entfernt, wobei hauptsächlich die Kohlenhydrate (Zucker) des Endosperms übrig bleiben, was ihn weniger nahrhaft macht. Durch die Erhaltung von Kleie und Weizenkeim zeichnet sich Vollkornmehl durch eine 3-mal höhere Ballaststoffmenge als raffiniertes Weißmehl aus und hat zudem einen hohen Gehalt an Vitaminen und Mineralstoffen, wie B-Komplex-Vitamine, Vitamin E, Eisen, Kalium, Magnesium, Zink, unter anderem."
+      },
+      "4": {
+        "title": "4. Roggen",
+        "desc": "Neben den Mineralien, Vitaminen, Magnesium, Phosphor und Ballaststoffen, die er liefert, ist er ein Getreide, das wegen seiner blutreinigenden Eigenschaften und zur Erhaltung der Elastizität der Blutgefäße sehr geschätzt wird."
+      },
+      "5": {
+        "title": "5. Tritordeum",
+        "desc": "Es ist ein Hybrid-Getreide, das aus der natürlichen Kombination von Hartweizen und wilder Gerste entstanden ist. Es wurde Ende der 70er Jahre von spanischen Forschern entdeckt. Es ist KEIN gentechnisch veränderter Organismus (GVO). Es ist das Ergebnis einer natürlichen Kreuzung. Und es ist als neue Art in der Europäischen Union registriert. Es hat einen leicht süßen Geschmack, einen hohen Gehalt an Ölsäure und Lutein und hat zudem 30% mehr Ballaststoffe als herkömmlicher Weizen."
+      }
     },
-    "nav": {
-        "pan_personalizado": "Personalisiertes Brot",
-        "bollitos": "Brötchen",
-        "pulguitas": "Mini-Brötchen",
-        "info": "+ INFO"
+    "yeast": "Natürliche oder frische Hefe: Im Gegensatz zu chemischem Backpulver ist sie biologischen Ursprungs, ein lebender und aktiver mikroskopischer Pilz. Sie wird in Supermärkten als frische, natürliche oder Bäckerhefe verkauft.",
+    "salt": "Natürliches Meersalz wurde nicht chemisch behandelt: Es ist die Folge der einfachen Verdunstung von Meerwasser. Natürlich besteht es zu 90% aus Chlor und Natrium, enthält aber eine größere Anzahl von Spurenelementen, Mineralien und Jod, die für den Körper von großer ernährungsphysiologischer Bedeutung sind. Die Einnahme von unraffiniertem Meersalz in moderaten Mengen trägt zu einer guten Toxinableitung bei, erhöht die Vitalität, begünstigt die Nierenfunktion, verbessert die Sexualität und baut Knochen und Haare wieder auf, außerdem verbessert es die Verdauung und begünstigt die Bildung von Magensäften.",
+    "commitment_title": "Das Engagement des handwerklichen Bäckers",
+    "p7": "Hinter jedem Stück stecken Stunden der Hingabe und Leidenschaft für ein uraltes Handwerk. Es geht nicht nur darum, Zutaten zu mischen, sondern um einen Prozess der Geduld, des Fühlens des Teigs und des Verständnisses seiner Zeiten. Die handwerkliche Herstellung garantiert, dass jedes Brot, das auf Ihren Tisch kommt, einzigartig ist, mit einem authentischen Geschmack und einer unvergleichlichen Textur.",
+    "p8": "Dieses Brot ist für Sie, wenn Sie eine bewusste und nahrhafte Option suchen, die einen gesünderen und nachhaltigeren Lebensstil unterstützt, fernab von diesen schweren und gärenden Verdauungen. Entdecken Sie das Vergnügen, gut zu essen, ohne auf Geschmack oder Qualität zu verzichten, und spüren Sie den Unterschied in einem so nahrhaften Lebensmittel.",
+    "thanks": "Vielen Dank für Ihr Vertrauen in dieses Projekt. Ich genieße es, für Sie zu backen, und ich hoffe, Sie genießen auch jede Scheibe mit Gesundheit und Freude. 🍞 🙏☀️",
+    "contact": "Wenn Sie weitere Informationen benötigen, kontaktieren Sie mich über WhatsApp",
+    "tips_title": "🍞 Tipps zur optimalen Aufbewahrung von Bio-Vollkornbrot 🍞",
+    "tip1": "Wie Sie wissen, ist dieses 100% ökologische und Vollkornbrot frei von Konservierungsstoffen und künstlichen Zusätzen. Die beste Art, Brot aufzubewahren, ist im Kühlschrank. Bewahren Sie es in derselben Papiertüte und diese wiederum in einer gut verschlossenen Plastiktüte auf. Legen Sie es vorzugsweise in das oberste Fach Ihres Kühlschranks, dort kann es perfekt bis zu 3 oder 4 Tage halten. Dann ist es besser, den Rest, den Sie nicht verbraucht haben, einzufrieren.",
+    "tip2": "Wenn Sie es vorziehen, können Sie es auch in Scheiben oder Portionen schneiden, die Sie verbrauchen werden, und es direkt am Tag der Lieferung einfrieren, immer in einem Beutel oder einem gut verschlossenen Behälter, damit sich kein Frost bildet.",
+    "tip3": "Brot, Brötchen oder Mini-Brötchen werden immer frisch vom Tag geliefert und manchmal sogar noch warm; wenn ja, legen Sie es auf den Ofenrost und warten Sie immer eine Stunde nach der Lieferung, um es zu verzehren. Bewahren Sie es nicht im Kühlschrank auf oder frieren Sie es ein, bis Sie bemerken, dass es vollständig kalt ist. Danke!! 🙏"
+  },
+  "christmas_characters": {
+    "elf": "Ich helfe dem Weihnachtsmann! 🎁",
+    "nutcracker": "Zu Befehl! 💂‍♂️",
+    "santa": "Ho Ho Ho! Frohe Weihnachten 🎅",
+    "reindeer": "Frohe Weihnachten!! 🦌",
+    "snowman": "Brrr, ist das kalt! ⛄"
+  },
+  "products": {
+    "harinas": {
+      "1": {
+        "name": "Bio-Vollkornweizen",
+        "short_name": "Weizen",
+        "description": "Klassisch, vielseitig, traditionelle Basis für das tägliche Brot."
+      },
+      "2": {
+        "name": "Bio-Vollkornroggen",
+        "short_name": "Roggen",
+        "description": "Dunkel, aromatisch, glutenarm, rustikal und voller Mineralien"
+      },
+      "3": {
+        "name": "Bio-Vollkorndinkel",
+        "short_name": "Dinkel",
+        "description": "Urgetreide, weich, bekömmlich und ballaststoffreich."
+      },
+      "4": {
+        "name": "Bio-Vollkorn-Khorasan",
+        "short_name": "Khorasan",
+        "description": "Altes Getreide, intensiver Geschmack und hoher Proteingehalt."
+      },
+      "5": {
+        "name": "Bio-Vollkorn-Tritordeum",
+        "short_name": "Tritordeum",
+        "description": "Innovativ, Hybrid aus Weizen und Gerste und leicht verdaulich"
+      },
+      "6": {
+        "name": "FEIN GESCHNITTENES BROT (kostenlos)",
+        "short_name": "Feiner Schnitt",
+        "description": "Möchten Sie Ihr Brot fein geschnitten?"
+      },
+      "7": {
+        "name": "NORMAL GESCHNITTENES BROT (kostenlos)",
+        "short_name": "Normaler Schnitt",
+        "description": "Möchten Sie Ihr Brot normal geschnitten?"
+      },
+      "8": {
+        "name": "DICK GESCHNITTENES BROT (kostenlos)",
+        "short_name": "Dicker Schnitt",
+        "description": "Möchten Sie Ihr Brot dick geschnitten?"
+      }
     },
-    "harina_selector": {
-        "title": "Wähle die Mehlsorten für dein Brot",
-        "instructions": "Sie können bis zu 5 Mehlsorten auswählen und kombinieren, um Ihr Brot zusammenzustellen, wenn Sie möchten, auch die Schnittart. Stellen Sie so viele Brote zusammen und fügen Sie sie hinzu, wie Sie möchten. Sobald sie hinzugefügt sind, wählen Sie unten die Extras für jedes Brot aus. Der Preis für das Brot ist ohne Extras fest: {{price}}.",
-        "add_button": "Fügen Sie Ihr Brot hinzu oder wählen Sie weitere Mehle ",
-        "add_button_dynamic": "Brot aus {{flours}}, wählen Sie ein anderes Mehl, die Art des 🔪 oder KLICKE HIER und fügen Sie es Ihrer Bestellung hinzu",
-        "pan_added_toast": "Brot hinzugefügt, fügen Sie ein weiteres Brot hinzu oder wählen Sie Ihre Extras"
+    "extras": {
+      "1": "Bio-Samenmischung 100g",
+      "2": "Walnüsse",
+      "3": "Pflaumen",
+      "4": "Datteln",
+      "5": "Schwarze Oliven",
+      "6": "Tomate und Oregano",
+      "7": "Roquefort-Käse",
+      "8": "Kurkuma",
+      "9": "Pfeffer",
+      "10": "Curry",
+      "11": "Ingwer",
+      "12": "Reines Kakaopulver",
+      "13": "Reiner Honig",
+      "14": "Knoblauch",
+      "15": "Ohne Salz",
+      "16": "1/2 Salz"
     },
-    "order_summary": {
-        "title": "Bestellübersicht",
-        "empty": "Ihr Warenkorb ist leer. Fügen Sie etwas Leckeres hinzu!",
-        "panes_personalizados": "Personalisierte Brote:",
-        "bollitos": "Brötchen:",
-        "pulguitas": "Mini-Brötchen:",
-        "extras_opcionales": "MANUEL, DEIN BROT IST LECKER!...",
-        "discount_code": "Haben Sie einen Rabattcode?",
-        "discount_placeholder": "Geben Sie Ihren Code ein",
-        "apply": "Anwenden",
-        "code_applied": "Code angewendet: {{value}}% Rabatt",
-        "total": "Gesamt:",
-        "delivery_free": "Kostenlose Lieferung nach Hause in",
-        "whatsapp_button": "Bestellung per WhatsApp senden",
-        "subtotal": "Zwischensumme:",
-        "discount": "Rabatt {{value}}%:",
-        "final_total": "Endsumme:",
-        "pan": "Brot",
-        "extras": "Extras:",
-        "price": "Preis:",
-        "thank_you_title": "Vielen Dank für Ihre Großzügigkeit!",
-        "thank_you_body": "🙏 Segen! 🙏"
+    "bollitos": {
+      "1": {
+        "name": "Klassisches Vollkornbrötchen",
+        "description": "Weich und fluffig, ideal zum Frühstück"
+      },
+      "2": {
+        "name": "Kakaobrötchen",
+        "description": "Mit reinem Kakaopulver"
+      },
+      "3": {
+        "name": "Walnussbrötchen",
+        "description": "Mit Walnüssen, nahrhaft und lecker"
+      },
+      "4": {
+        "name": "Pflaumenbrötchen",
+        "description": "Süß und energetisch, mit getrockneten Pflaumen"
+      },
+      "5": {
+        "name": "Kurkumabrötchen",
+        "description": "Aromatisch und exotisch, mit einem goldenen Touch"
+      },
+      "6": {
+        "name": "Samenbrötchen",
+        "description": "Knusprig, voller Ballaststoffe und Mineralien"
+      },
+      "7": {
+        "name": "Knoblauchbrötchen",
+        "description": "Intensiver Geschmack, perfekt als Beilage"
+      },
+      "8": {
+        "name": "Tomaten- und Oreganobrötchen",
+        "description": "Mediterran, lecker und mit hausgemachtem Aroma"
+      },
+      "1_06": {
+        "name": "PACK Sortiment 6 Klassische Vollkornbrötchen",
+        "description": "Ihr klassisches Paket"
+      },
+      "1_07": {
+        "name": "PACK Sortiment 6 Vollkorn-Roggen-Molletes",
+        "description": "Roggen-Molletes"
+      },
+      "1_1": {
+        "name": "PACK Sortiment 7 Vollkornbrötchen (eins von jedem)",
+        "description": "1x Samen, 1x Knoblauch, 1x Kakao, 1x Kurkuma, 1x Walnüsse, 1x Pflaumen, 1x Tomate und Oregano. Probieren Sie alle!"
+      },
+      "1_2": {
+        "name": "PACK Sortiment 6 Vollkorn-Samenbrötchen",
+        "description": "Knusprig, voller Ballaststoffe und Mineralien"
+      },
+      "1_3": {
+        "name": "PACK Sortiment 6 Vollkorn-Walnussbrötchen",
+        "description": "Nahrhaft und lecker"
+      },
+      "1_4": {
+        "name": "PACK Sortiment 6 Vollkorn-Kakaopulver-Brötchen",
+        "description": "Mit reinem Kakao"
+      },
+      "1_5": {
+        "name": "PACK Sortiment 6 Vollkorn-Pflaumenbrötchen",
+        "description": "Süß und energetisch, mit getrockneten Pflaumen"
+      },
+      "1_6": {
+        "name": "PACK Sortiment 6 Vollkorn-Kurkuma-Brötchen",
+        "description": "Aromatisch und exotisch, mit einem goldenen Touch"
+      },
+      "1_7": {
+        "name": "PACK Sortiment 6 Vollkorn-Tomaten- und Oreganobrötchen",
+        "description": "Mediterran, lecker und mit hausgemachtem Aroma"
+      },
+      "1_8": {
+        "name": "PACK Sortiment 6 Vollkorn-Knoblauchbrötchen",
+        "description": "Intensiver Geschmack, perfekt als Beilage"
+      }
     },
-    "optional_extras": {
-        "propina": "Hier ist ein Trinkgeld!",
-        "cafe": "Nimm dir einen Kaffee!",
-        "cerveza": "Trink ein Bier auf mich!"
-    },
-    "extras_selector": {
-        "title": "Personalisieren Sie Ihr Brot {{number}} ({{flours}}) mit unseren Extras",
-        "subtitle": "Verleihen Sie Ihrem Brot eine besondere Note mit den Extras, die Ihnen am besten gefallen"
-    },
-    "bollitos_page": {
-        "title": "Wählen Sie Ihre Bio-Vollkorn-Brötchen",
-        "message": "Wenn Sie ein Brötchen aus einem bestimmten Mehl wünschen, kontaktieren Sie mich bitte per WhatsApp, wenn Sie die Bestellung senden.",
-        "view_photo": "Foto ansehen"
-    },
-    "pulguitas_page": {
-        "title": "Wählen Sie Ihre Bio-Vollkorn-Mini-Brötchen",
-        "message": "Wenn Sie ein Mini-Brötchen aus einem bestimmten Mehl wünschen, kontaktieren Sie mich bitte per WhatsApp, wenn Sie die Bestellung senden.",
-        "view_photo": "Foto ansehen"
-    },
-    "info_page": {
-        "title": "+ INFO",
-        "download_pdf": "Preis-PDF herunterladen",
-        "quote": "\"Brot neu entdecken, ein Lebensmittel mit Seele.\"",
-        "p1": "Was wäre, wenn ich Ihnen sagen würde, dass Brot viel mehr sein kann als eine einfache Beilage? In einer Welt voller Eile haben wir die tiefe Verbindung vergessen, die zwischen dem grundlegendsten Lebensmittel und unserer Gesundheit besteht. Ich lade Sie ein, echtes Brot neu zu entdecken, eines, das die Tradition ehrt, die Erde respektiert und Ihren Körper auf bewusste Weise nährt.",
-        "p2": "Brote, Brötchen und Mini-Brötchen sind nicht nur Produkte; sie sind das Ergebnis einer Arbeit, die darauf ausgelegt ist, dass Ihr Organismus Nährstoffe so ausgewogen wie möglich aufnimmt. Jedes Stück ist zu 100% Vollkorn und wird aus Bio-Mehlen hergestellt, frei von jeglichen Zusatzstoffen. Hier ist kein Platz für starke oder raffinierte Mehle, noch für Konservierungsstoffe, Industriefette oder Brotverbesserer. Es geht einfach darum, zu den Ursprüngen zurückzukehren.",
-        "p3": "Das Rezept für dieses Brot ist ein Pakt der Reinheit: Ich verwende nur natürliches Meersalz aus unseren Salinen von Chiclana, Mineralwasser, frische Hefe und 100% Bio-Vollkornmehl. Dazu fügen wir nach Wahl andere Zutaten wie Rosinen, Walnüsse oder reinen Bienenhonig hinzu, die ebenfalls auf natürliche Weise Geschmack und Wohlbefinden bieten.",
-        "fermentation_title": "Die Kraft der kurzen Gärung",
-        "p4": "Dies ist das wahre Herz des Herstellungsprozesses und der Schlüssel zu einem Brot, das sich wirklich gut anfühlt. Neben der Verwendung hochwertiger Zutaten liegt das Geheimnis in der kurzen und kontrollierten Gärung. Dieser Prozess, der in der industriellen Produktion geopfert wird, ist grundlegend für Ihre Verdauung.",
-        "p5": "Unser Körper hat sein eigenes Verarbeitungssystem: Amylasen, Enzyme, die im Speichel und im Verdauungstrakt vorhanden sind, sind für den Abbau von Stärke verantwortlich. Wenn Brot eine sehr lange Gärung hat, wird es übermäßig sauer, was die Wirkung dieser natürlichen Enzyme hemmen kann.",
-        "p6": "Indem wir uns für eine kürzere Gärung entscheiden, erhalten wir Brot mit geringer Säure, das die verdauungsfördernde und ausgewogene Funktion Ihres Organismus respektiert. Es ist, als würden Sie Ihrem Verdauungssystem eine Hand reichen, kein Hindernis. Dies führt zu einer besseren Assimilation von Stärke und einem Gefühl von Leichtigkeit und Wohlbefinden nach dem Essen. Es ist nicht nur ein bekömmlicheres Brot; es ist Brot, das in Harmonie mit Ihrem Körper arbeitet.",
-        "know_flours": "KENNEN SIE DIE MEHLE",
-        "flours": {
-            "1": {
-                "title": "1. Dinkel",
-                "desc": "Es ist ein Urweizen, dessen Eigenschaften in Europa seit der Antike bekannt und geschätzt sind. Sein Nährwert ist vergleichbar mit dem von Hafer. Er ist reich an Proteinen, Kohlenhydraten, Mineralsalzen und den Vitaminen A, B und E sowie Magnesium, Phosphor, Eisen und Kalium. Sein täglicher Verzehr senkt den Cholesterinspiegel und reguliert den Stoffwechsel. Er bietet eine größere Menge an essentiellen Aminosäuren als herkömmlicher Weizen und übertrifft ihn auch an Vitamin- und Mineralstoffreichtum. Manche Menschen, die allergisch auf Weizen reagieren, vertragen Dinkel gut."
-            },
-            "2": {
-                "title": "2. Khorasan",
-                "desc": "Es ist ein Urweizen aus Ägypten, reich an Mineralsalzen und Vitaminen der B-Gruppe. Sehr geschätzt, weil er glutenarm ist und weniger Allergien oder Unverträglichkeiten hervorruft als moderne Weizenarten, da der menschliche Organismus besser an die Art des Proteins alter Weizenarten angepasst ist."
-            },
-            "3": {
-                "title": "3. Vollkornweizen",
-                "desc": "Verarbeiteter (raffinierter) Weizen enthält nicht die besten Teile des Korns. Während der Getreideverarbeitung werden 40% seines ursprünglichen Inhalts (Keim und Kleie) entfernt, wobei hauptsächlich die Kohlenhydrate (Zucker) des Endosperms übrig bleiben, was ihn weniger nahrhaft macht. Durch die Erhaltung von Kleie und Weizenkeim zeichnet sich Vollkornmehl durch eine 3-mal höhere Ballaststoffmenge als raffiniertes Weißmehl aus und hat zudem einen hohen Gehalt an Vitaminen und Mineralstoffen, wie B-Komplex-Vitamine, Vitamin E, Eisen, Kalium, Magnesium, Zink, unter anderem."
-            },
-            "4": {
-                "title": "4. Roggen",
-                "desc": "Neben den Mineralien, Vitaminen, Magnesium, Phosphor und Ballaststoffen, die er liefert, ist er ein Getreide, das wegen seiner blutreinigenden Eigenschaften und zur Erhaltung der Elastizität der Blutgefäße sehr geschätzt wird."
-            },
-            "5": {
-                "title": "5. Tritordeum",
-                "desc": "Es ist ein Hybrid-Getreide, das aus der natürlichen Kombination von Hartweizen und wilder Gerste entstanden ist. Es wurde Ende der 70er Jahre von spanischen Forschern entdeckt. Es ist KEIN gentechnisch veränderter Organismus (GVO). Es ist das Ergebnis einer natürlichen Kreuzung. Und es ist als neue Art in der Europäischen Union registriert. Es hat einen leicht süßen Geschmack, einen hohen Gehalt an Ölsäure und Lutein und hat zudem 30% mehr Ballaststoffe als herkömmlicher Weizen."
-            }
-        },
-        "yeast": "Natürliche oder frische Hefe: Im Gegensatz zu chemischem Backpulver ist sie biologischen Ursprungs, ein lebender und aktiver mikroskopischer Pilz. Sie wird in Supermärkten als frische, natürliche oder Bäckerhefe verkauft.",
-        "salt": "Natürliches Meersalz wurde nicht chemisch behandelt: Es ist die Folge der einfachen Verdunstung von Meerwasser. Natürlich besteht es zu 90% aus Chlor und Natrium, enthält aber eine größere Anzahl von Spurenelementen, Mineralien und Jod, die für den Körper von großer ernährungsphysiologischer Bedeutung sind. Die Einnahme von unraffiniertem Meersalz in moderaten Mengen trägt zu einer guten Toxinableitung bei, erhöht die Vitalität, begünstigt die Nierenfunktion, verbessert die Sexualität und baut Knochen und Haare wieder auf, außerdem verbessert es die Verdauung und begünstigt die Bildung von Magensäften.",
-        "commitment_title": "Das Engagement des handwerklichen Bäckers",
-        "p7": "Hinter jedem Stück stecken Stunden der Hingabe und Leidenschaft für ein uraltes Handwerk. Es geht nicht nur darum, Zutaten zu mischen, sondern um einen Prozess der Geduld, des Fühlens des Teigs und des Verständnisses seiner Zeiten. Die handwerkliche Herstellung garantiert, dass jedes Brot, das auf Ihren Tisch kommt, einzigartig ist, mit einem authentischen Geschmack und einer unvergleichlichen Textur.",
-        "p8": "Dieses Brot ist für Sie, wenn Sie eine bewusste und nahrhafte Option suchen, die einen gesünderen und nachhaltigeren Lebensstil unterstützt, fernab von diesen schweren und gärenden Verdauungen. Entdecken Sie das Vergnügen, gut zu essen, ohne auf Geschmack oder Qualität zu verzichten, und spüren Sie den Unterschied in einem so nahrhaften Lebensmittel.",
-        "thanks": "Vielen Dank für Ihr Vertrauen in dieses Projekt. Ich genieße es, für Sie zu backen, und ich hoffe, Sie genießen auch jede Scheibe mit Gesundheit und Freude. 🍞 🙏☀️",
-        "contact": "Wenn Sie weitere Informationen benötigen, kontaktieren Sie mich über WhatsApp",
-        "tips_title": "🍞 Tipps zur optimalen Aufbewahrung von Bio-Vollkornbrot 🍞",
-        "tip1": "Wie Sie wissen, ist dieses 100% ökologische und Vollkornbrot frei von Konservierungsstoffen und künstlichen Zusätzen. Die beste Art, Brot aufzubewahren, ist im Kühlschrank. Bewahren Sie es in derselben Papiertüte und diese wiederum in einer gut verschlossenen Plastiktüte auf. Legen Sie es vorzugsweise in das oberste Fach Ihres Kühlschranks, dort kann es perfekt bis zu 3 oder 4 Tage halten. Dann ist es besser, den Rest, den Sie nicht verbraucht haben, einzufrieren.",
-        "tip2": "Wenn Sie es vorziehen, können Sie es auch in Scheiben oder Portionen schneiden, die Sie verbrauchen werden, und es direkt am Tag der Lieferung einfrieren, immer in einem Beutel oder einem gut verschlossenen Behälter, damit sich kein Frost bildet.",
-        "tip3": "Brot, Brötchen oder Mini-Brötchen werden immer frisch vom Tag geliefert und manchmal sogar noch warm; wenn ja, legen Sie es auf den Ofenrost und warten Sie immer eine Stunde nach der Lieferung, um es zu verzehren. Bewahren Sie es nicht im Kühlschrank auf oder frieren Sie es ein, bis Sie bemerken, dass es vollständig kalt ist. Danke!! 🙏"
-    },
-    "christmas_characters": {
-        "elf": "Ich helfe dem Weihnachtsmann! 🎁",
-        "nutcracker": "Zu Befehl! 💂‍♂️",
-        "santa": "Ho Ho Ho! Frohe Weihnachten 🎅",
-        "reindeer": "Frohe Weihnachten!! 🦌",
-        "snowman": "Brrr, ist das kalt! ⛄"
-    },
-    "products": {
-        "harinas": {
-            "1": {
-                "name": "Bio-Vollkornweizen",
-                "short_name": "Weizen",
-                "description": "Klassisch, vielseitig, traditionelle Basis für das tägliche Brot."
-            },
-            "2": {
-                "name": "Bio-Vollkornroggen",
-                "short_name": "Roggen",
-                "description": "Dunkel, aromatisch, glutenarm, rustikal und voller Mineralien"
-            },
-            "3": {
-                "name": "Bio-Vollkorndinkel",
-                "short_name": "Dinkel",
-                "description": "Urgetreide, weich, bekömmlich und ballaststoffreich."
-            },
-            "4": {
-                "name": "Bio-Vollkorn-Khorasan",
-                "short_name": "Khorasan",
-                "description": "Altes Getreide, intensiver Geschmack und hoher Proteingehalt."
-            },
-            "5": {
-                "name": "Bio-Vollkorn-Tritordeum",
-                "short_name": "Tritordeum",
-                "description": "Innovativ, Hybrid aus Weizen und Gerste und leicht verdaulich"
-            },
-            "6": {
-                "name": "FEIN GESCHNITTENES BROT (kostenlos)",
-                "short_name": "Feiner Schnitt",
-                "description": "Möchten Sie Ihr Brot fein geschnitten?"
-            },
-            "7": {
-                "name": "NORMAL GESCHNITTENES BROT (kostenlos)",
-                "short_name": "Normaler Schnitt",
-                "description": "Möchten Sie Ihr Brot normal geschnitten?"
-            },
-            "8": {
-                "name": "DICK GESCHNITTENES BROT (kostenlos)",
-                "short_name": "Dicker Schnitt",
-                "description": "Möchten Sie Ihr Brot dick geschnitten?"
-            }
-        },
-        "extras": {
-            "1": "Bio-Samenmischung 100g",
-            "2": "Walnüsse",
-            "3": "Pflaumen",
-            "4": "Datteln",
-            "5": "Schwarze Oliven",
-            "6": "Tomate und Oregano",
-            "7": "Roquefort-Käse",
-            "8": "Kurkuma",
-            "9": "Pfeffer",
-            "10": "Curry",
-            "11": "Ingwer",
-            "12": "Reines Kakaopulver",
-            "13": "Reiner Honig",
-            "14": "Knoblauch"
-        },
-        "bollitos": {
-            "1": {
-                "name": "Klassisches Vollkornbrötchen",
-                "description": "Weich und fluffig, ideal zum Frühstück"
-            },
-            "2": {
-                "name": "Kakaobrötchen",
-                "description": "Mit reinem Kakaopulver"
-            },
-            "3": {
-                "name": "Walnussbrötchen",
-                "description": "Mit Walnüssen, nahrhaft und lecker"
-            },
-            "4": {
-                "name": "Pflaumenbrötchen",
-                "description": "Süß und energetisch, mit getrockneten Pflaumen"
-            },
-            "5": {
-                "name": "Kurkumabrötchen",
-                "description": "Aromatisch und exotisch, mit einem goldenen Touch"
-            },
-            "6": {
-                "name": "Samenbrötchen",
-                "description": "Knusprig, voller Ballaststoffe und Mineralien"
-            },
-            "7": {
-                "name": "Knoblauchbrötchen",
-                "description": "Intensiver Geschmack, perfekt als Beilage"
-            },
-            "8": {
-                "name": "Tomaten- und Oreganobrötchen",
-                "description": "Mediterran, lecker und mit hausgemachtem Aroma"
-            },
-            "1_05": {
-                "name": "Vollkorn-Hotdog-Brötchen",
-                "description": "Ein längliches Brötchen für Ihre Hotdogs"
-            },
-            "1_06": {
-                "name": "PACK Sortiment 6 Klassische Vollkornbrötchen",
-                "description": "Ihr klassisches Paket"
-            },
-            "1_07": {
-                "name": "PACK Sortiment 6 Vollkorn-Roggen-Molletes",
-                "description": "Roggen-Molletes"
-            },
-            "1_1": {
-                "name": "PACK Sortiment 7 Vollkornbrötchen (eins von jedem)",
-                "description": "1x Samen, 1x Knoblauch, 1x Kakao, 1x Kurkuma, 1x Walnüsse, 1x Pflaumen, 1x Tomate und Oregano. Probieren Sie alle!"
-            },
-            "1_2": {
-                "name": "PACK Sortiment 6 Vollkorn-Samenbrötchen",
-                "description": "Knusprig, voller Ballaststoffe und Mineralien"
-            },
-            "1_3": {
-                "name": "PACK Sortiment 6 Vollkorn-Walnussbrötchen",
-                "description": "Nahrhaft und lecker"
-            },
-            "1_4": {
-                "name": "PACK Sortiment 6 Vollkorn-Kakaopulver-Brötchen",
-                "description": "Mit reinem Kakao"
-            },
-            "1_5": {
-                "name": "PACK Sortiment 6 Vollkorn-Pflaumenbrötchen",
-                "description": "Süß und energetisch, mit getrockneten Pflaumen"
-            },
-            "1_6": {
-                "name": "PACK Sortiment 6 Vollkorn-Kurkuma-Brötchen",
-                "description": "Aromatisch und exotisch, mit einem goldenen Touch"
-            },
-            "1_7": {
-                "name": "PACK Sortiment 6 Vollkorn-Tomaten- und Oreganobrötchen",
-                "description": "Mediterran, lecker und mit hausgemachtem Aroma"
-            },
-            "1_8": {
-                "name": "PACK Sortiment 6 Vollkorn-Knoblauchbrötchen",
-                "description": "Intensiver Geschmack, perfekt als Beilage"
-            }
-        },
-        "pulguitas": {
-            "1": {
-                "name": "Vollkorn-Mini-Brötchen",
-                "description": "Klein, ideal für Sandwiches"
-            },
-            "2": {
-                "name": "Kakao-Mini-Brötchen",
-                "description": "Mit reinem Kakaopulver"
-            },
-            "3": {
-                "name": "Walnuss-Mini-Brötchen",
-                "description": "Mit Walnüssen, nahrhaft und energetisch"
-            },
-            "4": {
-                "name": "Pflaumen-Mini-Brötchen",
-                "description": "Klein, süß und gesund"
-            },
-            "5": {
-                "name": "Kurkuma-Mini-Brötchen",
-                "description": "Golden und aromatisch, exotisch und leicht"
-            },
-            "6": {
-                "name": "Samen-Mini-Brötchen",
-                "description": "Knusprig mit nahrhafter Samenmischung"
-            },
-            "7": {
-                "name": "Knoblauch-Mini-Brötchen",
-                "description": "Intensiv und lecker in Mini-Version"
-            },
-            "1_05": {
-                "name": "PACK Sortiment 12 Klassische Vollkorn-Mini-Brötchen",
-                "description": "Ihr klassisches Mini-Brötchen-Paket"
-            },
-            "1_1": {
-                "name": "PACK Sortiment 14 Vollkorn-Mini-Brötchen (zwei von jedem)",
-                "description": "2x Samen, 2x Knoblauch, 2x Kakao, 2x Kurkuma, 2x Walnüsse, 2x Pflaumen, 2x Tomate und Oregano. Probieren Sie alle!"
-            },
-            "1_2": {
-                "name": "PACK Sortiment 12 Vollkorn-Samen-Mini-Brötchen",
-                "description": "Knusprig, voller Ballaststoffe und Mineralien"
-            },
-            "1_3": {
-                "name": "PACK Sortiment 12 Vollkorn-Walnuss-Mini-Brötchen",
-                "description": "Nahrhaft und lecker"
-            },
-            "1_4": {
-                "name": "PACK Sortiment 12 Vollkorn-Kakaopulver-Mini-Brötchen",
-                "description": "Mit reinem Kakao"
-            },
-            "1_5": {
-                "name": "PACK Sortiment 12 Vollkorn-Pflaumen-Mini-Brötchen",
-                "description": "Süß und energetisch, mit getrockneten Pflaumen"
-            },
-            "1_6": {
-                "name": "PACK Sortiment 12 Vollkorn-Kurkuma-Mini-Brötchen",
-                "description": "Aromatisch und exotisch, mit einem goldenen Touch"
-            },
-            "1_7": {
-                "name": "PACK Sortiment 12 Vollkorn-Tomaten- und Oregano-Mini-Brötchen",
-                "description": "Mediterran, lecker und mit hausgemachtem Aroma"
-            },
-            "1_8": {
-                "name": "PACK Sortiment 12 Vollkorn-Knoblauch-Mini-Brötchen",
-                "description": "Intensiver Geschmack, perfekt als Beilage"
-            }
-        }
+    "pulguitas": {
+      "1": {
+        "name": "Vollkorn-Mini-Brötchen",
+        "description": "Klein, ideal für Sandwiches"
+      },
+      "2": {
+        "name": "Kakao-Mini-Brötchen",
+        "description": "Mit reinem Kakaopulver"
+      },
+      "3": {
+        "name": "Walnuss-Mini-Brötchen",
+        "description": "Mit Walnüssen, nahrhaft und energetisch"
+      },
+      "4": {
+        "name": "Pflaumen-Mini-Brötchen",
+        "description": "Klein, süß und gesund"
+      },
+      "5": {
+        "name": "Kurkuma-Mini-Brötchen",
+        "description": "Golden und aromatisch, exotisch und leicht"
+      },
+      "6": {
+        "name": "Samen-Mini-Brötchen",
+        "description": "Knusprig mit nahrhafter Samenmischung"
+      },
+      "7": {
+        "name": "Knoblauch-Mini-Brötchen",
+        "description": "Intensiv und lecker in Mini-Version"
+      },
+      "1_05": {
+        "name": "PACK Sortiment 12 Klassische Vollkorn-Mini-Brötchen",
+        "description": "Ihr klassisches Mini-Brötchen-Paket"
+      },
+      "1_1": {
+        "name": "PACK Sortiment 14 Vollkorn-Mini-Brötchen (zwei von jedem)",
+        "description": "2x Samen, 2x Knoblauch, 2x Kakao, 2x Kurkuma, 2x Walnüsse, 2x Pflaumen, 2x Tomate und Oregano. Probieren Sie alle!"
+      },
+      "1_2": {
+        "name": "PACK Sortiment 12 Vollkorn-Samen-Mini-Brötchen",
+        "description": "Knusprig, voller Ballaststoffe und Mineralien"
+      },
+      "1_3": {
+        "name": "PACK Sortiment 12 Vollkorn-Walnuss-Mini-Brötchen",
+        "description": "Nahrhaft und lecker"
+      },
+      "1_4": {
+        "name": "PACK Sortiment 12 Vollkorn-Kakaopulver-Mini-Brötchen",
+        "description": "Mit reinem Kakao"
+      },
+      "1_5": {
+        "name": "PACK Sortiment 12 Vollkorn-Pflaumen-Mini-Brötchen",
+        "description": "Süß und energetisch, mit getrockneten Pflaumen"
+      },
+      "1_6": {
+        "name": "PACK Sortiment 12 Vollkorn-Kurkuma-Mini-Brötchen",
+        "description": "Aromatisch und exotisch, mit einem goldenen Touch"
+      },
+      "1_7": {
+        "name": "PACK Sortiment 12 Vollkorn-Tomaten- und Oregano-Mini-Brötchen",
+        "description": "Mediterran, lecker und mit hausgemachtem Aroma"
+      },
+      "1_8": {
+        "name": "PACK Sortiment 12 Vollkorn-Knoblauch-Mini-Brötchen",
+        "description": "Intensiver Geschmack, perfekt als Beilage"
+      },
+      "8": {
+        "name": "Tomaten-Oregano-Mini-Brötchen",
+        "description": "Mediterran und lecker im Kleinformat"
+      }
     }
+  },
+  "cart_bar": {
+    "view": "Bestellung ansehen"
+  },
+  "trust_bar": {
+    "integral": "100 % Bio-Vollkorn",
+    "delivery": "Kostenlose Lieferung in Chiclana",
+    "direct": "Handwerklich & persönlich"
+  }
 }

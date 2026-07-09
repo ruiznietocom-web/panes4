@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'; // Importamos React y useState para manejar estados
 import { motion } from 'framer-motion'; // Librería para animaciones suaves
-import { Check } from 'lucide-react'; // Icono de check para selección
+import { Check, Info } from 'lucide-react'; // Iconos de check (selección) e info (ficha de la harina)
 import { harinas } from '../data/products'; // Datos de harinas disponibles
 import { formatPrice } from '../utils/formatPrice'; // Función para formatear precios
 import { useTranslation } from 'react-i18next';
+import FlourInfoModal from './FlourInfoModal'; // Ficha emergente con la información de cada harina
 
 import { toast } from 'react-hot-toast'; // Importar toast para notificaciones
 
@@ -13,6 +14,8 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
   const { t, i18n } = useTranslation();
   // Estado para almacenar las harinas seleccionadas por el usuario
   const [selectedHarinas, setSelectedHarinas] = useState([]);
+  // Harina cuya ficha informativa está abierta (null = ficha cerrada)
+  const [infoHarina, setInfoHarina] = useState(null);
 
   // Separar harinas reales de las opciones de corte (gratuitas)
   const flours = harinas.filter(h => h.price > 0);
@@ -31,7 +34,7 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
     };
   }, [selectedFlourCount, setIsAddButtonVisible]);
 
-  const maxHarinas = 6; // Máximo de harinas que se pueden seleccionar
+  const maxHarinas = 5; // Máximo de harinas que se pueden seleccionar (coincide con el texto de instrucciones)
   const fixedHarinaPrice = 5.50; // Precio fijo del pan base (sin extras)
 
   // Función para seleccionar o deseleccionar una harina
@@ -104,32 +107,71 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
       </div>
 
       {/* Instrucciones para el usuario */}
-      <p className="text-gray-500 dark:text-slate-300 text-center mb-4">
+      <p className="text-gray-500 dark:text-slate-300 text-center mb-2">
         {t('harina_selector.instructions', { price: formatPrice(fixedHarinaPrice) })}
       </p>
+
+      {/* Pista sutil: el icono ⓘ de cada tarjeta muestra la ficha de la harina */}
+      <p className="flex items-center justify-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 text-center mb-4">
+        <Info className="w-3.5 h-3.5" />
+        {t('flour_info.tap_hint')}
+      </p>
+
+      {/* Contador de harinas elegidas */}
+      <div className="flex justify-center mb-3">
+        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-colors ${selectedFlourCount > 0
+          ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200'
+          : 'bg-gray-100 text-gray-500 dark:bg-slate-700 dark:text-slate-400'
+          }`}>
+          🌾 {t('harina_selector.flour_counter', { count: selectedFlourCount, max: maxHarinas })}
+        </span>
+      </div>
 
       {/* Grid de las harinas disponibles */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {flours.map((harina, index) => (
-          <motion.button
-            key={harina.id}
-            type="button" // Botón real: accesible con teclado y lectores de pantalla
-            aria-pressed={!!selectedHarinas.find(h => h.id === harina.id)} // Estado de selección accesible
-            className={`relative w-full p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${selectedHarinas.find(h => h.id === harina.id)
-              ? 'border-amber-500 bg-amber-50 dark:bg-slate-700 dark:border-amber-400 shadow-md' // Estilo cuando está seleccionada
-              : 'border-gray-200 dark:border-slate-600 hover:border-amber-300 dark:hover:border-amber-500 dark:bg-slate-700/50' // Estilo normal / hover
-              }`}
-            onClick={() => toggleHarina(harina)} // Selecciona/deselecciona al hacer click
-            whileHover={{ scale: 1.02 }} // Pequeño efecto al pasar el ratón
-            whileTap={{ scale: 0.98 }} // Efecto al hacer click
-            initial={{ opacity: 0, y: 20 }} // Animación inicial
-            animate={{ opacity: 1, y: 0 }} // Animación final
-            transition={{ delay: index * 0.05 }} // Animación con retraso progresivo
-          >
+          // Contenedor relativo: la tarjeta y el botón ⓘ son hermanos para no anidar botones
+          <div key={harina.id} className="relative">
+            <motion.button
+              type="button" // Botón real: accesible con teclado y lectores de pantalla
+              aria-pressed={!!selectedHarinas.find(h => h.id === harina.id)} // Estado de selección accesible
+              className={`w-full h-full p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${selectedHarinas.find(h => h.id === harina.id)
+                ? 'border-amber-500 bg-amber-50 dark:bg-slate-700 dark:border-amber-400 shadow-md' // Estilo cuando está seleccionada
+                : 'border-gray-200 dark:border-slate-600 hover:border-amber-300 dark:hover:border-amber-500 dark:bg-slate-700/50' // Estilo normal / hover
+                }`}
+              onClick={() => toggleHarina(harina)} // Selecciona/deselecciona al hacer click
+              whileHover={{ scale: 1.02 }} // Pequeño efecto al pasar el ratón
+              whileTap={{ scale: 0.98 }} // Efecto al hacer click
+              initial={{ opacity: 0, y: 20 }} // Animación inicial
+              animate={{ opacity: 1, y: 0 }} // Animación final
+              transition={{ delay: index * 0.05 }} // Animación con retraso progresivo
+            >
+              {/* Contenido de la tarjeta de harina */}
+              <div className="text-center">
+                <div className="text-4xl mb-2">{harina.image}</div> {/* Emoji o imagen de la harina */}
+                <h3 className="font-bold text-gray-800 dark:text-white mb-1">{t(`products.harinas.${harina.id}.name`)}</h3> {/* Nombre */}
+                <p className="text-sm text-gray-600 dark:text-slate-300 mb-2">{t(`products.harinas.${harina.id}.description`)}</p> {/* Descripción */}
+
+              </div>
+            </motion.button>
+
+            {/* Botón ⓘ que abre la ficha informativa de la harina (no altera la selección) */}
+            <button
+              type="button"
+              aria-label={t('flour_info.aria', { name: t(`products.harinas.${harina.id}.name`) })}
+              onClick={(e) => {
+                e.stopPropagation(); // No seleccionar la tarjeta al pedir información
+                setInfoHarina(harina);
+              }}
+              className="absolute top-2 left-2 z-10 p-1.5 rounded-full text-amber-500/80 hover:text-amber-600 hover:bg-amber-100 dark:text-amber-400/90 dark:hover:text-amber-300 dark:hover:bg-slate-600 transition-colors"
+            >
+              <Info className="w-5 h-5" />
+            </button>
+
             {/* Check visible cuando la harina está seleccionada */}
             {selectedHarinas.find(h => h.id === harina.id) && (
               <motion.div
-                className="absolute top-2 right-2 bg-amber-500 text-white rounded-full p-1"
+                className="absolute top-2 right-2 bg-amber-500 text-white rounded-full p-1 pointer-events-none"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.3 }}
@@ -137,15 +179,7 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
                 <Check className="w-4 h-4" /> {/* Icono check */}
               </motion.div>
             )}
-
-            {/* Contenido de la tarjeta de harina */}
-            <div className="text-center">
-              <div className="text-4xl mb-2">{harina.image}</div> {/* Emoji o imagen de la harina */}
-              <h3 className="font-bold text-gray-800 dark:text-white mb-1">{t(`products.harinas.${harina.id}.name`)}</h3> {/* Nombre */}
-              <p className="text-sm text-gray-600 dark:text-slate-300 mb-2">{t(`products.harinas.${harina.id}.description`)}</p> {/* Descripción */}
-
-            </div>
-          </motion.button>
+          </div>
         ))}
       </div>
 
@@ -201,6 +235,9 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
           </button>
         </motion.div>
       )}
+
+      {/* Ficha emergente con la información detallada de la harina */}
+      <FlourInfoModal harina={infoHarina} onClose={() => setInfoHarina(null)} />
     </motion.div>
   );
 };

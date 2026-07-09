@@ -117,30 +117,48 @@ const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanE
 
 // ---- Cesta persistente: sobrevive a cerrar la pestaña o el navegador ----
 const CART_STORAGE_KEY = 'panzen_cart';
+const LAST_ORDER_KEY = 'panzen_last_order'; // Último pedido enviado (para "repetir pedido")
+
+// Sanear una lista de productos contra el catálogo actual:
+// quitar productos retirados y refrescar precios
+const sanitizeCartItems = (items) => {
+  if (!Array.isArray(items)) return [];
+  const lists = { extra: extras, bollito: bollitos, pulguita: pulguitas, otroPan: otrosPanes };
+  return items
+    .map(item => {
+      if (item.type === 'panPersonalizado') return item;
+      const product = lists[item.type]?.find(x => x.id === item.id);
+      if (!product) return null; // el producto ya no existe en el catálogo
+      return { ...item, name: product.name, price: product.price, image: product.image, icon: product.icon };
+    })
+    .filter(Boolean);
+};
 
 const loadStoredCart = () => {
   try {
     const raw = localStorage.getItem(CART_STORAGE_KEY);
     if (!raw) return [];
-    const items = JSON.parse(raw);
-    if (!Array.isArray(items)) return [];
-    const lists = { extra: extras, bollito: bollitos, pulguita: pulguitas, otroPan: otrosPanes };
-    // Sanear contra el catálogo actual: quitar productos retirados y refrescar precios
-    return items
-      .map(item => {
-        if (item.type === 'panPersonalizado') return item;
-        const product = lists[item.type]?.find(x => x.id === item.id);
-        if (!product) return null; // el producto ya no existe en el catálogo
-        return { ...item, name: product.name, price: product.price, image: product.image, icon: product.icon };
-      })
-      .filter(Boolean);
+    return sanitizeCartItems(JSON.parse(raw));
   } catch {
     return [];
   }
 };
 
+// Cargar el último pedido enviado (o null si no hay)
+const loadLastOrder = () => {
+  try {
+    const raw = localStorage.getItem(LAST_ORDER_KEY);
+    if (!raw) return null;
+    const items = sanitizeCartItems(JSON.parse(raw));
+    return items.length > 0 ? items : null;
+  } catch {
+    return null;
+  }
+};
+
 const App = () => {
   const [cartItems, setCartItems] = useState(loadStoredCart);
+  const [lastOrder, setLastOrder] = useState(loadLastOrder); // Último pedido enviado
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isAddButtonVisible, setIsAddButtonVisible] = useState(false);
   const [selectedOptionalExtras, setSelectedOptionalExtras] = useState([]);
@@ -224,7 +242,36 @@ const App = () => {
   };
 
   const handleSendWhatsApp = () => {
+    // Guardar este pedido como "último pedido" para poder repetirlo más adelante
+    try {
+      localStorage.setItem(LAST_ORDER_KEY, JSON.stringify(cartItems));
+      setLastOrder(cartItems);
+    } catch {
+      // almacenamiento no disponible: la app sigue funcionando
+    }
     setShowSuccessModal(true);
+  };
+
+  // Repetir el último pedido enviado: rellena la cesta con los mismos productos
+  const handleRepeatLastOrder = () => {
+    if (!lastOrder) return;
+    const now = Date.now();
+    const items = sanitizeCartItems(lastOrder).map((item, index) =>
+      item.type === 'panPersonalizado'
+        ? { ...item, id: now + index, harinas: [...item.harinas], extras: [...(item.extras || [])] }
+        : { ...item }
+    );
+    setCartItems(items);
+  };
+
+  // Actualizar un pan personalizado ya añadido (desde el editor del resumen):
+  // harinas, corte y también sus extras
+  const handleUpdatePan = (panId, newHarinas, newExtras) => {
+    setCartItems(prev => prev.map(item =>
+      item.id === panId && item.type === 'panPersonalizado'
+        ? { ...item, harinas: newHarinas, extras: newExtras ?? item.extras }
+        : item
+    ));
   };
 
   const handleCloseModal = () => {
@@ -285,6 +332,8 @@ const App = () => {
                     onSendWhatsApp={handleSendWhatsApp}
                     onRemoveItem={handleRemoveCartItem}
                     onDuplicateItem={handleDuplicatePan}
+                    onEditPanHarinas={handleUpdatePan}
+                    onRepeatLastOrder={lastOrder ? handleRepeatLastOrder : null}
                     selectedOptionalExtras={selectedOptionalExtras}
                     setSelectedOptionalExtras={setSelectedOptionalExtras}
                   />

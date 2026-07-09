@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from "framer-motion"; // Para animaciones suaves
 import { bollitos } from "../data/products"; // Lista de productos (bollitos)
 import { formatPrice } from "../utils/formatPrice"; // Función para formatear precios
+import AllergenBadges from "../components/AllergenBadges"; // Chips de alérgenos
 
 // import Mistletoe from "../components/Mistletoe";
 
@@ -70,6 +71,9 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
 
             {/* Descripción */}
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{t(`products.bollitos.${bollito.id.toString().replace('.', '_')}.description`)}</p>
+
+            {/* Alérgenos */}
+            <AllergenBadges allergens={bollito.allergens} className="mb-2" />
 
             {/* Precio */}
             <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">

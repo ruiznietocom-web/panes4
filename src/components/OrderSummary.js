@@ -4,8 +4,8 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // Importa 'motion' de framer-motion para animar elementos (entrada, hover, tap, etc.).
 
-import { MessageCircle, Trash2, Copy } from 'lucide-react';
-// Importa iconos: MessageCircle (WhatsApp) y Trash2 (botón eliminar).
+import { MessageCircle, Trash2, Copy, Pencil, RotateCcw } from 'lucide-react';
+// Iconos: MessageCircle (WhatsApp), Trash2 (eliminar), Copy (duplicar), Pencil (editar), RotateCcw (repetir pedido).
 
 import confetti from 'canvas-confetti';
 import toast from 'react-hot-toast';
@@ -19,6 +19,7 @@ import { formatPrice } from '../utils/formatPrice';
 
 import { useTranslation } from 'react-i18next';
 import { showThankYouToast } from './ThankYouToast';
+import EditPanModal from './EditPanModal'; // Editor de harinas de un pan ya añadido
 
 // import Mistletoe from './Mistletoe';
 
@@ -27,6 +28,8 @@ const OrderSummary = ({
   onSendWhatsApp,
   onRemoveItem,
   onDuplicateItem,
+  onEditPanHarinas,
+  onRepeatLastOrder,
   selectedOptionalExtras = [],
   setSelectedOptionalExtras
 }) => {
@@ -46,6 +49,9 @@ const OrderSummary = ({
 
   const [appliedDiscount, setAppliedDiscount] = React.useState(null);
   // Descuento aplicado actualmente (objeto o null)
+
+  const [editingPan, setEditingPan] = React.useState(null);
+  // Pan personalizado que se está editando (null = editor cerrado)
 
   const toggleOptionalExtra = (extra) => {
     // Añade o quita un extra opcional del estado
@@ -284,6 +290,17 @@ const OrderSummary = ({
           <div className="flex flex-col items-center text-center py-6 text-gray-500 dark:text-gray-400">
             <span className="text-5xl mb-3" aria-hidden="true">🧺</span>
             <p>{t('order_summary.empty')}</p>
+            {/* Repetir el último pedido enviado (solo si existe uno guardado) */}
+            {onRepeatLastOrder && (
+              <button
+                type="button"
+                onClick={onRepeatLastOrder}
+                className="mt-4 flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-amber-400 text-amber-700 dark:text-amber-300 font-bold text-sm hover:bg-amber-50 dark:hover:bg-slate-700 transition-colors"
+              >
+                <RotateCcw className="w-4 h-4" />
+                {t('order_summary.repeat_last')}
+              </button>
+            )}
           </div>
         )}
 
@@ -295,6 +312,16 @@ const OrderSummary = ({
             {pansPersonalizados.map((pan, index) => (
               <motion.div key={pan.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex flex-col p-2 bg-amber-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
                 <div className="absolute top-2 right-2 flex gap-2">
+                  {onEditPanHarinas && (
+                    <button
+                      className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                      onClick={() => setEditingPan(pan)}
+                      title={t('order_summary.edit_pan')}
+                      aria-label={t('order_summary.edit_pan')}
+                    >
+                      <Pencil className="w-5 h-5" />
+                    </button>
+                  )}
                   {onDuplicateItem && (
                     <button
                       className="text-amber-600 hover:text-amber-800 dark:text-amber-400 dark:hover:text-amber-300"
@@ -467,6 +494,14 @@ const OrderSummary = ({
         </div>
       )}
 
+      {/* Editor de harinas de un pan ya añadido */}
+      {onEditPanHarinas && (
+        <EditPanModal
+          pan={editingPan}
+          onSave={onEditPanHarinas}
+          onClose={() => setEditingPan(null)}
+        />
+      )}
 
     </motion.div>
   );

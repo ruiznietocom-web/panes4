@@ -17,7 +17,8 @@
     "add_button_dynamic": "Pane di {{flours}}, scegli un'altra farina, il tipo di 🔪 oppure CLICCA QUI e aggiungilo al tuo ordine",
     "pan_added_toast": "Pane aggiunto, aggiungi un altro pane o scegli i tuoi extra",
     "cut_title": "Come vuoi il taglio?",
-    "cut_subtitle": "Opzionale e gratuito"
+    "cut_subtitle": "Opzionale e gratuito",
+    "flour_counter": "{{count}} farine su {{max}} scelte"
   },
   "order_summary": {
     "title": "Riepilogo Ordine",
@@ -45,7 +46,9 @@
     "code_applied_fixed": "Codice applicato: {{value}} di sconto",
     "discount_fixed": "Sconto:",
     "min_purchase_note": "Acquisto minimo di {{min}} per questo codice",
-    "duplicate": "Duplica questo pane"
+    "duplicate": "Duplica questo pane",
+    "edit_pan": "Modifica questo pane",
+    "repeat_last": "Ripeti il mio ultimo ordine"
   },
   "optional_extras": {
     "propina": "Prendi una mancia!",
@@ -70,7 +73,7 @@
     "title": "+ INFO",
     "download_pdf": "Scarica PDF dei Prezzi",
     "quote": "\"Riscontrare il pane, un alimento con anima.\"",
-    "p1": "E se ti dicessi che il pane può essere molto più di un semplice accompagnamento? In un mondo pieno di fretta, abbiamo dimenticato la profonda connessione che esiste tra il cibo più basico e la nostra salute. Ti invito a riscoprire il pane reale, quello che onora la tradizione, rispetta la terra e nutre il tuo corpo in modo consapevole.",
+    "p1": "E se ti dicessi che il pane può essere molto più di un semplice accompagnamento? In un mondo in cui viviamo così di fretta, abbiamo dimenticato la profonda connessione che esiste tra il cibo più basico e la nostra salute. Ti invito a riscoprire il pane reale, quello che onora la tradizione, rispetta la terra e nutre il tuo corpo in modo consapevole.",
     "p2": "Pani, panini e mini panini non sono solo prodotti; sono il frutto di un lavoro pensato affinché il tuo organismo assorba i nutrienti nel modo più equilibrato possibile. Ogni pezzo è 100% integrale e realizzato con farine biologiche, prive di qualsiasi tipo di additivo. Qui non c’è spazio per farine forti o raffinate, né per conservanti, grassi industriali o miglioratori del pane. Si tratta semplicemente di tornare alle origini.",
     "p3": "La ricetta di questo pane è un patto di purezza: utilizzo solo sale marino naturale delle nostre saline di Chiclana, acqua minerale, lievito fresco e farina integrale 100% biologica. A tutto ciò aggiungiamo, a scelta, altri ingredienti come uvetta, noci o miele puro, che apportano sapore e benessere in modo naturale.",
     "fermentation_title": "Il potere della fermentazione breve",
@@ -124,27 +127,52 @@
       "1": {
         "name": "GRANO Tenero Integrale Biologico",
         "short_name": "Grano",
-        "description": "Classico, versatile, base tradizionale per il pane quotidiano."
+        "description": "Classico, versatile, base tradizionale per il pane quotidiano.",
+        "info": {
+          "flavor": "Delicato e familiare, con note di cereali tostati e una mollica morbida.",
+          "nutrition": "Ricco di fibre, vitamine del gruppo B, magnesio e antiossidanti della crusca.",
+          "ideal": "Il pane di tutti i giorni: toast, panini e ogni pasto."
+        }
       },
       "2": {
         "name": "SEGALE Integrale Biologica",
         "short_name": "Segale",
-        "description": "Scura, aromatica, povera di glutine, rustica e ricca di minerali."
+        "description": "Scura, aromatica, povera di glutine, rustica e ricca di minerali.",
+        "info": {
+          "flavor": "Intenso e rustico, leggermente acidulo, con mollica densa e umida.",
+          "nutrition": "Ricchissimo di minerali (ferro, potassio, zinco) e fibre solubili; sazia di più e aiuta a regolare la glicemia.",
+          "ideal": "Formaggi stagionati, affumicati e colazioni sostanziose."
+        }
       },
       "3": {
         "name": "FARRO Integrale Biologico",
         "short_name": "Farro",
-        "description": "Farina ancestrale, morbida, digeribile e ricca di fibre."
+        "description": "Farina ancestrale, morbida, digeribile e ricca di fibre.",
+        "info": {
+          "flavor": "Delicato e leggermente dolce, con piacevoli note di nocciola.",
+          "nutrition": "Cereale antico ricco di fibre e proteine, con un glutine più fragile e facile da digerire.",
+          "ideal": "Digestioni sensibili e chi cerca un pane leggero ogni giorno."
+        }
       },
       "4": {
         "name": "KHORASAN Integrale Biologico",
         "short_name": "Khorasan",
-        "description": "Cereale antico, sapore intenso e alto contenuto proteico."
+        "description": "Cereale antico, sapore intenso e alto contenuto proteico.",
+        "info": {
+          "flavor": "Intenso e burroso, con sentori di frutta secca.",
+          "nutrition": "Ad alto contenuto di proteine, selenio e zinco; una grande fonte di energia.",
+          "ideal": "Sportivi e amanti dei pani di carattere."
+        }
       },
       "5": {
         "name": "TRITORDEUM Integrale Biologico",
         "short_name": "Tritordeum",
-        "description": "Innovativo, ibrido di grano e orzo, facile da digerire."
+        "description": "Innovativo, ibrido di grano e orzo, facile da digerire.",
+        "info": {
+          "flavor": "Dolce e delicato, un ibrido di grano e orzo.",
+          "nutrition": "Ricco di luteina (antiossidante), fibre e acido oleico; digestione molto leggera.",
+          "ideal": "Chi cerca innovazione mediterranea e una digestione leggera."
+        }
       },
       "6": {
         "name": "PANE A FETTE SOTTILI (gratis)",
@@ -332,5 +360,32 @@
     "integral": "100% integrale biologico",
     "delivery": "Consegna gratuita a Chiclana",
     "direct": "Artigianale e locale"
+  },
+  "flour_info": {
+    "aria": "Scopri di più su {{name}}",
+    "flavor": "Sapore",
+    "gluten": "Glutine",
+    "nutrition": "Nutrizione",
+    "ideal": "Ideale per",
+    "close": "Chiudi",
+    "gluten_low": "Basso",
+    "gluten_medium": "Moderato",
+    "gluten_high": "Alto",
+    "tap_hint": "Tocca l'icona per scoprire ogni farina"
+  },
+  "allergens": {
+    "title": "Allergeni",
+    "gluten": "Glutine",
+    "nuts": "Frutta a guscio",
+    "milk": "Latte",
+    "sesame": "Sesamo"
+  },
+  "edit_pan_modal": {
+    "title": "Modifica il tuo pane",
+    "flours": "Farine",
+    "cut": "Taglio",
+    "save": "Salva modifiche",
+    "cancel": "Annulla",
+    "extras": "Extra"
   }
 }

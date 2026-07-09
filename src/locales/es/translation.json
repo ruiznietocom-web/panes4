@@ -17,7 +17,8 @@
     "add_button_dynamic": "Pan de {{flours}}, elige otra harina, el tipo de🔪o PULSA AQUÍ y añádelo a tu pedido",
     "pan_added_toast": "Pan añadido, añade otro pan o elige tus extras",
     "cut_title": "¿Cómo quieres el corte?",
-    "cut_subtitle": "Opcional y gratuito"
+    "cut_subtitle": "Opcional y gratuito",
+    "flour_counter": "{{count}} de {{max}} harinas elegidas"
   },
   "order_summary": {
     "title": "Resumen del Pedido",
@@ -45,34 +46,61 @@
     "code_applied_fixed": "Código aplicado: {{value}} de descuento",
     "discount_fixed": "Descuento:",
     "min_purchase_note": "Compra mínima de {{min}} para este código",
-    "duplicate": "Duplicar este pan"
+    "duplicate": "Duplicar este pan",
+    "edit_pan": "Editar este pan",
+    "repeat_last": "Repetir mi último pedido"
   },
   "products": {
     "harinas": {
       "1": {
         "name": "TRIGO Integral Ecológico",
         "short_name": "Trigo",
-        "description": "Clásica, versátil, base tradicional del pan diario."
+        "description": "Clásica, versátil, base tradicional del pan diario.",
+        "info": {
+          "flavor": "Suave y familiar, con notas de cereal tostado y una miga tierna.",
+          "nutrition": "Rica en fibra, vitaminas del grupo B, magnesio y antioxidantes del salvado.",
+          "ideal": "El pan de cada día: tostadas, bocadillos y para acompañar cualquier comida."
+        }
       },
       "2": {
         "name": "CENTENO Integral Ecológico",
         "short_name": "Centeno",
-        "description": "Oscura, aromática, bajo en gluten, rústica y llena de minerales"
+        "description": "Oscura, aromática, bajo en gluten, rústica y llena de minerales",
+        "info": {
+          "flavor": "Intenso y rústico, ligeramente ácido, con una miga densa y jugosa.",
+          "nutrition": "Muy rico en minerales (hierro, potasio, zinc) y fibra soluble; sacia más y ayuda a regular el azúcar en sangre.",
+          "ideal": "Quesos curados, ahumados y desayunos con aceite de oliva."
+        }
       },
       "3": {
         "name": "ESPELTA Integral Ecológico",
         "short_name": "Espelta",
-        "description": "Harina ancestral, suave, digestiva y rica en fibra."
+        "description": "Harina ancestral, suave, digestiva y rica en fibra.",
+        "info": {
+          "flavor": "Delicado y ligeramente dulce, con agradables notas de nuez.",
+          "nutrition": "Cereal ancestral rico en fibra y proteínas, con un gluten más frágil y fácil de digerir.",
+          "ideal": "Digestiones sensibles y quienes buscan un pan ligero a diario."
+        }
       },
       "4": {
         "name": "KHORASAN Integral Ecológico",
         "short_name": "Khorasan",
-        "description": "Antiguo cereal, sabor intenso y alto en proteínas."
+        "description": "Antiguo cereal, sabor intenso y alto en proteínas.",
+        "info": {
+          "flavor": "Intenso y mantecoso, con recuerdos de frutos secos.",
+          "nutrition": "Alto contenido en proteínas, selenio y zinc; un gran aporte de energía.",
+          "ideal": "Deportistas y amantes de los panes con carácter."
+        }
       },
       "5": {
         "name": "TRITORDEUM Integral Ecológico",
         "short_name": "Tritordeum",
-        "description": "Innovadora, híbrido del trigo y la cebada y de fácil digestión"
+        "description": "Innovadora, híbrido del trigo y la cebada y de fácil digestión",
+        "info": {
+          "flavor": "Dulce y suave, híbrido del trigo y la cebada.",
+          "nutrition": "Rico en luteína (antioxidante), fibra y ácido oleico; de digestión muy ligera.",
+          "ideal": "Quienes buscan innovación mediterránea y una digestión ligera."
+        }
       },
       "6": {
         "name": "PAN CORTADO FINO (gratuito)",
@@ -276,7 +304,7 @@
     "title": "+ INFORMACIÓN",
     "download_pdf": "Descargar PDF de Precios",
     "quote": "\"Redescubriendo el pan, un alimento con alma.\"",
-    "p1": "¿Y si te dijera que el pan puede ser mucho más que un simple acompañamiento? En un mundo lleno de prisa, hemos olvidado la conexión profunda que existe entre el alimento más básico y nuestra salud. Te invito a redescubrir el pan de verdad, ese que honra la tradición, respeta la tierra y nutre tu cuerpo de una forma consciente.",
+    "p1": "¿Y si te dijera que el pan puede ser mucho más que un simple acompañamiento? En un mundo en el que vivimos tan acelerados, hemos olvidado la conexión profunda que existe entre el alimento más básico y nuestra salud. Te invito a redescubrir el pan de verdad, ese que honra la tradición, respeta la tierra y nutre tu cuerpo de una forma consciente.",
     "p2": "Los panes, bollitos y pulguitas no son solo productos, son el fruto de un trabajo pensado para que tu organismo absorba los nutrientes de la forma más equilibrada posible. Cada pieza es 100% integral y está elaborada con harinas de cultivo ecológico, libres de cualquier tipo de aditivos. Aquí no hay espacio para harinas refinadas, ni para conservantes, grasas industriales o mejorantes panarios. Simplemente de trata de regresar a los orígenes.",
     "p3": "La receta de este pan es un pacto de pureza: solo utilizo sal marina natural de nuestras salinas de Chiclana, agua mineral, levadura fresca y harina 100% integral de cultivo ecológico. A esto, le sumamos, a elección, otros ingredientes como pasas, nueces o miel pura de abejas, que aportan sabor y bienestar tambien de forma natural.",
     "fermentation_title": "El poder de la fermentación corta",
@@ -332,5 +360,32 @@
     "integral": "100% integral ecológico",
     "delivery": "Entrega gratis en Chiclana",
     "direct": "Artesano y cercano"
+  },
+  "flour_info": {
+    "aria": "Más información sobre {{name}}",
+    "flavor": "Sabor",
+    "gluten": "Gluten",
+    "nutrition": "Nutrición",
+    "ideal": "Ideal para",
+    "close": "Cerrar",
+    "gluten_low": "Bajo",
+    "gluten_medium": "Moderado",
+    "gluten_high": "Alto",
+    "tap_hint": "Toca el icono para descubrir cada harina"
+  },
+  "allergens": {
+    "title": "Alérgenos",
+    "gluten": "Gluten",
+    "nuts": "Frutos de cáscara",
+    "milk": "Leche",
+    "sesame": "Sésamo"
+  },
+  "edit_pan_modal": {
+    "title": "Edita tu pan",
+    "flours": "Harinas",
+    "cut": "Corte",
+    "save": "Guardar cambios",
+    "cancel": "Cancelar",
+    "extras": "Extras"
   }
 }

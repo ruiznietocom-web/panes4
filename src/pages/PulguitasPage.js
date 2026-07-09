@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from "framer-motion"; // Para animaciones suaves
 import { pulguitas } from "../data/products"; // Lista de productos (pulguitas)
 import { formatPrice } from "../utils/formatPrice"; // Función para formatear precios
+import AllergenBadges from "../components/AllergenBadges"; // Chips de alérgenos
 
 // import Mistletoe from "../components/Mistletoe";
 
@@ -70,6 +71,9 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
 
             {/* Descripción */}
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{t(`products.pulguitas.${pulguita.id.toString().replace('.', '_')}.description`)}</p>
+
+            {/* Alérgenos */}
+            <AllergenBadges allergens={pulguita.allergens} className="mb-2" />
 
             {/* Precio formateado */}
             <p className="text-lg font-semibold text-purple-600 dark:text-purple-400">

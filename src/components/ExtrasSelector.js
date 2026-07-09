@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { extras as allExtras } from '../data/products';
+import AllergenBadges from './AllergenBadges'; // Chips de alérgenos
 
 const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
   const { t } = useTranslation();
@@ -66,6 +67,8 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
                     <span className={`text-xs font-bold ${selected ? 'text-amber-600 dark:text-amber-400' : 'text-stone-400 dark:text-stone-500'}`}>
                       {extra.price.toFixed(2)}€
                     </span>
+                    {/* Alérgenos del extra (si los tiene) */}
+                    <AllergenBadges allergens={extra.allergens} className="mt-1.5" />
                   </button>
                 );
               })}

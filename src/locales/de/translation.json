@@ -17,7 +17,8 @@
     "add_button_dynamic": "Brot aus {{flours}}, wählen Sie ein anderes Mehl, die Art des 🔪 oder KLICKE HIER und fügen Sie es Ihrer Bestellung hinzu",
     "pan_added_toast": "Brot hinzugefügt, fügen Sie ein weiteres Brot hinzu oder wählen Sie Ihre Extras",
     "cut_title": "Wie möchtest du dein Brot geschnitten?",
-    "cut_subtitle": "Optional und kostenlos"
+    "cut_subtitle": "Optional und kostenlos",
+    "flour_counter": "{{count}} von {{max}} Mehlen gewählt"
   },
   "order_summary": {
     "title": "Bestellübersicht",
@@ -45,7 +46,9 @@
     "code_applied_fixed": "Code angewendet: {{value}} Rabatt",
     "discount_fixed": "Rabatt:",
     "min_purchase_note": "Mindestbestellwert von {{min}} für diesen Code",
-    "duplicate": "Dieses Brot duplizieren"
+    "duplicate": "Dieses Brot duplizieren",
+    "edit_pan": "Dieses Brot bearbeiten",
+    "repeat_last": "Letzte Bestellung wiederholen"
   },
   "optional_extras": {
     "propina": "Hier ist ein Trinkgeld!",
@@ -70,7 +73,7 @@
     "title": "+ INFO",
     "download_pdf": "Preis-PDF herunterladen",
     "quote": "\"Brot neu entdecken, ein Lebensmittel mit Seele.\"",
-    "p1": "Was wäre, wenn ich Ihnen sagen würde, dass Brot viel mehr sein kann als eine einfache Beilage? In einer Welt voller Eile haben wir die tiefe Verbindung vergessen, die zwischen dem grundlegendsten Lebensmittel und unserer Gesundheit besteht. Ich lade Sie ein, echtes Brot neu zu entdecken, eines, das die Tradition ehrt, die Erde respektiert und Ihren Körper auf bewusste Weise nährt.",
+    "p1": "Was wäre, wenn ich Ihnen sagen würde, dass Brot viel mehr sein kann als eine einfache Beilage? In einer Welt, in der wir so beschleunigt leben haben wir die tiefe Verbindung vergessen, die zwischen dem grundlegendsten Lebensmittel und unserer Gesundheit besteht. Ich lade Sie ein, echtes Brot neu zu entdecken, eines, das die Tradition ehrt, die Erde respektiert und Ihren Körper auf bewusste Weise nährt.",
     "p2": "Brote, Brötchen und Mini-Brötchen sind nicht nur Produkte; sie sind das Ergebnis einer Arbeit, die darauf ausgelegt ist, dass Ihr Organismus Nährstoffe so ausgewogen wie möglich aufnimmt. Jedes Stück ist zu 100% Vollkorn und wird aus Bio-Mehlen hergestellt, frei von jeglichen Zusatzstoffen. Hier ist kein Platz für starke oder raffinierte Mehle, noch für Konservierungsstoffe, Industriefette oder Brotverbesserer. Es geht einfach darum, zu den Ursprüngen zurückzukehren.",
     "p3": "Das Rezept für dieses Brot ist ein Pakt der Reinheit: Ich verwende nur natürliches Meersalz aus unseren Salinen von Chiclana, Mineralwasser, frische Hefe und 100% Bio-Vollkornmehl. Dazu fügen wir nach Wahl andere Zutaten wie Rosinen, Walnüsse oder reinen Bienenhonig hinzu, die ebenfalls auf natürliche Weise Geschmack und Wohlbefinden bieten.",
     "fermentation_title": "Die Kraft der kurzen Gärung",
@@ -124,27 +127,52 @@
       "1": {
         "name": "Bio-Vollkornweizen",
         "short_name": "Weizen",
-        "description": "Klassisch, vielseitig, traditionelle Basis für das tägliche Brot."
+        "description": "Klassisch, vielseitig, traditionelle Basis für das tägliche Brot.",
+        "info": {
+          "flavor": "Mild und vertraut, mit Noten von geröstetem Getreide und zarter Krume.",
+          "nutrition": "Reich an Ballaststoffen, B-Vitaminen, Magnesium und Antioxidantien aus der Kleie.",
+          "ideal": "Das Brot für jeden Tag: Toast, belegte Brote und jede Mahlzeit."
+        }
       },
       "2": {
         "name": "Bio-Vollkornroggen",
         "short_name": "Roggen",
-        "description": "Dunkel, aromatisch, glutenarm, rustikal und voller Mineralien"
+        "description": "Dunkel, aromatisch, glutenarm, rustikal und voller Mineralien",
+        "info": {
+          "flavor": "Kräftig und rustikal, leicht säuerlich, mit dichter, saftiger Krume.",
+          "nutrition": "Voller Mineralstoffe (Eisen, Kalium, Zink) und löslicher Ballaststoffe; sättigt länger und hilft, den Blutzucker zu regulieren.",
+          "ideal": "Gereifter Käse, Geräuchertes und ein herzhaftes Frühstück."
+        }
       },
       "3": {
         "name": "Bio-Vollkorndinkel",
         "short_name": "Dinkel",
-        "description": "Urgetreide, weich, bekömmlich und ballaststoffreich."
+        "description": "Urgetreide, weich, bekömmlich und ballaststoffreich.",
+        "info": {
+          "flavor": "Fein und leicht süßlich, mit angenehmen Nussnoten.",
+          "nutrition": "Urgetreide, reich an Ballaststoffen und Eiweiß, mit besonders bekömmlichem Gluten.",
+          "ideal": "Empfindliche Mägen und alle, die ein leichtes Alltagsbrot suchen."
+        }
       },
       "4": {
         "name": "Bio-Vollkorn-Khorasan",
         "short_name": "Khorasan",
-        "description": "Altes Getreide, intensiver Geschmack und hoher Proteingehalt."
+        "description": "Altes Getreide, intensiver Geschmack und hoher Proteingehalt.",
+        "info": {
+          "flavor": "Intensiv und buttrig, mit Anklängen von Nüssen.",
+          "nutrition": "Reich an Eiweiß, Selen und Zink; ein echter Energielieferant.",
+          "ideal": "Sportler und Liebhaber charaktervoller Brote."
+        }
       },
       "5": {
         "name": "Bio-Vollkorn-Tritordeum",
         "short_name": "Tritordeum",
-        "description": "Innovativ, Hybrid aus Weizen und Gerste und leicht verdaulich"
+        "description": "Innovativ, Hybrid aus Weizen und Gerste und leicht verdaulich",
+        "info": {
+          "flavor": "Süßlich und mild, eine Kreuzung aus Weizen und Gerste.",
+          "nutrition": "Reich an Lutein (Antioxidans), Ballaststoffen und Ölsäure; besonders bekömmlich.",
+          "ideal": "Alle, die mediterrane Innovation und leichte Verdauung schätzen."
+        }
       },
       "6": {
         "name": "FEIN GESCHNITTENES BROT (kostenlos)",
@@ -332,5 +360,32 @@
     "integral": "100 % Bio-Vollkorn",
     "delivery": "Kostenlose Lieferung in Chiclana",
     "direct": "Handwerklich & persönlich"
+  },
+  "flour_info": {
+    "aria": "Mehr über {{name}}",
+    "flavor": "Geschmack",
+    "gluten": "Gluten",
+    "nutrition": "Nährwerte",
+    "ideal": "Ideal für",
+    "close": "Schließen",
+    "gluten_low": "Niedrig",
+    "gluten_medium": "Mittel",
+    "gluten_high": "Hoch",
+    "tap_hint": "Tippe auf das Symbol, um jedes Mehl zu entdecken"
+  },
+  "allergens": {
+    "title": "Allergene",
+    "gluten": "Gluten",
+    "nuts": "Schalenfrüchte",
+    "milk": "Milch",
+    "sesame": "Sesam"
+  },
+  "edit_pan_modal": {
+    "title": "Brot bearbeiten",
+    "flours": "Mehle",
+    "cut": "Schnitt",
+    "save": "Änderungen speichern",
+    "cancel": "Abbrechen",
+    "extras": "Extras"
   }
 }

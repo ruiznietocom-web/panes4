@@ -17,7 +17,8 @@
     "add_button_dynamic": "Pain de {{flours}}, choisissez une autre farine, le type de 🔪 ou CLIQUE ICI et ajoutez-le à votre commande",
     "pan_added_toast": "Pain ajouté, ajoutez un autre pain ou choisissez vos suppléments",
     "cut_title": "Comment veux-tu la coupe ?",
-    "cut_subtitle": "Optionnel et gratuit"
+    "cut_subtitle": "Optionnel et gratuit",
+    "flour_counter": "{{count}} farines sur {{max}} choisies"
   },
   "order_summary": {
     "title": "Résumé de la Commande",
@@ -45,7 +46,9 @@
     "code_applied_fixed": "Code appliqué : {{value}} de réduction",
     "discount_fixed": "Réduction :",
     "min_purchase_note": "Achat minimum de {{min}} requis pour ce code",
-    "duplicate": "Dupliquer ce pain"
+    "duplicate": "Dupliquer ce pain",
+    "edit_pan": "Modifier ce pain",
+    "repeat_last": "Répéter ma dernière commande"
   },
   "optional_extras": {
     "propina": "Prends un pourboire !",
@@ -70,7 +73,7 @@
     "title": "+ INFO",
     "download_pdf": "Télécharger le PDF des Prix",
     "quote": "\"Redécouvrir le pain, un aliment avec une âme.\"",
-    "p1": "Et si je vous disais que le pain peut être bien plus qu'un simple accompagnement ? Dans un monde plein de précipitation, nous avons oublié la connexion profonde qui existe entre l'aliment le plus basique et notre santé. Je vous invite à redécouvrir le vrai pain, celui qui honore la tradition, respecte la terre et nourrit votre corps de manière consciente.",
+    "p1": "Et si je vous disais que le pain peut être bien plus qu'un simple accompagnement ? Dans un monde où nous vivons à toute vitesse, nous avons oublié la connexion profonde qui existe entre l'aliment le plus basique et notre santé. Je vous invite à redécouvrir le vrai pain, celui qui honore la tradition, respecte la terre et nourrit votre corps de manière consciente.",
     "p2": "Les pains, petits pains et petits pains mini ronds ne sont pas seulement des produits, ils sont le fruit d'un travail pensé pour que votre organisme absorbe les nutriments de la manière la plus équilibrée possible. Chaque pièce est 100% complète et élaborée avec des farines de culture biologique, sans aucun type d'additifs. Ici, il n'y a pas de place pour les farines de force ou raffinées, ni pour les conservateurs, les graisses industrielles ou les améliorants de panification. Il s'agit simplement de revenir aux origines.",
     "p3": "La recette de ce pain est un pacte de pureté : j'utilise uniquement du sel marin naturel de nos salines de Chiclana, de l'eau minérale, de la levure fraîche et de la farine 100% complète de culture biologique. À cela, nous ajoutons, au choix, d'autres ingrédients comme des raisins secs, des noix ou du miel pur d'abeilles, qui apportent également saveur et bien-être de manière naturelle.",
     "fermentation_title": "Le pouvoir de la fermentation courte",
@@ -124,27 +127,52 @@
       "1": {
         "name": "BLÉ Complet Biologique",
         "short_name": "Blé",
-        "description": "Classique, polyvalent, base traditionnelle du pain quotidien."
+        "description": "Classique, polyvalent, base traditionnelle du pain quotidien.",
+        "info": {
+          "flavor": "Douce et familière, aux notes de céréales grillées et à la mie tendre.",
+          "nutrition": "Riche en fibres, vitamines B, magnésium et antioxydants du son.",
+          "ideal": "Le pain de tous les jours : tartines, sandwichs et tous vos repas."
+        }
       },
       "2": {
         "name": "SEIGLE Complet Biologique",
         "short_name": "Seigle",
-        "description": "Foncé, aromatique, faible en gluten, rustique et plein de minéraux"
+        "description": "Foncé, aromatique, faible en gluten, rustique et plein de minéraux",
+        "info": {
+          "flavor": "Intense et rustique, légèrement acidulée, à la mie dense et moelleuse.",
+          "nutrition": "Très riche en minéraux (fer, potassium, zinc) et en fibres solubles ; plus rassasiant et aide à réguler la glycémie.",
+          "ideal": "Fromages affinés, produits fumés et petits-déjeuners copieux."
+        }
       },
       "3": {
         "name": "ÉPEAUTRE Complet Biologique",
         "short_name": "Épeautre",
-        "description": "Farine ancestrale, douce, digestive et riche en fibres."
+        "description": "Farine ancestrale, douce, digestive et riche en fibres.",
+        "info": {
+          "flavor": "Délicate et légèrement sucrée, aux agréables notes de noisette.",
+          "nutrition": "Céréale ancestrale riche en fibres et en protéines, au gluten plus fragile et facile à digérer.",
+          "ideal": "Les digestions sensibles et ceux qui cherchent un pain léger au quotidien."
+        }
       },
       "4": {
         "name": "KHORASAN Complet Biologique",
         "short_name": "Khorasan",
-        "description": "Céréale ancienne, saveur intense et riche en protéines."
+        "description": "Céréale ancienne, saveur intense et riche en protéines.",
+        "info": {
+          "flavor": "Intense et beurrée, avec des notes de fruits secs.",
+          "nutrition": "Riche en protéines, sélénium et zinc ; une belle source d'énergie.",
+          "ideal": "Les sportifs et les amateurs de pains de caractère."
+        }
       },
       "5": {
         "name": "TRITORDEUM Complet Biologique",
         "short_name": "Tritordeum",
-        "description": "Innovant, hybride de blé et d'orge et facile à digérer"
+        "description": "Innovant, hybride de blé et d'orge et facile à digérer",
+        "info": {
+          "flavor": "Douce et sucrée, un hybride de blé et d'orge.",
+          "nutrition": "Riche en lutéine (antioxydant), fibres et acide oléique ; digestion très légère.",
+          "ideal": "Ceux qui recherchent l'innovation méditerranéenne et une digestion légère."
+        }
       },
       "6": {
         "name": "PAIN COUPÉ FIN (gratuit)",
@@ -332,5 +360,32 @@
     "integral": "100 % complet et bio",
     "delivery": "Livraison gratuite à Chiclana",
     "direct": "Artisanal et local"
+  },
+  "flour_info": {
+    "aria": "En savoir plus sur {{name}}",
+    "flavor": "Saveur",
+    "gluten": "Gluten",
+    "nutrition": "Nutrition",
+    "ideal": "Idéal pour",
+    "close": "Fermer",
+    "gluten_low": "Faible",
+    "gluten_medium": "Modéré",
+    "gluten_high": "Élevé",
+    "tap_hint": "Touchez l'icône pour découvrir chaque farine"
+  },
+  "allergens": {
+    "title": "Allergènes",
+    "gluten": "Gluten",
+    "nuts": "Fruits à coque",
+    "milk": "Lait",
+    "sesame": "Sésame"
+  },
+  "edit_pan_modal": {
+    "title": "Modifiez votre pain",
+    "flours": "Farines",
+    "cut": "Coupe",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "extras": "Extras"
   }
 }

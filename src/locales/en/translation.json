@@ -17,7 +17,8 @@
     "add_button_dynamic": "Bread of {{flours}}, choose another flour, the type of 🔪, or CLICK HERE and add it to your order",
     "pan_added_toast": "Bread added, add another bread or choose your extras",
     "cut_title": "How would you like it sliced?",
-    "cut_subtitle": "Optional and free"
+    "cut_subtitle": "Optional and free",
+    "flour_counter": "{{count}} of {{max}} flours chosen"
   },
   "order_summary": {
     "title": "Order Summary",
@@ -45,7 +46,9 @@
     "code_applied_fixed": "Code applied: {{value}} off",
     "discount_fixed": "Discount:",
     "min_purchase_note": "Minimum purchase of {{min}} required for this code",
-    "duplicate": "Duplicate this bread"
+    "duplicate": "Duplicate this bread",
+    "edit_pan": "Edit this loaf",
+    "repeat_last": "Repeat my last order"
   },
   "optional_extras": {
     "propina": "Take a Tip!",
@@ -70,7 +73,7 @@
     "title": "+ INFO",
     "download_pdf": "Download Price PDF",
     "quote": "\"Rediscovering bread, a food with soul.\"",
-    "p1": "What if I told you that bread can be much more than a simple accompaniment? In a world full of haste, we have forgotten the deep connection that exists between the most basic food and our health. I invite you to rediscover real bread, one that honors tradition, respects the land, and nourishes your body in a conscious way.",
+    "p1": "What if I told you that bread can be much more than a simple accompaniment? In a world where we live at such a fast pace, we have forgotten the deep connection that exists between the most basic food and our health. I invite you to rediscover real bread, one that honors tradition, respects the land, and nourishes your body in a conscious way.",
     "p2": "Breads, buns, and mini bread rolls are not just products; they are the fruit of work designed so that your organism absorbs nutrients in the most balanced way possible. Each piece is 100% whole grain and made with organic flours, free of any type of additives. Here there is no room for strong or refined flours, nor for preservatives, industrial fats, or bread improvers. It is simply about returning to the origins.",
     "p3": "The recipe for this bread is a pact of purity: I only use natural sea salt from our Chiclana salt flats, mineral water, fresh yeast, and 100% organic whole flour. To this, we add, by choice, other ingredients such as raisins, walnuts, or pure honey, which also provide flavor and well-being naturally.",
     "fermentation_title": "The power of short fermentation",
@@ -124,27 +127,52 @@
       "1": {
         "name": "Organic Whole WHEAT",
         "short_name": "Wheat",
-        "description": "Classic, versatile, traditional base for daily bread."
+        "description": "Classic, versatile, traditional base for daily bread.",
+        "info": {
+          "flavor": "Mild and familiar, with toasted-cereal notes and a tender crumb.",
+          "nutrition": "Rich in fibre, B vitamins, magnesium and bran antioxidants.",
+          "ideal": "Everyday bread: toast, sandwiches and any meal."
+        }
       },
       "2": {
         "name": "Organic Whole RYE",
         "short_name": "Rye",
-        "description": "Dark, aromatic, low in gluten, rustic and full of minerals"
+        "description": "Dark, aromatic, low in gluten, rustic and full of minerals",
+        "info": {
+          "flavor": "Bold and rustic, slightly tangy, with a dense, moist crumb.",
+          "nutrition": "Packed with minerals (iron, potassium, zinc) and soluble fibre; more filling and helps regulate blood sugar.",
+          "ideal": "Cured cheeses, smoked foods and hearty breakfasts."
+        }
       },
       "3": {
         "name": "Organic Whole SPELT",
         "short_name": "Spelt",
-        "description": "Ancestral flour, soft, digestive and rich in fiber."
+        "description": "Ancestral flour, soft, digestive and rich in fiber.",
+        "info": {
+          "flavor": "Delicate and slightly sweet, with pleasant nutty notes.",
+          "nutrition": "Ancient grain rich in fibre and protein, with a gentler, easier-to-digest gluten.",
+          "ideal": "Sensitive stomachs and anyone after a light everyday loaf."
+        }
       },
       "4": {
         "name": "Organic Whole KHORASAN",
         "short_name": "Khorasan",
-        "description": "Ancient cereal, intense flavor and high in protein."
+        "description": "Ancient cereal, intense flavor and high in protein.",
+        "info": {
+          "flavor": "Intense and buttery, with hints of nuts.",
+          "nutrition": "High in protein, selenium and zinc; a great source of energy.",
+          "ideal": "Athletes and lovers of breads with character."
+        }
       },
       "5": {
         "name": "Organic Whole TRITORDEUM",
         "short_name": "Tritordeum",
-        "description": "Innovative, hybrid of wheat and barley and easy to digest"
+        "description": "Innovative, hybrid of wheat and barley and easy to digest",
+        "info": {
+          "flavor": "Sweet and mild, a hybrid of wheat and barley.",
+          "nutrition": "Rich in lutein (an antioxidant), fibre and oleic acid; very easy on digestion.",
+          "ideal": "Anyone after Mediterranean innovation and light digestion."
+        }
       },
       "6": {
         "name": "THIN SLICED BREAD (free)",
@@ -332,5 +360,32 @@
     "integral": "100% organic wholegrain",
     "delivery": "Free delivery in Chiclana",
     "direct": "Artisan & local"
+  },
+  "flour_info": {
+    "aria": "More about {{name}}",
+    "flavor": "Flavor",
+    "gluten": "Gluten",
+    "nutrition": "Nutrition",
+    "ideal": "Perfect for",
+    "close": "Close",
+    "gluten_low": "Low",
+    "gluten_medium": "Moderate",
+    "gluten_high": "High",
+    "tap_hint": "Tap the icon to discover each flour"
+  },
+  "allergens": {
+    "title": "Allergens",
+    "gluten": "Gluten",
+    "nuts": "Tree nuts",
+    "milk": "Milk",
+    "sesame": "Sesame"
+  },
+  "edit_pan_modal": {
+    "title": "Edit your loaf",
+    "flours": "Flours",
+    "cut": "Cut",
+    "save": "Save changes",
+    "cancel": "Cancel",
+    "extras": "Extras"
   }
 }

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'; // Animaciones del moda
 import { X, Check } from 'lucide-react'; // Iconos de cerrar y selección
 import { harinas, extras as allExtras } from '../data/products'; // Catálogo de harinas, cortes y extras
 import { formatPrice } from '../utils/formatPrice'; // Formateo de precios
+import { calculatePanBasePrice } from '../utils/calculatePanPrice'; // Cálculo dinámico del precio base del pan
 import { useTranslation } from 'react-i18next';
 
 const MAX_HARINAS = 5; // Debe coincidir con el máximo del selector principal
@@ -67,7 +68,8 @@ const EditPanModal = ({ pan, onSave, onClose }) => {
   };
 
   // Precio total del pan con los extras elegidos (para mostrarlo en el botón de guardar)
-  const panTotal = (pan?.price || 0) + selectedExtras.reduce((acc, e) => acc + e.price, 0);
+  const currentBasePrice = calculatePanBasePrice(selected);
+  const panTotal = currentBasePrice + selectedExtras.reduce((acc, e) => acc + e.price, 0);
 
   const handleSave = () => {
     if (selectedFlourCount === 0) return; // Un pan necesita al menos una harina

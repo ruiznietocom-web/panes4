@@ -13,6 +13,7 @@ import VideoHelpButton from './components/VideoHelpButton';
 import MobileCartBar from './components/MobileCartBar';
 import TrustBar from './components/TrustBar';
 import { extras, bollitos, pulguitas, otrosPanes, optionalExtras } from './data/products';
+import { calculatePanBasePrice } from './utils/calculatePanPrice';
 
 // Lazy loading de páginas
 const BollitosPage = React.lazy(() => import('./pages/BollitosPage'));
@@ -126,7 +127,9 @@ const sanitizeCartItems = (items) => {
   const lists = { extra: extras, bollito: bollitos, pulguita: pulguitas, otroPan: otrosPanes };
   return items
     .map(item => {
-      if (item.type === 'panPersonalizado') return item;
+      if (item.type === 'panPersonalizado') {
+        return { ...item, price: calculatePanBasePrice(item.harinas) };
+      }
       const product = lists[item.type]?.find(x => x.id === item.id);
       if (!product) return null; // el producto ya no existe en el catálogo
       return { ...item, name: product.name, price: product.price, image: product.image, icon: product.icon };
@@ -269,7 +272,7 @@ const App = () => {
   const handleUpdatePan = (panId, newHarinas, newExtras) => {
     setCartItems(prev => prev.map(item =>
       item.id === panId && item.type === 'panPersonalizado'
-        ? { ...item, harinas: newHarinas, extras: newExtras ?? item.extras }
+        ? { ...item, harinas: newHarinas, extras: newExtras ?? item.extras, price: calculatePanBasePrice(newHarinas) }
         : item
     ));
   };

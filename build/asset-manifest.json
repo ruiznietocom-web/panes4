@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.2d382e0e.css",
-    "main.js": "/static/js/main.ce377824.js",
-    "static/js/28.97ef6f00.chunk.js": "/static/js/28.97ef6f00.chunk.js",
-    "static/js/76.19d8d56f.chunk.js": "/static/js/76.19d8d56f.chunk.js",
+    "main.css": "/static/css/main.ac5b21bb.css",
+    "main.js": "/static/js/main.80e4ba71.js",
+    "static/js/28.b65d9fd4.chunk.js": "/static/js/28.b65d9fd4.chunk.js",
+    "static/js/76.00dab22b.chunk.js": "/static/js/76.00dab22b.chunk.js",
     "static/js/171.9f0113ad.chunk.js": "/static/js/171.9f0113ad.chunk.js",
     "static/js/471.c88e0c6b.chunk.js": "/static/js/471.c88e0c6b.chunk.js",
     "static/media/corazon.jpg": "/static/media/corazon.bd61b6dfe9254928b0f9.jpg",
@@ -20,15 +20,15 @@
     "static/media/YONAVIDAD2.png": "/static/media/YONAVIDAD2.8bb5addcba68f455f2b0.png",
     "static/media/logo.jpg": "/static/media/logo.fc2347e3893c0c13a391.jpg",
     "index.html": "/index.html",
-    "main.2d382e0e.css.map": "/static/css/main.2d382e0e.css.map",
-    "main.ce377824.js.map": "/static/js/main.ce377824.js.map",
-    "28.97ef6f00.chunk.js.map": "/static/js/28.97ef6f00.chunk.js.map",
-    "76.19d8d56f.chunk.js.map": "/static/js/76.19d8d56f.chunk.js.map",
+    "main.ac5b21bb.css.map": "/static/css/main.ac5b21bb.css.map",
+    "main.80e4ba71.js.map": "/static/js/main.80e4ba71.js.map",
+    "28.b65d9fd4.chunk.js.map": "/static/js/28.b65d9fd4.chunk.js.map",
+    "76.00dab22b.chunk.js.map": "/static/js/76.00dab22b.chunk.js.map",
     "171.9f0113ad.chunk.js.map": "/static/js/171.9f0113ad.chunk.js.map",
     "471.c88e0c6b.chunk.js.map": "/static/js/471.c88e0c6b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d382e0e.css",
-    "static/js/main.ce377824.js"
+    "static/css/main.ac5b21bb.css",
+    "static/js/main.80e4ba71.js"
   ]
 }

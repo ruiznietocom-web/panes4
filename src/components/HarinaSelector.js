@@ -4,6 +4,7 @@ import { Check, Info } from 'lucide-react'; // Iconos de check (selección) e in
 import { harinas } from '../data/products'; // Datos de harinas disponibles
 import { formatPrice } from '../utils/formatPrice'; // Función para formatear precios
 import { useTranslation } from 'react-i18next';
+import { calculatePanBasePrice } from '../utils/calculatePanPrice'; // Cálculo dinámico del precio del pan según harinas
 import FlourInfoModal from './FlourInfoModal'; // Ficha emergente con la información de cada harina
 
 import { toast } from 'react-hot-toast'; // Importar toast para notificaciones
@@ -35,7 +36,7 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
   }, [selectedFlourCount, setIsAddButtonVisible]);
 
   const maxHarinas = 5; // Máximo de harinas que se pueden seleccionar (coincide con el texto de instrucciones)
-  const fixedHarinaPrice = 5.50; // Precio fijo del pan base (sin extras)
+  const currentPanPrice = calculatePanBasePrice(selectedHarinas);
 
   // Función para seleccionar o deseleccionar una harina
   const toggleHarina = (harina) => {
@@ -65,7 +66,7 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
       id: Date.now(), // ID único para cada pan
       type: 'panPersonalizado', // Tipo de producto
       harinas: selectedHarinas, // Harinas seleccionadas
-      price: fixedHarinaPrice, // Precio base
+      price: currentPanPrice, // Precio base dinámico
       quantity: 1, // Cantidad inicial
       extras: [] // Inicia sin extras, luego se pueden añadir
     });
@@ -108,7 +109,7 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
 
       {/* Instrucciones para el usuario */}
       <p className="text-gray-500 dark:text-slate-300 text-center mb-2">
-        {t('harina_selector.instructions', { price: formatPrice(fixedHarinaPrice) })}
+        {t('harina_selector.instructions')}
       </p>
 
       {/* Pista sutil: el icono ⓘ de cada tarjeta muestra la ficha de la harina */}
@@ -231,7 +232,7 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
                 selectedHarinas.filter(h => h.price > 0).map(h => t(`products.harinas.${h.id}.short_name`))
               )
             })}
-            {' · '}{formatPrice(fixedHarinaPrice)}
+            {' · '}{formatPrice(currentPanPrice)}
           </button>
         </motion.div>
       )}

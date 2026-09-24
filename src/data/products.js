@@ -1,6 +1,6 @@
 export const harinas = [
-  { id: 1, name: "TRIGO Integral Ecológico", description: "Clásica, versátil, base tradicional del pan diario.", image: "🌾", price: 5.50, glutenLevel: 2, allergens: ["gluten"] },
-  { id: 2, name: "CENTENO Integral Ecológico", description: "Oscura, aromática, bajo en gluten, rústica y llena de minerales", image: "🌾", price: 5.50, glutenLevel: 1, allergens: ["gluten"] },
+  { id: 1, name: "TRIGO Integral Ecológico", description: "Clásica, versátil, base tradicional del pan diario.", image: "🌾", price: 6.00, glutenLevel: 2, allergens: ["gluten"] },
+  { id: 2, name: "CENTENO Integral Ecológico", description: "Oscura, aromática, bajo en gluten, rústica y llena de minerales", image: "🌾", price: 6.00, glutenLevel: 1, allergens: ["gluten"] },
   { id: 3, name: "ESPELTA Integral Ecológico", description: "Harina ancestral, suave, digestiva y rica en fibra.", image: "🌾", price: 6.00, glutenLevel: 2, allergens: ["gluten"] },
   { id: 4, name: "KHORASAN Integral Ecológico", description: "Antiguo cereal, sabor intenso y alto en proteínas.", image: "🌾", price: 6.00, glutenLevel: 2, allergens: ["gluten"] },
   { id: 5, name: "TRITORDEUM Integral Ecológico", description: "Innovadora, híbrido del trigo y la cebada y de fácil digestión", image: "🌾", price: 6.00, glutenLevel: 2, allergens: ["gluten"] },

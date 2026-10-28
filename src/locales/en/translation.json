@@ -20,6 +20,37 @@
     "cut_subtitle": "Optional and free",
     "flour_counter": "{{count}} of {{max}} flours chosen"
   },
+  "corte_reminder": {
+    "title": "Do you want your bread sliced?",
+    "subtitle": "You haven't selected a cut type. Slicing is 100% free.",
+    "no_button": "No, whole",
+    "no_desc": "Unsliced bread",
+    "yes_button": "Yes, sliced",
+    "yes_desc": "Choose slice type",
+    "choose_title": "What kind of slice do you prefer?",
+    "choose_subtitle": "Select your preferred thickness (free):",
+    "free_badge": "Free",
+    "back": "Back",
+    "close_aria": "Close reminder"
+  },
+  "mitad_y_mitad": {
+    "badge": "Customizable · 2 Flavors",
+    "title_bollitos": "PACK 6 Half & Half Rolls (3 + 3)",
+    "title_pulguitas": "PACK 12 Half & Half Mini Rolls (6 + 6)",
+    "subtitle_bollitos": "Choose 2 flavors: you'll get 3 rolls of one flavor and 3 of the other.",
+    "subtitle_pulguitas": "Choose 2 flavors: you'll get 6 mini rolls of one flavor and 6 of the other.",
+    "flavor1_label": "1st Half ({{count}} pcs)",
+    "flavor2_label": "2nd Half ({{count}} pcs)",
+    "allergens_label": "Allergens:",
+    "price_label": "Pack price:",
+    "add_button": "Add this Pack",
+    "in_cart": "In your basket:",
+    "configured_packs": "Your added Half & Half Packs:",
+    "toast_added": "Half & Half Pack added to your order!",
+    "rule_tomate": "With Tomato & Oregano · 8.00 €",
+    "rule_curcuma_cacao": "Turmeric + Cocoa · 7.00 €",
+    "rule_standard": "Standard combination · 7.50 €"
+  },
   "order_summary": {
     "title": "Order Summary",
     "empty": "Your basket is empty. Add something delicious!",

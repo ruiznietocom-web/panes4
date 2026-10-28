@@ -4,10 +4,11 @@ import { motion } from "framer-motion"; // Para animaciones suaves
 import { pulguitas } from "../data/products"; // Lista de productos (pulguitas)
 import { formatPrice } from "../utils/formatPrice"; // Función para formatear precios
 import AllergenBadges from "../components/AllergenBadges"; // Chips de alérgenos
+import MitadYMitadCard from "../components/MitadYMitadCard"; // Opción mitad y mitad
 
 // import Mistletoe from "../components/Mistletoe";
 
-const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
+const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity, cartItems = [] }) => {
   const { t } = useTranslation();
   // Estado para controlar qué foto mostrar en el modal
   const [modalPhoto, setModalPhoto] = useState(null);
@@ -120,6 +121,15 @@ const PulguitasPage = ({ selectedPulguitas, onUpdatePulguitaQuantity }) => {
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* Opción Mitad de un sabor y mitad de otro al final de la página */}
+      <div className="mt-8">
+        <MitadYMitadCard
+          productType="pulguita"
+          cartItems={cartItems}
+          onUpdateQuantity={onUpdatePulguitaQuantity}
+        />
       </div>
 
       {/* Modal para mostrar la foto */}

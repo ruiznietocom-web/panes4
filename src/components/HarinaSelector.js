@@ -6,6 +6,7 @@ import { formatPrice } from '../utils/formatPrice'; // Función para formatear p
 import { useTranslation } from 'react-i18next';
 import { calculatePanBasePrice } from '../utils/calculatePanPrice'; // Cálculo dinámico del precio del pan según harinas
 import FlourInfoModal from './FlourInfoModal'; // Ficha emergente con la información de cada harina
+import CorteReminderModal from './CorteReminderModal'; // Modal recordatorio del tipo de corte
 
 import { toast } from 'react-hot-toast'; // Importar toast para notificaciones
 
@@ -17,6 +18,8 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
   const [selectedHarinas, setSelectedHarinas] = useState([]);
   // Harina cuya ficha informativa está abierta (null = ficha cerrada)
   const [infoHarina, setInfoHarina] = useState(null);
+  // Modal recordatorio de corte si pulsa el botón naranja sin haber elegido corte
+  const [showCorteReminder, setShowCorteReminder] = useState(false);
 
   // Separar harinas reales de las opciones de corte (gratuitas)
   const flours = harinas.filter(h => h.price > 0);
@@ -57,21 +60,17 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
     });
   };
 
-  // Función que se ejecuta al añadir un pan al carrito
-  const handleAddPan = () => {
-    if (selectedFlourCount === 0) return; // Hace falta al menos una harina real (el corte solo no forma un pan)
-
-    // Crear un objeto pan personalizado y enviarlo al carrito
+  // Añade el pan al carrito con la lista final de harinas y corte
+  const addPanToCart = (harinasToAdd) => {
     onAddPan({
-      id: Date.now(), // ID único para cada pan
-      type: 'panPersonalizado', // Tipo de producto
-      harinas: selectedHarinas, // Harinas seleccionadas
-      price: currentPanPrice, // Precio base dinámico
-      quantity: 1, // Cantidad inicial
-      extras: [] // Inicia sin extras, luego se pueden añadir
+      id: Date.now(),
+      type: 'panPersonalizado',
+      harinas: harinasToAdd,
+      price: calculatePanBasePrice(harinasToAdd),
+      quantity: 1,
+      extras: []
     });
 
-    // Mostrar notificación de éxito
     toast.success(t('harina_selector.pan_added_toast'), {
       duration: 4000,
       position: 'top-center',
@@ -86,8 +85,34 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
       },
     });
 
-    // Limpiar selección para que se pueda crear otro pan
     setSelectedHarinas([]);
+    setShowCorteReminder(false);
+  };
+
+  // Función que se ejecuta al pulsar el botón naranja
+  const handleAddPan = () => {
+    if (selectedFlourCount === 0) return;
+
+    // Comprobar si ya ha seleccionado un tipo de corte (harinas con price === 0)
+    const hasCorte = selectedHarinas.some(h => h.price === 0);
+    if (!hasCorte) {
+      // Si no ha elegido corte, abrir el recordatorio (Sí o No y qué corte)
+      setShowCorteReminder(true);
+      return;
+    }
+
+    // Si ya lo tiene seleccionado, añadirlo directamente
+    addPanToCart(selectedHarinas);
+  };
+
+  // El usuario responde "No" (quiere el pan entero / sin corte)
+  const handleConfirmNoCut = () => {
+    addPanToCart(selectedHarinas.filter(h => h.price > 0));
+  };
+
+  // El usuario responde "Sí" y selecciona un tipo de corte
+  const handleConfirmWithCut = (corte) => {
+    addPanToCart([...selectedHarinas.filter(h => h.price > 0), corte]);
   };
 
   return (
@@ -239,6 +264,15 @@ const HarinaSelector = ({ onAddPan, existingPanesCount, setIsAddButtonVisible })
 
       {/* Ficha emergente con la información detallada de la harina */}
       <FlourInfoModal harina={infoHarina} onClose={() => setInfoHarina(null)} />
+
+      {/* Recordatorio de tipo de corte (Sí o No y qué tipo de corte) al pulsar el botón naranja */}
+      <CorteReminderModal
+        isOpen={showCorteReminder}
+        cortes={cortes}
+        onConfirmNoCut={handleConfirmNoCut}
+        onConfirmWithCut={handleConfirmWithCut}
+        onClose={() => setShowCorteReminder(false)}
+      />
     </motion.div>
   );
 };

@@ -4,8 +4,8 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // Importa 'motion' de framer-motion para animar elementos (entrada, hover, tap, etc.).
 
-import { MessageCircle, Trash2, Copy, Pencil, RotateCcw } from 'lucide-react';
-// Iconos: MessageCircle (WhatsApp), Trash2 (eliminar), Copy (duplicar), Pencil (editar), RotateCcw (repetir pedido).
+import { MessageCircle, Trash2, Copy, Pencil } from 'lucide-react';
+// Iconos: MessageCircle (WhatsApp), Trash2 (eliminar), Copy (duplicar), Pencil (editar).
 
 import confetti from 'canvas-confetti';
 import toast from 'react-hot-toast';
@@ -29,7 +29,6 @@ const OrderSummary = ({
   onRemoveItem,
   onDuplicateItem,
   onEditPanHarinas,
-  onRepeatLastOrder,
   selectedOptionalExtras = [],
   setSelectedOptionalExtras
 }) => {
@@ -115,19 +114,17 @@ const OrderSummary = ({
     // Bollitos
     bollitosInCart.forEach(item => {
       const b = bollitos.find(b => b.id === item.id);
-      if (b) {
-        subtotal += b.price * item.quantity;
-        discountBase += b.price * item.quantity;
-      }
+      const price = item.price ?? b?.price ?? 0;
+      subtotal += price * item.quantity;
+      discountBase += price * item.quantity;
     });
 
     // Pulguitas
     pulguitasInCart.forEach(item => {
       const p = pulguitas.find(p => p.id === item.id);
-      if (p) {
-        subtotal += p.price * item.quantity;
-        discountBase += p.price * item.quantity;
-      }
+      const price = item.price ?? p?.price ?? 0;
+      subtotal += price * item.quantity;
+      discountBase += price * item.quantity;
     });
 
     // Extras opcionales → NO cuentan para descuento
@@ -199,9 +196,10 @@ const OrderSummary = ({
       message += `\n*BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
         const b = bollitos.find(b => b.id === item.id);
-        if (b) {
-          message += `• ${b.image ? b.image + " " : ""}${b.name} x${item.quantity} - ${formatPrice(b.price * item.quantity)}\n`;
-        }
+        const name = item.name || b?.name || '';
+        const price = item.price ?? b?.price ?? 0;
+        const icon = item.image || item.icon || b?.image || '🍞';
+        message += `• ${icon ? icon + " " : ""}${name} x${item.quantity} - ${formatPrice(price * item.quantity)}\n`;
       });
     }
 
@@ -210,9 +208,10 @@ const OrderSummary = ({
       message += `\n*PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
         const p = pulguitas.find(p => p.id === item.id);
-        if (p) {
-          message += `• ${p.image ? p.image + " " : ""}${p.name} x${item.quantity} - ${formatPrice(p.price * item.quantity)}\n`;
-        }
+        const name = item.name || p?.name || '';
+        const price = item.price ?? p?.price ?? 0;
+        const icon = item.image || item.icon || p?.image || '🍞';
+        message += `• ${icon ? icon + " " : ""}${name} x${item.quantity} - ${formatPrice(price * item.quantity)}\n`;
       });
     }
 
@@ -290,17 +289,6 @@ const OrderSummary = ({
           <div className="flex flex-col items-center text-center py-6 text-gray-500 dark:text-gray-400">
             <span className="text-5xl mb-3" aria-hidden="true">🧺</span>
             <p>{t('order_summary.empty')}</p>
-            {/* Repetir el último pedido enviado (solo si existe uno guardado) */}
-            {onRepeatLastOrder && (
-              <button
-                type="button"
-                onClick={onRepeatLastOrder}
-                className="mt-4 flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-amber-400 text-amber-700 dark:text-amber-300 font-bold text-sm hover:bg-amber-50 dark:hover:bg-slate-700 transition-colors"
-              >
-                <RotateCcw className="w-4 h-4" />
-                {t('order_summary.repeat_last')}
-              </button>
-            )}
           </div>
         )}
 
@@ -372,14 +360,18 @@ const OrderSummary = ({
             <AnimatePresence initial={false}>
             {bollitosInCart.map(item => {
               const b = bollitos.find(b => b.id === item.id);
-              return b && (
-                <motion.div key={b.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex justify-between items-center p-2 bg-blue-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
-                  <span>{t(`products.bollitos.${b.id.toString().replace('.', '_')}.name`)} x{item.quantity}</span>
-                  <span>{formatPrice(b.price * item.quantity)}</span>
-                  <button className="ml-2 text-red-500 hover:text-red-700"
-                    onClick={() => onRemoveItem(item.id, 'bollito')}>
-                    <Trash2 className="w-5 h-5" />
-                  </button>
+              const displayName = item.name || (b ? t(`products.bollitos.${b.id.toString().replace('.', '_')}.name`, { defaultValue: b.name }) : item.id);
+              const price = item.price ?? b?.price ?? 0;
+              return (
+                <motion.div key={item.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex justify-between items-center p-2 bg-blue-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
+                  <span className="pr-2">{displayName} x{item.quantity}</span>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="font-semibold">{formatPrice(price * item.quantity)}</span>
+                    <button className="text-red-500 hover:text-red-700"
+                      onClick={() => onRemoveItem(item.id, 'bollito')}>
+                      <Trash2 className="w-5 h-5" />
+                    </button>
+                  </div>
                 </motion.div>
               );
             })}
@@ -394,14 +386,18 @@ const OrderSummary = ({
             <AnimatePresence initial={false}>
             {pulguitasInCart.map(item => {
               const p = pulguitas.find(p => p.id === item.id);
-              return p && (
-                <motion.div key={p.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex justify-between items-center p-2 bg-purple-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
-                  <span>{t(`products.pulguitas.${p.id.toString().replace('.', '_')}.name`)} x{item.quantity}</span>
-                  <span>{formatPrice(p.price * item.quantity)}</span>
-                  <button className="ml-2 text-red-500 hover:text-red-700"
-                    onClick={() => onRemoveItem(item.id, 'pulguita')}>
-                    <Trash2 className="w-5 h-5" />
-                  </button>
+              const displayName = item.name || (p ? t(`products.pulguitas.${p.id.toString().replace('.', '_')}.name`, { defaultValue: p.name }) : item.id);
+              const price = item.price ?? p?.price ?? 0;
+              return (
+                <motion.div key={item.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="flex justify-between items-center p-2 bg-purple-50 dark:bg-slate-700 dark:text-white rounded-lg relative transition-colors duration-200">
+                  <span className="pr-2">{displayName} x{item.quantity}</span>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="font-semibold">{formatPrice(price * item.quantity)}</span>
+                    <button className="text-red-500 hover:text-red-700"
+                      onClick={() => onRemoveItem(item.id, 'pulguita')}>
+                      <Trash2 className="w-5 h-5" />
+                    </button>
+                  </div>
                 </motion.div>
               );
             })}

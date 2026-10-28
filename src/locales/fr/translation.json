@@ -20,6 +20,37 @@
     "cut_subtitle": "Optionnel et gratuit",
     "flour_counter": "{{count}} farines sur {{max}} choisies"
   },
+  "corte_reminder": {
+    "title": "Voulez-vous votre pain tranché ?",
+    "subtitle": "Vous n'avez pas sélectionné de coupe. Le tranchage est 100% gratuit.",
+    "no_button": "Non, entier",
+    "no_desc": "Pain non tranché",
+    "yes_button": "Oui, tranché",
+    "yes_desc": "Choisir le type de coupe",
+    "choose_title": "Quel type de coupe préférez-vous ?",
+    "choose_subtitle": "Sélectionnez l'épaisseur souhaitée (gratuit) :",
+    "free_badge": "Gratuit",
+    "back": "Retour",
+    "close_aria": "Fermer le rappel"
+  },
+  "mitad_y_mitad": {
+    "badge": "Personnalisable · 2 Saveurs",
+    "title_bollitos": "PACK 6 Petits Pains Moitié & Moitié (3 + 3)",
+    "title_pulguitas": "PACK 12 Minis Pains Moitié & Moitié (6 + 6)",
+    "subtitle_bollitos": "Choisissez 2 saveurs : vous recevrez 3 petits pains d'une saveur et 3 de l'autre.",
+    "subtitle_pulguitas": "Choisissez 2 saveurs : vous recevrez 6 minis pains d'une saveur et 6 de l'autre.",
+    "flavor1_label": "1ère Moitié ({{count}} pcs)",
+    "flavor2_label": "2ème Moitié ({{count}} pcs)",
+    "allergens_label": "Allergènes :",
+    "price_label": "Prix du pack :",
+    "add_button": "Ajouter ce Pack",
+    "in_cart": "Dans votre panier :",
+    "configured_packs": "Vos Packs Moitié & Moitié ajoutés :",
+    "toast_added": "Pack Moitié & Moitié ajouté à votre commande !",
+    "rule_tomate": "Avec Tomate & Origan · 8,00 €",
+    "rule_curcuma_cacao": "Curcuma + Cacao · 7,00 €",
+    "rule_standard": "Combinaison standard · 7,50 €"
+  },
   "order_summary": {
     "title": "Résumé de la Commande",
     "empty": "Votre panier est vide. Ajoutez quelque chose de délicieux !",

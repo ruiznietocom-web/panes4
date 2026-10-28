@@ -22,6 +22,16 @@ const InformacionPage = React.lazy(() => import('./pages/InformacionPage'));
 
 // Decoración navideña: carga diferida (sus imágenes solo se descargan en temporada)
 const ChristmasDecorations = React.lazy(() => import('./components/ChristmasDecorations'));
+// Decoración de Halloween: carga diferida
+const HalloweenGhost = React.lazy(() => import('./components/HalloweenGhost'));
+
+// Temporada de Halloween: del 10 de octubre al 10 de noviembre
+const isHalloweenSeason = () => {
+  const now = new Date();
+  const month = now.getMonth(); // 9 = octubre, 10 = noviembre
+  const day = now.getDate();
+  return (month === 9 && day >= 10) || (month === 10 && day <= 10);
+};
 
 // Temporada navideña: del 1 de diciembre al 6 de enero (Reyes)
 const isChristmasSeason = () => {
@@ -81,9 +91,10 @@ const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanE
             transition={{ duration: 0.3 }}
           >
             <BollitosPage
+              cartItems={cartItems}
               selectedBollitos={cartItems.filter(item => item.type === 'bollito')
                 .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
-              onUpdateBollitoQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'bollito')}
+              onUpdateBollitoQuantity={(id, qty, customData) => handleUpdateCartItem(id, qty, 'bollito', customData)}
             />
           </motion.div>
         } />
@@ -95,9 +106,10 @@ const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanE
             transition={{ duration: 0.3 }}
           >
             <PulguitasPage
+              cartItems={cartItems}
               selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')
                 .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
-              onUpdatePulguitaQuantity={(id, qty) => handleUpdateCartItem(id, qty, 'pulguita')}
+              onUpdatePulguitaQuantity={(id, qty, customData) => handleUpdateCartItem(id, qty, 'pulguita', customData)}
             />
           </motion.div>
         } />
@@ -116,64 +128,26 @@ const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanE
   );
 };
 
-// ---- Cesta persistente: sobrevive a cerrar la pestaña o el navegador ----
+// Claves antiguas de almacenamiento para limpieza
 const CART_STORAGE_KEY = 'panzen_cart';
-const LAST_ORDER_KEY = 'panzen_last_order'; // Último pedido enviado (para "repetir pedido")
-
-// Sanear una lista de productos contra el catálogo actual:
-// quitar productos retirados y refrescar precios
-const sanitizeCartItems = (items) => {
-  if (!Array.isArray(items)) return [];
-  const lists = { extra: extras, bollito: bollitos, pulguita: pulguitas, otroPan: otrosPanes };
-  return items
-    .map(item => {
-      if (item.type === 'panPersonalizado') {
-        return { ...item, price: calculatePanBasePrice(item.harinas) };
-      }
-      const product = lists[item.type]?.find(x => x.id === item.id);
-      if (!product) return null; // el producto ya no existe en el catálogo
-      return { ...item, name: product.name, price: product.price, image: product.image, icon: product.icon };
-    })
-    .filter(Boolean);
-};
-
-const loadStoredCart = () => {
-  try {
-    const raw = localStorage.getItem(CART_STORAGE_KEY);
-    if (!raw) return [];
-    return sanitizeCartItems(JSON.parse(raw));
-  } catch {
-    return [];
-  }
-};
-
-// Cargar el último pedido enviado (o null si no hay)
-const loadLastOrder = () => {
-  try {
-    const raw = localStorage.getItem(LAST_ORDER_KEY);
-    if (!raw) return null;
-    const items = sanitizeCartItems(JSON.parse(raw));
-    return items.length > 0 ? items : null;
-  } catch {
-    return null;
-  }
-};
+const LAST_ORDER_KEY = 'panzen_last_order';
 
 const App = () => {
-  const [cartItems, setCartItems] = useState(loadStoredCart);
-  const [lastOrder, setLastOrder] = useState(loadLastOrder); // Último pedido enviado
+  // La cesta se inicia siempre vacía al abrir la app (sin memorizar pedidos anteriores)
+  const [cartItems, setCartItems] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isAddButtonVisible, setIsAddButtonVisible] = useState(false);
   const [selectedOptionalExtras, setSelectedOptionalExtras] = useState([]);
 
-  // Guardar la cesta en el navegador en cada cambio
+  // Limpiar cualquier residuo de pedidos memorizados en el almacenamiento local
   useEffect(() => {
     try {
-      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+      localStorage.removeItem(CART_STORAGE_KEY);
+      localStorage.removeItem(LAST_ORDER_KEY);
     } catch {
-      // almacenamiento no disponible (modo privado, etc.): la app sigue funcionando
+      // almacenamiento no disponible
     }
-  }, [cartItems]);
+  }, []);
 
   const getProductDetails = (id, type) => {
     switch (type) {
@@ -189,7 +163,7 @@ const App = () => {
     setCartItems(prev => [...prev, { ...pan, extras: [] }]);
   };
 
-  const handleUpdateCartItem = (id, quantity, type) => {
+  const handleUpdateCartItem = (id, quantity, type, customItemData = null) => {
     setCartItems(prevItems => {
       const existingIndex = prevItems.findIndex(item => item.id === id && item.type === type);
       const newQuantity = Math.max(0, quantity);
@@ -202,6 +176,18 @@ const App = () => {
         return prevItems.map((item, idx) =>
           idx === existingIndex ? { ...item, quantity: newQuantity } : item
         );
+      }
+
+      if (customItemData) {
+        return [
+          ...prevItems,
+          {
+            ...customItemData,
+            id,
+            quantity: newQuantity,
+            type
+          }
+        ];
       }
 
       const product = getProductDetails(id, type);
@@ -245,26 +231,9 @@ const App = () => {
   };
 
   const handleSendWhatsApp = () => {
-    // Guardar este pedido como "último pedido" para poder repetirlo más adelante
-    try {
-      localStorage.setItem(LAST_ORDER_KEY, JSON.stringify(cartItems));
-      setLastOrder(cartItems);
-    } catch {
-      // almacenamiento no disponible: la app sigue funcionando
-    }
     setShowSuccessModal(true);
-  };
-
-  // Repetir el último pedido enviado: rellena la cesta con los mismos productos
-  const handleRepeatLastOrder = () => {
-    if (!lastOrder) return;
-    const now = Date.now();
-    const items = sanitizeCartItems(lastOrder).map((item, index) =>
-      item.type === 'panPersonalizado'
-        ? { ...item, id: now + index, harinas: [...item.harinas], extras: [...(item.extras || [])] }
-        : { ...item }
-    );
-    setCartItems(items);
+    setCartItems([]);
+    setSelectedOptionalExtras([]);
   };
 
   // Actualizar un pan personalizado ya añadido (desde el editor del resumen):
@@ -302,6 +271,13 @@ const App = () => {
       <ScrollToTop />
       <Toaster position="top-center" reverseOrder={false} />
       <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 relative transition-colors duration-300">
+        {/* Decoración de Halloween (10 oct - 10 nov) */}
+        {isHalloweenSeason() && (
+          <Suspense fallback={null}>
+            <HalloweenGhost />
+          </Suspense>
+        )}
+
         {/* Decoración navideña automática (1 dic - 6 ene) */}
         {isChristmasSeason() && (
           <Suspense fallback={null}>
@@ -336,7 +312,6 @@ const App = () => {
                     onRemoveItem={handleRemoveCartItem}
                     onDuplicateItem={handleDuplicatePan}
                     onEditPanHarinas={handleUpdatePan}
-                    onRepeatLastOrder={lastOrder ? handleRepeatLastOrder : null}
                     selectedOptionalExtras={selectedOptionalExtras}
                     setSelectedOptionalExtras={setSelectedOptionalExtras}
                   />

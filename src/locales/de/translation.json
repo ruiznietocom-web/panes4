@@ -20,6 +20,37 @@
     "cut_subtitle": "Optional und kostenlos",
     "flour_counter": "{{count}} von {{max}} Mehlen gewählt"
   },
+  "corte_reminder": {
+    "title": "Möchten Sie das Brot geschnitten?",
+    "subtitle": "Sie haben keinen Schnitt gewählt. Das Schneiden ist 100% kostenlos.",
+    "no_button": "Nein, ganz",
+    "no_desc": "Ungeschnittenes Brot",
+    "yes_button": "Ja, geschnitten",
+    "yes_desc": "Schnittart wählen",
+    "choose_title": "Welche Schnittart bevorzugen Sie?",
+    "choose_subtitle": "Wählen Sie die gewünschte Dicke (kostenlos):",
+    "free_badge": "Gratis",
+    "back": "Zurück",
+    "close_aria": "Erinnerung schließen"
+  },
+  "mitad_y_mitad": {
+    "badge": "Anpassbar · 2 Sorten",
+    "title_bollitos": "PACK 6 Brötchen Halb & Halb (3 + 3)",
+    "title_pulguitas": "PACK 12 Mini-Brötchen Halb & Halb (6 + 6)",
+    "subtitle_bollitos": "Wählen Sie 2 Sorten: Sie erhalten 3 Brötchen einer Sorte und 3 der anderen.",
+    "subtitle_pulguitas": "Wählen Sie 2 Sorten: Sie erhalten 6 Mini-Brötchen einer Sorte und 6 der anderen.",
+    "flavor1_label": "1. Hälfte ({{count}} Stk)",
+    "flavor2_label": "2. Hälfte ({{count}} Stk)",
+    "allergens_label": "Allergene:",
+    "price_label": "Packpreis:",
+    "add_button": "Dieses Pack hinzufügen",
+    "in_cart": "Im Warenkorb:",
+    "configured_packs": "Ihre hinzugefügten Halb & Halb Packs:",
+    "toast_added": "Halb & Halb Pack zur Bestellung hinzugefügt!",
+    "rule_tomate": "Mit Tomate & Oregano · 8,00 €",
+    "rule_curcuma_cacao": "Kurkuma + Kakao · 7,00 €",
+    "rule_standard": "Standardkombination · 7,50 €"
+  },
   "order_summary": {
     "title": "Bestellübersicht",
     "empty": "Ihr Warenkorb ist leer. Fügen Sie etwas Leckeres hinzu!",

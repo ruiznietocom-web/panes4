@@ -20,6 +20,37 @@
     "cut_subtitle": "Opzionale e gratuito",
     "flour_counter": "{{count}} farine su {{max}} scelte"
   },
+  "corte_reminder": {
+    "title": "Vuoi il pane affettato?",
+    "subtitle": "Non hai selezionato nessun taglio. Il taglio è gratuito al 100%.",
+    "no_button": "No, intero",
+    "no_desc": "Pane non affettato",
+    "yes_button": "Sì, affettato",
+    "yes_desc": "Scegli il tipo di taglio",
+    "choose_title": "Che tipo di taglio preferisci?",
+    "choose_subtitle": "Seleziona lo spessore che preferisci (gratuito):",
+    "free_badge": "Gratis",
+    "back": "Indietro",
+    "close_aria": "Chiudi promemoria"
+  },
+  "mitad_y_mitad": {
+    "badge": "Personalizzabile · 2 Gusti",
+    "title_bollitos": "PACK 6 Panini Metà & Metà (3 + 3)",
+    "title_pulguitas": "PACK 12 Bocconcini Metà & Metà (6 + 6)",
+    "subtitle_bollitos": "Scegli 2 gusti: riceverai 3 panini di un gusto e 3 dell'altro.",
+    "subtitle_pulguitas": "Scegli 2 gusti: riceverai 6 bocconcini di un gusto e 6 dell'altro.",
+    "flavor1_label": "1ª Metà ({{count}} pz)",
+    "flavor2_label": "2ª Metà ({{count}} pz)",
+    "allergens_label": "Allergeni:",
+    "price_label": "Prezzo del pack:",
+    "add_button": "Aggiungi questo Pack",
+    "in_cart": "Nel carrello:",
+    "configured_packs": "I tuoi Pack Metà & Metà aggiunti:",
+    "toast_added": "Pack Metà & Metà aggiunto al tuo ordine!",
+    "rule_tomate": "Con Pomodoro e Origano · 8,00 €",
+    "rule_curcuma_cacao": "Curcuma + Cacao · 7,00 €",
+    "rule_standard": "Combinazione standard · 7,50 €"
+  },
   "order_summary": {
     "title": "Riepilogo Ordine",
     "empty": "Il tuo carrello è vuoto. Aggiungi qualcosa di delizioso!",

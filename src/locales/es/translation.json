@@ -20,6 +20,37 @@
     "cut_subtitle": "Opcional y gratuito",
     "flour_counter": "{{count}} de {{max}} harinas elegidas"
   },
+  "corte_reminder": {
+    "title": "¿Quieres el pan cortado?",
+    "subtitle": "No has seleccionado ningún tipo de corte. Recuerda que el corte es 100% gratuito.",
+    "no_button": "No, entero",
+    "no_desc": "Pan sin cortar",
+    "yes_button": "Sí, cortado",
+    "yes_desc": "Elegir tipo de corte",
+    "choose_title": "¿Qué tipo de corte prefieres?",
+    "choose_subtitle": "Selecciona el grosor que más te guste (gratuito):",
+    "free_badge": "Gratis",
+    "back": "Volver",
+    "close_aria": "Cerrar recordatorio"
+  },
+  "mitad_y_mitad": {
+    "badge": "Personalizable · 2 Sabores",
+    "title_bollitos": "PACK 6 Bollitos Mitad y Mitad (3 + 3)",
+    "title_pulguitas": "PACK 12 Pulguitas Mitad y Mitad (6 + 6)",
+    "subtitle_bollitos": "Elige 2 sabores a tu gusto: recibirás 3 bollitos de un sabor y 3 del otro.",
+    "subtitle_pulguitas": "Elige 2 sabores a tu gusto: recibirás 6 pulguitas de un sabor y 6 de la otra.",
+    "flavor1_label": "1ª Mitad ({{count}} uds)",
+    "flavor2_label": "2ª Mitad ({{count}} uds)",
+    "allergens_label": "Alérgenos:",
+    "price_label": "Precio del pack:",
+    "add_button": "Añadir este Pack",
+    "in_cart": "En tu cesta:",
+    "configured_packs": "Tus Packs Mitad y Mitad añadidos:",
+    "toast_added": "¡Pack Mitad y Mitad añadido a tu pedido!",
+    "rule_tomate": "Con Tomate y Orégano · 8,00 €",
+    "rule_curcuma_cacao": "Cúrcuma + Cacao · 7,00 €",
+    "rule_standard": "Combinación estándar · 7,50 €"
+  },
   "order_summary": {
     "title": "Resumen del Pedido",
     "empty": "Tu cesta está vacía. ¡Añade algo delicioso!",

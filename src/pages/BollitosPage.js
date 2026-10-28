@@ -4,10 +4,11 @@ import { motion } from "framer-motion"; // Para animaciones suaves
 import { bollitos } from "../data/products"; // Lista de productos (bollitos)
 import { formatPrice } from "../utils/formatPrice"; // Función para formatear precios
 import AllergenBadges from "../components/AllergenBadges"; // Chips de alérgenos
+import MitadYMitadCard from "../components/MitadYMitadCard"; // Opción mitad y mitad
 
 // import Mistletoe from "../components/Mistletoe";
 
-const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
+const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity, cartItems = [] }) => {
   const { t } = useTranslation();
   // Estado para controlar qué foto mostrar en el modal
   const [modalPhoto, setModalPhoto] = useState(null);
@@ -113,6 +114,15 @@ const BollitosPage = ({ selectedBollitos, onUpdateBollitoQuantity }) => {
             </div>
           </motion.div>
         ))}
+      </div>
+
+      {/* Opción Mitad de un sabor y mitad de otro al final de la página */}
+      <div className="mt-8">
+        <MitadYMitadCard
+          productType="bollito"
+          cartItems={cartItems}
+          onUpdateQuantity={onUpdateBollitoQuantity}
+        />
       </div>
 
       {/* Modal para mostrar la foto */}

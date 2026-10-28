@@ -47,7 +47,7 @@ const FlourInfoModal = ({ harina, onClose }) => {
         >
           {/* Tarjeta de la ficha */}
           <motion.div
-            className="relative w-full max-w-md bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-md bg-white dark:bg-stone-900 rounded-3xl border border-amber-900/15 dark:border-stone-700 shadow-2xl overflow-hidden"
             initial={{ scale: 0.92, y: 24, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.92, y: 24, opacity: 0 }}

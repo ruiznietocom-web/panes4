@@ -4,9 +4,6 @@ import { ShoppingBasket, ChevronUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { formatPrice } from '../utils/formatPrice';
 
-// Barra fija inferior que solo se muestra en móvil/tablet (oculta en lg+,
-// donde el resumen ya es visible en la columna derecha).
-// Muestra nº de artículos + subtotal y lleva al resumen del pedido al tocarla.
 const MobileCartBar = ({ itemCount, subtotal }) => {
   const { t } = useTranslation();
 
@@ -27,18 +24,18 @@ const MobileCartBar = ({ itemCount, subtotal }) => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          className="lg:hidden fixed bottom-0 inset-x-0 z-40 flex items-center justify-between gap-3 px-5 py-3 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border-t border-amber-200 dark:border-slate-600 shadow-[0_-4px_16px_rgba(0,0,0,0.12)]"
+          className="lg:hidden fixed bottom-0 inset-x-0 z-40 flex items-center justify-between gap-3 px-5 py-3 bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border-t border-amber-900/10 dark:border-stone-800 shadow-[0_-8px_25px_rgba(120,53,15,0.12)]"
           aria-label={t('cart_bar.view', { defaultValue: 'Ver pedido' })}
         >
           {/* Cesta con contador */}
-          <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-amber-100 dark:bg-slate-700">
-            <ShoppingBasket className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+          <span className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-amber-100 dark:bg-stone-800 text-amber-800 dark:text-amber-300">
+            <ShoppingBasket className="w-5 h-5" />
             <motion.span
               key={itemCount}
-              initial={{ scale: 1.5 }}
+              initial={{ scale: 1.4 }}
               animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 500, damping: 18 }}
-              className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 flex items-center justify-center rounded-full bg-amber-500 text-white text-xs font-bold"
+              className="absolute -top-1.5 -right-1.5 min-w-[20px] h-5 px-1 flex items-center justify-center rounded-full bg-amber-500 text-stone-950 text-[11px] font-black shadow-sm"
             >
               {itemCount}
             </motion.span>
@@ -46,16 +43,16 @@ const MobileCartBar = ({ itemCount, subtotal }) => {
 
           {/* Subtotal */}
           <span className="flex-1 text-left">
-            <span className="block text-xs text-gray-500 dark:text-gray-400 leading-none mb-0.5">
+            <span className="block text-[11px] font-medium text-stone-500 dark:text-stone-400 leading-none mb-0.5">
               {t('order_summary.total')}
             </span>
-            <span className="block text-lg font-bold text-gray-800 dark:text-white leading-none">
+            <span className="block text-lg font-serif font-bold text-stone-900 dark:text-white leading-none">
               {formatPrice(subtotal)}
             </span>
           </span>
 
           {/* Llamada a la acción */}
-          <span className="flex items-center gap-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-sm px-4 py-2.5 rounded-full shadow-md">
+          <span className="flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-md animate-shimmer">
             {t('cart_bar.view', { defaultValue: 'Ver pedido' })}
             <ChevronUp className="w-4 h-4" />
           </span>

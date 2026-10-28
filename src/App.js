@@ -12,6 +12,7 @@ import SuccessModal from './components/SuccessModal';
 import VideoHelpButton from './components/VideoHelpButton';
 import MobileCartBar from './components/MobileCartBar';
 import TrustBar from './components/TrustBar';
+import BreadVisualizer from './components/BreadVisualizer';
 import { extras, bollitos, pulguitas, otrosPanes, optionalExtras } from './data/products';
 import { calculatePanBasePrice } from './utils/calculatePanPrice';
 
@@ -59,7 +60,15 @@ const ScrollToTop = () => {
 };
 
 // Componente para manejar las rutas con animaciones
-const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanExtras, handleUpdateCartItem, setIsAddButtonVisible }) => {
+const AnimatedRoutes = ({
+  cartItems,
+  handleAddPanPersonalizado,
+  handleUpdatePanExtras,
+  handleUpdateCartItem,
+  setIsAddButtonVisible,
+  selectedHarinas,
+  setSelectedHarinas
+}) => {
   const location = useLocation();
 
   return (
@@ -76,6 +85,8 @@ const AnimatedRoutes = ({ cartItems, handleAddPanPersonalizado, handleUpdatePanE
               onAddPan={handleAddPanPersonalizado}
               existingPanesCount={cartItems.filter(item => item.type === 'panPersonalizado').length}
               setIsAddButtonVisible={setIsAddButtonVisible}
+              selectedHarinas={selectedHarinas}
+              setSelectedHarinas={setSelectedHarinas}
             />
             <ExtrasSelector
               cartItems={cartItems}
@@ -135,6 +146,7 @@ const LAST_ORDER_KEY = 'panzen_last_order';
 const App = () => {
   // La cesta se inicia siempre vacía al abrir la app (sin memorizar pedidos anteriores)
   const [cartItems, setCartItems] = useState([]);
+  const [selectedHarinas, setSelectedHarinas] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isAddButtonVisible, setIsAddButtonVisible] = useState(false);
   const [selectedOptionalExtras, setSelectedOptionalExtras] = useState([]);
@@ -201,7 +213,8 @@ const App = () => {
             name: product.name,
             price: product.price,
             image: product.image,
-            icon: product.icon
+            icon: product.icon,
+            photo: product.photo
           }
         ];
       }
@@ -270,7 +283,7 @@ const App = () => {
     <Router>
       <ScrollToTop />
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 relative transition-colors duration-300">
+      <div className="min-h-screen bg-[#FAF7F2] dark:bg-[#151311] text-stone-800 dark:text-stone-100 relative transition-colors duration-300">
         {/* Decoración de Halloween (10 oct - 10 nov) */}
         {isHalloweenSeason() && (
           <Suspense fallback={null}>
@@ -300,12 +313,20 @@ const App = () => {
                     handleUpdatePanExtras={handleUpdatePanExtras}
                     handleUpdateCartItem={handleUpdateCartItem}
                     setIsAddButtonVisible={setIsAddButtonVisible}
+                    selectedHarinas={selectedHarinas}
+                    setSelectedHarinas={setSelectedHarinas}
                   />
                 </Suspense>
               </div>
 
               <div className="lg:col-span-1" id="order-summary">
-                <div className="sticky top-4">
+                <div className="sticky top-4 space-y-4">
+                  {/* Cuadro de Tu Creación antes del resumen del pedido */}
+                  <BreadVisualizer
+                    selectedHarinas={selectedHarinas}
+                    cartItems={cartItems}
+                  />
+
                   <OrderSummary
                     cartItems={cartItems}
                     onSendWhatsApp={handleSendWhatsApp}

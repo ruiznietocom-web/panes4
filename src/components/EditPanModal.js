@@ -91,7 +91,7 @@ const EditPanModal = ({ pan, onSave, onClose }) => {
           aria-label={t('edit_pan_modal.title')}
         >
           <motion.div
-            className="relative w-full max-w-md bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden max-h-[85vh] overflow-y-auto"
+            className="relative w-full max-w-md bg-white dark:bg-stone-900 rounded-3xl shadow-2xl overflow-hidden max-h-[85vh] overflow-y-auto border border-amber-900/15 dark:border-stone-700"
             initial={{ scale: 0.92, y: 24, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.92, y: 24, opacity: 0 }}

@@ -35,10 +35,10 @@ export const bollitos = [
   { id: 1.2, name: "PACK Surtido 6 Bollitos Integrales de Semillas", description: "Crujientes, llenos de fibra y minerales", image: "🧺🌻", price: 7.50, photo: "/images/bollitossemillas6.jpg", allergens: ["gluten", "sesame"] },
   { id: 1.3, name: "PACK Surtido 6 Bollitos Integrales de Nueces", description: "Nutritivo y delicioso", image: "🧺🥜", price: 7.50, photo: "/images/bollitosnueces6.jpg", allergens: ["gluten", "nuts"] },
   { id: 1.4, name: "PACK Surtido 6 Bollitos Integrales de Cacao en Polvo", description: "Con Cacao Puro", image: "🧺🍫", price: 7, photo: "/images/bollitoscacao6.jpg", allergens: ["gluten"] },
-  { id: 1.5, name: "PACK Surtido 6 Bollitos Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🧺🍇", price: 7.50, allergens: ["gluten"] },
+  { id: 1.5, name: "PACK Surtido 6 Bollitos Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🧺🍇", price: 7.50, photo: "/images/bollitopasas.jpg", allergens: ["gluten"] },
   { id: 1.6, name: "PACK Surtido 6 Bollitos Integrales de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧺🧡", price: 7, photo: "/images/bollitoscurcuma6.jpg", allergens: ["gluten"] },
   { id: 1.7, name: "PACK Surtido 6 Bollitos Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🧺🍅", price: 8, photo: "/images/bollitostomate6.jpg", allergens: ["gluten"] },
-  { id: 1.8, name: "PACK Surtido 6 Bollitos Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧺🧄", price: 7.50, allergens: ["gluten"] },
+  { id: 1.8, name: "PACK Surtido 6 Bollitos Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧺🧄", price: 7.50, photo: "/images/bollitoajo.jpg", allergens: ["gluten"] },
   { id: 2, name: "Bollito de Cacao", description: "Con cacao puro en polvo", image: "🍫", price: 1.30, photo: "/images/bollitocacao.jpg", allergens: ["gluten"] },
   { id: 3, name: "Bollito de Nueces", description: "Con nueces, nutritivo y delicioso", image: "🥜", price: 1.30, photo: "/images/bollitonuez.jpg", allergens: ["gluten", "nuts"] },
   { id: 4, name: "Bollito de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🍇", price: 1.30, photo: "/images/bollitopasas.jpg", allergens: ["gluten"] },
@@ -59,7 +59,7 @@ export const pulguitas = [
   { id: 1.5, name: "PACK Surtido 12 Pulguitas Integrales de Ciruelas Pasas", description: "Dulce y energético, con ciruelas deshidratadas", image: "🧺🍇", price: 7.50, photo: "/images/pulguitaspasas12.jpg", allergens: ["gluten"] },
   { id: 1.6, name: "PACK Surtido 12 Pulguitas Integrales de Cúrcuma", description: "Aromático y exótico, con un toque dorado", image: "🧺🧡", price: 7, photo: "/images/pulguitacurcuma12.jpg", allergens: ["gluten"] },
   { id: 1.7, name: "PACK Surtido 12 Pulguitas Integrales de Tomate y Orégano", description: "Mediterráneo, sabroso y con aroma casero", image: "🧺🍅", price: 8, photo: "/images/pulguitastomate12.jpg", allergens: ["gluten"] },
-  { id: 1.8, name: "PACK Surtido 12 Pulguitas Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧺🧄", price: 7.50, allergens: ["gluten"] },
+  { id: 1.8, name: "PACK Surtido 12 Pulguitas Integrales de Ajo", description: "Sabor intenso, perfecto para acompañar comidas", image: "🧺🧄", price: 7.50, photo: "/images/pulguitaunidadajo.jpg", allergens: ["gluten"] },
   { id: 2, name: "Pulguita de Cacao", description: "Con cacao puro en polvo", image: "🍫", price: 0.80, photo: "/images/pulguitaunidadcacao.jpg", allergens: ["gluten"] },
   { id: 3, name: "Pulguita de Nueces", description: "Con nueces, nutritiva y energética", image: "🥜", price: 0.80, photo: "/images/pulguitaunidadnuez.jpg", allergens: ["gluten", "nuts"] },
   { id: 4, name: "Pulguita de Ciruelas Pasas", description: "Pequeña, dulce y saludable", image: "🍇", price: 0.80, photo: "/images/pulguitaunidadpasas.jpg", allergens: ["gluten"] },
@@ -82,3 +82,101 @@ export const optionalExtras = [
   { id: "cafe", name: "Café", price: 1.00, icon: "☕" },
   { id: "cerveza", name: "Cerveza", price: 1.50, icon: "🍺" }
 ];
+
+
+export const getProductPhoto = (item) => {
+  if (!item) return null;
+  if (item.photo) return item.photo;
+
+  const idStr = String(item.id ?? '');
+  if (idStr.startsWith('mitad_')) {
+    return item.type === 'pulguita' ? '/images/pulguitasurtido14.jpg' : '/images/7bollos.jpg';
+  }
+
+  const foundB = bollitos.find(b => String(b.id) === idStr);
+  if (foundB?.photo) return foundB.photo;
+
+  const foundP = pulguitas.find(p => String(p.id) === idStr);
+  if (foundP?.photo) return foundP.photo;
+
+  if (item.name) {
+    const byNameB = bollitos.find(b => b.name === item.name);
+    if (byNameB?.photo) return byNameB.photo;
+    const byNameP = pulguitas.find(p => p.name === item.name);
+    if (byNameP?.photo) return byNameP.photo;
+  }
+
+  return null;
+};
+
+
+/**
+ * Tabla de pesos adicionales de los ingredientes extras para el pan personalizado
+ */
+export const EXTRA_WEIGHTS = {
+  1: 100, // Mix Semillas Eco 100g -> +100g
+  2: 50,  // Nueces -> +50g
+  3: 80,  // Ciruelas Pasas -> +80g
+  4: 80,  // Dátiles -> +80g
+  5: 100, // Aceitunas Negras -> +100g
+  6: 0,   // Tomate y orégano -> 0g
+  7: 0,   // Queso Roquefort -> 0g
+  8: 0,   // Cúrcuma -> 0g
+  9: 0,   // Pimienta -> 0g
+  10: 0,  // Curry -> 0g
+  12: 0,  // Cacao Puro en Polvo -> 0g
+  13: 0,  // Miel Pura -> 0g
+  14: 50, // Ajo -> +50g
+  15: 0,  // Sin sal -> 0g
+  16: 0,  // 1/2 sal -> 0g
+};
+
+/**
+ * Calcula el peso aproximado del pan sumando los extras seleccionados a la base de 1000g - 1100g
+ */
+export const calculatePanWeight = (extras = []) => {
+  const extraGrams = (extras || []).reduce((sum, extra) => {
+    const w = EXTRA_WEIGHTS[extra.id] || 0;
+    return sum + w;
+  }, 0);
+
+  const minWeight = 1000 + extraGrams;
+  const maxWeight = 1100 + extraGrams;
+
+  return {
+    extraGrams,
+    minWeight,
+    maxWeight,
+    label: `Aprox. ${minWeight}g - ${maxWeight}g`
+  };
+};
+
+/**
+ * Obtiene la definición / descripción completa del pack o producto seleccionado
+ */
+export const getProductDefinition = (item) => {
+  if (!item) return '';
+
+  const idStr = String(item.id ?? '');
+
+  if (idStr.startsWith('mitad_')) {
+    const parts = idStr.split('_');
+    if (parts.length >= 4) {
+      const productType = parts[1];
+      const f1Id = parts[2];
+      const f2Id = parts[3];
+      const halfUnits = productType === 'bollito' ? 3 : 6;
+      const f1Name = f1Id.charAt(0).toUpperCase() + f1Id.slice(1);
+      const f2Name = f2Id.charAt(0).toUpperCase() + f2Id.slice(1);
+      return `Combinación artesanal mitad y mitad: ${halfUnits}x de ${f1Name} + ${halfUnits}x de ${f2Name}. 100% integral y ecológico.`;
+    }
+  }
+
+  const b = bollitos.find(x => String(x.id) === idStr || x.name === item.name);
+  if (b?.description) return b.description;
+
+  const p = pulguitas.find(x => String(x.id) === idStr || x.name === item.name);
+  if (p?.description) return p.description;
+
+  return item.description || '';
+};

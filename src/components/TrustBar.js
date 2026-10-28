@@ -1,24 +1,23 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Wheat, Bike, HeartHandshake } from 'lucide-react';
 
-// Franja fina de confianza bajo el menú: comunica la propuesta de valor
-// en un vistazo a quien entra por primera vez.
 const TrustBar = () => {
   const { t } = useTranslation();
 
   const items = [
-    { icon: '🌾', text: t('trust_bar.integral', { defaultValue: '100% integral ecológico' }) },
-    { icon: '🚴', text: t('trust_bar.delivery', { defaultValue: 'Entrega gratis en Chiclana' }) },
-    { icon: '🤝', text: t('trust_bar.direct', { defaultValue: 'Artesano y cercano' }) },
+    { icon: Wheat, text: t('trust_bar.integral', { defaultValue: '100% integral ecológico' }) },
+    { icon: Bike, text: t('trust_bar.delivery', { defaultValue: 'Entrega gratis en Chiclana' }) },
+    { icon: HeartHandshake, text: t('trust_bar.direct', { defaultValue: 'Artesano y cercano' }) },
   ];
 
   return (
-    <div className="bg-amber-500/10 dark:bg-slate-800/60 border-b border-amber-100 dark:border-slate-700 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto px-4 py-1.5 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs sm:text-sm font-medium text-amber-900 dark:text-amber-200 text-center">
+    <div className="bg-amber-50/70 dark:bg-stone-900/60 border-b border-amber-200/40 dark:border-stone-800 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-4 py-2 flex flex-wrap items-center justify-center gap-x-8 gap-y-1.5 text-xs font-medium text-stone-700 dark:text-amber-200/90 text-center">
         {items.map((item, i) => (
-          <span key={i} className="flex items-center gap-1.5 whitespace-nowrap">
-            <span aria-hidden="true">{item.icon}</span>
-            {item.text}
+          <span key={i} className="inline-flex items-center gap-1.5 whitespace-nowrap">
+            <item.icon className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+            <span>{item.text}</span>
           </span>
         ))}
       </div>

@@ -54,17 +54,11 @@ const MitadYMitadCard = ({
     item => item.type === productType && (item.id.toString().startsWith('mitad_') || item.isCustomPack)
   );
 
-  const themeBorder = isBollito ? 'border-blue-400 dark:border-blue-500' : 'border-purple-400 dark:border-purple-500';
-  const themeBgGradient = isBollito
-    ? 'from-blue-50/70 via-white to-amber-50/40 dark:from-slate-700/80 dark:via-slate-800 dark:to-slate-700/50'
-    : 'from-purple-50/70 via-white to-amber-50/40 dark:from-slate-700/80 dark:via-slate-800 dark:to-slate-700/50';
-  const themeButton = isBollito
-    ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/30'
-    : 'bg-purple-600 hover:bg-purple-700 text-white shadow-purple-500/30';
-  const themePillActive = isBollito
-    ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-    : 'bg-purple-600 text-white border-purple-600 shadow-sm';
-  const themeTextColor = isBollito ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400';
+  const themeBorder = 'border-amber-400/80 dark:border-amber-500/50';
+  const themeBgGradient = 'from-amber-100/40 via-amber-50/20 to-white dark:from-stone-800 dark:via-stone-850 dark:to-stone-900';
+  const themeButton = 'bg-amber-500 hover:bg-amber-600 text-stone-950 font-bold shadow-amber-500/20';
+  const themePillActive = 'bg-amber-600 text-white border-amber-600 shadow-sm';
+  const themeTextColor = 'text-amber-700 dark:text-amber-400';
 
   const handleAddCurrentPack = () => {
     const newQty = currentPackQty + 1;
@@ -76,6 +70,7 @@ const MitadYMitadCard = ({
       quantity: newQty,
       image: '🧺',
       icon: '🧺',
+      photo: isBollito ? '/images/7bollos.jpg' : '/images/pulguitasurtido14.jpg',
       isCustomPack: true,
       flavor1: flavor1.id,
       flavor2: flavor2.id

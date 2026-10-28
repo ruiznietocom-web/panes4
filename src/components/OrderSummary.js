@@ -125,63 +125,93 @@ const OrderSummary = ({
     : '';
 
   const generateWhatsAppMessage = () => {
+    // Genera mensaje de WhatsApp con precios separados por tipo
     let message = `*NUEVO PEDIDO - PanZen*\n\n*RESUMEN DE TU PEDIDO:*\n\n`;
 
+    // PANES PERSONALIZADOS
     if (pansPersonalizados.length > 0) {
       message += `*PANES PERSONALIZADOS:*\n`;
       pansPersonalizados.forEach((pan, index) => {
         const panExtrasTotal = pan.extras?.reduce((acc, e) => acc + e.price, 0) || 0;
         const panTotal = pan.price + panExtrasTotal;
 
+        // Cabecera pan
         message += `🌾 Pan ${index + 1}:\n`;
+
+        // Harinas
         pan.harinas.forEach(h => {
           const hasCortado = h.name.toUpperCase().includes("PAN CORTADO");
           message += `   • ${h.icon ? h.icon + ' ' : ''}${h.name}${hasCortado ? ' 🔪' : ''}\n`;
         });
 
+        // Extras (si tiene)
         if (pan.extras?.length > 0) {
           message += `   Extras:\n`;
           pan.extras.forEach(e => {
             message += `   • ${e.icon ? e.icon + ' ' : ''}${e.name} (${formatPrice(e.price)})\n`;
           });
         }
+
+        // Precio final
         message += `👉 Precio Pan con extras: *${formatPrice(panTotal)}*\n\n`;
       });
     }
 
+    // BOLLITOS
     if (bollitosInCart.length > 0) {
       message += `\n*BOLLITOS:*\n`;
       bollitosInCart.forEach(item => {
         const b = bollitos.find(b => b.id === item.id);
         const name = item.name || b?.name || '';
         const price = item.price ?? b?.price ?? 0;
-        message += `• ${name} x${item.quantity} - ${formatPrice(price * item.quantity)}\n`;
+        const icon = item.image || item.icon || b?.image || '🍞';
+        message += `• ${icon ? icon + " " : ""}${name} x${item.quantity} - ${formatPrice(price * item.quantity)}\n`;
       });
     }
 
+    // PULGUITAS
     if (pulguitasInCart.length > 0) {
       message += `\n*PULGUITAS:*\n`;
       pulguitasInCart.forEach(item => {
         const p = pulguitas.find(p => p.id === item.id);
         const name = item.name || p?.name || '';
         const price = item.price ?? p?.price ?? 0;
-        message += `• ${name} x${item.quantity} - ${formatPrice(price * item.quantity)}\n`;
+        const icon = item.image || item.icon || p?.image || '🍞';
+        message += `• ${icon ? icon + " " : ""}${name} x${item.quantity} - ${formatPrice(price * item.quantity)}\n`;
       });
     }
 
+    // MANUEL, QUÉ RICO TU PAN!...
     if (selectedOptionalExtras.length > 0) {
-      message += `\n*EXTRAS OPCIONALES:*\n`;
+      message += `\n*MANUEL, QUÉ RICO TU PAN!:*\n`;
       selectedOptionalExtras.forEach(id => {
         const e = optionalExtras.find(opt => opt.id === id);
         if (e) {
-          message += `• ${e.icon} ${e.name} (${formatPrice(e.price)})\n`;
+          message += `• ${e.icon ? e.icon + " " : ""}${e.name} - ${formatPrice(e.price)}\n`;
         }
       });
     }
 
-    message += `\n*TOTAL DEL PEDIDO:*\n`;
-    message += `Total: *${formatPrice(total)}*\n`;
+    // Descuento (solo si realmente se aplica)
+    if (appliedDiscount && discountAmount > 0) {
+      const discountText = appliedDiscount.type === "percentage"
+        ? `${appliedDiscount.value}%`
+        : formatPrice(appliedDiscount.value);
+      message += `\n*DESCUENTO APLICADO: ${discountText}*\n`;
+    }
 
+    message += `\n*TOTAL: ${formatPrice(total)}*\n\n`;
+
+    message += `🚴‍♂️ Entrega a domicilio en *Chiclana* *GRATUITA!* 🎉\n\n`;
+
+    message += `🙏 PUEDES HACERME CUALQUIER CONSULTA o ESPECIFICACIÓN SOBRE EL PEDIDO POR WHATSAPP.\n\n`;
+
+    message += `📱 PARA MÁS PEDIDOS USA LA AppWeb ---> https://panespersonalizados.netlify.app/\n\n`;
+
+    message += `🙏 *MUCHAS GRACIAS!* 🙏 🌿\n\n`;
+
+    // ----------------------- TOTALES DETALLADOS CON DESCUENTO -----------------------
+    // Usa los mismos totales calculados arriba (sin recalcular)
     if (appliedDiscount && discountAmount > 0) {
       const discountText = appliedDiscount.type === "percentage"
         ? `Descuento ${appliedDiscount.value}%`

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.b9594f83.css",
-    "main.js": "/static/js/main.897b33ca.js",
+    "main.css": "/static/css/main.47167255.css",
+    "main.js": "/static/js/main.afbe0b7e.js",
     "static/js/28.0c8df464.chunk.js": "/static/js/28.0c8df464.chunk.js",
     "static/js/76.93635229.chunk.js": "/static/js/76.93635229.chunk.js",
     "static/js/182.f8b8fa2c.chunk.js": "/static/js/182.f8b8fa2c.chunk.js",
@@ -20,15 +20,15 @@
     "static/media/YONAVIDAD2.png": "/static/media/YONAVIDAD2.8bb5addcba68f455f2b0.png",
     "static/media/logo.jpg": "/static/media/logo.fc2347e3893c0c13a391.jpg",
     "index.html": "/index.html",
-    "main.b9594f83.css.map": "/static/css/main.b9594f83.css.map",
-    "main.897b33ca.js.map": "/static/js/main.897b33ca.js.map",
+    "main.47167255.css.map": "/static/css/main.47167255.css.map",
+    "main.afbe0b7e.js.map": "/static/js/main.afbe0b7e.js.map",
     "28.0c8df464.chunk.js.map": "/static/js/28.0c8df464.chunk.js.map",
     "76.93635229.chunk.js.map": "/static/js/76.93635229.chunk.js.map",
     "182.f8b8fa2c.chunk.js.map": "/static/js/182.f8b8fa2c.chunk.js.map",
     "471.904fb4a2.chunk.js.map": "/static/js/471.904fb4a2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b9594f83.css",
-    "static/js/main.897b33ca.js"
+    "static/css/main.47167255.css",
+    "static/js/main.afbe0b7e.js"
   ]
 }

@@ -23,16 +23,6 @@ const InformacionPage = React.lazy(() => import('./pages/InformacionPage'));
 
 // Decoración navideña: carga diferida (sus imágenes solo se descargan en temporada)
 const ChristmasDecorations = React.lazy(() => import('./components/ChristmasDecorations'));
-// Decoración de Halloween: carga diferida
-const HalloweenGhost = React.lazy(() => import('./components/HalloweenGhost'));
-
-// Temporada de Halloween: del 10 de octubre al 10 de noviembre
-const isHalloweenSeason = () => {
-  const now = new Date();
-  const month = now.getMonth(); // 9 = octubre, 10 = noviembre
-  const day = now.getDate();
-  return (month === 9 && day >= 10) || (month === 10 && day <= 10);
-};
 
 // Temporada navideña: del 1 de diciembre al 6 de enero (Reyes)
 const isChristmasSeason = () => {
@@ -284,13 +274,6 @@ const App = () => {
       <ScrollToTop />
       <Toaster position="top-center" reverseOrder={false} />
       <div className="min-h-screen bg-[#FAF7F2] dark:bg-[#151311] text-stone-800 dark:text-stone-100 relative transition-colors duration-300">
-        {/* Decoración de Halloween (10 oct - 10 nov) */}
-        {isHalloweenSeason() && (
-          <Suspense fallback={null}>
-            <HalloweenGhost />
-          </Suspense>
-        )}
-
         {/* Decoración navideña automática (1 dic - 6 ene) */}
         {isChristmasSeason() && (
           <Suspense fallback={null}>

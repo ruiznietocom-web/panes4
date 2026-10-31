@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Info, Sparkles, Wheat, Gauge, Layers, Sliders } from 'lucide-react';
+import { Check, Info, Sparkles, Wheat, Gauge, Layers, Sliders, Heart, Share2 } from 'lucide-react';
 import { harinas } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
 import { useTranslation } from 'react-i18next';
 import { calculatePanBasePrice } from '../utils/calculatePanPrice';
 import FlourInfoModal from './FlourInfoModal';
 import CorteReminderModal from './CorteReminderModal';
+import UnifiedFavoritesSection from './UnifiedFavoritesSection';
+import { toggleFavoriteBread, isFavoriteBread } from '../utils/orderStorage';
+import { shareCustomBread } from '../utils/shareOrder';
 import { toast } from 'react-hot-toast';
 
 // Atributos y perfiles específicos por harina para enriquecer la tarjeta
@@ -30,7 +33,9 @@ const HarinaSelector = ({
   existingPanesCount,
   setIsAddButtonVisible,
   selectedHarinas: externalSelectedHarinas,
-  setSelectedHarinas: externalSetSelectedHarinas
+  setSelectedHarinas: externalSetSelectedHarinas,
+  cartItems = [],
+  onUpdateCartItem
 }) => {
   const { t, i18n } = useTranslation();
   const [internalSelectedHarinas, setInternalSelectedHarinas] = useState([]);
@@ -72,7 +77,36 @@ const HarinaSelector = ({
     });
   };
 
-  const addPanToCart = (harinasToAdd) => {
+  const handleAddFavoritePan = (fav) => {
+    let harinas = fav?.harinas;
+    let extras = fav?.extras;
+    if (harinas && !Array.isArray(harinas) && Array.isArray(harinas.harinas)) {
+      extras = harinas.extras || extras;
+      harinas = harinas.harinas;
+    }
+    const safeHarinas = Array.isArray(harinas) ? harinas : [];
+    const safeExtras = Array.isArray(extras) ? extras : [];
+
+    onAddPan({
+      id: fav?.id || Date.now(),
+      type: 'panPersonalizado',
+      harinas: safeHarinas,
+      extras: safeExtras,
+      price: fav?.price || calculatePanBasePrice(safeHarinas),
+      quantity: 1
+    });
+  };
+
+  const addPanToCart = (param) => {
+    // Si viene un objeto pan completo (por ejemplo, desde favoritos)
+    if (param && !Array.isArray(param) && (param.harinas || param.type === 'panPersonalizado')) {
+      handleAddFavoritePan(param);
+      setSelectedHarinas([]);
+      setShowCorteReminder(false);
+      return;
+    }
+
+    const harinasToAdd = Array.isArray(param) ? param : [];
     onAddPan({
       id: Date.now(),
       type: 'panPersonalizado',
@@ -141,12 +175,62 @@ const HarinaSelector = ({
         </p>
       </div>
 
-      {/* Barra de progreso de selección */}
-      <div className="flex items-center justify-between mb-4 px-1">
-        <span className="text-xs font-semibold text-stone-700 dark:text-stone-300 flex items-center gap-1.5">
-          <Wheat className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-          {t('harina_selector.flour_counter', { count: selectedFlourCount, max: maxHarinas })}
-        </span>
+      {/* Sección Unificada: Tus Favoritos (Panes, Bollitos y Pulguitas) */}
+      <UnifiedFavoritesSection
+        cartItems={cartItems}
+        onAddPan={onAddPan}
+        onUpdateCartItem={onUpdateCartItem}
+      />
+
+      {/* Barra de progreso de selección y acciones de diseño */}
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4 px-1">
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-semibold text-stone-700 dark:text-stone-300 flex items-center gap-1.5">
+            <Wheat className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+            {t('harina_selector.flour_counter', { count: selectedFlourCount, max: maxHarinas })}
+          </span>
+
+          {selectedFlourCount > 0 && (
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => {
+                  const res = toggleFavoriteBread({ harinas: selectedHarinas, extras: [], price: currentPanPrice });
+                  toast(res ? t('order_summary.favorite_pan_saved') : t('order_summary.favorite_pan_removed'), {
+                    icon: res ? '❤️' : '🤍',
+                    duration: 2500,
+                    position: 'top-center'
+                  });
+                }}
+                className={`p-1.5 rounded-lg border text-xs flex items-center gap-1 transition ${
+                  isFavoriteBread({ harinas: selectedHarinas, extras: [] })
+                    ? 'bg-rose-50 border-rose-300 text-rose-600 dark:bg-rose-950/50 dark:border-rose-700 dark:text-rose-300'
+                    : 'bg-white dark:bg-stone-800 border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-300 hover:text-rose-500'
+                }`}
+                title={t('favorite_breads.save_button', { defaultValue: 'Guardar como favorita' })}
+              >
+                <Heart className={`w-3.5 h-3.5 ${isFavoriteBread({ harinas: selectedHarinas, extras: [] }) ? 'fill-rose-500 text-rose-500' : ''}`} />
+                <span className="text-[11px] font-semibold hidden sm:inline">
+                  {isFavoriteBread({ harinas: selectedHarinas, extras: [] }) ? 'Favorita' : 'Guardar'}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const corte = selectedHarinas.find(h => h.price === 0);
+                  shareCustomBread({ flours: selectedHarinas, corte, extras: [] });
+                }}
+                className="p-1.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-amber-600 text-xs flex items-center gap-1 transition"
+                title={t('order_summary.share_pan', { defaultValue: 'Compartir este pan' })}
+              >
+                <Share2 className="w-3.5 h-3.5" />
+                <span className="text-[11px] font-semibold hidden sm:inline">Compartir</span>
+              </button>
+            </div>
+          )}
+        </div>
+
         <span className="text-[11px] text-amber-700 dark:text-amber-400 flex items-center gap-1">
           <Info className="w-3 h-3" />
           {t('flour_info.tap_hint')}

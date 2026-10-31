@@ -2,6 +2,7 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import "./i18n";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import App from "./App";
 import { ThemeProvider } from './context/ThemeContext';
@@ -14,3 +15,5 @@ root.render(
     </ThemeProvider>
   </StrictMode>
 );
+
+serviceWorkerRegistration.register();

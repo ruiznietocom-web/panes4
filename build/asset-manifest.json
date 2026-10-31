@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.e866065f.css",
-    "main.js": "/static/js/main.5a5dab1f.js",
-    "static/js/28.3cbc6846.chunk.js": "/static/js/28.3cbc6846.chunk.js",
-    "static/js/76.b7b8e6c9.chunk.js": "/static/js/76.b7b8e6c9.chunk.js",
-    "static/js/440.ba1a8342.chunk.js": "/static/js/440.ba1a8342.chunk.js",
+    "main.css": "/static/css/main.b9594f83.css",
+    "main.js": "/static/js/main.897b33ca.js",
+    "static/js/28.0c8df464.chunk.js": "/static/js/28.0c8df464.chunk.js",
+    "static/js/76.93635229.chunk.js": "/static/js/76.93635229.chunk.js",
+    "static/js/182.f8b8fa2c.chunk.js": "/static/js/182.f8b8fa2c.chunk.js",
     "static/js/471.904fb4a2.chunk.js": "/static/js/471.904fb4a2.chunk.js",
     "static/media/corazon.jpg": "/static/media/corazon.bd61b6dfe9254928b0f9.jpg",
     "static/media/pantomate.jpg": "/static/media/pantomate.7285b16f40266164115a.jpg",
@@ -20,15 +20,15 @@
     "static/media/YONAVIDAD2.png": "/static/media/YONAVIDAD2.8bb5addcba68f455f2b0.png",
     "static/media/logo.jpg": "/static/media/logo.fc2347e3893c0c13a391.jpg",
     "index.html": "/index.html",
-    "main.e866065f.css.map": "/static/css/main.e866065f.css.map",
-    "main.5a5dab1f.js.map": "/static/js/main.5a5dab1f.js.map",
-    "28.3cbc6846.chunk.js.map": "/static/js/28.3cbc6846.chunk.js.map",
-    "76.b7b8e6c9.chunk.js.map": "/static/js/76.b7b8e6c9.chunk.js.map",
-    "440.ba1a8342.chunk.js.map": "/static/js/440.ba1a8342.chunk.js.map",
+    "main.b9594f83.css.map": "/static/css/main.b9594f83.css.map",
+    "main.897b33ca.js.map": "/static/js/main.897b33ca.js.map",
+    "28.0c8df464.chunk.js.map": "/static/js/28.0c8df464.chunk.js.map",
+    "76.93635229.chunk.js.map": "/static/js/76.93635229.chunk.js.map",
+    "182.f8b8fa2c.chunk.js.map": "/static/js/182.f8b8fa2c.chunk.js.map",
     "471.904fb4a2.chunk.js.map": "/static/js/471.904fb4a2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e866065f.css",
-    "static/js/main.5a5dab1f.js"
+    "static/css/main.b9594f83.css",
+    "static/js/main.897b33ca.js"
   ]
 }

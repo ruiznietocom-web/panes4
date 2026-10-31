@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from "framer-motion";
 import { pulguitas } from "../data/products";
 import { formatPrice } from "../utils/formatPrice";
 import AllergenBadges from "../components/AllergenBadges";
 import MitadYMitadCard from "../components/MitadYMitadCard";
-import { Sparkles, CircleDot, Plus, Minus, X, ZoomIn } from "lucide-react";
+import UnifiedFavoritesSection from "../components/UnifiedFavoritesSection";
+import { Sparkles, CircleDot, Plus, Minus, X, ZoomIn, Heart } from "lucide-react";
+import { toast } from "react-hot-toast";
+import { isFavoriteProduct, toggleFavoriteProduct } from "../utils/orderStorage";
 
-const PulguitasPage = ({ selectedPulguitas = {}, onUpdatePulguitaQuantity, cartItems = [] }) => {
+const PulguitasPage = ({
+  selectedPulguitas = {},
+  onUpdatePulguitaQuantity,
+  cartItems = [],
+  onAddPan,
+  onUpdateCartItem
+}) => {
   const { t } = useTranslation();
   const [modalPhoto, setModalPhoto] = useState(null);
+  const [, setFavVersion] = useState(0);
+
+  useEffect(() => {
+    const onStorage = () => setFavVersion(v => v + 1);
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
 
   return (
     <motion.div
@@ -32,11 +48,19 @@ const PulguitasPage = ({ selectedPulguitas = {}, onUpdatePulguitaQuantity, cartI
         </p>
       </div>
 
+      {/* Sección Unificada: Tus Favoritos (Panes, Bollitos y Pulguitas) */}
+      <UnifiedFavoritesSection
+        cartItems={cartItems}
+        onAddPan={onAddPan}
+        onUpdateCartItem={onUpdateCartItem}
+      />
+
       {/* Grid de productos */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {pulguitas.map((pulguita, index) => {
           const qty = selectedPulguitas[pulguita.id] || 0;
           const isPack = pulguita.name.toUpperCase().includes('PACK');
+          const isFav = isFavoriteProduct(pulguita.id, 'pulguita');
 
           return (
             <motion.div
@@ -58,6 +82,30 @@ const PulguitasPage = ({ selectedPulguitas = {}, onUpdatePulguitaQuantity, cartI
                   Pack Ahorro
                 </div>
               )}
+
+              {/* Botón Favorito (Corazón) */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const res = toggleFavoriteProduct(pulguita, 'pulguita');
+                  setFavVersion(v => v + 1);
+                  toast(res ? t('favorite_products.pulguita_saved', { defaultValue: '¡Pulguita guardada en tus favoritas! ❤️' }) : t('favorite_products.pulguita_removed', { defaultValue: 'Pulguita eliminada de favoritas 🤍' }), {
+                    icon: res ? '❤️' : '🤍',
+                    duration: 2500,
+                    position: 'top-center'
+                  });
+                }}
+                className={`absolute top-3 right-3 z-10 p-2 rounded-full backdrop-blur-md transition-all shadow-sm cursor-pointer ${
+                  isFav
+                    ? 'bg-rose-50 dark:bg-rose-950/70 text-rose-500 scale-105 ring-2 ring-rose-400/30'
+                    : 'bg-white/80 dark:bg-stone-900/80 text-stone-400 hover:text-rose-500 hover:scale-105'
+                }`}
+                title={isFav ? t('favorite_products.remove_favorite', { defaultValue: 'Eliminar de favoritos' }) : t('favorite_products.add_favorite', { defaultValue: 'Guardar en favoritos' })}
+                aria-label="Favorito"
+              >
+                <Heart className={`w-4 h-4 ${isFav ? 'fill-rose-500 text-rose-500' : ''}`} />
+              </button>
 
               {/* Imagen o Icono */}
               <div className="relative mb-3">

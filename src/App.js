@@ -15,6 +15,8 @@ import TrustBar from './components/TrustBar';
 import BreadVisualizer from './components/BreadVisualizer';
 import { extras, bollitos, pulguitas, otrosPanes, optionalExtras } from './data/products';
 import { calculatePanBasePrice } from './utils/calculatePanPrice';
+import { getLastOrder } from './utils/orderStorage';
+import { toast } from 'react-hot-toast';
 
 // Lazy loading de páginas
 const BollitosPage = React.lazy(() => import('./pages/BollitosPage'));
@@ -77,6 +79,8 @@ const AnimatedRoutes = ({
               setIsAddButtonVisible={setIsAddButtonVisible}
               selectedHarinas={selectedHarinas}
               setSelectedHarinas={setSelectedHarinas}
+              cartItems={cartItems}
+              onUpdateCartItem={handleUpdateCartItem}
             />
             <ExtrasSelector
               cartItems={cartItems}
@@ -96,6 +100,8 @@ const AnimatedRoutes = ({
               selectedBollitos={cartItems.filter(item => item.type === 'bollito')
                 .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
               onUpdateBollitoQuantity={(id, qty, customData) => handleUpdateCartItem(id, qty, 'bollito', customData)}
+              onAddPan={handleAddPanPersonalizado}
+              onUpdateCartItem={handleUpdateCartItem}
             />
           </motion.div>
         } />
@@ -111,6 +117,8 @@ const AnimatedRoutes = ({
               selectedPulguitas={cartItems.filter(item => item.type === 'pulguita')
                 .reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})}
               onUpdatePulguitaQuantity={(id, qty, customData) => handleUpdateCartItem(id, qty, 'pulguita', customData)}
+              onAddPan={handleAddPanPersonalizado}
+              onUpdateCartItem={handleUpdateCartItem}
             />
           </motion.div>
         } />
@@ -134,22 +142,62 @@ const CART_STORAGE_KEY = 'panzen_cart';
 const LAST_ORDER_KEY = 'panzen_last_order';
 
 const App = () => {
-  // La cesta se inicia siempre vacía al abrir la app (sin memorizar pedidos anteriores)
+  const { t } = useTranslation();
+  // La cesta se inicia vacía al abrir la app
   const [cartItems, setCartItems] = useState([]);
   const [selectedHarinas, setSelectedHarinas] = useState([]);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isAddButtonVisible, setIsAddButtonVisible] = useState(false);
   const [selectedOptionalExtras, setSelectedOptionalExtras] = useState([]);
+  const [lastOrder, setLastOrder] = useState(getLastOrder);
 
-  // Limpiar cualquier residuo de pedidos memorizados en el almacenamiento local
+  // Limpiar cesta temporal previa pero conservar último pedido
   useEffect(() => {
     try {
       localStorage.removeItem(CART_STORAGE_KEY);
-      localStorage.removeItem(LAST_ORDER_KEY);
     } catch {
       // almacenamiento no disponible
     }
   }, []);
+
+  const handleRepeatLastOrder = () => {
+    const saved = getLastOrder();
+    if (!saved || !saved.items || saved.items.length === 0) return;
+    const now = Date.now();
+    const items = saved.items.map((item, index) => {
+      if (item.type === 'panPersonalizado') {
+        let harinas = item.harinas;
+        let extras = item.extras;
+        if (harinas && !Array.isArray(harinas) && Array.isArray(harinas.harinas)) {
+          extras = harinas.extras || extras;
+          harinas = harinas.harinas;
+        }
+        return {
+          ...item,
+          id: now + index,
+          harinas: Array.isArray(harinas) ? [...harinas] : [],
+          extras: Array.isArray(extras) ? [...extras] : []
+        };
+      }
+      return { ...item };
+    });
+    setCartItems(items);
+    if (Array.isArray(saved.optionalExtras)) {
+      setSelectedOptionalExtras(saved.optionalExtras);
+    }
+    toast.success(t('order_summary.repeat_toast', { defaultValue: '¡Tu pedido habitual se ha cargado en la cesta! 🧺' }), {
+      duration: 3500,
+      position: 'top-center',
+      style: {
+        background: '#B8860B',
+        color: '#fff',
+        fontWeight: 'bold',
+        borderRadius: '16px'
+      }
+    });
+    const el = document.getElementById('order-summary');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const getProductDetails = (id, type) => {
     switch (type) {
@@ -162,7 +210,18 @@ const App = () => {
   };
 
   const handleAddPanPersonalizado = (pan) => {
-    setCartItems(prev => [...prev, { ...pan, extras: [] }]);
+    let harinas = pan.harinas;
+    let extras = pan.extras;
+    if (harinas && !Array.isArray(harinas) && Array.isArray(harinas.harinas)) {
+      extras = harinas.extras || extras;
+      harinas = harinas.harinas;
+    }
+    const safePan = {
+      ...pan,
+      harinas: Array.isArray(harinas) ? harinas : [],
+      extras: Array.isArray(extras) ? extras : []
+    };
+    setCartItems(prev => [...prev, safePan]);
   };
 
   const handleUpdateCartItem = (id, quantity, type, customItemData = null) => {
@@ -234,6 +293,7 @@ const App = () => {
   };
 
   const handleSendWhatsApp = () => {
+    setLastOrder(getLastOrder());
     setShowSuccessModal(true);
     setCartItems([]);
     setSelectedOptionalExtras([]);
@@ -281,7 +341,7 @@ const App = () => {
           </Suspense>
         )}
 
-        <Header />
+        <Header lastOrder={lastOrder} onRepeatLastOrder={handleRepeatLastOrder} />
         <Navigation />
         <TrustBar />
 
@@ -316,6 +376,9 @@ const App = () => {
                     onRemoveItem={handleRemoveCartItem}
                     onDuplicateItem={handleDuplicatePan}
                     onEditPanHarinas={handleUpdatePan}
+                    onUpdateCartItem={handleUpdateCartItem}
+                    lastOrder={lastOrder}
+                    onRepeatLastOrder={handleRepeatLastOrder}
                     selectedOptionalExtras={selectedOptionalExtras}
                     setSelectedOptionalExtras={setSelectedOptionalExtras}
                   />

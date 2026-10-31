@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Scissors, CheckCircle2, ShoppingBag } from 'lucide-react';
+import { Sparkles, Scissors, CheckCircle2, ShoppingBag, Heart, Share2 } from 'lucide-react';
 import { bollitos, pulguitas, getProductPhoto, getProductDefinition, calculatePanWeight } from '../data/products';
 import { formatPrice } from '../utils/formatPrice';
+import { toggleFavoriteBread, isFavoriteBread } from '../utils/orderStorage';
+import { shareCustomBread } from '../utils/shareOrder';
+import { toast } from 'react-hot-toast';
 
 /**
  * Función que calcula los colores, miga, corte y rebanadas según cereales y corte.
  */
 const getPanVisualAttributes = (panFlours = [], panCorte = null, panExtras = []) => {
-  const floursOnly = panFlours.filter(h => h.price > 0);
-  const corteOnly = panCorte || panFlours.find(h => h.price === 0);
-  const weight = calculatePanWeight(panExtras);
+  const safeFlours = Array.isArray(panFlours) ? panFlours : [];
+  const safeExtras = Array.isArray(panExtras) ? panExtras : [];
+  const floursOnly = safeFlours.filter(h => h && h.price > 0);
+  const corteOnly = panCorte || safeFlours.find(h => h && h.price === 0);
+  const weight = calculatePanWeight(safeExtras);
 
   const hasCenteno = floursOnly.some(f => f.name.toLowerCase().includes('centeno'));
   const hasKhorasan = floursOnly.some(f => f.name.toLowerCase().includes('khorasan'));
@@ -279,11 +284,44 @@ const BarraLoafCard = ({
           ))}
         </div>
 
-        {price && (
-          <span className="font-serif font-bold text-xs text-amber-800 dark:text-amber-300">
-            {formatPrice(price + extras.reduce((sum, e) => sum + e.price, 0))}
-          </span>
-        )}
+        <div className="flex items-center gap-1.5 ml-auto">
+          {attrs.floursOnly.length > 0 && (
+            <>
+              <button
+                type="button"
+                onClick={() => {
+                  const res = toggleFavoriteBread({ harinas: flours, extras, price });
+                  toast(res ? '¡Barra guardada en tus favoritas! ❤️' : 'Barra eliminada de favoritas 🤍', {
+                    icon: res ? '❤️' : '🤍',
+                    duration: 2500,
+                    position: 'top-center'
+                  });
+                }}
+                className="p-1 rounded-md text-stone-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-stone-700 transition"
+                title="Guardar como favorita"
+                aria-label="Guardar como favorita"
+              >
+                <Heart className={`w-3.5 h-3.5 ${isFavoriteBread({ harinas: flours, extras }) ? 'fill-rose-500 text-rose-500' : ''}`} />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => shareCustomBread({ flours, corte, extras })}
+                className="p-1 rounded-md text-stone-400 hover:text-amber-600 hover:bg-amber-50 dark:hover:bg-stone-700 transition"
+                title="Compartir este pan"
+                aria-label="Compartir este pan"
+              >
+                <Share2 className="w-3.5 h-3.5" />
+              </button>
+            </>
+          )}
+
+          {price && (
+            <span className="font-serif font-bold text-xs text-amber-800 dark:text-amber-300">
+              {formatPrice(price + extras.reduce((sum, e) => sum + e.price, 0))}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -333,13 +371,9 @@ const BreadVisualizer = ({ selectedHarinas = [], cartItems = [] }) => {
           </span>
         </div>
 
-        {totalBreadsCount > 0 ? (
+        {totalBreadsCount > 0 && (
           <span className="text-[11px] font-bold text-amber-800 dark:text-amber-300">
             {totalBreadsCount} {totalBreadsCount === 1 ? 'pan creado' : 'panes creados'}
-          </span>
-        ) : (
-          <span className="text-[11px] font-semibold text-amber-700 dark:text-amber-400">
-            Obrador libre
           </span>
         )}
       </div>
@@ -347,19 +381,27 @@ const BreadVisualizer = ({ selectedHarinas = [], cartItems = [] }) => {
       {/* SECCIÓN DE PANES: MUESTRA TODOS LOS PANES REFLEJADOS (CADA UNO CON SU CORTE, HARINAS Y EXTRAS) */}
       <div className={`space-y-3 mb-3 ${totalBreadsCount > 2 ? 'max-h-[520px] overflow-y-auto pr-1' : ''}`}>
         {/* 1. TODOS los panes personalizados que ya han sido añadidos al pedido */}
-        {panesInCart.map((pan, idx) => (
-          <BarraLoafCard
-            key={pan.id || idx}
-            uniqueId={`cart_pan_${pan.id || idx}`}
-            flours={pan.harinas || []}
-            corte={pan.harinas?.find(h => h.price === 0)}
-            extras={pan.extras || []}
-            title={`Pan ${idx + 1}`}
-            price={pan.price}
-            quantity={pan.quantity || 1}
-            isDraft={false}
-          />
-        ))}
+        {panesInCart.map((pan, idx) => {
+          const flours = Array.isArray(pan.harinas)
+            ? pan.harinas
+            : (Array.isArray(pan.harinas?.harinas) ? pan.harinas.harinas : []);
+          const extras = Array.isArray(pan.extras)
+            ? pan.extras
+            : (Array.isArray(pan.harinas?.extras) ? pan.harinas.extras : []);
+          return (
+            <BarraLoafCard
+              key={pan.id || idx}
+              uniqueId={`cart_pan_${pan.id || idx}`}
+              flours={flours}
+              corte={flours.find(h => h && h.price === 0)}
+              extras={extras}
+              title={`Pan ${idx + 1}`}
+              price={pan.price}
+              quantity={pan.quantity || 1}
+              isDraft={false}
+            />
+          );
+        })}
 
         {/* 2. Pan actualmente en preparación (si el usuario ha empezado a seleccionar harinas para otro pan) */}
         {isConfiguringNewPan && (

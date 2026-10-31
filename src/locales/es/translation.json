@@ -79,7 +79,67 @@
     "min_purchase_note": "Compra mínima de {{min}} para este código",
     "duplicate": "Duplicar este pan",
     "edit_pan": "Editar este pan",
-    "repeat_last": "Repetir mi último pedido"
+    "repeat_last": "Repetir último pedido",
+    "repeat_last_short": "Repetir último pedido",
+    "repeat_toast": "¡Tu pedido habitual se ha cargado en la cesta! 🧺",
+    "favorite_pan_saved": "¡Barra guardada en tus favoritas! ❤️",
+    "favorite_pan_removed": "Barra eliminada de tus favoritas 🤍",
+    "share_pan": "Compartir este pan",
+    "min_order_progress_reached": "¡Pedido mínimo alcanzado! Reparto gratuito en Chiclana 🚴‍♂️",
+    "min_order_progress_missing": "Te faltan solo {{amount}} para el pedido mínimo de 6,00 €",
+    "quick_add_title": "Sugerencias para completar tu pedido:",
+    "add_pulguita_quick": "+ 1 Pulguita (0,60 €)",
+    "add_bollito_quick": "+ 1 Bollito (1,10 €)",
+    "add_cafe_quick": "+ 1 Café para Manuel (1,00 €)"
+  },
+  "unified_favorites": {
+    "title": "Tus Favoritos",
+    "subtitle": "Pide tus productos habituales con 1 solo toque",
+    "open_prompt": "Toca aquí para ver y pedir tus favoritos guardados",
+    "filter_all": "Todos",
+    "filter_panes": "Barras",
+    "filter_bollitos": "Bollitos",
+    "filter_pulguitas": "Pulguitas",
+    "toast_bread_added": "¡Barra favorita añadida a la cesta! ❤️",
+    "toast_bollito_added": "¡Bollito favorito añadido a la cesta! 🥖",
+    "toast_pulguita_added": "¡Pulguita favorita añadida a la cesta! 🥯",
+    "toast_removed": "Eliminado de favoritos 🤍",
+    "badge_bread": "Barra",
+    "badge_bollito": "Bollito",
+    "badge_pulguita": "Pulguita",
+    "order_button": "Pedir"
+  },
+  "favorite_breads": {
+    "title": "Tus Barras Favoritas",
+    "subtitle": "Pide con 1 solo toque",
+    "add_to_cart": "Añadir a la cesta",
+    "toast_added": "¡Barra favorita añadida a la cesta! ❤️",
+    "toast_removed": "Eliminada de favoritas",
+    "save_button": "Guardar en Favoritas",
+    "saved": "Favorita"
+  },
+  "favorite_products": {
+    "bollitos_section_title": "Tus Bollitos Favoritos",
+    "pulguitas_section_title": "Tus Pulguitas Favoritas",
+    "bollito_saved": "¡Bollito guardado en tus favoritos! ❤️",
+    "bollito_removed": "Bollito eliminado de favoritos 🤍",
+    "pulguita_saved": "¡Pulguita guardada en tus favoritas! ❤️",
+    "pulguita_removed": "Pulguita eliminada de favoritas 🤍",
+    "add_favorite": "Guardar en favoritos",
+    "remove_favorite": "Eliminar de favoritos"
+  },
+  "delivery_modal": {
+    "badge": "Entrega Gratuita en Chiclana",
+    "title": "Tus Datos de Entrega",
+    "desc": "Rellena tus datos para que el mensaje de WhatsApp salga listo. Se guardarán en tu dispositivo para tus próximos pedidos.",
+    "name_label": "Tu Nombre y Apellidos",
+    "address_label": "Dirección completa en Chiclana",
+    "phone_label": "Teléfono de contacto",
+    "time_label": "Franja preferida",
+    "payment_label": "Forma de pago prevista:",
+    "notes_label": "Observaciones para el repartidor (opcional)",
+    "confirm_button": "Confirmar y Abrir WhatsApp",
+    "skip_button": "Prefiero escribir mis datos directamente en WhatsApp"
   },
   "products": {
     "harinas": {

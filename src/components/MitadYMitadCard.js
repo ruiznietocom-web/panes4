@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Minus, Trash2, Sparkles, Check } from 'lucide-react';
+import { Plus, Minus, Trash2, Sparkles, Check, Heart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { formatPrice } from '../utils/formatPrice';
 import AllergenBadges from './AllergenBadges';
 import { MITAD_Y_MITAD_FLAVORS, calculateMitadYMitadPrice, resolveMitadPackDetails } from '../utils/calculateMitadYMitadPrice';
+import { isFavoriteProduct, toggleFavoriteProduct } from '../utils/orderStorage';
 
 /**
  * Tarjeta interactiva para configurar y añadir packs de "Mitad de un sabor y mitad de otro"
@@ -53,6 +54,15 @@ const MitadYMitadCard = ({
   const mitadPacksInCart = cartItems.filter(
     item => item.type === productType && (item.id.toString().startsWith('mitad_') || item.isCustomPack)
   );
+
+  const [, setFavVersion] = useState(0);
+  const isFav = isFavoriteProduct(currentPackId, productType);
+
+  React.useEffect(() => {
+    const onStorage = () => setFavVersion(v => v + 1);
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
 
   const themeBorder = 'border-amber-400/80 dark:border-amber-500/50';
   const themeBgGradient = 'from-amber-100/40 via-amber-50/20 to-white dark:from-stone-800 dark:via-stone-850 dark:to-stone-900';
@@ -120,9 +130,39 @@ const MitadYMitadCard = ({
           {t('mitad_y_mitad.badge', { defaultValue: 'Personalizable · 2 Sabores' })}
         </span>
 
-        <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${explanation.badgeClass}`}>
-          {explanation.text}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${explanation.badgeClass}`}>
+            {explanation.text}
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              const packItem = {
+                id: currentPackId,
+                name: `PACK ${totalUnits} ${label} Mitad y Mitad (${halfUnits}x ${flavor1.name} + ${halfUnits}x ${flavor2.name})`,
+                price: currentPrice,
+                photo: isBollito ? '/images/7bollos.jpg' : '/images/pulguitasurtido14.jpg',
+                image: '🧺'
+              };
+              const res = toggleFavoriteProduct(packItem, productType);
+              setFavVersion(v => v + 1);
+              toast(res ? (isBollito ? t('favorite_products.bollito_saved', { defaultValue: '¡Bollito guardado en tus favoritos! ❤️' }) : t('favorite_products.pulguita_saved', { defaultValue: '¡Pulguita guardada en tus favoritas! ❤️' })) : (isBollito ? t('favorite_products.bollito_removed', { defaultValue: 'Bollito eliminado de favoritos 🤍' }) : t('favorite_products.pulguita_removed', { defaultValue: 'Pulguita eliminada de favoritas 🤍' })), {
+                icon: res ? '❤️' : '🤍',
+                duration: 2500,
+                position: 'top-center'
+              });
+            }}
+            className={`p-1.5 rounded-full transition-all cursor-pointer ${
+              isFav
+                ? 'bg-rose-50 text-rose-500 ring-2 ring-rose-400/30 dark:bg-rose-950/60'
+                : 'text-stone-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-stone-700'
+            }`}
+            title={isFav ? t('favorite_products.remove_favorite', { defaultValue: 'Eliminar de favoritos' }) : t('favorite_products.add_favorite', { defaultValue: 'Guardar como favorito' })}
+            aria-label="Favorito"
+          >
+            <Heart className={`w-4 h-4 ${isFav ? 'fill-rose-500 text-rose-500' : ''}`} />
+          </button>
+        </div>
       </div>
 
       <div className="text-center sm:text-left mb-4">

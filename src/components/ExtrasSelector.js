@@ -26,36 +26,48 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
 
   return (
     <div className="space-y-6">
-      {panes.map((pan, index) => (
-        <div
-          key={pan.id}
-          className="bg-white/90 dark:bg-stone-900/90 rounded-3xl p-6 sm:p-8 shadow-artisan border border-amber-900/10 dark:border-stone-800 relative overflow-hidden group transition-all duration-300"
-        >
-          {/* Luz decorativa */}
-          <div className="absolute top-0 right-0 w-36 h-36 bg-amber-400/10 dark:bg-amber-500/5 rounded-bl-full pointer-events-none transition-transform group-hover:scale-125 duration-700"></div>
+      {panes.map((pan, index) => {
+        const panHarinas = Array.isArray(pan.harinas)
+          ? pan.harinas
+          : (Array.isArray(pan.harinas?.harinas) ? pan.harinas.harinas : []);
+        const panExtras = Array.isArray(pan.extras)
+          ? pan.extras
+          : (Array.isArray(pan.harinas?.extras) ? pan.harinas.extras : []);
 
-          <div className="relative z-10 mb-6">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="bg-gradient-to-r from-amber-600 to-amber-700 text-stone-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1.5">
-                <Sparkles className="w-3 h-3 text-stone-950" />
-                {t('EXTRAS.pan')} {index + 1}
-              </span>
-              <div className="h-px flex-1 bg-gradient-to-r from-amber-300/40 to-transparent dark:from-stone-700"></div>
+        return (
+          <div
+            key={pan.id}
+            className="bg-white/90 dark:bg-stone-900/90 rounded-3xl p-6 sm:p-8 shadow-artisan border border-amber-900/10 dark:border-stone-800 relative overflow-hidden group transition-all duration-300"
+          >
+            {/* Luz decorativa */}
+            <div className="absolute top-0 right-0 w-36 h-36 bg-amber-400/10 dark:amber-500/5 rounded-bl-full pointer-events-none transition-transform group-hover:scale-125 duration-700"></div>
+
+            <div className="relative z-10 mb-6">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="bg-gradient-to-r from-amber-600 to-amber-700 text-stone-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1.5">
+                  <Sparkles className="w-3 h-3 text-stone-950" />
+                  {t('EXTRAS.pan')} {index + 1}
+                </span>
+                <div className="h-px flex-1 bg-gradient-to-r from-amber-300/40 to-transparent dark:from-stone-700"></div>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h3 className="text-xl sm:text-2xl font-serif font-bold text-stone-900 dark:text-stone-100">
+                  {panHarinas.map(h => {
+                    const translationKey = `products.harinas.${h.id}.name`;
+                    const name = t(translationKey, { defaultValue: h.name || '' });
+                    return name.replace(' Integral Ecológico', '');
+                  }).join(' + ')}
+                </h3>
+                <span className="text-xs font-bold text-amber-800 dark:text-amber-300 bg-amber-100/70 dark:bg-stone-800 px-2.5 py-1 rounded-full border border-amber-300/40">
+                  {calculatePanWeight(panExtras).label}
+                </span>
+              </div>
+
+              <p className="text-stone-500 dark:text-stone-400 text-xs sm:text-sm font-medium">
+                {t('extras_selector.subtitle', { defaultValue: 'Personaliza tu pan con nuestros ingredientes y semillas de cultivo biológico' })}
+              </p>
             </div>
-
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
-              <h3 className="text-xl sm:text-2xl font-serif font-bold text-stone-900 dark:text-stone-100">
-                {pan.harinas.map(h => t(`products.harinas.${h.id}.name`).replace(' Integral Ecológico', '')).join(' + ')}
-              </h3>
-              <span className="text-xs font-bold text-amber-800 dark:text-amber-300 bg-amber-100/70 dark:bg-stone-800 px-2.5 py-1 rounded-full border border-amber-300/40">
-                {calculatePanWeight(pan.extras).label}
-              </span>
-            </div>
-
-            <p className="text-stone-500 dark:text-stone-400 text-xs sm:text-sm font-medium">
-              {t('extras_selector.subtitle', { defaultValue: 'Personaliza tu pan con nuestros ingredientes y semillas de cultivo biológico' })}
-            </p>
-          </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
             {allExtras.map(extra => {
@@ -92,9 +104,10 @@ const ExtrasSelector = ({ cartItems, onUpdatePanExtras }) => {
             })}
           </div>
         </div>
-      ))}
-    </div>
-  );
+      );
+    })}
+  </div>
+);
 };
 
 export default ExtrasSelector;
